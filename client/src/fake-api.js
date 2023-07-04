@@ -1,8 +1,8 @@
 export const data = [
   {
     id: 1,
-    cantidad: 1,
-    categoria: "Sedán",
+    amount: 1,
+    category: "Sedán",
     marca: "BMW",
     name: "BMW Serie 7 Sedán",
     age: "2021",
@@ -22,8 +22,8 @@ export const data = [
   },
   {
     id: 2,
-    cantidad: 1,
-    categoria: "Cabriolet",
+    amount: 1,
+    category: "Cabriolet",
     marca: "BMW",
     name: "BMW Z4 Roadster",
     age: "2023",
@@ -37,8 +37,8 @@ export const data = [
   },
   {
     id: 3,
-    cantidad: 1,
-    categoria: "SUV",
+    amount: 1,
+    category: "SUV",
     marca: "BMW",
     name: "BMW X6 M",
     age: "2022",
@@ -66,8 +66,8 @@ export const data = [
   },
   {
     id: 4,
-    cantidad: 1,
-    categoria: "Coupé",
+    amount: 1,
+    category: "Coupé",
     marca: "BMW",
     name: "BMW Serie 2 Coupé",
     age: "2023",
@@ -87,8 +87,8 @@ export const data = [
   },
   {
     id: 5,
-    cantidad: 1,
-    categoria: "Sedán",
+    amount: 1,
+    category: "Sedán",
     marca: "BMW",
     name: "BMW Serie 4",
     age: "2023",
