@@ -9,7 +9,7 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import styles from "./Register.module.css";
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const USER_REGEX = /^[A-Za-z][A-Za-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/register";
 
@@ -51,13 +51,12 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if button enabled with JS hack
-    const v1 = USER_REGEX.test(user);
-    const v2 = PWD_REGEX.test(pwd);
-    if (!v1 || !v2) {
+
+    if (!validName || !validPwd) {
       setErrMsg("Invalid Entry");
       return;
     }
+
     try {
       const response = await axios.post(
         REGISTER_URL,
@@ -67,11 +66,10 @@ const Register = () => {
           withCredentials: true,
         }
       );
-      // TODO: sacar console log para el deployment
+
       console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response))
+
       setSuccess(true);
-      //clear state and controlled inputs
       setUser("");
       setPwd("");
       setMatchPwd("");
@@ -217,9 +215,7 @@ const Register = () => {
               Must match the first password input field.
             </p>
 
-            <button
-              disabled={!validName || !validPwd || !validMatch ? true : false}
-            >
+            <button disabled={!validName || !validPwd || !validMatch}>
               Sign Up
             </button>
           </form>
@@ -227,7 +223,6 @@ const Register = () => {
             Already registered?
             <br />
             <span className="line">
-              {/*put router link here*/}
               <NavLink to={"/login"}>
                 <button>Sign In</button>
               </NavLink>

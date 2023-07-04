@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useContext } from "react";
-import AuthContext from "../context/AuthProvider";
+import AuthContext from "../../context/AuthProvider";
 import { NavLink } from "react-router-dom";
 import styles from "./Login.module.css";
 
