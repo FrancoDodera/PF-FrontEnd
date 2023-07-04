@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
 import { NavLink } from "react-router-dom";
 import styles from "./Login.module.css";
+import Authentication from "../Authentication";
 
 import axios from "axios";
 const LOGIN_URL = "/auth";
@@ -105,6 +106,7 @@ const Login = () => {
             <br />
             <NavLink to={"/"}>
               <button>Sign Up</button>
+              <Authentication/>
             </NavLink>
           </p>
         </section>
