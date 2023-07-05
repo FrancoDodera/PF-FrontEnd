@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 axios.defaults.baseURL = "https://pf-back.fly.dev/";
 import Detail from "./components/Detail/Detail";
-
 import Home from "./components/home/Home";
 function App() {
   return (
