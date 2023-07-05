@@ -4,6 +4,8 @@ import Carsforsale from "./components/Carsforsale/Carsforsale";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 axios.defaults.baseURL = "https://pf-back.fly.dev/";
+import Detail from "./components/Detail/Detail";
+
 import Home from "./components/home/Home";
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
         <Route exact path="/" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/carsforsale" element={<Carsforsale />}/>
+        <Route exact path="/detail/:id" element={<Detail />} />
       </Routes>
     </main>
   );

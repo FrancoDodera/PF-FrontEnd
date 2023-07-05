@@ -3,6 +3,8 @@ import NavBar from "../navbar/NavBar";
 import "./home.css";
 
 import Filters from "../filters/Filters";
+import SellYourCar from "./sellYourCar/SellYourCar";
+import Recommended from "./recommended/Recommended";
 const Home = () => {
   return (
     <div className="Home_container">
@@ -13,8 +15,11 @@ const Home = () => {
           meets the convenience of e-commerce."
         </h2>
       </div>
-
-      <Filters />
+      <div className="banner">
+        <Filters />
+        <SellYourCar />
+      </div>
+      <Recommended />
     </div>
   );
 };

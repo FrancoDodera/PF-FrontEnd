@@ -4,7 +4,7 @@ import data from "../../fake-api";
 
 const CardsContainer = () => {
   return (
-    <div>
+    <div className={style.container}>
       {data.map(({ name, description, category, image, id, price, age }) => (
         <Card
           key={id}
