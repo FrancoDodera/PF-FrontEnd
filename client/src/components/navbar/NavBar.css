@@ -1,0 +1,22 @@
+.container_NavBar {
+  margin-top: 10px;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.container_Logo img {
+  width: 150px;
+  margin-right: 80px;
+  margin-left: 100px;
+}
+.thinksContainer {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+}
+.thinksContainer a {
+  margin: 80px;
+}
