@@ -1,15 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import store from "./redux/store.js";
+
 import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthProvider";
+import { Provider } from "react-redux";
+import store from "./redux/store.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
 );
