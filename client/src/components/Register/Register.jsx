@@ -8,7 +8,6 @@ import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import styles from "./Register.module.css";
-import validation from "./validation";
 
 const USER_REGEX = /^[A-Za-z][A-Za-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -29,7 +28,7 @@ const Register = () => {
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
-  const [errors, setErrors] = useState({ username: "", password: "" });
+  // const [errors, setErrors] = useState({ username: "", password: "" });
 
   useEffect(() => {
     userRef.current.focus();
@@ -51,13 +50,13 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    validation({ username: user, password: pwd }, errors, setErrors);
-    const isValid = Object.values(errors).every((error) => error === "");
+    // validation({ username: user, password: pwd }, errors, setErrors);
+    // const isValid = Object.values(errors).every((error) => error === "");
 
-    if (!isValid) {
-      setErrMsg("Invalid Entry");
-      return;
-    }
+    // if (!isValid) {
+    //   setErrMsg("Invalid Entry");
+    //   return;
+    // }
 
     try {
       const response = await axios.post(
