@@ -11,6 +11,7 @@
   align-items: stretch;
   flex-direction: column;
   margin: 5px;
+  margin-left: 25px;
 }
 .input-container--dropdown select {
   width: 200px;
@@ -53,6 +54,12 @@
   background-color: #016565;
   color: white;
   border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+.pricerselector button:hover {
+  background-color: #e1aca2;
+  color: black;
 }
 .pricerselector label {
   margin-left: 20px;
