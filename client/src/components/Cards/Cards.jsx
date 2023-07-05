@@ -1,5 +1,6 @@
 import style from "./Cards.module.css";
 import Card from "../Card/Card";
+import data from "../../fake-api";
 
 const CardsContainer = () => {
   return (
