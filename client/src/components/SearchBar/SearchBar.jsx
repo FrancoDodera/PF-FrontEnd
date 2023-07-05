@@ -17,6 +17,7 @@ const SearchComponent = () => {
   //función de búsqueda
   const searcher = (e) => {
     setSearch(e.target.value);
+  };
   //metodo de filtrado 2
   const results = !search
     ? users
