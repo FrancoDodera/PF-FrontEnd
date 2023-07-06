@@ -6,7 +6,7 @@ import { GETALLCARS } from './actionsType'
 export const getAllCars=()=>{
     return async (dispatch)=>{
         try {
-            const {data}= await axios.get('/ruta');
+            const {data}= await axios.get('/cars');
             return dispatch({
                 type:GETALLCARS,
                 payload:data

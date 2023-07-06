@@ -3,8 +3,10 @@ import logo from "../../img/Logo.svg";
 import user from "../../img/userimg.webp";
 import "./NavBar.css";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate=useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // const [username, setUsername] = useState("John Doe"); // En caso de manejar estados de nombre
 
@@ -23,7 +25,10 @@ const NavBar = () => {
       setIsMenuOpen(false);
     }
   };
-
+  const logOut=(event)=>{
+    localStorage.clear();
+    navigate('/')
+  }
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -57,9 +62,7 @@ const NavBar = () => {
               <NavLink>
                 <button>Switch User</button>
               </NavLink>
-              <NavLink to={"/login"}>
-                <button>Logout</button>
-              </NavLink>
+                <button onClick={logOut}>Logout</button>
             </div>
           )}
         </div>
