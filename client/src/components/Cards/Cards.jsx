@@ -1,14 +1,15 @@
 import style from "./Cards.module.css";
 import Card from "../Card/Card";
-import data from "../../fake-api";
+import { useSelector } from "react-redux";
 
 const CardsContainer = () => {
+  const cars = useSelector((state) => state.auxCars);
   return (
     <div className={style.container}>
-      {data.map(({ name, category, image, id, price, age }) => (
+      {cars.map(({ name, category, image, _id, price, age }) => (
         <Card
-          key={id}
-          id={id}
+          key={_id}
+          id={_id}
           name={name}
           image={image}
           category={category}

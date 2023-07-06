@@ -1,5 +1,14 @@
+.Login {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  flex-direction: column;
+}
 .container {
-  position: relative;
+  margin: 100px auto;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);

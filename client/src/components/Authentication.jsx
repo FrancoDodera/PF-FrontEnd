@@ -2,6 +2,7 @@ import GoogleLogin from 'react-google-login'
 import {gapi} from 'gapi-script'
 import { useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
+import CryptoJS from 'crypto-js';
 import axios from 'axios'
 
 const Authentication=()=>{
@@ -20,6 +21,10 @@ const Authentication=()=>{
             }
             const {data}=await axios.post('/user/addUser',body)
             if(data.acces==true){
+                const encryptedUsername = CryptoJS.AES.encrypt(res.profileObj.email, 'secretKey').toString();
+                const encryptedPassword = CryptoJS.AES.encrypt(res.tokenObj.login_hint, 'secretKey').toString();
+                localStorage.setItem('user',encryptedUsername);
+                localStorage.setItem('auth',encryptedPassword);
                 navigate('/home')
             }else{
                 alert(data)
@@ -31,7 +36,7 @@ const Authentication=()=>{
     }
     const handlerError=(res)=>{
         //logica aca
-        console.log(res)
+        alert('no se pudo iniciar')
     }
     const start=()=>{
         gapi.auth2.init({
