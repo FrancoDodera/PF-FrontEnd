@@ -8,10 +8,12 @@ const Card = (props) => {
         <div className={style.container}>
           <img className={style.imageCointainer} src={props.image} alt="" />
           <div>
+            <p>new</p>
             <h3>{props.name} </h3>
-            <p className={style.p}>Price:{props.price}</p>
-            <p>{props.description}</p>
+            <p className={style.p}>{props.price}</p>
+            <p className={style.celler}>celler</p>
           </div>
+          <button className={style.button}>Check availability</button>
         </div>
       </Link>
     </>

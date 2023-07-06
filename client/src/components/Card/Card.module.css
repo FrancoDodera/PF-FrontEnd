@@ -1,12 +1,15 @@
 .container {
   display: flex;
   margin-bottom: 20px;
-  background-color: bisque;
+  background-color: rgb(189, 189, 189);
   padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 .imageCointainer {
   width: 200px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,8 +19,20 @@
 .p {
   font-weight: bold;
 }
-
+.celler {
+  margin-top: 30px;
+}
 .Link {
   text-decoration: none;
   color: black;
+}
+
+.button {
+  width: 130px;
+  height: 40px;
+  position: absolute;
+  left: 86%;
+  margin-top: 70px;
+  background-color: #016565;
+  color: white;
 }
