@@ -31,7 +31,7 @@ const Authentication=()=>{
     }
     const handlerError=(res)=>{
         //logica aca
-        console.log(res)
+        alert('no se pudo iniciar')
     }
     const start=()=>{
         gapi.auth2.init({
