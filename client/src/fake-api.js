@@ -1,4 +1,4 @@
-export const data = [
+const data = [
   {
     id: 1,
     amount: 1,
@@ -101,3 +101,5 @@ export const data = [
       "https://www.bmw.com.ar/content/dam/bmw/common/all-models/4-series/coupe/2020/navigation/bmw-4-series-coupe-modelfinder.png",
   },
 ];
+
+export default data;
