@@ -11,7 +11,7 @@ import styles from "./Register.module.css";
 
 const USER_REGEX = /^[A-Za-z][A-Za-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = "/register";
+const REGISTER_URL = "/user/addUser";
 
 const Register = () => {
   const userRef = useRef();
@@ -59,13 +59,16 @@ const Register = () => {
     // }
 
     try {
+      const body={
+        name:'david',
+        lastName:'aguilar',
+        email:'alfredo@gmail.com',
+        user:user,
+        password:pwd,
+        dni:null
+    }
       const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
+        REGISTER_URL,body 
       );
 
       console.log(JSON.stringify(response?.data));
