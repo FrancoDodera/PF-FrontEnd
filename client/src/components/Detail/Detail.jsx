@@ -1,4 +1,5 @@
 const Detail = () => {
+  const { _id } = useParams();
   return (
     <>
       <div>
