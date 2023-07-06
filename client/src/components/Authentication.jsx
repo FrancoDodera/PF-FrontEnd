@@ -1,23 +1,33 @@
 import GoogleLogin from 'react-google-login'
 import {gapi} from 'gapi-script'
 import { useEffect } from 'react'
-import {NavLink,useNavigate} from 'react-router-dom'
-
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
 const Authentication=()=>{
     const navigate=useNavigate();
     const clientID="193073335991-hclacbarkbgi6vgh4ntd2ig24cnsfvpb.apps.googleusercontent.com"
-    const handlerSuccess=(res)=>{
+    const handlerSuccess= async(res)=>{
         //logica aca
-        console.log({
-            name:res.profileObj.name,
-            lastName:res.profileObj.familyName,
-            Email:res.profileObj.email,
-            user:res.profileObj.email,
-            password:res.tokenObj.login_hint,
-            dni:null
-        })
-        navigate('/home')
+        try {
+            const body={
+                name:res.profileObj.name,
+                lastName:res.profileObj.familyName,
+                email:res.profileObj.email,
+                user:res.profileObj.email,
+                password:res.tokenObj.login_hint,
+                dni:null
+            }
+            const {data}=await axios.post('/user/addUser',body)
+            if(data.acces==true){
+                navigate('/home')
+            }else{
+                alert(data)
+            }
+        } catch (error) {
+            alert(error)
+        }
+        
     }
     const handlerError=(res)=>{
         //logica aca
