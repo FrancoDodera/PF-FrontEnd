@@ -39,7 +39,7 @@ const SearchComponent = () => {
         placeholder="Search"
         className="form-control"
       />
-      <table className="table table-striped table-hover mt-5 shadow-lg">
+      {/* <table className="table table-striped table-hover mt-5 shadow-lg">
         <thead>
           <tr className="bg-curso text-white">
             <th>NAME</th>
@@ -54,7 +54,7 @@ const SearchComponent = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };

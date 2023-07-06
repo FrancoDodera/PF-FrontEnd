@@ -1,24 +1,32 @@
 import { useRef, useState, useEffect } from "react";
-// import {
-//   faCheck,
-//   faTimes,
-//   faInfoCircle,
-// } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 import styles from "./Register.module.css";
 
 const USER_REGEX = /^[A-Za-z][A-Za-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const MAIL_REGEX =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const REGISTER_URL = "/user/addUser";
 
 const Register = () => {
+  const nameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
   const userRef = useRef();
   const errRef = useRef();
 
-  const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [validName, setValidName] = useState(false);
+
+  const [lastName, setLastName] = useState("");
+  const [validLastName, setValidLastName] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+
+  const [user, setUser] = useState("");
+  const [validUser, setValidUser] = useState(false);
 
   const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(false);
@@ -28,14 +36,25 @@ const Register = () => {
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
-  // const [errors, setErrors] = useState({ username: "", password: "" });
 
   useEffect(() => {
-    userRef.current.focus();
+    nameRef.current.focus();
   }, []);
 
   useEffect(() => {
-    setValidName(USER_REGEX.test(user));
+    setValidName(USER_REGEX.test(name));
+  }, [name]);
+
+  useEffect(() => {
+    setValidLastName(USER_REGEX.test(lastName));
+  }, [lastName]);
+
+  useEffect(() => {
+    setValidEmail(MAIL_REGEX.test(email));
+  }, [email]);
+
+  useEffect(() => {
+    setValidUser(USER_REGEX.test(user));
   }, [user]);
 
   useEffect(() => {
@@ -45,35 +64,29 @@ const Register = () => {
 
   useEffect(() => {
     setErrMsg("");
-  }, [user, pwd, matchPwd]);
+  }, [name, lastName, email, user, pwd, matchPwd]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // validation({ username: user, password: pwd }, errors, setErrors);
-    // const isValid = Object.values(errors).every((error) => error === "");
-
-    // if (!isValid) {
-    //   setErrMsg("Invalid Entry");
-    //   return;
-    // }
-
     try {
-      const body={
-        name:'david',
-        lastName:'aguilar',
-        email:'alfredo@gmail.com',
-        user:user,
-        password:pwd,
-        dni:null
-    }
-      const response = await axios.post(
-        REGISTER_URL,body 
-      );
+      const body = {
+        name: name,
+        lastName: lastName,
+        email: email,
+        user: user,
+        password: pwd,
+        dni: null,
+      };
+
+      const response = await axios.post(REGISTER_URL, body);
 
       console.log(JSON.stringify(response?.data));
 
       setSuccess(true);
+      setName("");
+      setLastName("");
+      setEmail("");
       setUser("");
       setPwd("");
       setMatchPwd("");
@@ -102,13 +115,40 @@ const Register = () => {
         <section className={styles.container2}>
           <p
             ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
+            className={errMsg ? styles.errmsg : styles.offscreen}
             aria-live="assertive"
           >
             {errMsg}
           </p>
           <h1>Register</h1>
           <form onSubmit={handleSubmit}>
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              ref={nameRef}
+              autoComplete="off"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              ref={lastNameRef}
+              autoComplete="off"
+              onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
+            />
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              ref={emailRef}
+              autoComplete="off"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
             <label htmlFor="username">Username:</label>
             <input
               type="text"
@@ -118,7 +158,6 @@ const Register = () => {
               onChange={(e) => setUser(e.target.value)}
               value={user}
             />
-
             <label htmlFor="password">Password:</label>
             <input
               type="password"
@@ -134,7 +173,16 @@ const Register = () => {
               value={matchPwd}
             />
 
-            <button disabled={!validName || !validPwd || !validMatch}>
+            <button
+              disabled={
+                !validName ||
+                !validLastName ||
+                !validEmail ||
+                !validUser ||
+                !validPwd ||
+                !validMatch
+              }
+            >
               Register
             </button>
           </form>
