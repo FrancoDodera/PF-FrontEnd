@@ -20,3 +20,71 @@
 .thinksContainer a {
   margin: 80px;
 }
+.thinksContainer button {
+  flex-direction: row;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+}
+.userMenuContainer {
+  margin-right: 80px;
+  margin-left: 100px;
+  position: absolute;
+  right: 0;
+  top: 1.5em;
+}
+
+.userMenuImg {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  position: relative;
+  top: -1em;
+  right: 1.5em;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 2.6em;
+  right: 0;
+  z-index: 1;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dropdownMenu button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dropdownMenu button:hover {
+  background-color: #016565;
+}
+
+.dropdownMenu button:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.dropdownMenu button:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
