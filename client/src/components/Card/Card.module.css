@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  margin-bottom: 20px;
+  background-color: bisque;
+  padding: 10px;
+}
+
+.imageCointainer {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.p {
+  font-weight: bold;
+}
+
+.Link {
+  text-decoration: none;
+  color: black;
+}

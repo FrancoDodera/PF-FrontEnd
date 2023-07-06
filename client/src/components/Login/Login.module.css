@@ -1,0 +1,101 @@
+.container {
+  position: relative;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  width: 600px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container button {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 3px 6px 3px rgb(0 0 0 / 50%);
+}
+.container button:hover {
+  background-color: rgb(46, 46, 46);
+  color: white;
+}
+
+.flogin {
+  width: 100%;
+  padding: 40px;
+}
+.flogin h2 {
+  font-size: 2em;
+  color: #3a792c;
+  text-align: center;
+}
+.inputb {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid #3a792c;
+  margin: 30px 0;
+}
+.inputb label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: #3a792c;
+  font-weight: 500;
+  pointer-events: none;
+  transition: 0.5s;
+}
+.inputb input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.88em;
+  color: #95d250;
+  font-weight: 600;
+  padding: 0 35px 0 0px;
+}
+.inputb input:focus ~ label,
+.inputb input:valid ~ label {
+  top: -5px;
+}
+.remember {
+  font-size: 0.9em;
+  color: #423397;
+  font-weight: 500;
+  margin: -15px 0 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.remember label input {
+  accent-color: #423397;
+  margin-right: 3px;
+}
+.button {
+  width: 100%;
+  height: 45px;
+  background: #423397;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #fff;
+  font-weight: 500;
+}
