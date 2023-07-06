@@ -1,24 +1,41 @@
-.cardHome_container {
+.container {
   width: 300px;
   height: 400px;
-  background-color: #0165652d;
-
   margin-right: 20px;
   margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: rgba(1, 101, 101, 0.1);
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
 }
-.cardHome_container img {
+.container img {
   margin-top: 10px;
   margin-left: 15px;
   width: 270px;
 }
-.cardHome_container h2 {
+.container h2 {
   margin-top: 10px;
   margin-left: 15px;
+  text-decoration: none;
 }
-.cardHome_container p {
+.container h3 {
+  margin-top: 15px;
+  margin-left: 15px;
+  text-decoration: none;
+  color: #016565;
+}
+.container p {
   margin-top: 10px;
   margin-left: 15px;
+  text-decoration: none;
+  color: #3f2e57;
 }
-.cardHome_container h3 {
-  margin-left: 15px;
+a {
+  text-decoration: none;
+  color: black;
+}
+.container:hover {
+  transform: scale(1.03);
 }

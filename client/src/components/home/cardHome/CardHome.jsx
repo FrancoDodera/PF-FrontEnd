@@ -1,18 +1,20 @@
-import React from "react";
-import "./CardHome.css";
-const CardHome = () => {
+import { Link } from "react-router-dom";
+import "./cardhome.css";
+const CardHome = (props) => {
   return (
-    <div className="cardHome_container">
-      <img
-        src="https://platform.cstatic-images.com/small/in/v2/d29e5abf-c752-59ea-8c36-3fb3e034d533/b241a3ba-b20d-47dc-8faa-8f6b54389b90/qlhCJyzEfdywq6bPDwQsUMe8L0E.jpg"
-        alt=""
-      />
-      <p>new or used</p>
-      <h2>Name</h2>
-      <h3>precio</h3>
-      <p>aqui van las clasificaciones</p>
-      <p>celler</p>
-    </div>
+    <>
+      <Link className="Link" to={`/detail/${props.id}`}>
+        <div className="container">
+          <img className="imageCointainer" src={props.image} alt="" />
+          <div>
+            <p>new</p>
+            <h2>{props.name} </h2>
+            <h3 className="p">{props.price}</h3>
+            <p className="celler">celler</p>
+          </div>
+        </div>
+      </Link>
+    </>
   );
 };
 
