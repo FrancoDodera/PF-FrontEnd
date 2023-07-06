@@ -1,0 +1,24 @@
+.cardHome_container {
+  width: 300px;
+  height: 400px;
+  background-color: #0165652d;
+
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.cardHome_container img {
+  margin-top: 10px;
+  margin-left: 15px;
+  width: 270px;
+}
+.cardHome_container h2 {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.cardHome_container p {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.cardHome_container h3 {
+  margin-left: 15px;
+}

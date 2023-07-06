@@ -1,0 +1,7 @@
+.searchContainer {
+  display: flex;
+  text-align: center;
+  justify-content: start;
+  background-color: rgb(192, 192, 192);
+  height: 100px;
+}

@@ -27,3 +27,9 @@
   font-family: "Montserrat Subrayada", sans-serif;
   font-family: "Ubuntu", sans-serif;
 }
+
+.banner {
+  display: flex;
+  height: 190px;
+  margin-top: 25px;
+}
