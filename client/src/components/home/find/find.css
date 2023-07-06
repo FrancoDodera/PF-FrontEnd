@@ -1,9 +1,9 @@
-.container_sellYourCar {
+.container-find {
   width: 350px;
 
   text-align: center;
 }
-.container_sellYourCar button {
+.container-find button {
   margin-top: 10px;
   width: 400px;
   height: 50px;
@@ -11,17 +11,18 @@
   border: none;
   background-color: #016565;
   cursor: pointer;
-  border-radius: 5px;
   font-weight: 500;
+  border-radius: 5px;
 }
-.container_sellYourCar button:hover {
+.container-find button:hover {
   background-color: #e1aca2;
 }
-.container_sellYourCar p {
+.container-find p {
   margin-left: 50px;
   margin-bottom: 10px;
 }
-.container_sellYourCar h1 {
-  margin-left: 50px;
+.container-find h1 {
+  margin-left: 5px;
+  width: 400px;
   margin-bottom: 10px;
 }
