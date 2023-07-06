@@ -1,6 +1,6 @@
 
 //EJEMPLO!!!!!!!
-import { CARDETAIL, GETALLCARS, GETCARBYNAME } from "./actionsType";
+import { CARDETAIL, CLEARDETAIL, GETALLCARS, GETCARBYNAME } from "./actionsType";
 
 const initialState={
     allCars:[],
@@ -25,6 +25,11 @@ const reducer=(state=initialState,actions)=>{
             return{
                 ...state,
                 auxCars:actions.payload
+            }
+        case CLEARDETAIL:
+            return{
+                ...state,
+                carDetail:{}
             }
         default:
             return {...state}

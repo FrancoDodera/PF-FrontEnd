@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CARDETAIL, GETALLCARS,GETCARBYNAME } from './actionsType'
+import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME } from './actionsType'
 // ACA VAN TODAS LAS ACTIONS
 //ejemplo
 
@@ -41,5 +41,10 @@ export const getCarByName=(name)=>{
         } catch (error) {
             alert(error.response.data.error)
         }
+    }
+}
+export const clearDetail=()=>{
+    return {
+        type:CLEARDETAIL
     }
 }
