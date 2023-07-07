@@ -19,6 +19,7 @@ export const getAllCars = () => {
     }
 
 }
+}
 export const getAllBrands=()=>{
     return async (dispatch)=>{
         try {
@@ -59,7 +60,7 @@ export const getCarById = (id) => {
 
     }
   };
-  
+}
 export const getCarByName = (name) => {
   return async (dispatch) => {
     try {
@@ -71,6 +72,7 @@ export const getCarByName = (name) => {
     } catch (error) {
       alert(error.response.data.error);
     }
+}
 }
 export const clearDetail=()=>{
     return {
