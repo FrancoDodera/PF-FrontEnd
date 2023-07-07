@@ -1,4 +1,3 @@
-
 //EJEMPLO!!!!!!!
 import { CARDETAIL, CARFILTERS, CLEARDETAIL, GETALLBRANDS, GETALLCARS, GETALLCATEGORIES, GETCARBYNAME } from "./actionsType";
 
@@ -24,10 +23,10 @@ const reducer=(state=initialState,actions)=>{
                 carDetail:actions.payload
             }
         case GETCARBYNAME:
-            return{
+            return {
                 ...state,
-                auxCars:actions.payload
-            }
+              auxCars: [actions.payload],
+            };
         case CLEARDETAIL:
             return{
                 ...state,
