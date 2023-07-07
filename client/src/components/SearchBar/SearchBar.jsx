@@ -1,61 +1,61 @@
 import { useState, useEffect } from "react";
 
+import style from "../SearchBar/SearchBar.module.css";
+
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCars, getCarByName } from "../../redux/actions";
+
+
 const SearchComponent = () => {
-  //setear los hooks useState
-  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const auxCars = useSelector((state) => state.auxCars);
+
   const [search, setSearch] = useState("");
+  const [results, setResults] = useState([]);
+  const [showNoCarsMessage, setShowNoCarsMessage] = useState(false);
 
-  //función para traer los datos de la API
-  const URL = "https://jsonplaceholder.typicode.com/users";
-
-  const showData = async () => {
-    const response = await fetch(URL);
-    const data = await response.json();
-    //console.log(data) <-- console para ver si llega bien al api
-    setUsers(data);
+  const showData = () => {
+    dispatch(getAllCars());
   };
-  //función de búsqueda
+
   const searcher = (e) => {
-    setSearch(e.target.value);
+    const searchValue = e.target.value;
+    setSearch(searchValue);
+
+    if (!searchValue) {
+      setResults(auxCars);
+      setShowNoCarsMessage(false);
+    }
   };
-  //metodo de filtrado 2
-  const results = !search
-    ? users
-    : users.filter((dato) =>
-        dato.name.toLowerCase().includes(search.toLocaleLowerCase())
-      );
+
+  const handleSearch = () => {
+    if (search) {
+      dispatch(getCarByName(search));
+      setShowNoCarsMessage(true);
+    }
+  };
 
   useEffect(() => {
     showData();
   }, []);
 
-  //renderizamos la vista
+  useEffect(() => {
+    setResults(auxCars);
+    setShowNoCarsMessage(false);
+  }, [auxCars]);
+
   return (
-    <div>
-      <input
+    <div className={style.search}>
+      <input className={style.input}
         value={search}
         onChange={searcher}
         type="text"
-        placeholder="Search"
-        className="form-control"
+        placeholder="Search your product..."
+        // className="form-control"
       />
-      {/* <table className="table table-striped table-hover mt-5 shadow-lg">
-        <thead>
-          <tr className="bg-curso text-white">
-            <th>NAME</th>
-            <th>USER NAME</th>
-          </tr>
-        </thead>
-        <tbody>
-          {results.map((user) => (
-            <tr key={user.id}>
-              <td>{user.name}</td>
-              <td>{user.username}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
+      <button onClick={handleSearch}>Search</button>
     </div>
   );
 };
+
 export default SearchComponent;

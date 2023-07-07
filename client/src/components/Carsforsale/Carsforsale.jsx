@@ -19,8 +19,8 @@ const Carsforsale = (props) => {
     <div>
       <NavBar />
       <div className={style.searchContainer}>
-        <h2>New or used vehicles for sale</h2>
-        <SearchComponent />
+        <h2 className={style.h2}>New or used vehicles for sale</h2>
+        <SearchComponent  className={style.search}/>
       </div>
       <Filters />
       <CardsContainer allCars={allCars} />

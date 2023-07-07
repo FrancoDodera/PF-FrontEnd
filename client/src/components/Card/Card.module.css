@@ -1,7 +1,7 @@
 .container {
   display: flex;
   margin-bottom: 20px;
-  background-color: rgb(189, 189, 189);
+  background-color: rgba(137, 192, 209, 0.276);
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -24,7 +24,7 @@
 }
 .Link {
   text-decoration: none;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 .button {
