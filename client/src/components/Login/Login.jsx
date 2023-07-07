@@ -80,39 +80,45 @@ const Login = () => {
           </p>
           <div className={styles.containerUsername}>
             <h1>Sign In</h1>
-            <form className={styles.form} onSubmit={handleSubmit}>
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                ref={userRef}
-                autoComplete="off"
-                onChange={(e) => setUser(e.target.value)}
-                value={user}
-                required
-              />
 
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                onChange={(e) => setPwd(e.target.value)}
-                value={pwd}
-                required
-              />
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.fellme}>
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  ref={userRef}
+                  autoComplete="off"
+                  onChange={(e) => setUser(e.target.value)}
+                  value={user}
+                  required
+                />
+              </div>
+              <div className={styles.fellme}>
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  onChange={(e) => setPwd(e.target.value)}
+                  value={pwd}
+                  required
+                />
+              </div>
               <NavLink to={"/home"}>
                 <button className={styles.button}>Sign In</button>
               </NavLink>
             </form>
-          </div>
+          </div>{" "}
           <p>
             Need an Account?
             <br />
-            <NavLink to={"/"}>
-              <button>Sign Up</button>
-              <Authentication />
-            </NavLink>
           </p>
+          <div className={styles.containersing}>
+            <NavLink to={"/"}>
+              <button className={styles.botoncito}>Sign Up</button>
+              <Authentication />  
+            </NavLink>
+          </div>
         </section>
       )}
     </div>

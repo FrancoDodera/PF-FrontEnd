@@ -121,70 +121,90 @@ const Register = () => {
             {errMsg}
           </p>
           <h1>Register</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              ref={nameRef}
-              autoComplete="off"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-            />
-            <label htmlFor="lastName">Last Name:</label>
-            <input
-              type="text"
-              id="lastName"
-              ref={lastNameRef}
-              autoComplete="off"
-              onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              ref={emailRef}
-              autoComplete="off"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-            />
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-            />
-            <label htmlFor="confirm_pwd">Confirm Password:</label>
-            <input
-              type="password"
-              id="confirm_pwd"
-              onChange={(e) => setMatchPwd(e.target.value)}
-              value={matchPwd}
-            />
 
-            <button
-              disabled={
-                !validName ||
-                !validLastName ||
-                !validEmail ||
-                !validUser ||
-                !validPwd ||
-                !validMatch
-              }
-            >
-              Register
-            </button>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.formcito3}>
+              <div className={styles.formcito}>
+                <div className={styles.inputContainerName}>
+                  <label htmlFor="name">Name:</label>
+                  <input
+                    type="text"
+                    id="name"
+                    ref={nameRef}
+                    autoComplete="off"
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                  />
+                </div>
+                <div className={styles.inputContainerLast}>
+                  <label htmlFor="lastName">Last Name:</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    ref={lastNameRef}
+                    autoComplete="off"
+                    onChange={(e) => setLastName(e.target.value)}
+                    value={lastName}
+                  />
+                </div>
+                <div className={styles.inputContainerEmail}>
+                  <label htmlFor="email">Email:</label>
+                  <input
+                    type="email"
+                    id="email"
+                    ref={emailRef}
+                    autoComplete="off"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                  />
+                </div>
+              </div>
+              <div className={styles.formcito}>
+                <div className={styles.inputContainerUser}>
+                  <label htmlFor="username">Username:</label>
+                  <input
+                    type="text"
+                    id="username"
+                    ref={userRef}
+                    autoComplete="off"
+                    onChange={(e) => setUser(e.target.value)}
+                    value={user}
+                  />
+                </div>
+                <div className={styles.inputContainerPassword}>
+                  <label htmlFor="password">Password:</label>
+                  <input
+                    type="password"
+                    id="password"
+                    onChange={(e) => setPwd(e.target.value)}
+                    value={pwd}
+                  />
+                </div>
+                <div className={styles.inputContainerConfirm}>
+                  <label htmlFor="confirm_pwd">Confirm Password:</label>
+                  <input
+                    type="password"
+                    id="confirm_pwd"
+                    onChange={(e) => setMatchPwd(e.target.value)}
+                    value={matchPwd}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={styles.botonnn}>
+              <button
+                disabled={
+                  !validName ||
+                  !validLastName ||
+                  !validEmail ||
+                  !validUser ||
+                  !validPwd ||
+                  !validMatch
+                }
+              >
+                Register
+              </button>
+            </div>
           </form>
           <p className={styles.signInLink}>
             Already have an account? <NavLink to="/login">Sign in</NavLink>
