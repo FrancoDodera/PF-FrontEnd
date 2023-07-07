@@ -1,0 +1,73 @@
+.containerContact {
+  margin-top: 700px;
+  display: flex;
+  width: 100%;
+  position: relative;
+
+  flex-direction: column;
+}
+.info {
+  width: 80%;
+  margin-left: 130px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.397), rgba(0, 0, 0, 0.582)),
+    url("../../../img/arrocito.png");
+  height: 150px;
+  position: absolute;
+  top: 20px;
+  background-position: 50% 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.info button {
+  margin-left: 50px;
+  padding: 20px;
+  background-color: transparent;
+  color: white;
+  border-image: linear-gradient(to right, #b2fcfc, #047474) 4;
+  cursor: pointer;
+}
+
+.info button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: scale(1.01);
+}
+
+.info h2 {
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.info p {
+  font-size: medium;
+  width: 600px;
+}
+.contactMore {
+  margin-top: 100px;
+  background-color: #016565;
+  height: 400px;
+  display: flex;
+  padding: 100px;
+  align-items: center;
+
+  justify-content: space-around;
+  color: white;
+}
+.arrocito {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+}
+.costumers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+}
+.svgs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+}
