@@ -1,56 +1,75 @@
 import React from "react";
 import "./Filters.css";
+import { useState } from "react";
 const Filters = () => {
+  const [filters,setFilters]=useState({
+    carStatus:'all',
+    carPriceMin:0,
+    carPriceMax:1000000,
+    carYearMin:0,
+    carYearMax:2024,
+    brand:'all',
+    category:'all'
+  })
+  const handlerFilters=(event)=>{
+      setFilters({
+        ...filters,
+        [event.target.name]:event.target.value
+      })
+  }
   return (
     <div>
       <div className="container_filters">
         <div className="input-container--dropdown">
-          <label>New/used</label>
-          <select className="sds-text-field">
-            <option>New &amp; used</option>
-            <option>New &amp; certified</option>
-            <option>Used</option>
-            <option>Certified</option>
+          <label>Status</label>
+          <select name="carStatus" onChange={handlerFilters} className="sds-text-field">
+            <option value='all'>New &amp; used</option>
+            <option value='new'>New</option>
+            <option value='used'>Used</option>
           </select>
         </div>
         <div className="input-container--dropdown">
           <label>Make</label>
-          <select>
-            <option>All makes</option>
-            <optgroup label="Popular makes"></optgroup>
-            <optgroup label="All makes"></optgroup>
+          <select name="brand" onChange={handlerFilters}>
+            <option value='all'>All makes</option>
+            <option value='bmw'>bmw</option>
+            <option value='audi'>audi</option>
           </select>
         </div>
         <div className="input-container--dropdown">
-          <label>Model</label>
+          <label>Category</label>
           <div className="select-container">
-            <select>
-              <option>All models</option>
+            <select name="category" onChange={handlerFilters}>
+              <option value='all'>All models</option>
+              <option value='Sedan'>Sedan</option>
+              <option value='Suv'>Suv</option>
             </select>
           </div>
         </div>
       </div>
       <div className="secondlayer">
         {" "}
-        <div className="input-container--dropdown">
-          {" "}
-          <label>Location</label>
-          <select>
-            <option>Location</option>
-          </select>
-        </div>
+
         <div className="pricerselector">
           <label htmlFor="maxPrice">
             Price Range <br />
-            $.0 - $3,000,000.00
+            $.{filters.carPriceMin} - $.{filters.carPriceMax}
           </label>
-          <input type="range" min="0" max="100" step="1" />
-
-          <div className="home-search__submit">
-            <button>Search</button>
-          </div>
+          <input name="carPriceMin" onChange={handlerFilters} type="Number" placeholder="minimal price" />
+          <input name="carPriceMax" onChange={handlerFilters} type="Number" placeholder="Maximum price" />
+        </div>
+        <div className="pricerselector">
+          <label htmlFor="maxPrice">
+            Year Range <br />
+            {filters.carYearMin} -{filters.carYearMax}
+          </label>
+          <input name="carYearMin" onChange={handlerFilters} type="Number" placeholder="minimum year" />
+          <input name="carYearMax" onChange={handlerFilters} type="Number" placeholder="maximum year" />
         </div>
       </div>
+      <div>
+          <button>Filter</button>
+        </div>
     </div>
   );
 };
