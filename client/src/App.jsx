@@ -11,19 +11,16 @@ import Home from "./components/home/Home";
 function App() {
   const navigate=useNavigate();
   const validationLogin=async()=>{
-    const localAuth={email:localStorage.getItem("user"),password:localStorage.getItem("auth")}
-    if(!localAuth.email || !localAuth.password){
-      navigate("/");
-    }else{
-      const bytesUser = CryptoJS.AES.decrypt(localAuth.email, 'secretKey');
-      const bytesPassword = CryptoJS.AES.decrypt(localAuth.password, 'secretKey');
-      const username = bytesUser.toString(CryptoJS.enc.Utf8);
-      const password=bytesPassword.toString(CryptoJS.enc.Utf8);
-      const credentials={
-        email:username,
-        password:password
+    const localAuth=localStorage.getItem("user");
+    const localGuest=localStorage.getItem("guest");
+    if(!localAuth){
+      if(!localGuest){
+        navigate('/')
+      }else{
+        navigate("/home");
       }
-      const {data}=await axios.post('/user/addUser',credentials);
+    }else{
+      const {data}=await axios.post('/user/verifyUser',{email:localAuth});
       if(data.acces){
         navigate("/home");
       }else{

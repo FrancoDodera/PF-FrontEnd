@@ -1,9 +1,8 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
-import { NavLink } from "react-router-dom";
+import { NavLink ,useNavigate} from "react-router-dom";
 import styles from "./Login.module.css";
 import Authentication from "../Authentication";
-
 import axios from "axios";
 const LOGIN_URL = "/auth";
 
@@ -11,7 +10,7 @@ const Login = () => {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
-
+  const navigate=useNavigate();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -58,6 +57,13 @@ const Login = () => {
       errRef.current.focus();
     }
   };
+  const SignUp=(event)=>{
+    navigate('/')
+  }
+  const startingGuest=(event)=>{
+    localStorage.setItem('guest',true)
+    navigate('/home')
+  }
 
   return (
     <div className={styles.container}>
@@ -108,10 +114,9 @@ const Login = () => {
           <p>
             Need an Account?
             <br />
-            <NavLink to={"/"}>
-              <button>Sign Up</button>
+              <button onClick={SignUp}>Sign Up</button>
               <Authentication />
-            </NavLink>
+              <button onClick={startingGuest}>starting as guest</button>
           </p>
         </section>
       )}
