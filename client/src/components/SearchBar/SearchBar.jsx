@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import style from "../SearchBar/SearchBar.module.css";
 const SearchComponent = () => {
   //setear los hooks useState
   const [users, setUsers] = useState([]);
@@ -31,13 +31,13 @@ const SearchComponent = () => {
 
   //renderizamos la vista
   return (
-    <div>
-      <input
+    <div className={style.search}>
+      <input className={style.input}
         value={search}
         onChange={searcher}
         type="text"
-        placeholder="Search"
-        className="form-control"
+        placeholder="Search your product..."
+        // className="form-control"
       />
       {/* <table className="table table-striped table-hover mt-5 shadow-lg">
         <thead>
