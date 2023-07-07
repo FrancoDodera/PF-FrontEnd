@@ -2,3 +2,6 @@
 
 //ejemplo
 export const GETALLCARS='GETALLCARS'
+export const CARDETAIL='CARDETAIL'
+export const GETCARBYNAME='GETCARBYNAME'
+export const CLEARDETAIL='CLEARDETAIL'
