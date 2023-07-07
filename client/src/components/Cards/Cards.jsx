@@ -6,7 +6,7 @@ const CardsContainer = () => {
   const cars = useSelector((state) => state.auxCars);
   return (
     <div className={style.container}>
-      {cars.map(({ name, category, image, _id, price, age }) => (
+      {cars.map(({ name, category, image, _id, price, age ,status}) => (
         <Card
           key={_id}
           id={_id}
@@ -15,6 +15,7 @@ const CardsContainer = () => {
           category={category}
           price={price}
           age={age}
+          status={status}
         />
       ))}
     </div>
