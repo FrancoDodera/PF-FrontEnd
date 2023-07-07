@@ -7,6 +7,7 @@ import axios from "axios";
 axios.defaults.baseURL = "https://pf-back.fly.dev/";
 import Detail from "./components/Detail/Detail";
 import Home from "./components/home/Home";
+import Landing from "./components/Landing/Landing";
 function App() {
   const navigate=useNavigate();
   const validationLogin=async()=>{
@@ -37,6 +38,7 @@ function App() {
   return (
     <main className="App">
       <Routes>
+      <Route exact path="/landing" element={<Landing />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
