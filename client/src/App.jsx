@@ -4,11 +4,11 @@ import Carsforsale from "./components/Carsforsale/Carsforsale";
 import { Routes, Route,useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-import CryptoJS from 'crypto-js';
 axios.defaults.baseURL = "https://pf-back.fly.dev/";
 import Detail from "./components/Detail/Detail";
 import Home from "./components/home/Home";
 import UserDetail from "./components/UserDetail/UserDetail.jsx";
+import Landing from "./components/Landing/Landing";
 
 function App() {
   const navigate=useNavigate();
@@ -22,7 +22,7 @@ function App() {
         navigate("/home");
       }
     }else{
-      const {data}=await axios.post('/user/verifyUser',{email:localAuth});
+      const {data}=await axios.post('/user/verifyUser',{user:localAuth});
       if(data.acces){
         navigate("/home");
       }else{
@@ -40,6 +40,7 @@ function App() {
   return (
     <main className="App">
       <Routes>
+      <Route exact path="/landing" element={<Landing />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
