@@ -1,9 +1,10 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink ,useNavigate} from "react-router-dom";
 import styles from "./Login.module.css";
 import Authentication from "../Authentication";
 import axios from "axios";
+
 
 const LOGIN_URL = "/user/login";
 
@@ -11,7 +12,7 @@ const Login = () => {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
-  const navigate = useNavigate();
+  const navigate=useNavigate();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -28,20 +29,20 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const credentials = {
-        user: user,
-        password: pwd,
-      };
-      const { data } = await axios.post(LOGIN_URL, credentials);
-      if (data.acces) {
+      const credentials={
+        user:user,
+        password:pwd
+      }
+      const {data} = await axios.post(LOGIN_URL,credentials);
+      if(data.acces){
         localStorage.clear();
-        localStorage.setItem("user", data.data.user);
-        navigate("/home");
-      } else {
-        alert(data.message);
+        localStorage.setItem('user',data.data.user);
+        navigate('/home')
+      }else{
+        alert(data.message)
       }
     } catch (err) {
-      alert(err);
+      alert(err)
     }
   };
 
@@ -95,9 +96,7 @@ const Login = () => {
                 value={pwd}
                 required
               />
-              <button type="submit" className={styles.button}>
-                Sign In
-              </button>
+         <button type="submit" className={styles.button}>Sign In</button>
             </form>
           </div>
           <Authentication />
