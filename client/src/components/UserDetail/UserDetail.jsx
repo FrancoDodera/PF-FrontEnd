@@ -4,7 +4,7 @@ import axios from "axios";
 import "./UserDetail.css";
 
 const UserDetail = () => {
-  const [userDetails, setUserDetails] = useState(null);
+  const [userDetails, setUserDetails] = useState({});;
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [profileImage, setProfileImage] = useState(null);
@@ -14,16 +14,17 @@ const UserDetail = () => {
   const [showChangeImg, setShowChangeImg] = useState(false);
 
   useEffect(() => {
-    const email = localStorage.getItem("email");
-    if (email) {
+    const user = localStorage.getItem("user");
+    if (user) {
       const postData = {
-        email: email,
+        user: user,
       };
       axios
         .post("https://pf-back.fly.dev/user/verifyUser", postData)
         .then((response) => {
-          if (response.data.success) {
-            setUserDetails(response.data);
+          console.log(response);
+          if (response.status === 202 && response.data) {
+            setUserDetails(response.data.data);
           } else {
             console.error("Error getting user account details");
           }
@@ -115,12 +116,11 @@ const UserDetail = () => {
 
   return (
     <div className="user-detail-container">
-      {userDetails ? (
+      {userDetails && Object.keys(userDetails).length > 0 ?(
         <div>
           <p className="user-detail-item"> Name: {userDetails.name}</p>
           <p className="user-detail-item"> Lastname: {userDetails.lastName}</p>
           <p className="user-detail-item"> Email: {userDetails.email}</p>
-          <p className="user-detail-item"> DNI: {userDetails.dni}</p>
         </div>
       ) : (
         <p>Loading user account details...</p>
