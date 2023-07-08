@@ -17,9 +17,31 @@ const Filters = () => {
     category:'all'
   })
   const handlerFilters=(event)=>{
+    const name=event.target.name
+    let value=event.target.value
+    if(name=="carPriceMin"){
+      if(value==""){
+        value=0
+      }
+    }
+    if(name=="carPriceMax"){
+      if(value==""){
+        value=1000000
+      }
+    }
+    if(name=="carYearMin"){
+      if(value==""){
+        value=0
+      }
+    }
+    if(name=="carYearMax"){
+      if(value==""){
+        value=2024
+      }
+    }
       setFilters({
         ...filters,
-        [event.target.name]:event.target.value
+        [name]:value
       })
   }
   const submitFilters=(event)=>{

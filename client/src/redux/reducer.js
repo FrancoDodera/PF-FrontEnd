@@ -40,6 +40,12 @@ const reducer=(state=initialState,actions)=>{
             if(actions.payload.carStatus != 'all'){
                 allCars=[...allCars].filter((elem)=>elem.status==actions.payload.carStatus)
             }
+            if(actions.payload.brand !='all'){
+                allCars=[...allCars].filter((elem)=>elem.idMarca._id==actions.payload.brand)
+            }
+            if(actions.payload.category !='all'){
+                allCars=[...allCars].filter((elem)=>elem.idCategory._id==actions.payload.category)
+            }
             return{
                 ...state,
                 auxCars:allCars
