@@ -11,13 +11,16 @@ const CardsContainer = () => {
   const [carsDisplayed, setCarsDisplayed] = useState([]);
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [cars]);
+
+  useEffect(() => {
     setCarsDisplayed(
       cars.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
     );
   }, [cars, currentPage]);
 
   const totalItems = cars.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
