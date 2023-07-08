@@ -47,14 +47,6 @@ const Login = () => {
   const SignUp=(event)=>{
     navigate('/')
   }
-  const startingGuest=(event)=>{
-    localStorage.setItem('guest',true)
-    navigate('/home')
-  }
-
-  const SignUp = (event) => {
-    navigate("/");
-  };
 
   const startingGuest = (event) => {
     localStorage.setItem("guest", true);
