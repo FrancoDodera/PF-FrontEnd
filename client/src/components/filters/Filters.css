@@ -4,7 +4,7 @@
   height: 50px;
   flex-shrink: 0;
   padding: 5px;
-  background-color: #e1aca21e;
+  background-color: #00a4881e;
   font-size: 14px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -39,7 +39,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e1aca21e;
+  background-color: #00a4881e;
 }
 .pricerselector input[type="range"] {
   margin: 20px;
@@ -51,8 +51,8 @@
   padding-right: 28px;
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: #016565;
-  color: white;
+  background-color: #008989;
+  /* color: white; */
   border: none;
   cursor: pointer;
   font-weight: 500;

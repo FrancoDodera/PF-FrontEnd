@@ -1,110 +1,154 @@
-.Login {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  flex-direction: column;
-}
 .container {
-  margin: 100px auto;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  width: 600px;
-  border-radius: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
-.container2 {
+.fellme {
+  display: flex;
+  width: 100%;
+  margin: 10px;
+
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.container section {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 500px;
+}
+
+.container2 h1 {
+  margin-bottom: 100px;
+  font-size: 18px;
+  text-align: center;
+  color: #000000;
+}
+
+.containerUsername {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
+.arrocito {
+  display: flex;
+  width: 130%;
+
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+.botoncitogest {
+  margin-left: 20px;
+  margin-top: 20px;
+
+  background-color: #01656588;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 20%;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin-right: 30px;
+  height: 36px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-}
-.container button {
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 5px 3px 6px 3px rgb(0 0 0 / 50%);
-}
-.container button:hover {
-  background-color: rgb(46, 46, 46);
-  color: white;
+  margin-top: 80px;
 }
 
-.flogin {
-  width: 100%;
-  padding: 40px;
+.form label {
+  color: #000000;
+  font-size: 14px;
 }
-.flogin h2 {
-  font-size: 2em;
-  color: #3a792c;
-  text-align: center;
-}
-.inputb {
-  position: relative;
-  width: 100%;
-  height: 50px;
-  border-bottom: 2px solid #3a792c;
-  margin: 30px 0;
-}
-.inputb label {
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  transform: translateY(-50%);
-  font-size: 1em;
-  color: #3a792c;
-  font-weight: 500;
-  pointer-events: none;
-  transition: 0.5s;
-}
-.inputb input {
-  width: 100%;
-  height: 100%;
-  background: transparent;
+
+.form input {
   border: none;
-  outline: none;
-  font-size: 0.88em;
-  color: #95d250;
-  font-weight: 600;
-  padding: 0 35px 0 0px;
+  border-bottom: 1px solid #000000;
+  background-color: transparent;
+  font-size: 14px;
+  width: 150px;
+  padding: 5px;
+  box-sizing: border-box;
+  color: #000000;
+  margin-bottom: 15px;
 }
-.inputb input:focus ~ label,
-.inputb input:valid ~ label {
-  top: -5px;
-}
-.remember {
-  font-size: 0.9em;
-  color: #423397;
-  font-weight: 500;
-  margin: -15px 0 15px;
-  display: flex;
-  justify-content: space-between;
-}
-.remember label input {
-  accent-color: #423397;
-  margin-right: 3px;
-}
-.button {
-  width: 100%;
-  height: 45px;
-  background: #423397;
+
+.botoncito {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #01656588;
+  color: #ffffff;
   border: none;
-  outline: none;
-  border-radius: 6px;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 1em;
-  color: #fff;
-  font-weight: 500;
+  font-size: 14px;
+  width: 20%;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin-left: 25px;
+  height: 35px;
+}
+.containersing a {
+  display: flex;
+  width: 100%;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #01656588;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 50%;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+form label{
+  margin-top: 10px;
+}
+.container2 p {
+  margin-top: 100px;
+  font-size: 14px;
+  text-align: center;
+  color: #000000;
+}
+section p {
+ margin-top: 30px;
+}
+
+.container2 p button {
+  margin-top: 10px;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.container2 p button:hover {
+  color: #0056b3;
 }

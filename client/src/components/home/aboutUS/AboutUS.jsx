@@ -72,7 +72,7 @@ const AboutUS = () => {
             </div>
           </div>
         </div>
-        <h1 className="out">out service</h1>
+        <h1 className="out">Our Services</h1>
         <div className="prueba">
           <Link>
             <div className="box">

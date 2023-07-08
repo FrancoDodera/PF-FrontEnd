@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Filters.css";
 import { useState } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { carFilters, getAllBrands, getAllCategories } from "../../redux/actions";
 const Filters = () => {
+  const dispatch=useDispatch();
+  const allBrands=useSelector(state=>state.allBrands)
+  const allCategories=useSelector(state=>state.allCategories)
   const [filters,setFilters]=useState({
     carStatus:'all',
     carPriceMin:0,
@@ -17,6 +22,17 @@ const Filters = () => {
         [event.target.name]:event.target.value
       })
   }
+  const submitFilters=(event)=>{
+    dispatch(carFilters(filters))
+  }
+  useEffect(()=>{
+    if(allBrands.length==0){
+      dispatch(getAllBrands())
+    }
+    if(allCategories.length==0){
+      dispatch(getAllCategories())
+    }
+  },[])
   return (
     <div>
       <div className="container_filters">
@@ -32,8 +48,11 @@ const Filters = () => {
           <label>Make</label>
           <select name="brand" onChange={handlerFilters}>
             <option value='all'>All makes</option>
-            <option value='bmw'>bmw</option>
-            <option value='audi'>audi</option>
+            {allBrands?.map((elem)=>{
+              return(
+                <option key={elem._id} value={elem._id}>{elem.name}</option>
+              )
+            })}
           </select>
         </div>
         <div className="input-container--dropdown">
@@ -41,8 +60,11 @@ const Filters = () => {
           <div className="select-container">
             <select name="category" onChange={handlerFilters}>
               <option value='all'>All models</option>
-              <option value='Sedan'>Sedan</option>
-              <option value='Suv'>Suv</option>
+              {allCategories?.map((elem)=>{
+              return(
+                <option key={elem._id} value={elem._id}>{elem.name}</option>
+              )
+            })}
             </select>
           </div>
         </div>
@@ -68,7 +90,7 @@ const Filters = () => {
         </div>
       </div>
       <div>
-          <button>Filter</button>
+          <button onClick={submitFilters}>Filter</button>
         </div>
     </div>
   );

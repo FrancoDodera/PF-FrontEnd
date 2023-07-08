@@ -1,51 +1,204 @@
 .container {
-  position: relative;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  width: 600px;
-  border-radius: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
+
 .container2 {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+}
+
+.container2 h1 {
+  margin-bottom: 50px;
+  font-size: 25px;
+  text-align: center;
+  color: #000000;
+}
+
+.input-group label {
+  color: #000000;
+  font-size: 14px;
+}
+
+.input-group input {
+  border: none;
+  border-bottom: 1px solid #000000;
+  background-color: transparent;
+  font-size: 14px;
+  width: 150px;
+  padding: 5px;
+  box-sizing: border-box;
+  color: #000000;
+}
+
+.botonnn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container2 button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 50%;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.container2 button:disabled {
+  background-color: #01656588;
+  cursor: not-allowed;
+}
+
+.container2 p.signInLink {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: #000000;
+}
+
+.container2 p.signInLink a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.container2 p.errmsg {
+  color: #ff0000;
+  font-size: 14px;
+  text-align: center;
+}
+
+.container2 p.offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+form {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  height: 200px;
+  color: #000000;
+  align-items: center;
+}
+
+form input {
+  width: 150px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  padding: 2px;
+  box-sizing: border-box;
+  color: #000000;
+}
+
+form label {
+  font-size: 14px;
+}
+form input:focus {
+  decoration: none;
+}
+.formcito {
+  height: 160px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+  width: 250px;
+  margin-left: 30px;
 }
-.container input {
-  position: relative;
-  /* width: 400px;
-  height: 440px; */
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
+.formcito2 {
+  width: 250px;
+  height: 160px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+}
+
+.inputContainerName {
+  margin-top: 5px;
+  width: 250px;
+  display: flex;
+  height: 30px;
   align-items: center;
 }
-.validation {
-  margin: 1em;
-  padding: 1em;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+.inputContainerLast {
+  margin-top: 5px;
+  width: 250px;
+  display: flex;
+  height: 30px;
+  align-items: center;
 }
-.button {
-  font-size: 25px;
-  border-radius: 15px;
-  height: 50px;
-  background-color: aquamarine;
+
+.inputContainerLast input {
+  margin-left: 0px;
 }
-button:hover {
-  background-color: rgb(46, 46, 46);
-  color: white;
+
+.inputContainerLast label {
+  margin-left: -38px;
+}
+
+.inputContainerEmail {
+  margin-top: 5px;
+  width: 250px;
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+
+.inputContainerUser {
+  margin-top: 5px;
+  width: 250px;
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+
+.inputContainerPassword {
+  margin-top: 5px;
+  width: 250px;
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+
+.inputContainerConfirm {
+  margin-top: 5px;
+  width: 250px;
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+
+.inputContainerConfirm label {
+  margin-left: -53px;
+}
+
+.formcito3 {
+  display: flex;
+  margin-bottom: 15px;
 }
