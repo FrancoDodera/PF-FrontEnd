@@ -8,6 +8,8 @@ import Contact from "../home/contact/Contact";
 const Detail = () => {
   const { id } = useParams();
   const car = useSelector((state) => state.carDetail);
+  const { idCategory, idMarca } = car;
+  console.log(car);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCarById(id));
@@ -31,8 +33,8 @@ const Detail = () => {
               <p>Year: {car?.age}</p>
               <p>Color: {car?.color}</p>
               <p>Trasmission: {car?.transmission}</p>
-              <p>Brand: {car?.marca}</p>
-              <p>Category: {car?.category}</p>
+              <p>Brand: {idMarca?.name}</p>
+              <p>Category: {idCategory?.name}</p>
               {/* <p>{car?.description}</p> */}
               <div>
                 <button>Add to car</button>
