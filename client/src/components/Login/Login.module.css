@@ -25,11 +25,10 @@
   align-items: center;
   flex-direction: column;
   height: 500px;
-  justify-content: center;
 }
 
 .container2 h1 {
-  margin-bottom: 80px;
+  margin-bottom: 100px;
   font-size: 18px;
   text-align: center;
   color: #000000;
@@ -40,11 +39,37 @@
   flex-direction: column;
   align-items: center;
 }
+.arrocito {
+  display: flex;
+  width: 130%;
+
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+.botoncitogest {
+  margin-left: 20px;
+  margin-top: 20px;
+
+  background-color: #01656588;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 20%;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin-right: 30px;
+  height: 36px;
+}
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 80px;
 }
 
 .form label {
@@ -73,10 +98,11 @@
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
-  width: 40%;
+  width: 20%;
   margin-bottom: 30px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  margin-right: 30px;
+  margin-left: 25px;
+  height: 35px;
 }
 .containersing a {
   display: flex;
@@ -92,7 +118,7 @@
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
-  width: 100%;
+  width: 50%;
   margin-bottom: 30px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -100,11 +126,17 @@
 .button:hover {
   background-color: #0056b3;
 }
-
+form label{
+  margin-top: 10px;
+}
 .container2 p {
+  margin-top: 100px;
   font-size: 14px;
   text-align: center;
   color: #000000;
+}
+section p {
+ margin-top: 30px;
 }
 
 .container2 p button {

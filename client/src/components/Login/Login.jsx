@@ -1,17 +1,17 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import Authentication from "../Authentication";
-
 import axios from "axios";
-const LOGIN_URL = "/auth";
+
+const LOGIN_URL = "/user/login";
 
 const Login = () => {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
-
+  const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -27,36 +27,31 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
-      setUser("");
-      setPwd("");
-      setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Unauthorized");
+      const credentials = {
+        user: user,
+        password: pwd,
+      };
+      const { data } = await axios.post(LOGIN_URL, credentials);
+      if (data.acces) {
+        localStorage.clear();
+        localStorage.setItem("user", data.data.user);
+        navigate("/home");
       } else {
-        setErrMsg("Login Failed");
+        alert(data.message);
       }
-      errRef.current.focus();
+    } catch (err) {
+      alert(err);
     }
+  };
+
+  const SignUp = (event) => {
+    navigate("/");
+  };
+
+  const startingGuest = (event) => {
+    localStorage.setItem("guest", true);
+    navigate("/home");
   };
 
   return (
@@ -73,51 +68,50 @@ const Login = () => {
         <section>
           <p
             ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
+            className={errMsg ? styles.errmsg : styles.offscreen}
             aria-live="assertive"
           >
             {errMsg}
           </p>
           <div className={styles.containerUsername}>
             <h1>Sign In</h1>
-
             <form className={styles.form} onSubmit={handleSubmit}>
-              <div className={styles.fellme}>
-                <label htmlFor="username">Username:</label>
-                <input
-                  type="text"
-                  id="username"
-                  ref={userRef}
-                  autoComplete="off"
-                  onChange={(e) => setUser(e.target.value)}
-                  value={user}
-                  required
-                />
-              </div>
-              <div className={styles.fellme}>
-                <label htmlFor="password">Password:</label>
-                <input
-                  type="password"
-                  id="password"
-                  onChange={(e) => setPwd(e.target.value)}
-                  value={pwd}
-                  required
-                />
-              </div>
-              <NavLink to={"/home"}>
-                <button className={styles.button}>Sign In</button>
-              </NavLink>
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                ref={userRef}
+                autoComplete="off"
+                onChange={(e) => setUser(e.target.value)}
+                value={user}
+                required
+              />
+
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                onChange={(e) => setPwd(e.target.value)}
+                value={pwd}
+                required
+              />
+              <button type="submit" className={styles.button}>
+                Sign In
+              </button>
             </form>
-          </div>{" "}
+          </div>
+          <Authentication />
           <p>
             Need an Account?
             <br />
           </p>
-          <div className={styles.containersing}>
-            <NavLink to={"/"}>
-              <button className={styles.botoncito}>Sign Up</button>
-              <Authentication />  
-            </NavLink>
+          <div className={styles.arrocito}>
+            <button onClick={SignUp} className={styles.botoncito}>
+              Sign Up
+            </button>
+            <button onClick={startingGuest} className={styles.botoncitogest}>
+              Starting as Guest
+            </button>
           </div>
         </section>
       )}
