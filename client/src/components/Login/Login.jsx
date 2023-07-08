@@ -4,6 +4,7 @@ import { NavLink ,useNavigate} from "react-router-dom";
 import styles from "./Login.module.css";
 import Authentication from "../Authentication";
 import axios from "axios";
+
 const LOGIN_URL = "/user/login";
 
 const Login = () => {
@@ -51,6 +52,15 @@ const Login = () => {
     navigate('/home')
   }
 
+  const SignUp = (event) => {
+    navigate("/");
+  };
+
+  const startingGuest = (event) => {
+    localStorage.setItem("guest", true);
+    navigate("/home");
+  };
+
   return (
     <div className={styles.container}>
       {success ? (
@@ -65,7 +75,7 @@ const Login = () => {
         <section>
           <p
             ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
+            className={errMsg ? styles.errmsg : styles.offscreen}
             aria-live="assertive"
           >
             {errMsg}
@@ -92,16 +102,24 @@ const Login = () => {
                 value={pwd}
                 required
               />
-                <button type="submit" className={styles.button}>Sign In</button>
+         <button type="submit" className={styles.button}>Sign In</button>
+
             </form>
           </div>
+          <Authentication />
           <p>
             Need an Account?
             <br />
-              <button onClick={SignUp}>Sign Up</button>
-              <Authentication />
-              <button onClick={startingGuest}>starting as guest</button>
+
           </p>
+          <div className={styles.arrocito}>
+            <button onClick={SignUp} className={styles.botoncito}>
+              Sign Up
+            </button>
+            <button onClick={startingGuest} className={styles.botoncitogest}>
+              Starting as Guest
+            </button>
+          </div>
         </section>
       )}
     </div>
