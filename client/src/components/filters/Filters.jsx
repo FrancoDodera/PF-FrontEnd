@@ -20,22 +20,22 @@ const Filters = () => {
     const name=event.target.name
     let value=event.target.value
     if(name=="carPriceMin"){
-      if(value==""){
+      if(value=="" || value < 0){
         value=0
       }
     }
     if(name=="carPriceMax"){
-      if(value==""){
+      if(value=="" || value < 0){
         value=1000000
       }
     }
     if(name=="carYearMin"){
-      if(value==""){
+      if(value=="" || value < 0){
         value=0
       }
     }
     if(name=="carYearMax"){
-      if(value==""){
+      if(value=="" || value < 0){
         value=2024
       }
     }
