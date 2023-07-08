@@ -82,7 +82,7 @@ const Register = () => {
       const response = await axios.post(REGISTER_URL, body);
 
       console.log(JSON.stringify(response?.data));
-
+      ""
       setSuccess(true);
       setName("");
       setLastName("");
