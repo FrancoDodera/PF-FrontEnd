@@ -24,7 +24,8 @@ const CardsContainer = () => {
 
   return (
     <div className={style.container}>
-      {carsDisplayed.map(({ name, image, _id, price, age }) => (
+
+      {carsDisplayed.map(({ name, image, _id, price, age,status }) => (
         <Card
           key={_id}
           id={_id}
@@ -32,6 +33,7 @@ const CardsContainer = () => {
           image={image}
           price={price}
           age={age}
+          status={status}
         />
       ))}
       <Pagination
