@@ -1,51 +1,90 @@
+
 .container {
+  align-items: center;
   position: relative;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  background-position: absolute;
+  background-image: url('../../img/mac.gif');
+  background-size:cover;
+ background-repeat: no-repeat;
+ background-position: center;
+  border: 3px solid rgba(0, 106, 255, 0.635);
   backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 12, 149, 0.581);
   width: 600px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
+  margin-left: 30%;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
 }
 .container2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #ffffff;
+  text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
 }
 .container input {
   position: relative;
   /* width: 400px;
   height: 440px; */
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  /* border: 2px solid rgba(0, 68, 255, 0.608); */
   border-radius: 20px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  /* backdrop-filter: blur(20px); */
+  text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 10px rgba(0, 70, 167, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #ffffff;
+  
 }
 .validation {
   margin: 1em;
   padding: 1em;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  /* border: 2px solid rgba(60, 0, 255, 0.563); */
   border-radius: 20px;
   backdrop-filter: blur(20px);
+  text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  align-items: center;
+  color: #ffffff;
 }
-.button {
-  font-size: 25px;
+.buttonre {
+  margin: 5px;
+  cursor: pointer;
+  width: 100px;
+  height:30px;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  background: none;
+  transition: all .5s;
+  font-size: 20px;
+  color: #ffffff;
+  text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
+  background:none;
+ } 
+
+ .buttonre:hover {
+  background:none;
+  cursor: pointer;
+  cursor: pointer;
+  width: 100px;
+  height:30px;
+  border: 2px solid #8fdbff;
   border-radius: 15px;
-  height: 50px;
-  background-color: aquamarine;
-}
-button:hover {
-  background-color: rgb(46, 46, 46);
-  color: white;
+  transition: all .5s;
+  font-size: 20px;
+  color: #ffffff;
+  text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
 }

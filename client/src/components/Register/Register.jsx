@@ -173,7 +173,7 @@ const Register = () => {
               value={matchPwd}
             />
 
-            <button
+            <button className={styles.buttonre}
               disabled={
                 !validName ||
                 !validLastName ||

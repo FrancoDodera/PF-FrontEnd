@@ -17,11 +17,12 @@ const Detail = () => {
 
   return (
     <>
+    <NavBar></NavBar>
       <div>
-        <NavBar />
-        <div className={style.cont}>
-          <div className={style.container}>
-            <div className={style.image}>
+        
+        <div className={style.container}>
+          <div >
+            <div className={style.img}>
               <img src={car?.image} alt="" />
             </div>
             <h2>{car?.name}</h2>

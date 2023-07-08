@@ -1,30 +1,30 @@
 /* CSS para el menú desplegable */
-ul.dropdown-menu {
+/* .ul.dropdown-menu {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-li.dropdown-option {
+.li.dropdown-option {
   padding: 8px;
   cursor: pointer;
 }
 
-li.dropdown-option:hover {
+.li.dropdown-option:hover {
   background-color: #f0f0f0;
-}
+} */
 
 /* CSS para la barra de búsqueda */
-.form-control.search-bar {
+/* .form-control.search-bar {
   width: 300px;
   height: 30px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
-}
+} */
 
-button.search-button {
+/* .button.search-button {
   padding: 6px 12px;
   margin-left: 10px;
   font-size: 14px;
@@ -35,6 +35,6 @@ button.search-button {
   cursor: pointer;
 }
 
-button.search-button:hover {
+.button.search-button:hover {
   background-color: #45a049;
-}
+} */

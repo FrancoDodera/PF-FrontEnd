@@ -1,15 +1,25 @@
 .container {
-  width: 800px;
-  height: 800px;
-  border: 1px solid black;
+  --background: linear-gradient(to left, #00e1c746 0%, #88fff914 100%);
+  align-items: center;
+  padding: 8px;
+  border-radius: 1rem;
+  overflow: visible;
+  background: var(--background);
+  position: absolute;
+  z-index: 1;
+  margin-top: 7%;
+  margin-bottom: 5%;
+  margin-left: 2%;
+  margin-right: 2%;
+
+
+} 
+
+
+
+.img{
+  align-items: center;
+  margin-left: 40%;
+  border-radius: 50%;
 }
 
-.cont {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-
-.image {
-  width: 400px;
-}
