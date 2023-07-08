@@ -1,7 +1,23 @@
 .searchContainer {
-  display: flex;
-  text-align: center;
+  align-items: center;
   justify-content: start;
-  background-color: rgb(192, 192, 192);
-  height: 100px;
+  background-position: absolute;
+  background-image: url('../../img/merc.jpg');
+  background-size:cover;
+ background-repeat: no-repeat;
+ background-position: center;
+  height: 200px;
 }
+
+.h2{
+  
+margin: auto;
+margin-top: 20px;
+  color: aliceblue;
+  font-size: 50px;
+  text-shadow: -3px 2px 8px rgba(0, 0, 0, 0.75);
+  text-align: center;
+}
+ .search{
+  align-items: center;
+ }

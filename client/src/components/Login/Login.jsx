@@ -5,7 +5,6 @@ import styles from "./Login.module.css";
 import Authentication from "../Authentication";
 import axios from "axios";
 
-
 const LOGIN_URL = "/user/login";
 
 const Login = () => {
@@ -45,6 +44,13 @@ const Login = () => {
       alert(err)
     }
   };
+  const SignUp=(event)=>{
+    navigate('/')
+  }
+  const startingGuest=(event)=>{
+    localStorage.setItem('guest',true)
+    navigate('/home')
+  }
 
   const SignUp = (event) => {
     navigate("/");
@@ -97,12 +103,14 @@ const Login = () => {
                 required
               />
          <button type="submit" className={styles.button}>Sign In</button>
+
             </form>
           </div>
           <Authentication />
           <p>
             Need an Account?
             <br />
+
           </p>
           <div className={styles.arrocito}>
             <button onClick={SignUp} className={styles.botoncito}>

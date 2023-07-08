@@ -21,10 +21,8 @@ const Authentication=()=>{
             }
             const {data}=await axios.post('/user/addUser',body)
             if(data.acces==true){
-                const encryptedUsername = CryptoJS.AES.encrypt(res.profileObj.email, 'secretKey').toString();
-                const encryptedPassword = CryptoJS.AES.encrypt(res.tokenObj.login_hint, 'secretKey').toString();
-                localStorage.setItem('user',encryptedUsername);
-                localStorage.setItem('auth',encryptedPassword);
+                localStorage.clear();
+                localStorage.setItem('user',res.profileObj.email);
                 navigate('/home')
             }else{
                 alert(data)
