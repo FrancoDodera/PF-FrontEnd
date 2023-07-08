@@ -48,10 +48,10 @@ const Filters = () => {
     dispatch(carFilters(filters))
   }
   useEffect(()=>{
-    if(allBrands.length==0){
+    if(allBrands.length === 0){
       dispatch(getAllBrands())
     }
-    if(allCategories.length==0){
+    if(allCategories.length === 0){
       dispatch(getAllCategories())
     }
   },[])
