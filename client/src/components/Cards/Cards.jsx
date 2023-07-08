@@ -17,6 +17,7 @@ const CardsContainer = () => {
   }, [cars, currentPage]);
 
   const totalItems = cars.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -24,8 +25,7 @@ const CardsContainer = () => {
 
   return (
     <div className={style.container}>
-
-      {carsDisplayed.map(({ name, image, _id, price, age,status }) => (
+      {carsDisplayed.map(({ name, image, _id, price, age, status }) => (
         <Card
           key={_id}
           id={_id}

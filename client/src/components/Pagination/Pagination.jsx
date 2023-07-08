@@ -9,7 +9,7 @@ const Pagination = ({
 }) => {
   const pagesCount = Math.ceil(totalItems / itemsPerPage);
 
-  if (pagesCount === 1) return null;
+  if (pagesCount <= 0) return null;
 
   let firstNumber = 1;
   let lastNumber = 1;
