@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./cardhome.css";
+
 const CardHome = (props) => {
   return (
     <>
