@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const AboutUS = () => {
   return (
     <div className="container_all">
-      <img src={car} alt="" srcset="" />
+      <img src={car} alt="" />
       <div className="container_about">
         <h2>About Us</h2>
         <p>
@@ -76,19 +76,19 @@ const AboutUS = () => {
         <div className="prueba">
           <Link>
             <div className="box">
-              <img src={carlogito} alt="" srcset="" />
+              <img src={carlogito} alt=""  />
               <p>Buy a new car</p>
             </div>
           </Link>
           <Link>
             <div className="box">
-              <img src={second} alt="" srcset="" />
+              <img src={second} alt=""  />
               <p>Buy an used car</p>
             </div>
           </Link>
           <Link>
             <div className="box">
-              <img src={selt} alt="" srcset="" />
+              <img src={selt} alt=""  />
               <p>Sell my car</p>
             </div>
           </Link>

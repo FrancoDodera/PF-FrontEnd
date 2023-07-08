@@ -1,13 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { getAllCars } from "../../redux/actions";
 import styles from './Landing.module.css';
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
-    
-    const dispatch = useDispatch();
-    dispatch(getAllCars())
 
     return(
         <>

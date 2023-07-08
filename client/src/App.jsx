@@ -19,12 +19,12 @@ function App() {
       if(!localGuest){
         navigate('/')
       }else{
-        navigate("/home");
+        
       }
     }else{
       const {data}=await axios.post('/user/verifyUser',{user:localAuth});
       if(data.acces){
-        navigate("/home");
+        
       }else{
         localStorage.clear();
         navigate("/");

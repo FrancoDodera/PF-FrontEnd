@@ -2,21 +2,18 @@ import { useState, useEffect } from "react";
 
 import style from "../SearchBar/SearchBar.module.css";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCars, getCarByName } from "../../redux/actions";
+import {useDispatch,useSelector } from "react-redux";
+import { getCarByName } from "../../redux/actions";
 
 
 const SearchComponent = () => {
-  const dispatch = useDispatch();
+  const dispatch=useDispatch()
   const auxCars = useSelector((state) => state.auxCars);
 
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [showNoCarsMessage, setShowNoCarsMessage] = useState(false);
 
-  const showData = () => {
-    dispatch(getAllCars());
-  };
 
   const searcher = (e) => {
     const searchValue = e.target.value;
@@ -34,10 +31,6 @@ const SearchComponent = () => {
       setShowNoCarsMessage(true);
     }
   };
-
-  useEffect(() => {
-    showData();
-  }, []);
 
   useEffect(() => {
     setResults(auxCars);
