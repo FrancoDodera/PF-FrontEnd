@@ -2,16 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./UserDetail.css";
+import user from "../../img/userimg.webp";
 
 const UserDetail = () => {
-  const [userDetails, setUserDetails] = useState({});;
+  const [userDetails, setUserDetails] = useState({});
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
   const [changePasswordError, setChangePasswordError] = useState("");
-  const [changeImageError, setChangeImageError] = useState("");
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const [showChangeImg, setShowChangeImg] = useState(false);
+  const [profileImage, setProfileImage] = useState(null);
+  const [isDataUpdated, setIsDataUpdated] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -25,6 +28,11 @@ const UserDetail = () => {
           console.log(response);
           if (response.status === 202 && response.data) {
             setUserDetails(response.data.data);
+            setName(response.data.data.name);
+            setLastname(response.data.data.lastName);
+            setEmail(response.data.data.email);
+            setProfileImage(response.data.data.user);
+            setIsDataUpdated(true);
           } else {
             console.error("Error getting user account details");
           }
@@ -33,103 +41,109 @@ const UserDetail = () => {
           console.error("Error making the request:", error);
         });
     } else {
-      console.error("No email found in localStorage");
+      console.error("No user found in localStorage");
     }
   }, []);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setProfileImage(file);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
-  const toggleChangePassword = (e) => {
-    e.preventDefault();
+  const handleLastnameChange = (e) => {
+    setLastname(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const toggleChangePassword = () => {
     setShowChangePassword(!showChangePassword);
   };
 
-  const toggleChangeImg = (e) => {
-    e.preventDefault();
-    setShowChangeImg(!showChangeImg);
-  };
-
-  const handleChangePassword = () => {
-    setChangePasswordError("");
-
-    if (newPassword !== confirmPassword) {
-      setChangePasswordError("Passwords do not match");
-      return;
-    }
-
-    const email = localStorage.getItem("email");
+  const handleSubmit = () => {
     const postData = {
-      email: email,
-      newPassword: newPassword,
+      id: userDetails._id,
+      email: email || userDetails.email,
+      name: name || userDetails.name,
+      lastName: lastname || userDetails.lastName,
+      user: userDetails.user,
+      password: newPassword || userDetails.password,
+      image: userDetails.image,
     };
 
     axios
-      .post("https://pf-back.fly.dev/user/changePassword", postData)
+      .put("https://pf-back.fly.dev/user/upgrade", postData)
       .then((response) => {
-        if (response.data.success) {
+        if (response.data && response.data) {
+          setUserDetails(response.data);
+          setName(response.data.name);
+          setLastname(response.data.lastName);
+          setEmail(response.data.email);
           setNewPassword("");
           setConfirmPassword("");
         } else {
-          setChangePasswordError("Error changing password");
+          console.error("Error changing account data");
         }
       })
       .catch((error) => {
         console.error("Error making the request:", error);
-        setChangePasswordError("Error changing password");
+        console.error("Error changing account data");
       });
   };
 
-  const handleImageUpload = () => {
-    setChangeImageError("");
-
-    if (!profileImage) {
-      setChangeImageError("Please select an image");
-      return;
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfileImage(URL.createObjectURL(file));
     }
-
-    const email = localStorage.getItem("email");
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("profileImage", profileImage);
-
-    axios
-      .post("https://pf-back.fly.dev/user/changeProfileImage", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        if (response.data.success) {
-          setProfileImage(null);
-        } else {
-          setChangeImageError("Error changing profile image");
-        }
-      })
-      .catch((error) => {
-        console.error("Error making the request:", error);
-        setChangeImageError("Error changing profile image");
-      });
   };
 
   return (
     <div className="user-detail-container">
-      {userDetails && Object.keys(userDetails).length > 0 ?(
-        <div>
-          <p className="user-detail-item"> Name: {userDetails.name}</p>
-          <p className="user-detail-item"> Lastname: {userDetails.lastName}</p>
-          <p className="user-detail-item"> Email: {userDetails.email}</p>
-        </div>
-      ) : (
-        <p>Loading user account details...</p>
-      )}
+      <div>
+         <img className="userMenuImg" src={profileImage || user} alt="user" /> 
+        <p className="user-detail-item">
+          Name:{" "}
+          {showChangePassword ? (
+            <input type="text" value={name} onChange={handleNameChange} />
+          ) : (
+            userDetails.name
+          )}
+        </p>
+        <p className="user-detail-item">
+          Lastname:{" "}
+          {showChangePassword ? (
+            <input type="text" value={lastname} onChange={handleLastnameChange} />
+          ) : (
+            userDetails.lastName
+          )}
+        </p>
+        <p className="user-detail-item">
+          Email:{" "}
+          {showChangePassword ? (
+            <input type="text" value={email} onChange={handleEmailChange} />
+          ) : (
+            userDetails.email
+          )}
+        </p>
+      </div>
       <div className="change-password">
         <h2 className="section-heading">
-          <a href="#" onClick={toggleChangePassword}>
-            Change Password
-          </a>
+          {showChangePassword ? (
+            <>
+              <button className="cancel-button" onClick={toggleChangePassword}>
+                Cancel
+              </button>
+              <button className="submit-button" onClick={handleSubmit}>
+                Save Changes
+              </button>
+            </>
+          ) : (
+            <button className="change-password-button" onClick={toggleChangePassword}>
+              Change user data
+            </button>
+          )}
         </h2>
         {showChangePassword && (
           <div className="input-group">
@@ -145,7 +159,9 @@ const UserDetail = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <button onClick={handleChangePassword}>Submit</button>
+            <button className="submit-button" onClick={handleSubmit}>
+              Change Password
+            </button>
             {changePasswordError && (
               <p className="error-message">{changePasswordError}</p>
             )}
@@ -154,24 +170,19 @@ const UserDetail = () => {
       </div>
       <div className="change-img">
         <h2 className="section-heading">
-          <a href="#" onClick={toggleChangeImg}>
-            Change profile picture
-          </a>
+          {showChangePassword ? "Change Profile Picture" : ""}
         </h2>
-        {showChangeImg && (
+        {showChangePassword && (
           <div className="input-group">
             <input type="file" onChange={handleImageChange} />
-            <button className="action-button" onClick={handleImageUpload}>
-              Upload
-            </button>
           </div>
         )}
-        {changeImageError && (
-          <p className="error-message">{changeImageError}</p>
-        )}
       </div>
+      {isDataUpdated && (
+        <div className="feedback-message">Data updated successfully!</div>
+      )}
       <Link to="/home" className="home-button">
-        Volver al Home
+        Back Home
       </Link>
     </div>
   );

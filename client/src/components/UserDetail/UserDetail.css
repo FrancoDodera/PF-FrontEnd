@@ -70,3 +70,22 @@
   .home-button:hover {
     background-color: #555;
   }
+
+  .submit-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+
+  .profile-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
