@@ -182,7 +182,7 @@ const UserDetail = () => {
         <div className="feedback-message">Data updated successfully!</div>
       )}
       <Link to="/home" className="home-button">
-        Volver al Home
+        Back Home
       </Link>
     </div>
   );
