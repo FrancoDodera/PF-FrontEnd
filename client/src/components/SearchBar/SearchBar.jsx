@@ -26,10 +26,10 @@ const SearchComponent = () => {
   };
 
   const handleSearch = () => {
-    if (search) {
+    
       dispatch(getCarByName(search));
       setShowNoCarsMessage(true);
-    }
+    
   };
 
   useEffect(() => {

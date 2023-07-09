@@ -28,7 +28,7 @@ const NavBar = () => {
   };
   const logOut = (event) => {
     localStorage.clear();
-    navigate("/");
+    navigate("/login");
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -58,7 +58,7 @@ const NavBar = () => {
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                <NavLink to={"/"}>
+                <NavLink to={"/login"}>
                   <button>Login</button>
                 </NavLink>
               </div>

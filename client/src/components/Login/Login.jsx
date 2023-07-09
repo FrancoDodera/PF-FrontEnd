@@ -4,6 +4,7 @@ import { NavLink ,useNavigate} from "react-router-dom";
 import styles from "./Login.module.css";
 import Authentication from "../Authentication";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 const LOGIN_URL = "/user/login";
 
@@ -38,17 +39,24 @@ const Login = () => {
         localStorage.setItem('user',data.data.user);
         navigate('/home')
       }else{
-        alert(data.message)
+        Swal.fire({
+          icon: 'error',
+          title: data.message,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 500
+        })
       }
     } catch (err) {
       alert(err)
     }
   };
   const SignUp=(event)=>{
-    navigate('/')
+    navigate('/register')
   }
 
   const startingGuest = (event) => {
+    localStorage.clear();
     localStorage.setItem("guest", true);
     navigate("/home");
   };

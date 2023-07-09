@@ -7,15 +7,17 @@ const CardsHome = () => {
   const cars = useSelector((state) => state.auxCars);
   return (
     <div className="cardsHome_container">
-      {cars?.map(({ name, category, image, _id, price, age }) => (
+      {cars?.map(({ name, idCategory,idMarca, image, _id, price, age,status }) => (
         <CardHome
           key={_id}
           id={_id}
           name={name}
           image={image}
-          category={category}
+          category={idCategory}
+          brand={idMarca}
           price={price}
           age={age}
+          status={status}
         />
       ))}
     </div>

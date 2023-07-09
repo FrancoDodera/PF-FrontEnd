@@ -25,7 +25,7 @@ const reducer=(state=initialState,actions)=>{
         case GETCARBYNAME:
             return {
                 ...state,
-              auxCars: [actions.payload],
+              auxCars: actions.payload,
             };
         case CLEARDETAIL:
             return{

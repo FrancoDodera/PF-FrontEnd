@@ -9,9 +9,9 @@ const Card = (props) => {
         <div>
           <p>{props.status}</p>
           <h3>{props.name} </h3>
-          <p className={style.p}>{props.price}</p>
+          <p className={style.p}>$. {props.price}</p>
           <p className={style.p}>{props.age}</p>
-          <p className={style.celler}>celler</p>
+          <p className={style.celler}>{props.category.name}</p>
         </div>
         <Link className={style.Link} to={`/detail/${props.id}`}>
           <button className={style.button}>Check availability</button>

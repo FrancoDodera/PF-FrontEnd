@@ -7,46 +7,31 @@
 
 .container2 {
   background-color: #ffffff;
-  padding: 10px;
   border-radius: 3px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
-  width: 100%;
+  width: 1000px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 400px;
+  height: 600px;
   justify-content: center;
 }
 
 .container2 h1 {
-  margin-bottom: 50px;
   font-size: 25px;
   text-align: center;
   color: #000000;
 }
-
-.input-group label {
-  color: #000000;
-  font-size: 14px;
+.form{
+  width: 900px;
+  height: 400px;
 }
-
-.input-group input {
-  border: none;
-  border-bottom: 1px solid #000000;
-  background-color: transparent;
-  font-size: 14px;
-  width: 150px;
-  padding: 5px;
-  box-sizing: border-box;
-  color: #000000;
-}
-
 .botonnn {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 50px;
 }
 
 .container2 button {
@@ -120,13 +105,10 @@ form input:focus {
   decoration: none;
 }
 .formcito {
-  height: 160px;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  margin-bottom: 10px;
-  width: 250px;
-  margin-left: 30px;
+  width: 100%;
+  align-items: center;
 }
 
 .formcito2 {
@@ -139,66 +121,23 @@ form input:focus {
 }
 
 .inputContainerName {
-  margin-top: 5px;
-  width: 250px;
   display: flex;
-  height: 30px;
+  width: 400px;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
 }
-
-.inputContainerLast {
-  margin-top: 5px;
+.inputContainerName input{
   width: 250px;
-  display: flex;
-  height: 30px;
-  align-items: center;
+  padding: 15px;
 }
-
-.inputContainerLast input {
-  margin-left: 0px;
+.inputContainerName label{
+  width: 150px;
+  text-align: center;
+  font-weight: bold;
 }
-
-.inputContainerLast label {
-  margin-left: -38px;
-}
-
-.inputContainerEmail {
-  margin-top: 5px;
-  width: 250px;
-  display: flex;
-  height: 30px;
-  align-items: center;
-}
-
-.inputContainerUser {
-  margin-top: 5px;
-  width: 250px;
-  display: flex;
-  height: 30px;
-  align-items: center;
-}
-
-.inputContainerPassword {
-  margin-top: 5px;
-  width: 250px;
-  display: flex;
-  height: 30px;
-  align-items: center;
-}
-
-.inputContainerConfirm {
-  margin-top: 5px;
-  width: 250px;
-  display: flex;
-  height: 30px;
-  align-items: center;
-}
-
-.inputContainerConfirm label {
-  margin-left: -53px;
-}
-
 .formcito3 {
-  display: flex;
-  margin-bottom: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
 }

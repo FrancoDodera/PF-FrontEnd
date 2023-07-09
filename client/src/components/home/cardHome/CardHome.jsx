@@ -7,10 +7,10 @@ const CardHome = (props) => {
         <div className="container">
           <img className="imageCointainer" src={props.image} alt="" />
           <div>
-            <p>new</p>
+            <p>{props.status}</p>
             <h2>{props.name} </h2>
-            <h3 className="p">{props.price}</h3>
-            <p className="celler">celler</p>
+            <h3 className="p">$. {props.price}</h3>
+            <p className="brand">{props.brand.name}</p>
           </div>
         </div>
       </Link>

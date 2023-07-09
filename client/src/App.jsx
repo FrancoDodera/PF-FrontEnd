@@ -17,17 +17,13 @@ function App() {
     const localGuest=localStorage.getItem("guest");
     if(!localAuth){
       if(!localGuest){
-        navigate('/')
-      }else{
-        
+        navigate('/login')
       }
     }else{
       const {data}=await axios.post('/user/verifyUser',{user:localAuth});
-      if(data.acces){
-        
-      }else{
+      if(!data.acces){
         localStorage.clear();
-        navigate("/");
+        navigate("/login");
       }
     }
   }
@@ -40,9 +36,9 @@ function App() {
   return (
     <main className="App">
       <Routes>
-      <Route exact path="/landing" element={<Landing />} />
+      <Route exact path="/" element={<Landing />} />
         <Route exact path="/home" element={<Home />} />
-        <Route exact path="/" element={<Register />} />
+        <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/carsforsale" element={<Carsforsale />}/>
         <Route exact path="/detail/:id" element={<Detail />} />
