@@ -74,18 +74,13 @@ const AboutUS = () => {
         </div>
         <h1 className="out">Our Services</h1>
         <div className="prueba">
-          <Link>
+          <Link to={"/carsforsale"} >
             <div className="box">
               <img src={carlogito} alt=""  />
-              <p>Buy a new car</p>
+              <p>Buy a  car</p>
             </div>
           </Link>
-          <Link>
-            <div className="box">
-              <img src={second} alt=""  />
-              <p>Buy an used car</p>
-            </div>
-          </Link>
+          
           <Link>
             <div className="box">
               <img src={selt} alt=""  />

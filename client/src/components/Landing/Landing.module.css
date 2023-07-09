@@ -11,31 +11,42 @@
   }
   
   .h1landing {
-    margin-top: 160px;
+    margin-top: 70px;
     position: absolute;
     top:100;
     left:50%;
     transform: translateX(-50%);
     text-align: center;
-    color: #a3fff0;;
-    text-shadow: -3px 2px 4px rgba(0, 0, 0, 0.75);
+    color: #ffffff;;
+    text-shadow: -3px 4px 9px rgb(163, 217, 255);
     font-size:60px;
   }
   
+  .h3{
+    margin-top: 150px;
+    position: absolute;
+    top:100;
+    left:50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #ffffff;;
+    text-shadow: -3px 4px 9px rgb(163, 217, 255);
+    font-size:20px;
+  }
  
    .buttonlanding {
     cursor: pointer;
     width: 260px;
     height:60px;
-    margin: 270px;
-    border: 4px solid #a3fff0;
+    margin: 190px;
+    border: 4px solid #ffffff;
     border-radius: 20px;
     background: none;
     transition: all .3s;
     font-size: 30px;
-    color: #a3fff0;
-    text-shadow: -0px 2px 4px rgba(0, 0, 0, 0.75);
-    box-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
+    color: #ffffff;
+    text-shadow: -3px 4px 9px rgb(163, 217, 255);
+    box-shadow: -2px 4px 9px rgb(163, 217, 255);
     background:none;
    } 
    .buttonlanding:hover {
@@ -43,12 +54,12 @@
     cursor: pointer;
     width: 280px;
     height:60px;
-    margin: 270px;
-    border: 4px solid #a3fff0;;
+    margin: 190px;
+    border: 4px solid #ffffff35;;
     border-radius: 20px;
     transition: all .3s;
     font-size: 36px;
-    color: #a3fff0;
+    color: #ffffff;
     text-shadow: -0px 2px 4px rgba(0, 0, 0, 0.75);
     box-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
    }

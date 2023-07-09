@@ -9,6 +9,7 @@ const LandingPage = () => {
         <>
         <div className={styles.containerlandin}>
         <h1 className={styles.h1landing} >Welcome To CarGo! </h1>
+        <h3  className={styles.h3}>Were the dream cars are just one click away</h3>
         <div className={styles.wrap} >
             {
                 currentUser || currentUser2 ? 
