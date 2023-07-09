@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./UserDetail.css";
 import user from "../../img/userimg.webp";
+import NavBar from "../navbar/NavBar";
 
 const UserDetail = () => {
   const [userDetails, setUserDetails] = useState({});
@@ -100,13 +101,15 @@ const UserDetail = () => {
   };
 
   return (
+    <div>
+      <NavBar />
     <div className="user-detail-container">
-      <div>
-         <img className="userMenuImg" src={profileImage || user} alt="user" /> 
+      <div className="user-detail">
+         {/* <img className="userMenuImg" src={profileImage || user} alt="" />  */}
         <p className="user-detail-item">
           Name:{" "}
           {showChangePassword ? (
-            <input type="text" value={name} onChange={handleNameChange} />
+            <input type="text" value={name} className="campo" onChange={handleNameChange} />
           ) : (
             userDetails.name
           )}
@@ -114,7 +117,7 @@ const UserDetail = () => {
         <p className="user-detail-item">
           Lastname:{" "}
           {showChangePassword ? (
-            <input type="text" value={lastname} onChange={handleLastnameChange} />
+            <input type="text" value={lastname} className="campo" onChange={handleLastnameChange} />
           ) : (
             userDetails.lastName
           )}
@@ -122,7 +125,7 @@ const UserDetail = () => {
         <p className="user-detail-item">
           Email:{" "}
           {showChangePassword ? (
-            <input type="text" value={email} onChange={handleEmailChange} />
+            <input type="text" value={email} className="campo" onChange={handleEmailChange} />
           ) : (
             userDetails.email
           )}
@@ -179,11 +182,12 @@ const UserDetail = () => {
         )}
       </div>
       {isDataUpdated && (
-        <div className="feedback-message">Data updated successfully!</div>
+        <div className="feedback-message"> Data updated successfully! </div>
       )}
       <Link to="/home" className="home-button">
         Back Home
       </Link>
+    </div>
     </div>
   );
 };
