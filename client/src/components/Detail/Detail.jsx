@@ -37,8 +37,8 @@ const Detail = () => {
               <p>Category: {idCategory?.name}</p>
               {/* <p>{car?.description}</p> */}
               <div>
-                <button>Add to car</button>
-                <button>Check availability</button>
+                <button className={style.buttones}>Add to car</button>
+                <button className={style.buttones}>Check availability</button>
               </div>
             </div>
           </div>

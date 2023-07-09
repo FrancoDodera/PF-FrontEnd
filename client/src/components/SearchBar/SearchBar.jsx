@@ -46,7 +46,7 @@ const SearchComponent = () => {
         placeholder="Search your product..."
         // className="form-control"
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch} className={style.button}>Search</button>
     </div>
   );
 };

@@ -1,4 +1,6 @@
 .container {
+  --background: linear-gradient(to left, #00e1c746 0%, #88fff914 100%);
+  background: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +8,7 @@
   margin-left: 20%;
   max-width: 1200px;
   height: 500px;
-  background-color: rgb(214, 213, 213);
+border-radius: 10px;
 }
 
 .container img {
@@ -16,6 +18,7 @@
 }
 
 .detalles {
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -23,6 +26,7 @@
 }
 
 .detalles button {
+  margin-left: 20px;
   justify-content: space-between;
   width: 130px;
   height: 40px;
@@ -30,9 +34,21 @@
   margin-top: 70px;
   background-color: #016565;
   color: white;
+  transition: all .4s;
+
 }
 
+
+
+.detalles button:hover {
+  text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
+  border-radius: 6px;
+  backface-visibility: hidden;
+}
+
+
 .detalles p {
+  padding-top: 10px;
   display: flex;
 }
 
@@ -42,3 +58,10 @@
   position: relative;
   flex-direction: column;
 }
+
+
+
+
+
+
+ 

@@ -4,7 +4,7 @@
   justify-content: center;
   list-style-type: none;
   padding: 0.5em;
-  background-color: rgba(192, 192, 192, 0.527);
+  background: none;
   margin-bottom: 2em;
 }
 .paginationItem {
@@ -25,14 +25,14 @@
   font-weight: bold;
 }
 .paginationItem:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: rgba(129, 255, 234, 0.407);
 }
 .paginationItem.selected {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(129, 255, 234, 0.407);
 }
 .paginationItem.disabled {
   pointer-events: none;
-  color: rgba(0, 0, 0, 0.43);
+  color: rgba(0, 0, 75, 0.514);
   &:hover {
     background-color: transparent;
     cursor: default;

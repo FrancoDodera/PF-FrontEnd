@@ -1,18 +1,20 @@
 .container_NavBar {
-  margin-top: 10px;
-  height: 50px;
-  width: 100%;
-  display: flex;
-  margin-bottom: 10px;
-  align-items: center;
+ /* margin-top: 10px; */
+ height: 80px;
+ width: 100%;
+ display: flex;
+ /* margin-bottom: 10px; */
+ align-items: center;
+ background-color: #cfffff6e;
 }
 
 .container_Logo img {
-  width: 150px;
+  width: 220px;
   margin-right: 80px;
   margin-left: 100px;
 }
 .thinksContainer {
+  font-size: 30px;
   flex-direction: row;
   align-items: center;
   display: flex;
@@ -21,11 +23,12 @@
   margin: 80px;
 }
 .thinksContainer button {
+  font-weight: bold;
   flex-direction: row;
   align-items: center;
   display: flex;
   cursor: pointer;
-  text-decoration: none;
+  /* text-shadow: -0px 3px 2px rgba(0, 0, 0, 0.262); */
   border: none;
   margin: 0;
   padding: 0;
@@ -34,6 +37,13 @@
   font-size: inherit;
   color: inherit;
   outline: none;
+}
+
+.thinksContainer button:hover {
+  /* box-shadow: 0px 0px 10px #69ffc68d; */
+  text-shadow: -0px 4px 3px #003d3d4c;
+  border-radius: 5px;
+  backface-visibility: hidden;
 }
 .userMenuContainer {
   margin-right: 80px;
