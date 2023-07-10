@@ -1,10 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 const AdminHome = () => {
   return (
-    <div className={style.adminContainer}>
-        <h1>admin</h1>
+    <div>
+        <h1>Admin Home</h1>
     </div>
   );
 };
