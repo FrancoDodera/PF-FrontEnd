@@ -9,7 +9,7 @@ import Detail from "./components/Detail/Detail";
 import Home from "./components/home/Home";
 import UserDetail from "./components/UserDetail/UserDetail.jsx";
 import Landing from "./components/Landing/Landing";
-
+import AdminHome from './components/Admin/AdminHome/AdminHome'
 function App() {
   const navigate=useNavigate();
   const validationLogin=async()=>{
@@ -43,6 +43,7 @@ function App() {
         <Route exact path="/carsforsale" element={<Carsforsale />}/>
         <Route exact path="/detail/:id" element={<Detail />} />
         <Route exact path="/userDetail" element={<UserDetail />} />
+        <Route exact path="/admin" element={<AdminHome />} />
       </Routes>
     </main>
   );
