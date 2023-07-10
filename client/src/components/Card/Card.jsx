@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Card = (props) => {
   return (
-    <>
       <div className={style.container}>
         <img className={style.imageCointainer} src={props.image} alt="" />
         <div>
@@ -17,7 +16,6 @@ const Card = (props) => {
           <button className={style.button}>Check availability</button>
         </Link>
       </div>
-    </>
   );
 };
 

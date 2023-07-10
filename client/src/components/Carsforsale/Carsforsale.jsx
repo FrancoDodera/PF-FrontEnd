@@ -16,14 +16,17 @@ const Carsforsale = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className={style.divContainer}>
       <NavBar />
       <div className={style.searchContainer}>
         <h2 className={style.h2}>New or used vehicles for sale</h2>
         <SearchComponent  className={style.search}/>
       </div>
-      <Filters />
-      <CardsContainer allCars={allCars} />
+      <div className={style.containerCarsForSale}>
+        <Filters />
+        <CardsContainer allCars={allCars} />
+      </div>
+      
     </div>
   );
 };

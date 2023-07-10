@@ -4,7 +4,7 @@ import axios from "axios";
 import "./UserDetail.css";
 import user from "../../img/userimg.webp";
 import NavBar from "../navbar/NavBar";
-
+import Swal from "sweetalert2";
 const UserDetail = () => {
   const [userDetails, setUserDetails] = useState({});
   const [name, setName] = useState("");
@@ -26,7 +26,6 @@ const UserDetail = () => {
       axios
         .post("https://pf-back.fly.dev/user/verifyUser", postData)
         .then((response) => {
-          console.log(response);
           if (response.status === 202 && response.data) {
             setUserDetails(response.data.data);
             setName(response.data.data.name);
@@ -76,13 +75,20 @@ const UserDetail = () => {
     axios
       .put("https://pf-back.fly.dev/user/upgrade", postData)
       .then((response) => {
-        if (response.data && response.data) {
+        if (response.data) {
           setUserDetails(response.data);
           setName(response.data.name);
           setLastname(response.data.lastName);
           setEmail(response.data.email);
           setNewPassword("");
           setConfirmPassword("");
+          Swal.fire({
+            icon: "success",
+            title: "Updated User",
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 500,
+          });
         } else {
           console.error("Error changing account data");
         }

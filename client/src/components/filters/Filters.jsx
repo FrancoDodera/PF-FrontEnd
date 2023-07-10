@@ -56,9 +56,9 @@ const Filters = () => {
     }
   },[])
   return (
-    <div>
-      <div className="container_filters">
-        <div className="input-container--dropdown">
+    <div className="containerFilters">
+      <div className="containerSelects">
+        <div className="divSelect">
           <label>Status</label>
           <select name="carStatus" onChange={handlerFilters} className="sds-text-field">
             <option value='all'>New &amp; used</option>
@@ -66,10 +66,11 @@ const Filters = () => {
             <option value='used'>Used</option>
           </select>
         </div>
-        <div className="input-container--dropdown">
-          <label>Make</label>
+
+        <div className="divSelect">
+          <label>Brands</label>
           <select name="brand" onChange={handlerFilters}>
-            <option value='all'>All makes</option>
+            <option value='all'>All Brands</option>
             {allBrands?.map((elem)=>{
               return(
                 <option key={elem._id} value={elem._id}>{elem.name}</option>
@@ -77,9 +78,9 @@ const Filters = () => {
             })}
           </select>
         </div>
-        <div className="input-container--dropdown">
+
+        <div className="divSelect">
           <label>Category</label>
-          <div className="select-container">
             <select name="category" onChange={handlerFilters}>
               <option value='all'>All models</option>
               {allCategories?.map((elem)=>{
@@ -88,30 +89,29 @@ const Filters = () => {
               )
             })}
             </select>
-          </div>
         </div>
-      </div>
-      <div className="secondlayer">
-        {" "}
 
-        <div className="pricerselector">
-          <label htmlFor="maxPrice">
-            Price Range <br />
-            $.{filters.carPriceMin} - $.{filters.carPriceMax}
-          </label>
+      </div>
+      <div className="divRange">
+        <div className="priceSelector">
+          <div className="labelContainer">
+            <label >Price Range</label>
+            <label>$.{filters.carPriceMin} - $.{filters.carPriceMax}</label>
+          </div>
+          
           <input name="carPriceMin" onChange={handlerFilters} type="Number" placeholder="minimal price" />
           <input name="carPriceMax" onChange={handlerFilters} type="Number" placeholder="Maximum price" />
         </div>
-        <div className="pricerselector">
-          <label htmlFor="maxPrice">
-            Year Range <br />
-            {filters.carYearMin} -{filters.carYearMax}
-          </label>
+        <div className="priceSelector">
+          <div className="labelContainer">
+            <label > Year Range</label>
+            <label>{filters.carYearMin} -{filters.carYearMax}</label>
+          </div>
           <input name="carYearMin" onChange={handlerFilters} type="Number" placeholder="minimum year" />
           <input name="carYearMax" onChange={handlerFilters} type="Number" placeholder="maximum year" />
         </div>
       </div>
-      <div>
+        <div className="divButtonFilter">
           <button onClick={submitFilters}>Filter</button>
         </div>
     </div>

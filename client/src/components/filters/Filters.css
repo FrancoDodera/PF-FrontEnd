@@ -1,66 +1,63 @@
-.input-container--dropdown {
+.containerFilters{
   display: flex;
-  width: 200px;
-  height: 50px;
-  flex-shrink: 0;
-  padding: 5px;
-  background-color: #00a4881e;
-  font-size: 14px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: stretch;
   flex-direction: column;
-  margin: 5px;
-  margin-left: 25px;
+  background-color: rgba(137, 192, 209, 0.276);
+  height: 400px;
 }
-.input-container--dropdown select {
-  width: 200px;
-  height: 24px;
+.containerSelects{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.divSelect{
+  margin: 10px;
+  display: grid;  
+  grid-template-columns: 1fr;
+}
+.divSelect select{
+  margin-top: 10px;
+  border-radius: 10px;
   padding: 5px;
-  border: none;
 }
 
-.input-container--dropdown label {
-  font-weight: bold;
-  margin-left: 10px;
-  font-size: 14px;
-}
-.container_filters {
-  display: flex;
-  flex-direction: row;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-.secondlayer {
-  display: flex;
-  margin-left: 20px;
-}
-.pricerselector {
-  display: flex;
-  justify-content: center;
+.priceSelector{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 20px 10px;
   align-items: center;
-  background-color: #00a4881e;
+  justify-content: center;
 }
-.pricerselector input[type="range"] {
-  margin: 20px;
-  width: 150px;
+.priceSelector input{
+  width: 100px;
+  height: 10px;
+  padding: 10px;
+  border-radius: 10px;
 }
-
-.pricerselector button {
-  padding-left: 30px;
-  padding-right: 28px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background-color: #008989;
-  /* color: white; */
-  border: none;
+.labelContainer{
+  display: flex;
+  flex-direction: column;
+}
+.labelContainer label{
+  margin-top: 5px;
+}
+.divButtonFilter{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 10px auto;
+}
+.divButtonFilter button{
+  width: 200px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #007777;;
+  color: aliceblue;
+  transition: 0.3s;
+}
+.divButtonFilter button:hover{
   cursor: pointer;
-  font-weight: 500;
+  background-color: #016565;
+  text-shadow: -0px 4px 3px rgb(0, 0, 0);
+  backface-visibility: hidden;
 }
-.pricerselector button:hover {
-  background-color: #e1aca2;
-  color: black;
-}
-.pricerselector label {
-  margin-left: 20px;
+.containerFilters label{
+  font-weight:500
 }

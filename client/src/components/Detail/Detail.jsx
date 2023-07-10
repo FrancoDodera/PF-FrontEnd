@@ -9,7 +9,6 @@ const Detail = () => {
   const { id } = useParams();
   const car = useSelector((state) => state.carDetail);
   const { idCategory, idMarca } = car;
-  console.log(car);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCarById(id));
