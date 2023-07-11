@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBrands } from "../../../redux/actions";
+import { getAllBrands, createBrand, updateBrand } from "../../../redux/actions";
 
 const Brand = () => {
   //redux
@@ -45,9 +45,17 @@ const Brand = () => {
   const handlerSubmit = (event) => {
     event.preventDefault();
     if (brand.accion === "Crear") {
-      dispatch(addBrand(brand));
+      dispatch(
+        createBrand({ name: brand.name, description: brand.description })
+      );
     } else {
-      dispatch(updateBrand(brand));
+      dispatch(
+        updateBrand({
+          id: brand._id,
+          name: brand.name,
+          description: brand.description,
+        })
+      );
     }
     closeModalCategory();
   };
