@@ -121,8 +121,6 @@ export const updateCategory=(body)=>{
       }
   }
 }
-
-
 export const getAllBrands = () => {
   return async (dispatch) => {
     try {
@@ -174,9 +172,16 @@ export const updateBrand = (body) => {
           timer: 500,
         });
       }
-
+      return dispatch({
+        type:UPDATEBRAND,
+        payload:data
+      })
+    }catch (error) {
+      alert(error.response.data.error)
+    }
   }
 }
+
 //USERS
 
 export const getAllUsers=()=>{
