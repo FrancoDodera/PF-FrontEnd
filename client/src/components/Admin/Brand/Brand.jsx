@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBrands, createBrand, updateBrand } from "../../../redux/actions";
+import { getAllBrands, createBrand, updateBrand, deleteBrand } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 
 const Brand = () => {
@@ -26,7 +26,7 @@ const Brand = () => {
     setShowModal(true);
   };
   const handlerDelete = (_id) => {
-    dispatch(deleteCategoty());
+    dispatch(deleteBrand(_id));
   };
   const showModalhandlerEdit = (element) => {
     setBrand({ ...element, accion: "Editar" });
