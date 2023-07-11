@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../redux/actions";
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -9,9 +10,16 @@ const User = () => {
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
+  const navigate = useNavigate();
   return (
-    <div>
-      <h1>User</h1>
+    <div className="w-full h-[110vh] bg-[#0a192f] text-gray-300">
+          <button
+        className="btn-secondary flex justify-between p-8 text-gray-300"
+        onClick={() => navigate("/admin")}
+      >
+        Go Home
+      </button>
+      <h1 className="text-3xl font-bold flex justify-between p-8 text-gray-300">User</h1>
       {/* You can open the modal using ID.showModal() method */}
       <button className="btn" onClick={() => window.my_modal_4.showModal()}>
         open modal
@@ -27,7 +35,7 @@ const User = () => {
           </div>
         </form>
       </dialog>
-      <table className="table">
+      <table className="className="w-full h-[110vh] bg-[#0a192f] text-gray-300"">
         <thead>
           <tr>
             <th></th>
