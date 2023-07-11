@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND, CREATECATEGORY, UPDATECATEGORY, CREATEUSER, UPDATEUSER, DISABLEUSER, ENABLEUSER } from './actionsType'
+import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND, CREATECATEGORY, UPDATECATEGORY,DELETECATEGORY, CREATEUSER, UPDATEUSER, DISABLEUSER, ENABLEUSER } from './actionsType'
 
 
 
@@ -121,6 +121,36 @@ export const updateCategory=(body)=>{
       }
   }
 }
+
+export const deleteCategory=(ID)=>{
+  return async(dispatch)=>{
+      try {
+          const {data}=await axios.delete(`/category/${ID}`);
+          Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: data.message,
+              showConfirmButton: false,
+              timer: 600
+          })
+          return dispatch(
+              {
+                  type:DELETECATEGORY,
+                  payload:ID
+              }
+          )
+      } catch (error) {
+          Swal.fire({
+              position: 'top-end',
+              icon: 'warning',
+              title: error.response.data.message,
+              showConfirmButton: false,
+              timer: 600
+          })
+      }
+  }
+}
+
 export const getAllBrands = () => {
   return async (dispatch) => {
     try {
