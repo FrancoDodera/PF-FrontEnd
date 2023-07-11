@@ -1,11 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { createUser, disableUser, enableUser, getAllUsers, updateUser } from "../../../redux/actions";
 import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const users = useSelector((state) => state.allUsers);
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState({
@@ -82,13 +85,21 @@ const User = () => {
     }
     
   }, []);
+  
   return (
+
     <div>
       <div className="flex justify-between p-8">
         <h1 className="text-3xl font-bold">Users</h1>
         <button className="btn" onClick={showModalUser}>
           Create User
         </button>
+          <button
+        className="btn-secondary flex justify-between p-8 text-gray-300"
+        onClick={() => navigate("/admin")}
+      >
+        Go Home
+      </button>
       </div>
 
       <dialog
@@ -225,10 +236,9 @@ const User = () => {
             <button type="submit" className="btn btn-success">
               Save
             </button>
-          </div>
         </form>
       </dialog>
-      <table className="table">
+      <table className="className="w-full h-[110vh] bg-[#0a192f] text-gray-300"">
         <thead>
           <tr>
             <th></th>
