@@ -1,12 +1,13 @@
 //EJEMPLO!!!!!!!
-import { CARDETAIL, CARFILTERS, CLEARDETAIL, GETALLBRANDS, GETALLCARS, GETALLCATEGORIES, GETCARBYNAME } from "./actionsType";
+import { CARDETAIL, CARFILTERS, CLEARDETAIL, GETALLBRANDS, GETALLCARS, GETALLCATEGORIES, GETALLUSERS, GETCARBYNAME } from "./actionsType";
 
 const initialState={
     allCars:[],
     auxCars:[],
     carDetail:{},
     allBrands:[],
-    allCategories:[]
+    allCategories:[],
+    allUsers:[]
 }
 
 const reducer=(state=initialState,actions)=>{
@@ -59,6 +60,11 @@ const reducer=(state=initialState,actions)=>{
             return{
                 ...state,
                 allCategories:actions.payload
+            }
+        case GETALLUSERS:
+            return{
+                ...state,
+                allUsers:actions.payload
             }
         default:
             return {...state}

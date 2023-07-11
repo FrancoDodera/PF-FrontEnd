@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES } from './actionsType'
+import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS } from './actionsType'
 
 
 // ACA VAN TODAS LAS ACTIONS
@@ -32,6 +32,19 @@ export const getAllBrands=()=>{
             alert(error.response.data.error)
         }
     }
+}
+export const getAllUsers=()=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.get('/user/getAllUsers');
+          return dispatch({
+              type:GETALLUSERS,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
 }
 export const getAllCategories=()=>{
     return async (dispatch)=>{
