@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND } from './actionsType'
+import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND, CREATECATEGORY, UPDATECATEGORY } from './actionsType'
 
 
 // ACA VAN TODAS LAS ACTIONS
@@ -77,6 +77,50 @@ export const getAllCategories=()=>{
       }
   }
 }
+export const createCategory=(body)=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.post('/category',body);
+          if(data._id){
+            Swal.fire({
+              icon: 'success',
+              title: 'category created',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 500
+            })
+          }
+          return dispatch({
+              type:CREATECATEGORY,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+export const updateCategory=(body)=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.put(`/category/${body.id}`,{name:body.name,description:body.description});
+          if(data._id){
+            Swal.fire({
+              icon: 'success',
+              title: 'brand updated',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 500
+            })
+          }
+          return dispatch({
+              type:UPDATECATEGORY,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
 //BRANDS
 
 export const getAllBrands=()=>{
@@ -136,8 +180,6 @@ export const updateBrand=(body)=>{
       }
   }
 }
-
-
 //USERS
 
 export const getAllUsers=()=>{
@@ -152,6 +194,28 @@ export const getAllUsers=()=>{
           alert(error.response.data.error)
       }
   }
+}
+export const createUser=()=>{
+  return async (dispatch)=>{
+    try {
+        const {data}= await axios.post('/marca',body);
+        if(data._id){
+          Swal.fire({
+            icon: 'success',
+            title: 'brand created',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 500
+          })
+        }
+        return dispatch({
+            type:CREATEBRAND,
+            payload:data
+        })
+    } catch (error) {
+        alert(error.response.data.error)
+    }
+}
 }
 
 
