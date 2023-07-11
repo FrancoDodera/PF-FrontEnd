@@ -1,5 +1,6 @@
 //EJEMPLO!!!!!!!
-import { CARDETAIL, CARFILTERS, CLEARDETAIL, GETALLBRANDS, GETALLCARS, GETALLCATEGORIES, GETALLUSERS, GETCARBYNAME } from "./actionsType";
+import Brand from "../components/Admin/Brand/Brand";
+import { CARDETAIL, CARFILTERS, CLEARDETAIL, CREATEBRAND, GETALLBRANDS, GETALLCARS, GETALLCATEGORIES, GETALLUSERS, GETCARBYNAME, UPDATEBRAND } from "./actionsType";
 
 const initialState={
     allCars:[],
@@ -65,6 +66,19 @@ const reducer=(state=initialState,actions)=>{
             return{
                 ...state,
                 allUsers:actions.payload
+            }
+        case CREATEBRAND:
+            return{
+                ...state,
+                allBrands:[...state.allBrands,actions.payload]
+            }
+        case UPDATEBRAND:
+            let allBrands=[...state.allBrands]
+            let brandFind=allBrands.findIndex((elem)=>elem._id==actions.payload._id)
+            allBrands[brandFind]=actions.payload
+            return{
+                ...state,
+                allBrands:[...allBrands]
             }
         default:
             return {...state}

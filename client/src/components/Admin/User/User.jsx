@@ -35,7 +35,11 @@ const User = () => {
                     <td>{user.name}</td>
                     <td>{user.lastName}</td>
                     <td>{user.status?'Available':'Disabled'}</td>
-                    <td><button>edit</button><button>delete</button></td>
+                    <td>
+                      <div className="btn-group">
+                        <button className="btn btn-success">Update</button><button className="btn btn-error">Delete</button>
+                      </div>
+                    </td>
                   </tr>
                 )
               })

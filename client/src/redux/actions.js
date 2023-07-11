@@ -1,10 +1,13 @@
 
 import axios from 'axios'
-import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS } from './actionsType'
+import Swal from 'sweetalert2'
+import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND } from './actionsType'
 
 
 // ACA VAN TODAS LAS ACTIONS
-//ejemplo
+
+
+//CARS
 
 export const getAllCars = () => {
   return async (dispatch) => {
@@ -20,46 +23,6 @@ export const getAllCars = () => {
 
 }
 }
-export const getAllBrands=()=>{
-    return async (dispatch)=>{
-        try {
-            const {data}= await axios.get('/marca/all');
-            return dispatch({
-                type:GETALLBRANDS,
-                payload:data
-            })
-        } catch (error) {
-            alert(error.response.data.error)
-        }
-    }
-}
-export const getAllUsers=()=>{
-  return async (dispatch)=>{
-      try {
-          const {data}= await axios.get('/user/getAllUsers');
-          return dispatch({
-              type:GETALLUSERS,
-              payload:data
-          })
-      } catch (error) {
-          alert(error.response.data.error)
-      }
-  }
-}
-export const getAllCategories=()=>{
-    return async (dispatch)=>{
-        try {
-            const {data}= await axios.get('/category/all');
-            return dispatch({
-                type:GETALLCATEGORIES,
-                payload:data
-            })
-        } catch (error) {
-            alert(error.response.data.error)
-        }
-    }
-}
-
 export const getCarById = (id) => {
   return async (dispatch) => {
     try {
@@ -98,5 +61,100 @@ export const carFilters=(filter)=>{
         payload:filter
     }
 }
+
+//CATEGORIES
+
+export const getAllCategories=()=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.get('/category/all');
+          return dispatch({
+              type:GETALLCATEGORIES,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+//BRANDS
+
+export const getAllBrands=()=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.get('/marca/all');
+          return dispatch({
+              type:GETALLBRANDS,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+export const createBrand=(body)=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.post('/marca',body);
+          if(data._id){
+            Swal.fire({
+              icon: 'success',
+              title: 'brand created',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 500
+            })
+          }
+          return dispatch({
+              type:CREATEBRAND,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+export const updateBrand=(body)=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.post(`/marca/${body.id}`,{name:body.name,description:body.description});
+          if(data._id){
+            Swal.fire({
+              icon: 'success',
+              title: 'brand updated',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 500
+            })
+          }
+          return dispatch({
+              type:UPDATEBRAND,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+
+
+//USERS
+
+export const getAllUsers=()=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.get('/user/getAllUsers');
+          return dispatch({
+              type:GETALLUSERS,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+
+
+
 
 
