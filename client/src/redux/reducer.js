@@ -7,6 +7,8 @@ import {
   CREATEBRAND,
   CREATECATEGORY,
   CREATEUSER,
+  DELETEBRAND,
+  DELETECATEGORY,
   DISABLEUSER,
   ENABLEUSER,
   GETALLBRANDS,
@@ -157,6 +159,26 @@ const reducer = (state = initialState, actions) => {
       return {
         ...state,
         allUsers: [...allUsersE],
+      };
+    case DELETECATEGORY:
+      let deleteCategoryArray = state.allCategories;
+      const indexDeleteCategory = deleteCategoryArray.findIndex(
+        (element) => element._id == actions.payload
+      );
+      deleteCategoryArray.splice(indexDeleteCategory, 1);
+      return {
+        ...state,
+        allCategories: [...deleteCategoryArray],
+      };
+    case DELETEBRAND:
+      let deleteBrandArray = state.allBrands;
+      const indexDeleteBrand = deleteBrandArray.findIndex(
+        (element) => element._id == actions.payload
+      );
+      deleteBrandArray.splice(indexDeleteBrand, 1);
+      return {
+        ...state,
+        allBrands: [...deleteBrandArray],
       };
     default:
       return { ...state };
