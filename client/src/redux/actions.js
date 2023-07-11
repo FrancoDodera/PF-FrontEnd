@@ -121,8 +121,6 @@ export const updateCategory=(body)=>{
       }
   }
 }
-
-
 export const getAllBrands = () => {
   return async (dispatch) => {
     try {
@@ -151,8 +149,9 @@ export const createBrand = (body) => {
       }
       return dispatch({
         type: CREATEBRAND,
-        payload: data,
+        payload: data
       });
+
     } catch (error) {
       alert(error.response.data.error);
     }
@@ -174,9 +173,16 @@ export const updateBrand = (body) => {
           timer: 500,
         });
       }
-
+      return dispatch({
+        type:UPDATEBRAND,
+        payload:data
+      })
+    }catch (error) {
+      alert(error.response.data.error)
+    }
   }
 }
+
 //USERS
 
 export const getAllUsers=()=>{
@@ -192,14 +198,14 @@ export const getAllUsers=()=>{
       }
   }
 }
-export const createUser=()=>{
+export const createUser=(body)=>{
   return async (dispatch)=>{
     try {
-        const {data}= await axios.post('/marca',body);
-        if(data._id){
+        const {data}= await axios.post('/user/addUser',body);
+        if(data.data._id){
           Swal.fire({
             icon: 'success',
-            title: 'brand created',
+            title: 'User created',
             position: 'top-end',
             showConfirmButton: false,
             timer: 500
