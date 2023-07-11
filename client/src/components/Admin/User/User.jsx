@@ -2,8 +2,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { createUser, disableUser, enableUser, getAllUsers, updateUser } from "../../../redux/actions";
-import Swal from 'sweetalert2'
+import {
+  createUser,
+  disableUser,
+  enableUser,
+  getAllUsers,
+  updateUser,
+} from "../../../redux/actions";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const User = () => {
@@ -19,7 +25,7 @@ const User = () => {
     dni: null,
     user: "",
     password: "",
-    confirmPassword:"",
+    confirmPassword: "",
     accion: "",
   });
 
@@ -51,62 +57,82 @@ const User = () => {
   const handlerSubmit = (event) => {
     event.preventDefault();
     if (user.accion === "Crear") {
-      if(user.password !== user.confirmPassword){
+      if (user.password !== user.confirmPassword) {
         Swal.fire({
-          icon: 'error',
-          title: 'passwords do not match',
-          position: 'top-end',
+          icon: "error",
+          title: "passwords do not match",
+          position: "top-end",
           showConfirmButton: false,
-          timer: 800
-        })
-      }else{
+          timer: 800,
+        });
+      } else {
         dispatch(
-          createUser({ name: user.name, lastName: user.lastName, email:user.email, user:user.user,password:user.password,dni:user.dni })
+          createUser({
+            name: user.name,
+            lastName: user.lastName,
+            email: user.email,
+            user: user.user,
+            password: user.password,
+            dni: user.dni,
+          })
         );
         closeModalUser();
       }
     } else {
       dispatch(
-        updateUser({id:user._id, name: user.name, lastName: user.lastName, email:user.email, user:user.user,password:user.password,image:'ruta' })
+        updateUser({
+          id: user._id,
+          name: user.name,
+          lastName: user.lastName,
+          email: user.email,
+          user: user.user,
+          password: user.password,
+          image: "ruta",
+        })
       );
       closeModalUser();
     }
-    
   };
-  const disable=(id)=>{
-    dispatch(disableUser(id))
-  }
-  const enable=(id)=>{
-    dispatch(enableUser(id))
-  }
+  const disable = (id) => {
+    dispatch(disableUser(id));
+  };
+  const enable = (id) => {
+    dispatch(enableUser(id));
+  };
   useEffect(() => {
-    if(users.length==0){
+    if (users.length == 0) {
       dispatch(getAllUsers());
     }
-    
   }, []);
-  
-  return (
 
-    <div>
-      <div className="flex justify-between p-8">
+  return (
+    <div className="overflow-x-auto w-full h-[110vh] bg-[#0a192f] text-gray-300">
+      <div className="flex justify-between p-8 text-gray-300">
+        <button
+          className="btn-secondary flex justify-between p-8 text-gray-300"
+          onClick={() => navigate("/admin")}
+        >
+          Go Home
+        </button>
         <h1 className="text-3xl font-bold">Users</h1>
         <button className="btn" onClick={showModalUser}>
           Create User
         </button>
-          <button
-        className="btn-secondary flex justify-between p-8 text-gray-300"
-        onClick={() => navigate("/admin")}
-      >
-        Go Home
-      </button>
       </div>
 
       <dialog
         id="my_modal_4"
         className={showModal ? "modal modal-open" : "modal"}
       >
-        <form method="dialog" onSubmit={handlerSubmit} className="modal-box w-11/12 max-w-5xl h-auto">
+        <form
+          method="dialog"
+          onSubmit={handlerSubmit}
+          className="modal-box w-11/12 max-w-5xl h-auto"
+        >
+          {
+            user.accion=='Crear'?<h3 className="font-bold text-lg">Create User</h3>:<h3 className="font-bold text-lg">Update User</h3>
+          }
+          
           <button
             type="button"
             onClick={closeModalUser}
@@ -130,7 +156,7 @@ const User = () => {
                     id="name"
                     value={user.name}
                     onChange={handleUser}
-                    className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -148,17 +174,17 @@ const User = () => {
                     id="lastName"
                     value={user.lastName}
                     onChange={handleUser}
-                    className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
-              
+
               <div className="sm:col-span-2">
                 <label
                   htmlFor="user"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  user
+                  User
                 </label>
                 <div className="mt-2">
                   <input
@@ -167,7 +193,7 @@ const User = () => {
                     id="user"
                     value={user.user}
                     onChange={handleUser}
-                    className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -176,7 +202,7 @@ const User = () => {
                   htmlFor="email"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  email
+                  Email
                 </label>
                 <div className="mt-2">
                   <input
@@ -185,51 +211,50 @@ const User = () => {
                     id="email"
                     value={user.email}
                     onChange={handleUser}
-                    className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
-              {
-                user.accion=='Crear' && <> 
-                <div className="sm:col-span-2">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  password
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={user.password}
-                    onChange={handleUser}
-                    className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="confirmPassword"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Confirm Password
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    value={user.confirmPassword}
-                    onChange={handleUser}
-                    className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
+              {user.accion == "Crear" && (
+                <>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Password
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        value={user.password}
+                        onChange={handleUser}
+                        className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="confirmPassword"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Confirm Password
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        id="confirmPassword"
+                        value={user.confirmPassword}
+                        onChange={handleUser}
+                        className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
                 </>
-              }
-              
+              )}
             </div>
           </div>
           <div className="flex justify-end ...">
@@ -239,9 +264,9 @@ const User = () => {
           </div>
         </form>
       </dialog>
-      <table className="w-full h-[110vh] bg-[#0a192f] text-gray-300">
+      <table className="table text-gray-300">
         <thead>
-          <tr>
+          <tr className="text-gray-300">
             <th></th>
             <th>UserName</th>
             <th>Email</th>
@@ -278,9 +303,19 @@ const User = () => {
                       Update
                     </button>
                     {user.status ? (
-                      <button className="btn btn-success" onClick={()=>disable(user._id)} >enable</button>
+                      <button
+                        className="btn btn-success"
+                        onClick={() => disable(user._id)}
+                      >
+                        enable
+                      </button>
                     ) : (
-                      <button className="btn btn-error" onClick={()=>enable(user._id)} >disable</button>
+                      <button
+                        className="btn btn-error"
+                        onClick={() => enable(user._id)}
+                      >
+                        disable
+                      </button>
                     )}
                   </div>
                 </td>

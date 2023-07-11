@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND, CREATECATEGORY, UPDATECATEGORY, CREATEUSER, UPDATEUSER, DISABLEUSER, ENABLEUSER } from './actionsType'
+import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND, CREATECATEGORY, UPDATECATEGORY, CREATEUSER, UPDATEUSER, DISABLEUSER, ENABLEUSER, DELETECATEGORY, DELETEBRAND } from './actionsType'
 
 
 
@@ -121,6 +121,38 @@ export const updateCategory=(body)=>{
       }
   }
 }
+export const deleteCategory = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`/category/${id}`);
+      if (data.deleted) {
+        Swal.fire({
+          icon: "success",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+        return dispatch({
+          type:DELETECATEGORY,
+          payload:id
+        })
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+      }
+    }catch (error) {
+      alert(error)
+    }
+  }
+}
+
+//BRANDS
 export const getAllBrands = () => {
   return async (dispatch) => {
     try {
@@ -179,6 +211,36 @@ export const updateBrand = (body) => {
       })
     }catch (error) {
       alert(error.response.data.error)
+    }
+  }
+}
+export const deleteBrand = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`/marca/${id}`);
+      if (data.deleted) {
+        Swal.fire({
+          icon: "success",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+        return dispatch({
+          type:DELETEBRAND,
+          payload:id
+        })
+      }else{
+        Swal.fire({
+          icon: "error",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+      }
+    }catch (error) {
+      alert(error)
     }
   }
 }
