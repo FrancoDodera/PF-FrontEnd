@@ -1,17 +1,10 @@
-import axios from "axios";
-import Swal from "sweetalert2";
-import {
-  CARDETAIL,
-  CLEARDETAIL,
-  GETALLCARS,
-  GETCARBYNAME,
-  CARFILTERS,
-  GETALLBRANDS,
-  GETALLCATEGORIES,
-  GETALLUSERS,
-  CREATEBRAND,
-  UPDATEBRAND,
-} from "./actionsType";
+
+
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND, CREATECATEGORY, UPDATECATEGORY } from './actionsType'
+
+
 
 // ACA VAN TODAS LAS ACTIONS
 
@@ -70,20 +63,65 @@ export const carFilters = (filter) => {
 
 //CATEGORIES
 
-export const getAllCategories = () => {
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.get("/category/all");
-      return dispatch({
-        type: GETALLCATEGORIES,
-        payload: data,
-      });
-    } catch (error) {
-      alert(error.response.data.error);
-    }
-  };
-};
-//BRANDS
+
+export const getAllCategories=()=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.get('/category/all');
+          return dispatch({
+              type:GETALLCATEGORIES,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+export const createCategory=(body)=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.post('/category',body);
+          if(data._id){
+            Swal.fire({
+              icon: 'success',
+              title: 'category created',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 500
+            })
+          }
+          return dispatch({
+              type:CREATECATEGORY,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+export const updateCategory=(body)=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.put(`/category/${body.id}`,{name:body.name,description:body.description});
+          if(data._id){
+            Swal.fire({
+              icon: 'success',
+              title: 'brand updated',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 500
+            })
+          }
+          return dispatch({
+              type:UPDATECATEGORY,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+
 
 export const getAllBrands = () => {
   return async (dispatch) => {
@@ -136,28 +174,44 @@ export const updateBrand = (body) => {
           timer: 500,
         });
       }
-      return dispatch({
-        type: UPDATEBRAND,
-        payload: data,
-      });
-    } catch (error) {
-      alert(error.response.data.error);
-    }
-  };
-};
 
+  }
+}
 //USERS
 
-export const getAllUsers = () => {
-  return async (dispatch) => {
+export const getAllUsers=()=>{
+  return async (dispatch)=>{
+      try {
+          const {data}= await axios.get('/user/getAllUsers');
+          return dispatch({
+              type:GETALLUSERS,
+              payload:data
+          })
+      } catch (error) {
+          alert(error.response.data.error)
+      }
+  }
+}
+export const createUser=()=>{
+  return async (dispatch)=>{
     try {
-      const { data } = await axios.get("/user/getAllUsers");
-      return dispatch({
-        type: GETALLUSERS,
-        payload: data,
-      });
+        const {data}= await axios.post('/marca',body);
+        if(data._id){
+          Swal.fire({
+            icon: 'success',
+            title: 'brand created',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 500
+          })
+        }
+        return dispatch({
+            type:CREATEBRAND,
+            payload:data
+        })
     } catch (error) {
-      alert(error.response.data.error);
+        alert(error.response.data.error)
     }
-  };
-};
+}
+}
+
