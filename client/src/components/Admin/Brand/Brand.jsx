@@ -14,18 +14,42 @@ const Brand = () => {
     description: "",
     accion: "",
   });
+  const [showModal, setShowModal] = useState(false);
+
   const handleBrand = (event) => {
     const { value } = event.target;
     setBrand({ ...brand, [event.target.name]: value });
   };
-  const createBrand = () => {
+  const showModalBrand = () => {
     setBrand({ ...brand, accion: "Crear" });
+    setShowModal(true);
   };
   const handlerDelete = (_id) => {
     dispatch(deleteCategoty());
   };
-  const handlerEdit = (element) => {
+  const showModalhandlerEdit = (element) => {
     setBrand({ ...element, accion: "Editar" });
+    setShowModal(true);
+  };
+
+  const closeModalCategory = () => {
+    setShowModal(false);
+    setBrand({
+      _id: null,
+      name: "",
+      description: "",
+      accion: "",
+    });
+  };
+
+  const handlerSubmit = (event) => {
+    event.preventDefault();
+    if (brand.accion === "Crear") {
+      dispatch(addBrand(brand));
+    } else {
+      dispatch(updateBrand(brand));
+    }
+    closeModalCategory();
   };
 
   useEffect(() => {
@@ -35,36 +59,84 @@ const Brand = () => {
   }, []);
 
   return (
-    <div>
-      <div>
-        <button onClick={createBrand}>Crear Categoria</button>
+    <div className="overflow-x-auto">
+      <div className="flex justify-between p-8">
+        <h1 className="text-3xl font-bold">Brands</h1>
+        <button className="btn" onClick={showModalBrand}>
+          Create Brand
+        </button>
       </div>
-      <div>
-        <label htmlFor="name">Nombre</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={brand.name}
-          onChange={handleBrand}
-        />
-      </div>
-      <div>
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          value={brand.description}
-          onChange={handleBrand}
-        ></textarea>
-      </div>
-      <table>
+
+      <dialog
+        id="my_modal_3"
+        className={showModal ? "modal modal-open" : "modal"}
+      >
+        <form
+          method="dialog"
+          className="modal-box w-11/12 w-5xl h-auto"
+          onSubmit={handlerSubmit}
+        >
+          <button
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            type="button"
+            onClick={closeModalCategory}
+          >
+            X
+          </button>
+          <h3 className="font-bold text-lg">Create Brand</h3>
+          <div className="pb-12">
+            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={brand.name}
+                    onChange={handleBrand}
+                    className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="description"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Description
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="description"
+                    name="description"
+                    value={brand.description}
+                    onChange={handleBrand}
+                    className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-end ...">
+            <button type="submit" className="btn btn-success">
+              Save
+            </button>
+          </div>
+        </form>
+      </dialog>
+      <table className="table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Accions</th>
+            <th className="w-[10%]">ID</th>
+            <th className="w-[20%]">Name</th>
+            <th className="w-[50%]">Description</th>
+            <th className="w-[20%]">Accions</th>
           </tr>
         </thead>
         <tbody>
@@ -75,10 +147,20 @@ const Brand = () => {
                 <th>{element.name}</th>
                 <th>{element.description}</th>
                 <th>
-                  <button onClick={() => handlerEdit(element)}>Editar</button>
-                  <button onClick={() => handlerDelete(element._id)}>
-                    Eliminar
-                  </button>
+                  <div className="btn-group">
+                    <button
+                      className="btn btn-success"
+                      onClick={() => showModalhandlerEdit(element)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="btn btn-error"
+                      onClick={() => handlerDelete(element._id)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
                 </th>
               </tr>
             );
