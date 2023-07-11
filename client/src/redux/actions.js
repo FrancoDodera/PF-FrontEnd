@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND, CREATECATEGORY, UPDATECATEGORY } from './actionsType'
+import { CARDETAIL, CLEARDETAIL, GETALLCARS,GETCARBYNAME,CARFILTERS, GETALLBRANDS, GETALLCATEGORIES, GETALLUSERS, CREATEBRAND, UPDATEBRAND, CREATECATEGORY, UPDATECATEGORY, CREATEUSER, UPDATEUSER, DISABLEUSER, ENABLEUSER } from './actionsType'
 
 
 
@@ -212,12 +212,77 @@ export const createUser=(body)=>{
           })
         }
         return dispatch({
-            type:CREATEBRAND,
+            type:CREATEUSER,
             payload:data
         })
     } catch (error) {
-        alert(error.response.data.error)
+        alert(error)
     }
 }
 }
-
+export const updateUser=(body)=>{
+  return async (dispatch)=>{
+    try {
+        const {data}= await axios.put('/user/upgrade',body);
+        if(data._id){
+          Swal.fire({
+            icon: 'success',
+            title: 'User updated',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 500
+          })
+        }
+        return dispatch({
+            type:UPDATEUSER,
+            payload:data
+        })
+    } catch (error) {
+        alert(error)
+    }
+}
+}
+export const disableUser=(id)=>{
+  return async (dispatch)=>{
+    try {
+        const {data}= await axios.put(`/user/deleteUser/${id}`);
+        if(data._id){
+          Swal.fire({
+            icon: 'success',
+            title: 'User disabled',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 500
+          })
+        }
+        return dispatch({
+            type:DISABLEUSER,
+            payload:data
+        })
+    } catch (error) {
+        alert(error)
+    }
+}
+}
+export const enableUser=(id)=>{
+  return async (dispatch)=>{
+    try {
+        const {data}= await axios.put(`/user/renoveUser/${id}`);
+        if(data._id){
+          Swal.fire({
+            icon: 'success',
+            title: 'User Enabled',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 500
+          })
+        }
+        return dispatch({
+            type:ENABLEUSER,
+            payload:data
+        })
+    } catch (error) {
+        alert(error)
+    }
+}
+}

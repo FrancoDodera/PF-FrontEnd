@@ -6,6 +6,9 @@ import {
   CLEARDETAIL,
   CREATEBRAND,
   CREATECATEGORY,
+  CREATEUSER,
+  DISABLEUSER,
+  ENABLEUSER,
   GETALLBRANDS,
   GETALLCARS,
   GETALLCATEGORIES,
@@ -13,6 +16,7 @@ import {
   GETCARBYNAME,
   UPDATEBRAND,
   UPDATECATEGORY,
+  UPDATEUSER,
 } from "./actionsType";
 
 const initialState = {
@@ -118,6 +122,41 @@ const reducer = (state = initialState, actions) => {
       return {
         ...state,
         allCategories: [...allCategories],
+      };
+    case CREATEUSER:
+      return {
+        ...state,
+        allUsers: [...state.allUsers, actions.payload.data],
+      };
+    case UPDATEUSER:
+      let allUsers = [...state.allUsers];
+      let userFind = allUsers.findIndex(
+        (elem) => elem._id == actions.payload._id
+      );
+      allUsers[userFind] = actions.payload;
+      return {
+        ...state,
+        allUsers: [...allUsers],
+      };
+    case DISABLEUSER:
+      let allUsersD = [...state.allUsers];
+      let userFindD = allUsersD.findIndex(
+        (elem) => elem._id == actions.payload._id
+      );
+      allUsersD[userFindD] = actions.payload;
+      return {
+        ...state,
+        allUsers: [...allUsersD],
+      };
+    case ENABLEUSER:
+      let allUsersE = [...state.allUsers];
+      let userFindE = allUsersE.findIndex(
+        (elem) => elem._id == actions.payload._id
+      );
+      allUsersE[userFindE] = actions.payload;
+      return {
+        ...state,
+        allUsers: [...allUsersE],
       };
     default:
       return { ...state };
