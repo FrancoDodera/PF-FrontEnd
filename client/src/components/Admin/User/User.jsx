@@ -236,9 +236,10 @@ const User = () => {
             <button type="submit" className="btn btn-success">
               Save
             </button>
+          </div>
         </form>
       </dialog>
-      <table className="className="w-full h-[110vh] bg-[#0a192f] text-gray-300"">
+      <table className="w-full h-[110vh] bg-[#0a192f] text-gray-300">
         <thead>
           <tr>
             <th></th>
