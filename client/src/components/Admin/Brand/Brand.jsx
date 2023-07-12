@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBrands, createBrand, updateBrand, deleteBrand } from "../../../redux/actions";
+import {
+  getAllBrands,
+  createBrand,
+  updateBrand,
+  deleteBrand,
+} from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 
 const Brand = () => {
@@ -22,14 +27,14 @@ const Brand = () => {
     setBrand({ ...brand, [event.target.name]: value });
   };
   const showModalBrand = () => {
-    setBrand({ ...brand, accion: "Crear" });
+    setBrand({ ...brand, accion: "Create" });
     setShowModal(true);
   };
   const handlerDelete = (_id) => {
     dispatch(deleteBrand(_id));
   };
   const showModalhandlerEdit = (element) => {
-    setBrand({ ...element, accion: "Editar" });
+    setBrand({ ...element, accion: "Edit" });
     setShowModal(true);
   };
 
@@ -45,7 +50,7 @@ const Brand = () => {
 
   const handlerSubmit = (event) => {
     event.preventDefault();
-    if (brand.accion === "Crear") {
+    if (brand.accion === "Create") {
       dispatch(
         createBrand({ name: brand.name, description: brand.description })
       );
@@ -165,13 +170,13 @@ const Brand = () => {
                       className="btn btn-success"
                       onClick={() => showModalhandlerEdit(element)}
                     >
-                      Editar
+                      Edit
                     </button>
                     <button
                       className="btn btn-error"
                       onClick={() => handlerDelete(element._id)}
                     >
-                      Eliminar
+                      Delete
                     </button>
                   </div>
                 </th>
