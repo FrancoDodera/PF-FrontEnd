@@ -99,33 +99,36 @@ export const createCategory=(body)=>{
       }
   }
 }
-export const updateCategory=(body)=>{
-  return async (dispatch)=>{
-      try {
-          const {data}= await axios.put(`/category/${body.id}`,{name:body.name,description:body.description});
-          if(data._id){
-            Swal.fire({
-              icon: 'success',
-              title: 'brand updated',
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 500
-            })
-          }
-          return dispatch({
-              type:UPDATECATEGORY,
-              payload:data
-          })
-      } catch (error) {
-          alert(error.response.data.error)
+export const updateCategory = (body) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`/category/${body.id}`, {
+        name: body.name,
+        description: body.description,
+      });
+      if (data._id) {
+        Swal.fire({
+          icon: "success",
+          title: "Category updated",
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
       }
+      return dispatch({
+        type:UPDATECATEGORY,
+        payload:data
+      })
+    }catch (error) {
+      alert(error.response.data.error)
+    }
   }
 }
 
-export const deleteCategory=(ID)=>{
+export const deleteCategory=(id)=>{
   return async(dispatch)=>{
       try {
-          const {data}=await axios.delete(`/category/${ID}`);
+          const {data}=await axios.delete(`/category/${id}`);
           Swal.fire({
               position: 'top-end',
               icon: 'success',
@@ -136,7 +139,7 @@ export const deleteCategory=(ID)=>{
           return dispatch(
               {
                   type:DELETECATEGORY,
-                  payload:ID
+                  payload:id
               }
           )
       } catch (error) {
