@@ -73,8 +73,35 @@
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 .dropdownMenu a{
   margin: 0;
+}
+
+.shopping{
+width: 40px;
+height: auto;
+display: flex;
+position: relative;
+}
+
+.cart-item p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 30px;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 200%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff91;
+  padding: 10px;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dropdownMenu button {

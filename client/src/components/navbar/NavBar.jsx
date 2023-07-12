@@ -1,17 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 import logo from "../../img/Logo.svg";
 import user from "../../img/userimg.webp";
-import guestUser from '../../img/guestUser.png'
+import guestUser from "../../img/guestUser.png";
 import "./NavBar.css";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import cart from "../../img/cart.png";
 
 const NavBar = () => {
-  const navigate = useNavigate();
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const [username, setUsername] = useState("John Doe"); // En caso de manejar estados de nombre
+  const [cartItems, setCartItems] = useState([]);
   const userGuest = localStorage.getItem("guest");
+  const cartRef = useRef(null);
   const menuRef = useRef(null);
+
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -21,17 +26,38 @@ const NavBar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const savedCartItems = localStorage.getItem("cartItems");
+    if (savedCartItems) {
+      setCartItems(JSON.parse(savedCartItems));
+    }
+  }, []);
+
   const handleClickOutside = (event) => {
+    if (cartRef.current && !cartRef.current.contains(event.target)) {
+      setIsCartOpen(false);
+    }
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsMenuOpen(false);
     }
   };
-  const logOut = (event) => {
+
+  const logOut = () => {
     localStorage.clear();
-    navigate("/login");
+    // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleCartIconClick = (event) => {
+    event.stopPropagation();
+    toggleCart();
   };
 
   return (
@@ -51,6 +77,22 @@ const NavBar = () => {
         <NavLink to={"/locations"}>
           <button>Locations</button>
         </NavLink>
+        <div className="shopping" ref={cartRef} onClick={handleCartIconClick}>
+          <img className="cart-shopping" src={cart} alt="cart" />
+          {isCartOpen && (
+            <div className="cart-dropdown">
+              {cartItems.length > 0 ? (
+                cartItems.map((item) => (
+                  <div key={item.id} className="cart-item">
+                    <p>{item.name}</p>
+                  </div>
+                ))
+              ) : (
+                <div className="cart-font">No items in cart</div>
+              )}
+            </div>
+          )}
+        </div>
         {userGuest ? (
           <div className="userMenuContainer" ref={menuRef}>
             <button className="usernameButton" onClick={toggleMenu}>
