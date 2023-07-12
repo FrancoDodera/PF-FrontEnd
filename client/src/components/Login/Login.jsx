@@ -36,8 +36,13 @@ const Login = () => {
       const {data} = await axios.post(LOGIN_URL,credentials);
       if(data.acces){
         localStorage.clear();
-        localStorage.setItem('user',data.data.user);
-        navigate('/home')
+        if(data.data.type=='User'){
+          localStorage.setItem('user',data.data.user);
+          navigate('/home')
+        }else if(data.data.type=='Admin'){
+          localStorage.setItem('admin',data.data.user);
+          navigate('/admin')
+        }
       }else{
         Swal.fire({
           icon: 'error',

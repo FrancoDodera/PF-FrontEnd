@@ -22,6 +22,7 @@ import {
   CREATECAR,
   DELETECAR,
   UPDATECAR,
+  GETALLSALES,
 } from "./actionsType";
 
 // ACA VAN TODAS LAS ACTIONS
@@ -442,6 +443,23 @@ export const enableUser = (id) => {
       });
     } catch (error) {
       alert(error);
+    }
+  };
+};
+
+
+//SALES
+
+export const getAllSales = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("/sale");
+      return dispatch({
+        type: GETALLSALES,
+        payload: data,
+      });
+    } catch (error) {
+      alert(error.response.data.error);
     }
   };
 };

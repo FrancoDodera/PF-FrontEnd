@@ -26,6 +26,7 @@ const User = () => {
     user: "",
     password: "",
     confirmPassword: "",
+    type: "",
     accion: "",
   });
 
@@ -47,6 +48,8 @@ const User = () => {
       dni: null,
       user: "",
       password: "",
+      type: "",
+      confirmPassword: "",
       accion: "",
     });
   };
@@ -56,6 +59,15 @@ const User = () => {
   };
   const handlerSubmit = (event) => {
     event.preventDefault();
+    if(user.type=="" || user.name=="" ||user.lastName=="" ||user.user=="" ||user.email==""){
+      Swal.fire({
+        icon: "error",
+        title: "Missing data",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 500,
+      });
+    }else{
     if (user.accion === "Crear") {
       if (user.password !== user.confirmPassword) {
         Swal.fire({
@@ -74,6 +86,7 @@ const User = () => {
             user: user.user,
             password: user.password,
             dni: user.dni,
+            type: user.type,
           })
         );
         closeModalUser();
@@ -87,11 +100,13 @@ const User = () => {
           email: user.email,
           user: user.user,
           password: user.password,
+          type: user.type,
           image: "ruta",
         })
       );
       closeModalUser();
-    }
+    }    
+  }
   };
   const disable = (id) => {
     dispatch(disableUser(id));
@@ -129,10 +144,12 @@ const User = () => {
           onSubmit={handlerSubmit}
           className="modal-box w-11/12 max-w-5xl h-auto"
         >
-          {
-            user.accion=='Crear'?<h3 className="font-bold text-lg">Create User</h3>:<h3 className="font-bold text-lg">Update User</h3>
-          }
-          
+          {user.accion == "Crear" ? (
+            <h3 className="font-bold text-lg">Create User</h3>
+          ) : (
+            <h3 className="font-bold text-lg">Update User</h3>
+          )}
+
           <button
             type="button"
             onClick={closeModalUser}
@@ -255,6 +272,27 @@ const User = () => {
                   </div>
                 </>
               )}
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="type"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Type
+                </label>
+                <div className="mt-2">
+                  <select 
+                  className="select select-bordered w-full max-w-xs"
+                  name="type"
+                  id="type"
+                  value={user.type}
+                  onChange={handleUser}
+                  >
+                    <option defaultValue>Type</option>
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div className="flex justify-end ...">
@@ -272,6 +310,7 @@ const User = () => {
             <th>Email</th>
             <th>Name</th>
             <th>Last Name</th>
+            <th>Type</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -285,6 +324,7 @@ const User = () => {
                 <td>{user.email}</td>
                 <td>{user.name}</td>
                 <td>{user.lastName}</td>
+                <td>{user.type}</td>
                 <td>
                   {user.status ? (
                     <button className="btn btn-xs btn-success">

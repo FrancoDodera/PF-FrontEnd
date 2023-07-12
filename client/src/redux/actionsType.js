@@ -29,3 +29,6 @@ export const CREATEUSER = "CREATEUSER";
 export const UPDATEUSER = "UPDATEUSER";
 export const DISABLEUSER = "DISABLEUSER";
 export const ENABLEUSER = "ENABLEUSER";
+
+//sales
+export const GETALLSALES = "GETALLSALES";
