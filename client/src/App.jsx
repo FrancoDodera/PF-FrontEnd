@@ -19,49 +19,77 @@ import Sale from "./components/Admin/Sale/Sale";
 
 function App() {
   const navigate = useNavigate();
-  const [typeUser, setTypeUser] = useState("");
-  const localAuth = localStorage.getItem("user");
+  const localUser = localStorage.getItem("user");
+  const localAdmin = localStorage.getItem("admin");
   const localGuest = localStorage.getItem("guest");
   const validationLogin = async () => {
-    const localAuth = localStorage.getItem("user");
-    const localGuest = localStorage.getItem("guest");
-    if (!localAuth) {
+    if (!localUser) {
       if (!localGuest) {
-        setTypeUser("")
-        navigate("/login");
+            if(!localAdmin){
+              navigate("/login");
+            }else{
+              const { data } = await axios.post("/user/verifyUser", {
+                user: localAdmin,
+              });
+              if(!data.acces){
+                localStorage.clear();
+                navigate("/login");
+              }else{
+                if(data.data.type=="Admin"){
+                }else{
+                  localStorage.clear();
+                  navigate("/login");
+                }
+              }
+            }
       }else{
-        setTypeUser("Guest")
+        
       }
     } else {
       const { data } = await axios.post("/user/verifyUser", {
         user: localAuth,
       });
       if (!data.acces) {
-        setTypeUser("");
         localStorage.clear();
         navigate("/login");
       } else {
-        if (data.data.type == "Admin") {
-          setTypeUser("Admin")
-        } else if (data.data.type == "User") {
-          setTypeUser("User")
+        if (data.data.type == "User") {
+          
+        } else{
+          localStorage.clear();
+          navigate("/login");
         }
       }
     }
   };
   
   useEffect(() => {
-    // const validation = async () => {
-    //   await validationLogin();
-    // };
-    // validation();
+    const validation = async () => {
+      await validationLogin();
+    };
+    validation();
   }, []);
   return (
     <main className="App">
-        <Routes>
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/" element={<Landing />} />
+      {
+        !localUser && !localAdmin && !localGuest && <Routes><Route exact path="/register" element={<Register />} /><Route exact path="/login" element={<Login />} /></Routes>
+      }
+      {
+        localUser && <Routes><Route exact path="/" element={<Landing />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/carsforsale" element={<Carsforsale />} />
+        <Route exact path="/detail/:id" element={<Detail />} />
+        <Route exact path="/userDetail" element={<UserDetail />} /></Routes>
+      }
+      {
+        localGuest && <Routes><Route exact path="/" element={<Landing />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/carsforsale" element={<Carsforsale />} />
+        <Route exact path="/detail/:id" element={<Detail />} />
+        <Route exact path="/userDetail" element={<UserDetail />} /></Routes>
+      }
+      {
+        localAdmin && <Routes><Route exact path="/" element={<Landing />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/carsforsale" element={<Carsforsale />} />
           <Route exact path="/detail/:id" element={<Detail />} />
@@ -73,6 +101,7 @@ function App() {
           <Route exact path="/admin/car" element={<Car />} />
           <Route exact path="/admin/sale" element={<Sale />} />
         </Routes>
+      }
     </main>
   );
 }
