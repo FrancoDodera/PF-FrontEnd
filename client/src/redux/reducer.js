@@ -19,6 +19,7 @@ import {
   UPDATEBRAND,
   UPDATECATEGORY,
   UPDATEUSER,
+  GETALLSALES,
 } from "./actionsType";
 
 const initialState = {
@@ -28,6 +29,7 @@ const initialState = {
   allBrands: [],
   allCategories: [],
   allUsers: [],
+  allSales: [],
 };
 
 const reducer = (state = initialState, actions) => {
@@ -95,6 +97,12 @@ const reducer = (state = initialState, actions) => {
         ...state,
         allUsers: actions.payload,
       };
+    case GETALLSALES: {
+      return {
+        ...state,
+        allSales: actions.payload,
+      };
+    }
     case CREATEBRAND:
       return {
         ...state,
