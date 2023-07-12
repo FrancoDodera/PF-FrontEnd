@@ -8,6 +8,14 @@
   
 }
 
+.cart{
+  width: 50px;
+  position: absolute;
+  left: 87%;
+  margin-top: 10px;
+  transition: .2s;
+}
+
 .imageCointainer {
   width: 200px;
   height: 130px;
