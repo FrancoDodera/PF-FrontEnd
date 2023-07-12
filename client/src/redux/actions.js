@@ -19,10 +19,14 @@ import {
   ENABLEUSER,
   DELETECATEGORY,
   DELETEBRAND,
+  CREATECAR,
+  DELETECAR,
+  UPDATECAR,
   GETALLSALES,
 } from "./actionsType";
 
 // ACA VAN TODAS LAS ACTIONS
+
 //CARS
 
 export const getAllCars = () => {
@@ -64,6 +68,84 @@ export const getCarByName = (name) => {
     }
   };
 };
+
+export const createCar = (body) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post("/cars/addCar", body);
+      if (data._id) {
+        Swal.fire({
+          icon: "success",
+          title: "Car created",
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+      }
+      return dispatch({
+        type: CREATECAR,
+        payload: data,
+      });
+    } catch (error) {
+      alert(error.response.data.error);
+    }
+  };
+};
+
+export const updateCar = (body) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put("/cars/updateCar", body);
+      if (data._id) {
+        Swal.fire({
+          icon: "success",
+          title: "Car updated",
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+      }
+      return dispatch({
+        type: UPDATECAR,
+        payload: data,
+      });
+    } catch (error) {
+      alert(error.response.data.error);
+    }
+  };
+};
+
+export const deleteCar = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.delete(`/cars/${id}`);
+      if (data.deleted) {
+        Swal.fire({
+          icon: "success",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+        return dispatch({
+          type: DELETECAR,
+          payload: id,
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
 export const clearDetail = () => {
   return {
     type: CLEARDETAIL,
@@ -364,6 +446,7 @@ export const enableUser = (id) => {
     }
   };
 };
+
 
 //SALES
 

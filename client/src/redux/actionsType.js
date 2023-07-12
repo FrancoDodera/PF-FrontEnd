@@ -7,6 +7,9 @@ export const CARFILTERS = "CARFILTERS";
 export const CARDETAIL = "CARDETAIL";
 export const GETCARBYNAME = "GETCARBYNAME";
 export const CLEARDETAIL = "CLEARDETAIL";
+export const DELETECAR = "DELETECAR";
+export const UPDATECAR = "UPDATECAR";
+export const CREATECAR = "CREATECAR";
 
 //categories
 export const GETALLCATEGORIES = "GETALLCATEGORIES";
