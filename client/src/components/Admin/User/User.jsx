@@ -26,6 +26,7 @@ const User = () => {
     user: "",
     password: "",
     confirmPassword: "",
+    type:"",
     accion: "",
   });
 
@@ -47,6 +48,8 @@ const User = () => {
       dni: null,
       user: "",
       password: "",
+      type:"",
+      confirmPassword: "",
       accion: "",
     });
   };
@@ -74,6 +77,7 @@ const User = () => {
             user: user.user,
             password: user.password,
             dni: user.dni,
+            type:user.type
           })
         );
         closeModalUser();
@@ -87,6 +91,7 @@ const User = () => {
           email: user.email,
           user: user.user,
           password: user.password,
+          type:user.type,
           image: "ruta",
         })
       );
@@ -253,6 +258,24 @@ const User = () => {
                       />
                     </div>
                   </div>
+                  <div className="sm:col-span-2">
+                    <label
+                      htmlFor="confirmPassword"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Confirm Password
+                    </label>
+                    <div className="mt-2">
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        id="confirmPassword"
+                        value={user.confirmPassword}
+                        onChange={handleUser}
+                        className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      />
+                    </div>
+                  </div>
                 </>
               )}
             </div>
@@ -272,6 +295,7 @@ const User = () => {
             <th>Email</th>
             <th>Name</th>
             <th>Last Name</th>
+            <th>Type</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -285,6 +309,7 @@ const User = () => {
                 <td>{user.email}</td>
                 <td>{user.name}</td>
                 <td>{user.lastName}</td>
+                <td>{user.type}</td>
                 <td>
                   {user.status ? (
                     <button className="btn btn-xs btn-success">

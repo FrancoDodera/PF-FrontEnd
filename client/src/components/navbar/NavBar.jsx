@@ -45,8 +45,8 @@ const NavBar = () => {
         <NavLink to={"/carsforsale"}>
           <button>Cars For Sale</button>
         </NavLink>
-        <NavLink to={"/sellyourcar"}>
-          <button>Sell Your Car</button>
+        <NavLink to={"/favoritos"}>
+          <button>Favorites</button>
         </NavLink>
         <NavLink to={"/locations"}>
           <button>Locations</button>
