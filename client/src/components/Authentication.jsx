@@ -8,7 +8,6 @@ const Authentication=()=>{
     const navigate=useNavigate();
     const clientID="193073335991-hclacbarkbgi6vgh4ntd2ig24cnsfvpb.apps.googleusercontent.com"
     const handlerSuccess= async(res)=>{
-        //logica aca
         try {
             const body={
                 name:res.profileObj.name,
@@ -16,20 +15,28 @@ const Authentication=()=>{
                 email:res.profileObj.email,
                 user:res.profileObj.email,
                 password:res.tokenObj.login_hint,
-                dni:null
+                dni:null,
+                type:'User'
             }
             const {data}=await axios.post('/user/addUser',body)
+            console.log(data)
             if(data.acces==true){
-                localStorage.clear();
-                localStorage.setItem('user',res.profileObj.email);
-                navigate('/home')
+                if(data.data.type=='User'){
+                    localStorage.clear();
+                    localStorage.setItem('user',res.profileObj.email);
+                    navigate('/home')
+                }else if(data.data.type=='Admin'){
+                    localStorage.clear();
+                    localStorage.setItem('admin',res.profileObj.email);
+                    navigate('/admin')
+                }
+                
             }else{
                 alert(data)
             }
         } catch (error) {
             alert(error)
         }
-        
     }
     const handlerError=(res)=>{
         //logica aca
