@@ -47,7 +47,7 @@ function App() {
       }
     } else {
       const { data } = await axios.post("/user/verifyUser", {
-        user: localAuth,
+        user: localUser,
       });
       if (!data.acces) {
         localStorage.clear();
