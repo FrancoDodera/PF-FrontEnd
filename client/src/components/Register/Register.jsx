@@ -158,6 +158,7 @@ const Register = () => {
           user: form.user,
           password: form.password,
           dni: null,
+          type:'User'
         };
 
         const { data } = await axios.post(REGISTER_URL, body);

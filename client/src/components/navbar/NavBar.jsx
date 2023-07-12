@@ -51,6 +51,11 @@ const NavBar = () => {
     setIsCartOpen(!isCartOpen);
   };
 
+  const logOutGuest=(event)=>{
+    localStorage.clear();
+    navigate("/login")
+  }
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -71,8 +76,8 @@ const NavBar = () => {
         <NavLink to={"/carsforsale"}>
           <button>Cars For Sale</button>
         </NavLink>
-        <NavLink to={"/sellyourcar"}>
-          <button>Sell Your Car</button>
+        <NavLink to={"/favoritos"}>
+          <button>Favorites</button>
         </NavLink>
         <NavLink to={"/locations"}>
           <button>Locations</button>
@@ -100,9 +105,7 @@ const NavBar = () => {
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                <NavLink to={"/login"}>
-                  <button>Login</button>
-                </NavLink>
+                  <button onClick={logOutGuest}>Login</button>
               </div>
             )}
           </div>
