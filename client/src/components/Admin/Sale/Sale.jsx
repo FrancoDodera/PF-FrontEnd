@@ -41,10 +41,7 @@ const Sale = () => {
         id="my_modal_3"
         className={showModal ? "modal modal-open" : "modal"}
       >
-        <form
-          method="dialog"
-          className="modal-box w-11/12 w-5xl h-auto  bg-white"
-        >
+        <form method="dialog" className="modal-box w-11/12 w-5xl h-auto">
           <button
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
             type="button"
