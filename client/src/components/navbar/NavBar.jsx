@@ -30,6 +30,10 @@ const NavBar = () => {
     localStorage.clear();
     navigate("/login");
   };
+  const logOutGuest=(event)=>{
+    localStorage.clear();
+    navigate("/login")
+  }
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -58,9 +62,7 @@ const NavBar = () => {
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                <NavLink to={"/login"}>
-                  <button>Login</button>
-                </NavLink>
+                  <button onClick={logOutGuest}>Login</button>
               </div>
             )}
           </div>
