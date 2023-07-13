@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../../img/Logo.svg";
 import user from "../../img/userimg.webp";
 import guestUser from "../../img/guestUser.png";
@@ -23,6 +23,7 @@ const NavBar = () => {
 
   const location = useLocation();
   const currentPath = location.pathname;
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -57,6 +58,7 @@ const NavBar = () => {
 
   const logOut = () => {
     localStorage.clear();
+    navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
 
@@ -87,6 +89,14 @@ const NavBar = () => {
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
+  const handleGoToCart = () => {
+    if (userGuest) {
+      navigate("/login");
+    } else {
+      navigate("/cart");
+    }
+  };
+  
   return (
     <div className="container_NavBar">
       <div className="container_Logo">
@@ -123,8 +133,8 @@ const NavBar = () => {
                     </div>
                   ))}
                   <div className="cart-total">Total: ${totalPrice}</div>
-                  <Link className="goToCart">
-                    <button >Go to cart</button>
+                  <Link to="/cart" className="goToCart">
+                    <button onClick={handleGoToCart}>Go to cart</button>
                   </Link>
                 </>
               ) : (
