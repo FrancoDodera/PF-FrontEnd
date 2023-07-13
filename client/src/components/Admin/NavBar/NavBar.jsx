@@ -2,35 +2,38 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  
   const navigate = useNavigate();
-  const logOut=(event)=>{
-    localStorage.clear()
-    navigate("/login")
-  }
+  const profileUrl=localStorage.getItem("profileUrl")
+  const logOut = (event) => {
+    localStorage.clear();
+    navigate("/login");
+  };
   return (
-    <div className="w-full h-[80px] flex justify-evenly items-center px-4 bg-[#0a192f] text-gray-300">
-      <button className="btn-primary" onClick={() => navigate("/admin/brand")}>
-        Brand
-      </button>
-      <button className="btn-primary" onClick={() => navigate("/admin/car")}>
-        Car
-      </button>
-      <button
-        className="btn-primary"
-        onClick={() => navigate("/admin/category")}
-      >
-        Category
-      </button>
-      <button className="btn-primary" onClick={() => navigate("/admin/sale")}>
-        Sale
-      </button>
-      <button className="btn-primary" onClick={() => navigate("/admin/user")}>
-        User
-      </button>
-      <button className="btn-primary" onClick={logOut}>
-        Log Out
-      </button>
+    <div className="navbar bg-[#1751a7] text-gray-300">
+      <div className="flex-1">
+        <a className="btn btn-ghost normal-case text-xl" onClick={() => navigate("/admin")}>Home</a>
+        <a className="btn btn-ghost normal-case text-xl" onClick={() => navigate("/admin/brand")}>Brand</a>
+        <a className="btn btn-ghost normal-case text-xl" onClick={() => navigate("/admin/category")} >Category</a>
+        <a className="btn btn-ghost normal-case text-xl" onClick={() => navigate("/admin/car")}>Car</a>
+        <a className="btn btn-ghost normal-case text-xl" onClick={() => navigate("/admin/sale")}>Sale</a>
+        <a className="btn btn-ghost normal-case text-xl" onClick={() => navigate("/admin/user")}>User</a>
+      </div>
+      <div className="flex-none gap-2">
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              <img src={profileUrl} />
+            </div>
+          </label>
+          <ul
+            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#3c4367] rounded-box w-52"
+          >
+            <li>
+              <a href="" onClick={logOut}>LogOut</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
