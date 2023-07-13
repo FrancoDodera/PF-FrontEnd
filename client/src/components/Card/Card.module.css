@@ -2,10 +2,9 @@
   display: flex;
   margin-bottom: 20px;
   background-color: rgba(137, 192, 209, 0.276);
-  padding: 0;
+  padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  
 }
 
 .cart{
@@ -17,14 +16,12 @@
 }
 
 .imageCointainer {
-  width: 200px;
-  height: 130px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 220px;
+  height: 150px;
   margin-right: 50px;
+  border: none;
+  border-radius: 10px;
 }
-
 .p {
   font-weight: bold;
 }
@@ -38,12 +35,13 @@
 
 .button {
   width: 130px;
-  height: 40px;
+  height: 50px;
   position: absolute;
   left: 86%;
   margin-top: 70px;
   background-color: #007777;
   color: white;
+  border-radius: 10px;
   transition: .2s;
 }
 

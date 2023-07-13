@@ -1,11 +1,13 @@
 .container-find {
-  width: 350px;
-
+  width: 400px;
   text-align: center;
+  border: none;
+  border-radius: 10px;
+  background-color: #D8EBEF;
 }
 .container-find button {
   margin-top: 10px;
-  width: 400px;
+  width: 200px;
   height: 50px;
   color: white;
   border: none;
@@ -18,11 +20,10 @@
   background-color: #e1aca2;
 }
 .container-find p {
-  margin-left: 50px;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 .container-find h1 {
-  margin-left: 5px;
-  width: 400px;
+  margin: 10px;
   margin-bottom: 10px;
+  font-weight: 700;
 }

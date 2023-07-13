@@ -6,9 +6,7 @@ const Recommended = () => {
   return (
     <div className="container_Recommended">
       <h2>Recommended Cars</h2>
-      <div className="container_cardsHome">
-        <CardHome />
-      </div>
+      <CardHome />
     </div>
   );
 };
