@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../../img/Logo.svg";
 import user from "../../img/userimg.webp";
 import guestUser from "../../img/guestUser.png";
@@ -20,9 +20,10 @@ const NavBar = () => {
     (total, item) => total + item.totalPrice,
     0
   );
+
   const location = useLocation();
   const currentPath = location.pathname;
-  const [redirectToLogin, setRedirectToLogin] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -57,6 +58,7 @@ const NavBar = () => {
 
   const logOut = () => {
     localStorage.clear();
+    navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
 
@@ -87,6 +89,14 @@ const NavBar = () => {
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
+  const handleGoToCart = () => {
+    if (userGuest) {
+      navigate("/login");
+    } else {
+      navigate("/cart");
+    }
+  };
+  
   return (
     <div className="container_NavBar">
       <div className="container_Logo">
@@ -112,9 +122,8 @@ const NavBar = () => {
                 <>
                   {cartItems.map((item) => (
                     <div key={item.id} className="cart-item">
-                      <p>
-                        {item.name} ${item.totalPrice} {item.amount > 1 ? `x${item.amount}` : ""}
-                      </p>
+                      {item.name} ${item.totalPrice}{" "}
+                      {item.amount > 1 ? `x${item.amount}` : ""}
                       <button
                         className="remove-button"
                         onClick={() => removeFromCart(item.id)}
@@ -123,14 +132,10 @@ const NavBar = () => {
                       </button>
                     </div>
                   ))}
-                  {userGuest ? (
-                    <button onClick={logOutGuest}>Go to cart</button>
-                  ) : (
-                    <Link to="/cart">Go to cart</Link>
-                  )}
-                  <div className="cart-total">
-                    Total: ${totalPrice}
-                  </div>
+                  <div className="cart-total">Total: ${totalPrice}</div>
+                  <Link to="/cart" className="goToCart">
+                    <button onClick={handleGoToCart}>Go to cart</button>
+                  </Link>
                 </>
               ) : (
                 <div className="cart-font">No items in cart</div>

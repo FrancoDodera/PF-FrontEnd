@@ -17,6 +17,7 @@ import Category from "./components/Admin/Category/Category";
 import User from "./components/Admin/User/User";
 import Sale from "./components/Admin/Sale/Sale";
 
+
 function App() {
   const navigate = useNavigate();
   const localUser = localStorage.getItem("user");
