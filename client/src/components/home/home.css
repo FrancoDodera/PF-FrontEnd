@@ -3,9 +3,10 @@
   padding: 0;
   font-family: "Inter var", sans-serif;
 }
-/* .Home_container{
-  background-color: rgba(180, 255, 255, 0.415);
-} */
+
+.Home_container{
+  background-color: rgba(246, 251, 251, 0.966);
+}
 
 .carpicture {
   background-image: url("../../img/carPhotoc.png");

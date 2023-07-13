@@ -143,7 +143,8 @@ const NavBar = () => {
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                <button onClick={logOutGuest}>Login</button>
+                  <button onClick={logOut}>Login</button>
+
               </div>
             )}
           </div>

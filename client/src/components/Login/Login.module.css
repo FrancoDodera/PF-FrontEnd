@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 500px;
+  height: 600px;
 }
 
 .container2 h1 {
@@ -52,7 +52,7 @@
   margin-left: 20px;
   margin-top: 20px;
 
-  background-color: #01656588;
+  background-color: #016565f7;
   color: #ffffff;
   border: none;
   border-radius: 3px;
@@ -92,7 +92,7 @@
 .botoncito {
   margin-top: 20px;
   padding: 8px 16px;
-  background-color: #01656588;
+  background-color: #016565f7;
   color: #ffffff;
   border: none;
   border-radius: 3px;
@@ -108,12 +108,11 @@
   display: flex;
   width: 100%;
 }
-
 .button {
   margin-top: 20px;
   padding: 8px 16px;
-  background-color: #01656588;
-  color: #ffffff;
+  background-color: #0056b3;
+  color: #242222;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -124,7 +123,7 @@
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #287cd6;
 }
 form label{
   margin-top: 10px;

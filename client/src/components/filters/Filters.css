@@ -26,9 +26,8 @@
   align-items: center;
   justify-content: center;
 }
-.priceSelector input{
-  width: 100px;
-  height: 10px;
+.inputRange{
+  width: 120px;
   padding: 10px;
   border-radius: 10px;
 }

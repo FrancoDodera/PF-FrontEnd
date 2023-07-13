@@ -1,56 +1,61 @@
 .container {
-  --background: linear-gradient(to left, #00e1c746 0%, #88fff914 100%);
-  background: var(--background);
-  display: flex;
+background-color: #D8EBEF;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
-  margin-left: 20%;
-  max-width: 1200px;
+  margin:50px auto;
+  width: 1200px;
   height: 500px;
-border-radius: 10px;
+  border-radius: 10px;
+  padding: 0px 50px;
 }
 
 .container img {
   width: 600px;
   height: 400px;
-  margin-top: 40px;
+  border-radius: 10px;
 }
 
+.caracteristicas{
+  display: flex;
+  flex-direction: column;
+}
+.caracteristicas h2{
+    font-weight: 700;
+    font-size: 40px;
+}
+.caracteristicas h4{
+  font-weight: 700;
+}
+.buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
 .detalles {
-  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 30px;
 }
 
 .detalles button {
-  margin-left: 20px;
-  justify-content: space-between;
-  width: 130px;
-  height: 40px;
-  left: 86%;
-  margin-top: 70px;
+  width: 200px;
+  height: 60px;
   background-color: #016565;
+  border-radius: 6px;
   color: white;
   transition: all .4s;
-
 }
-
-
-
 .detalles button:hover {
   text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
-  border-radius: 6px;
+  
   backface-visibility: hidden;
 }
 
 
-.detalles p {
-  padding-top: 10px;
-  display: flex;
-}
 
 .contact {
   display: flex;

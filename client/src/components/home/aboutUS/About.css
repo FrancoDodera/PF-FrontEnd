@@ -18,11 +18,11 @@
 }
 .container_secondLayer {
   border-radius: 10px;
-  background-color: rgb(255, 255, 255);
+  background-color:#D8EBEF;
   width: 1200px;
   position: absolute;
   top: 350px;
-  left: 70px;
+  left: 50px;
   z-index: 1;
   height: 700px;
 }
@@ -30,6 +30,8 @@
 .container_all {
   position: relative;
   margin-top: 150px;
+  align-items: center;
+  justify-content: center;
 }
 .container_all img {
   width: 300px;
