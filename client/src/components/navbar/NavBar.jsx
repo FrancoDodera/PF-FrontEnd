@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import logo from "../../img/Logo.svg";
 import user from "../../img/userimg.webp";
 import guestUser from "../../img/guestUser.png";
@@ -18,19 +18,20 @@ const NavBar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
+    window.addEventListener("storage", handleStorageChange);
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
 
   useEffect(() => {
-    const savedCartItems = localStorage.getItem("cartItems");
-    if (savedCartItems) {
-      setCartItems(JSON.parse(savedCartItems));
-    }
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartItems(savedCartItems);
   }, []);
 
   const handleClickOutside = (event) => {
@@ -42,6 +43,13 @@ const NavBar = () => {
     }
   };
 
+  const handleStorageChange = (event) => {
+    if (event.key === "cartItems") {
+      const savedCartItems = JSON.parse(event.newValue) || [];
+      setCartItems(savedCartItems);
+    }
+  };
+
   const logOut = () => {
     localStorage.clear();
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
@@ -49,12 +57,14 @@ const NavBar = () => {
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartItems(savedCartItems);
   };
 
-  const logOutGuest=(event)=>{
+  const logOutGuest = (event) => {
     localStorage.clear();
-    navigate("/login")
-  }
+    navigate("/login");
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -63,6 +73,12 @@ const NavBar = () => {
   const handleCartIconClick = (event) => {
     event.stopPropagation();
     toggleCart();
+  };
+
+  const removeFromCart = (itemId) => {
+    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedCartItems);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
   return (
@@ -85,19 +101,30 @@ const NavBar = () => {
         <div className="shopping" ref={cartRef} onClick={handleCartIconClick}>
           <img className="cart-shopping" src={cart} alt="cart" />
           {isCartOpen && (
-            <div className="cart-dropdown">
-              {cartItems.length > 0 ? (
-                cartItems.map((item) => (
+          <div className={`cart-dropdown ${isCartOpen ? 'open' : ''}`}>
+            {cartItems.length > 0 ? (
+              <>
+                {cartItems.map((item) => (
                   <div key={item.id} className="cart-item">
                     <p>{item.name}</p>
+                    <button
+                      className="remove-button"
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      &#10005;
+                    </button>
                   </div>
-                ))
-              ) : (
-                <div className="cart-font">No items in cart</div>
-              )}
-            </div>
-          )}
-        </div>
+                ))}
+                <Link>
+                  <button>Reserve</button>
+                </Link>
+              </>
+            ) : (
+              <div className="cart-font">No items in cart</div>
+            )}
+          </div>
+        )}
+      </div>
         {userGuest ? (
           <div className="userMenuContainer" ref={menuRef}>
             <button className="usernameButton" onClick={toggleMenu}>
@@ -105,7 +132,7 @@ const NavBar = () => {
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                  <button onClick={logOutGuest}>Login</button>
+                <button onClick={logOutGuest}>Login</button>
               </div>
             )}
           </div>

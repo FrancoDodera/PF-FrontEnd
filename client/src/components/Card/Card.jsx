@@ -1,7 +1,6 @@
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 import cart from "../../img/cart.png";
-import { useLocation } from "react-router-dom";
 import React, { useState } from "react";
 
 const Card = (props) => {
@@ -9,17 +8,17 @@ const Card = (props) => {
 
   const handleAddToCart = () => {
     const item = {
+      id: props.id,
       name: props.name,
       price: props.price,
     };
 
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    cartItems.push(item);
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    const updatedCartItems = [...cartItems, item];
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
 
     setIsAddedToCart(true);
   };
-
   return (
       <div className={style.container}>
         <img className={style.imageCointainer} src={props.image} alt="" />
