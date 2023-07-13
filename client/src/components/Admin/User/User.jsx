@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const User = () => {
+  const cloudName = "dbt5vgimv";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const users = useSelector((state) => state.allUsers);
@@ -27,8 +28,16 @@ const User = () => {
     password: "",
     confirmPassword: "",
     type: "",
+    image: "",
     accion: "",
   });
+  const handlerImage = (event) => {
+    const files = event.target.files[0];
+    setUser({
+      ...user,
+      image: files,
+    });
+  };
 
   const showModalUser = () => {
     setUser({ ...user, accion: "Crear" });
@@ -50,6 +59,7 @@ const User = () => {
       password: "",
       type: "",
       confirmPassword: "",
+      image: "",
       accion: "",
     });
   };
@@ -57,9 +67,37 @@ const User = () => {
     const { value } = event.target;
     setUser({ ...user, [event.target.name]: value });
   };
-  const handlerSubmit = (event) => {
+  const uploadImage=async(file)=>{
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "CarGo_Pf_henry");
+    try {
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      if (res.ok) {
+        const file = await res.json();
+        return file.secure_url;
+      } else {
+        return ""
+      }
+    } catch (error) {
+      alert(error)
+    }
+  }
+  const handlerSubmit = async (event) => {
     event.preventDefault();
-    if(user.type=="" || user.name=="" ||user.lastName=="" ||user.user=="" ||user.email==""){
+    if (
+      user.type == "" ||
+      user.name == "" ||
+      user.lastName == "" ||
+      user.user == "" ||
+      user.email == ""
+    ) {
       Swal.fire({
         icon: "error",
         title: "Missing data",
@@ -67,46 +105,55 @@ const User = () => {
         showConfirmButton: false,
         timer: 500,
       });
-    }else{
-    if (user.accion === "Crear") {
-      if (user.password !== user.confirmPassword) {
-        Swal.fire({
-          icon: "error",
-          title: "passwords do not match",
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 800,
-        });
+    } else {
+      let imageUrl=""
+      if (user.accion === "Crear") {
+
+        if (user.password !== user.confirmPassword) {
+          Swal.fire({
+            icon: "error",
+            title: "passwords do not match",
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 800,
+          });
+        } else {
+          if (user.image != "") {
+            imageUrl =await uploadImage(user.image)
+          }
+          dispatch(
+            createUser({
+              name: user.name,
+              lastName: user.lastName,
+              email: user.email,
+              user: user.user,
+              password: user.password,
+              dni: user.dni,
+              type: user.type,
+              image: imageUrl,
+            })
+          );
+          closeModalUser();
+        }
       } else {
+        if (user.image != "") {
+          imageUrl =await uploadImage(user.image)
+        }
         dispatch(
-          createUser({
+          updateUser({
+            id: user._id,
             name: user.name,
             lastName: user.lastName,
             email: user.email,
             user: user.user,
             password: user.password,
-            dni: user.dni,
             type: user.type,
+            image: imageUrl,
           })
         );
         closeModalUser();
       }
-    } else {
-      dispatch(
-        updateUser({
-          id: user._id,
-          name: user.name,
-          lastName: user.lastName,
-          email: user.email,
-          user: user.user,
-          password: user.password,
-          type: user.type,
-          image: "ruta",
-        })
-      );
-      closeModalUser();
-    }    
-  }
+    }
   };
   const disable = (id) => {
     dispatch(disableUser(id));
@@ -195,25 +242,6 @@ const User = () => {
                   />
                 </div>
               </div>
-
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="user"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  User
-                </label>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    name="user"
-                    id="user"
-                    value={user.user}
-                    onChange={handleUser}
-                    className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
               <div className="sm:col-span-2">
                 <label
                   htmlFor="email"
@@ -232,6 +260,25 @@ const User = () => {
                   />
                 </div>
               </div>
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="user"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  User
+                </label>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    name="user"
+                    id="user"
+                    value={user.user}
+                    onChange={handleUser}
+                    className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+
               {user.accion == "Crear" && (
                 <>
                   <div className="sm:col-span-2">
@@ -272,6 +319,7 @@ const User = () => {
                   </div>
                 </>
               )}
+
               <div className="sm:col-span-2">
                 <label
                   htmlFor="type"
@@ -280,17 +328,34 @@ const User = () => {
                   Type
                 </label>
                 <div className="mt-2">
-                  <select 
-                  className="select select-bordered w-full max-w-xs"
-                  name="type"
-                  id="type"
-                  value={user.type}
-                  onChange={handleUser}
+                  <select
+                    className="select select-bordered w-full max-w-xs"
+                    name="type"
+                    id="type"
+                    value={user.type}
+                    onChange={handleUser}
                   >
                     <option defaultValue>Type</option>
                     <option value="User">User</option>
                     <option value="Admin">Admin</option>
                   </select>
+                </div>
+              </div>
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="image"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Logo
+                </label>
+                <div className="mt-4">
+                  <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    onChange={handlerImage}
+                    className="file-input w-full max-w-xs"
+                  />
                 </div>
               </div>
             </div>

@@ -9,14 +9,14 @@ const Card = (props) => {
 
   const handleAddToCart = () => {
     const item = {
+      id:props.id,
+      amount:1,
       name: props.name,
       price: props.price,
     };
-
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems.push(item);
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
     setIsAddedToCart(true);
   };
 
@@ -34,8 +34,8 @@ const Card = (props) => {
           <button className={style.button}>Check availability</button>
         </Link>
         <div className={style.cart} onClick={handleAddToCart}>
-        <img src={cart} alt="" />
-      </div>
+          <img src={cart} alt=""/>
+        </div>
       </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../img/Logo.svg";
 import user from "../../img/userimg.webp";
 import guestUser from "../../img/guestUser.png";
@@ -12,11 +12,13 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const userGuest = localStorage.getItem("guest");
+  const profileUrl = localStorage.getItem("profileUrl");
   const cartRef = useRef(null);
   const menuRef = useRef(null);
 
   const location = useLocation();
   const currentPath = location.pathname;
+  const navigate=useNavigate()
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -44,17 +46,12 @@ const NavBar = () => {
 
   const logOut = () => {
     localStorage.clear();
-    // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
+    navigate("/login")
   };
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
-
-  const logOutGuest=(event)=>{
-    localStorage.clear();
-    navigate("/login")
-  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -105,14 +102,14 @@ const NavBar = () => {
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                  <button onClick={logOutGuest}>Login</button>
+                  <button onClick={logOut}>Login</button>
               </div>
             )}
           </div>
         ) : (
           <div className="userMenuContainer" ref={menuRef}>
             <button className="usernameButton" onClick={toggleMenu}>
-              <img className="userMenuImg" src={user} alt="user" />
+              <img className="userMenuImg" src={profileUrl} alt="user" />
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
