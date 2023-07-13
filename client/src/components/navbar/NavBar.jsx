@@ -12,6 +12,8 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const userGuest = localStorage.getItem("guest");
+  const userUser = localStorage.getItem("user");
+  const profileUrl = localStorage.getItem("profileUrl");
   const cartRef = useRef(null);
   const menuRef = useRef(null);
   const totalPrice = cartItems.reduce(
@@ -144,21 +146,20 @@ const NavBar = () => {
             {isMenuOpen && (
               <div className="dropdownMenu">
                   <button onClick={logOut}>Login</button>
-
               </div>
             )}
           </div>
         ) : (
           <div className="userMenuContainer" ref={menuRef}>
             <button className="usernameButton" onClick={toggleMenu}>
-              <img className="userMenuImg" src={user} alt="user" />
+              <img className="userMenuImg" src={profileUrl} alt="user" />
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
                 <NavLink to={"/userDetail"}>
                   <button>Account Information</button>
                 </NavLink>
-                <button onClick={logOut}>Logout</button>
+                  <button onClick={logOut}>Logout</button>
               </div>
             )}
           </div>
