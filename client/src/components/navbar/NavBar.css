@@ -60,6 +60,7 @@
   position: relative;
   top: -1em;
   right: 1.5em;
+  border-radius: 5rem;
 }
 
 .dropdownMenu {
@@ -94,6 +95,7 @@ position: relative;
 
 .cart-dropdown {
   position: absolute;
+  width: 500px;
   top: 200%;
   left: 50%;
   transform: translateX(-50%);
