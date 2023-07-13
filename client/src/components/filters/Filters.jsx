@@ -99,16 +99,16 @@ const Filters = () => {
             <label>$.{filters.carPriceMin} - $.{filters.carPriceMax}</label>
           </div>
           
-          <input name="carPriceMin" onChange={handlerFilters} type="Number" placeholder="minimal price" />
-          <input name="carPriceMax" onChange={handlerFilters} type="Number" placeholder="Maximum price" />
+          <input className="inputRange" name="carPriceMin" onChange={handlerFilters} type="Number" placeholder="minimal price" />
+          <input className="inputRange" name="carPriceMax" onChange={handlerFilters} type="Number" placeholder="Maximum price" />
         </div>
         <div className="priceSelector">
           <div className="labelContainer">
             <label > Year Range</label>
             <label>{filters.carYearMin} -{filters.carYearMax}</label>
           </div>
-          <input name="carYearMin" onChange={handlerFilters} type="Number" placeholder="minimum year" />
-          <input name="carYearMax" onChange={handlerFilters} type="Number" placeholder="maximum year" />
+          <input className="inputRange" name="carYearMin" onChange={handlerFilters} type="Number" placeholder="minimum year" />
+          <input className="inputRange" name="carYearMax" onChange={handlerFilters} type="Number" placeholder="maximum year" />
         </div>
       </div>
         <div className="divButtonFilter">
