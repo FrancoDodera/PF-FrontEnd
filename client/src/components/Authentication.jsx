@@ -16,18 +16,20 @@ const Authentication=()=>{
                 user:res.profileObj.email,
                 password:res.tokenObj.login_hint,
                 dni:null,
-                type:'User'
+                type:'User',
+                image:res.profileObj.imageUrl
             }
             const {data}=await axios.post('/user/addUser',body)
-            console.log(data)
             if(data.acces==true){
                 if(data.data.type=='User'){
                     localStorage.clear();
-                    localStorage.setItem('user',res.profileObj.email);
+                    localStorage.setItem('user',data.data.user);
+                    localStorage.setItem('profileUrl',data.data.image);
                     navigate('/home')
                 }else if(data.data.type=='Admin'){
                     localStorage.clear();
-                    localStorage.setItem('admin',res.profileObj.email);
+                    localStorage.setItem('admin',data.data.user);
+                    localStorage.setItem('profileUrl',data.data.image);
                     navigate('/admin')
                 }
                 

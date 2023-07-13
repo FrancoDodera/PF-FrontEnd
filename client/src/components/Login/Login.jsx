@@ -38,9 +38,11 @@ const Login = () => {
         localStorage.clear();
         if(data.data.type=='User'){
           localStorage.setItem('user',data.data.user);
+          localStorage.setItem('profileUrl',data.data.image);
           navigate('/home')
         }else if(data.data.type=='Admin'){
           localStorage.setItem('admin',data.data.user);
+          localStorage.setItem('profileUrl',data.data.image);
           navigate('/admin')
         }
       }else{
