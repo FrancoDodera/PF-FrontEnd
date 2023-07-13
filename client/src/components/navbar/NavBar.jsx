@@ -18,9 +18,9 @@ const NavBar = () => {
     (total, item) => total + item.totalPrice,
     0
   );
+
   const location = useLocation();
   const currentPath = location.pathname;
-  const [redirectToLogin, setRedirectToLogin] = useState(false);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -110,9 +110,8 @@ const NavBar = () => {
                 <>
                   {cartItems.map((item) => (
                     <div key={item.id} className="cart-item">
-                      <p>
-                        {item.name} ${item.totalPrice} {item.amount > 1 ? `x${item.amount}` : ""}
-                      </p>
+                      {item.name} ${item.totalPrice}{" "}
+                      {item.amount > 1 ? `x${item.amount}` : ""}
                       <button
                         className="remove-button"
                         onClick={() => removeFromCart(item.id)}
@@ -121,14 +120,10 @@ const NavBar = () => {
                       </button>
                     </div>
                   ))}
-                  {userGuest ? (
-                    <button onClick={logOutGuest}>Go to cart</button>
-                  ) : (
-                    <Link to="/cart">Go to cart</Link>
-                  )}
-                  <div className="cart-total">
-                    Total: ${totalPrice}
-                  </div>
+                  <div className="cart-total">Total: ${totalPrice}</div>
+                  <Link className="goToCart">
+                    <button >Go to cart</button>
+                  </Link>
                 </>
               ) : (
                 <div className="cart-font">No items in cart</div>
