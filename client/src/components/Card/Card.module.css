@@ -13,6 +13,7 @@
   left: 87%;
   margin-top: 10px;
   transition: .2s;
+  cursor: pointer;
 }
 .popup {
   position: fixed;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../../img/Logo.svg";
 import user from "../../img/userimg.webp";
 import guestUser from "../../img/guestUser.png";
@@ -23,6 +23,7 @@ const NavBar = () => {
 
   const location = useLocation();
   const currentPath = location.pathname;
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -57,6 +58,7 @@ const NavBar = () => {
 
   const logOut = () => {
     localStorage.clear();
+    navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
 
@@ -65,11 +67,6 @@ const NavBar = () => {
     const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartItems(savedCartItems);
     setIsCartOpen(true);
-  };
-
-  const logOutGuest = (event) => {
-    localStorage.clear();
-    navigate("/login");
   };
 
   const toggleMenu = () => {
@@ -85,6 +82,13 @@ const NavBar = () => {
     const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
     setCartItems(updatedCartItems);
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+  };
+
+  const handleGoToCart = () => {
+    if (userGuest) {
+      localStorage.removeItem("guest");
+      navigate("/login");
+    }
   };
 
   return (
@@ -123,8 +127,8 @@ const NavBar = () => {
                     </div>
                   ))}
                   <div className="cart-total">Total: ${totalPrice}</div>
-                  <Link className="goToCart">
-                    <button >Go to cart</button>
+                  <Link to="/cart" className="goToCart">
+                    <button onClick={handleGoToCart}>Go to cart</button>
                   </Link>
                 </>
               ) : (
@@ -140,7 +144,7 @@ const NavBar = () => {
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                  <button onClick={logOut}>Login</button>
+                <button onClick={logOut}>Login</button>
               </div>
             )}
           </div>
@@ -154,7 +158,7 @@ const NavBar = () => {
                 <NavLink to={"/userDetail"}>
                   <button>Account Information</button>
                 </NavLink>
-                  <button onClick={logOut}>Logout</button>
+                <button onClick={logOut}>Logout</button>
               </div>
             )}
           </div>
