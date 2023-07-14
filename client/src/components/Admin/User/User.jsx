@@ -44,7 +44,7 @@ const User = () => {
     setShowModal(true);
   };
   const showModalhandlerEdit = (element) => {
-    setUser({ ...element, accion: "Editar" });
+    setUser({ ...element, accion: "Editar",image:"" });
     setShowModal(true);
   };
   const closeModalUser = () => {
