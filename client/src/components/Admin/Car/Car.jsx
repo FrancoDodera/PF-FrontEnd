@@ -17,14 +17,15 @@ const Car = () => {
   const [car, setCar] = useState({
     _id: null,
     amount: "",
-    idCategory: "",
-    idMarca: "",
+    idCategory: null,
+    idMarca: null,
     name: "",
     status: "",
     age: "",
     price: "",
     action: "",
   });
+
   const [showModal, setShowModal] = useState(false);
 
   const handleCar = (event) => {
@@ -51,8 +52,8 @@ const Car = () => {
     setCar({
       _id: null,
       amount: "",
-      idCategory: "",
-      idMarca: "",
+      idCategory: null,
+      idMarca: null,
       name: "",
       status: "",
       age: "",
@@ -79,7 +80,7 @@ const Car = () => {
       dispatch(
         updateCar({
           amount: car.amount,
-          idCategory: car.idCategory,
+          idCategory: car.idCategory._id,
           idMarca: car.idMarca,
           name: car.name,
           status: car.status,
@@ -143,8 +144,26 @@ const Car = () => {
                     <input
                       type="text"
                       name="brand"
-                      id="brand"
+                      id="idMarca"
                       value={car.idMarca}
+                      onChange={handleCar}
+                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="brand"
+                    className="block text-sm font-medium leading-6 text-gray-300"
+                  >
+                    Amount
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="text"
+                      name="amount"
+                      id="amount"
+                      value={car.amount}
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -160,8 +179,8 @@ const Car = () => {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="model"
-                      id="model"
+                      name="name"
+                      id="name"
                       value={car.name}
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -178,8 +197,8 @@ const Car = () => {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="year"
-                      id="year"
+                      name="age"
+                      id="age"
                       value={car.age}
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -196,8 +215,8 @@ const Car = () => {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="year"
-                      id="year"
+                      name="price"
+                      id="price"
                       value={car.price}
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -214,8 +233,8 @@ const Car = () => {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="year"
-                      id="year"
+                      name="status"
+                      id="status"
                       value={car.status}
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -232,8 +251,8 @@ const Car = () => {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="year"
-                      id="year"
+                      name="idCategory"
+                      id="idCategory"
                       value={car.idCategory}
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -242,7 +261,7 @@ const Car = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-end ...">
+            <div className="flex justify-end ">
               <button type="submit" className="btn btn-success">
                 Save
               </button>
@@ -254,7 +273,7 @@ const Car = () => {
             <tr>
               <th className="w-[10%] text-gray-300">ID</th>
               <th className="w-[20%] text-gray-300">Name</th>
-              <th className="w-[20%] text-gray-300">Amount</th>
+              <th className="w-[20%] text-gray-300">Price</th>
               <th className="w-[20%] text-gray-300">Status</th>
               <th className="w-[20%] text-gray-300">Year</th>
               <th className="w-[20%] text-gray-300">Brand</th>
