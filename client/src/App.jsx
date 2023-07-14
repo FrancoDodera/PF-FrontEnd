@@ -16,6 +16,7 @@ import Car from "./components/Admin/Car/Car";
 import Category from "./components/Admin/Category/Category";
 import User from "./components/Admin/User/User";
 import Sale from "./components/Admin/Sale/Sale";
+import "../src/App.css";
 
 
 function App() {

@@ -1,0 +1,131 @@
+.UserDetailC{
+background-color: rgb(255, 255, 255);
+display: grid;
+grid-template-columns: 1fr 5fr;
+align-items:center;
+text-align: center;
+}
+.barra{
+    border-radius: 5px;
+    background-color: rgb(191, 255, 250);
+    text-align: center;
+    font-size: 20px;
+    align-items:center;
+    justify-content: start;
+}
+.libarra{
+    font-size: 30px;
+    padding: 15px 0px;
+    font-weight: bold;
+}
+
+.libarra:hover{
+    border-radius: 5px;
+    background-color: rgb(99, 234, 255);
+    font-size: 30px;
+    padding: 15px 0px;
+}
+.UserDetail{
+align-items:center;
+text-align: center;
+}
+
+.Username{
+    font-weight: bold;
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+}
+
+.Userlastname{
+    font-weight: bold;
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+}
+
+.Usermail{ 
+    align-items:center;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+}
+
+.Userpassword{
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.passwordselect{
+ padding: 10px;
+}
+
+.cancelbutton{
+    width: 90px;
+background-color: rgb(255, 0, 0);
+color: aliceblue;
+border-radius: 5px;
+margin-right: 20px;
+}
+
+.submitbutton{
+   width: 150px;
+background-color: rgb(0, 148, 113);
+color: aliceblue;
+border-radius: 5px;
+}
+
+.databutton{
+    width: 200px;
+    border-radius: 10px;
+background-color: rgb(151, 255, 220);
+}
+
+.inputgroup{
+ align-items:center;
+    text-align: center;
+}
+
+.newpass{
+     align-items:center;
+    text-align: center;
+
+}
+
+.confirmpass{
+     align-items:center;
+    text-align: center;
+
+}
+
+.changepass{
+     align-items:center;
+    text-align: center;
+
+}
+.img{
+    align-items:center;
+    text-align: center;
+}
+.archivoselect{
+    align-items:center;
+    text-align: center;
+}
+.input2{
+    margin-top: 10px;
+    align-items:center;
+    text-align: center;
+     font-weight: bold;
+}
+.message{
+    align-items:center;
+    text-align: center;
+}
+
+.archivoselect{
+    margin-top: 10px;
+    align-items:center;
+text-align: center;
+font-size: 22px;
+ font-weight: bold;
+}
