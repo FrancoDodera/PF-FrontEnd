@@ -3,6 +3,7 @@ import CardsContainer from "../Cards/Cards";
 import Filters from "../filters/Filters";
 import SearchComponent from "../SearchBar/SearchBar";
 import style from "./Carsforsale.module.css";
+import noCarimg from "../../img/nohayautos.avif";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllCars } from "../../redux/actions";
@@ -24,7 +25,16 @@ const Carsforsale = (props) => {
       </div>
       <div className={style.containerCarsForSale}>
         <Filters />
-        <CardsContainer allCars={allCars} />
+        {allCars.length === 0 ? (
+          <div className={style.noCarContainer}>
+            <h1 className={style.noCarsMessage}>
+              ¡NO HAY AUTOS CON ESTAS CARACTERISTICAS!
+            </h1>
+            <img src={noCarimg} alt="Not Car" className={style.image} />
+          </div>
+        ) : (
+          <CardsContainer allCars={allCars} />
+        )}
       </div>
       <div className="contactMore">
         <div className="arrocito">
