@@ -126,9 +126,9 @@ const Car = () => {
               X
             </button>
             {car.action === "Create" ? (
-              <h3 className="font-bold text-lg">Create Car</h3>
+              <h3 className="font-bold text-lg  text-gray-300">Create Car</h3>
             ) : (
-              <h3 className="font-bold text-lg">Edit Car</h3>
+              <h3 className="font-bold text-lg text-gray-300">Edit Car</h3>
             )}
             <div className="pb-12">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

@@ -109,9 +109,11 @@ const Category = () => {
               X
             </button>
             {category.action === "Create" ? (
-              <h3 className="font-bold text-lg">Create Category</h3>
+              <h3 className="font-bold text-lg text-gray-300">
+                Create Category
+              </h3>
             ) : (
-              <h3 className="font-bold text-lg">Edit Category</h3>
+              <h3 className="font-bold text-lg text-gray-300">Edit Category</h3>
             )}
             <div className="pb-12">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

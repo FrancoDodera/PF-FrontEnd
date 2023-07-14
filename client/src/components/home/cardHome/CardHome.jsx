@@ -9,7 +9,7 @@ const CardHome = (props) => {
           <div>
             <p>{props.status}</p>
             <h2>{props.name} </h2>
-            <h3 className="p">$. {props.price}</h3>
+            <h3 className="p">${props.price}</h3>
             <p className="brand">{props.brand.name}</p>
           </div>
         </div>

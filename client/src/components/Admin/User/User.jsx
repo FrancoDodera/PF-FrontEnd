@@ -44,7 +44,7 @@ const User = () => {
     setShowModal(true);
   };
   const showModalhandlerEdit = (element) => {
-    setUser({ ...element, accion: "Editar",image:"" });
+    setUser({ ...element, accion: "Editar", image: "" });
     setShowModal(true);
   };
   const closeModalUser = () => {
@@ -184,18 +184,18 @@ const User = () => {
           <form
             method="dialog"
             onSubmit={handlerSubmit}
-            className="modal-box w-11/12 max-w-5xl h-auto"
+            className="modal-box w-11/12 max-w-5xl h-auto "
           >
             {user.accion == "Crear" ? (
-              <h3 className="font-bold text-lg">Create User</h3>
+              <h3 className="font-bold text-lg  text-gray-300">Create User</h3>
             ) : (
-              <h3 className="font-bold text-lg">Update User</h3>
+              <h3 className="font-bold text-lg  text-gray-300">Update User</h3>
             )}
 
             <button
               type="button"
               onClick={closeModalUser}
-              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2  text-gray-300"
             >
               ✕
             </button>
@@ -204,7 +204,7 @@ const User = () => {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6  text-gray-300"
                   >
                     Name
                   </label>
@@ -215,14 +215,14 @@ const User = () => {
                       id="name"
                       value={user.name}
                       onChange={handleUser}
-                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4  text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="lastName"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6  text-gray-300"
                   >
                     Last Name
                   </label>
@@ -233,14 +233,14 @@ const User = () => {
                       id="lastName"
                       value={user.lastName}
                       onChange={handleUser}
-                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4  text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6  text-gray-300"
                   >
                     Email
                   </label>
@@ -251,14 +251,14 @@ const User = () => {
                       id="email"
                       value={user.email}
                       onChange={handleUser}
-                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4  text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="user"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6   text-gray-300"
                   >
                     User
                   </label>
@@ -269,7 +269,7 @@ const User = () => {
                       id="user"
                       value={user.user}
                       onChange={handleUser}
-                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4  text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -279,7 +279,7 @@ const User = () => {
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="password"
-                        className="block text-sm font-medium leading-6 text-gray-900"
+                        className="block text-sm font-medium leading-6  text-gray-300"
                       >
                         Password
                       </label>
@@ -290,14 +290,14 @@ const User = () => {
                           id="password"
                           value={user.password}
                           onChange={handleUser}
-                          className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full p-3 rounded-md border-0 py-4  text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="confirmPassword"
-                        className="block text-sm font-medium leading-6 text-gray-900"
+                        className="block text-sm font-medium leading-6  text-gray-300"
                       >
                         Confirm Password
                       </label>
@@ -308,7 +308,7 @@ const User = () => {
                           id="confirmPassword"
                           value={user.confirmPassword}
                           onChange={handleUser}
-                          className="block w-full p-3 rounded-md border-0 py-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full p-3 rounded-md border-0 py-4  text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
@@ -318,13 +318,13 @@ const User = () => {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="type"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6  text-gray-300"
                   >
                     Type
                   </label>
                   <div className="mt-2">
                     <select
-                      className="select select-bordered w-full max-w-xs"
+                      className="select select-bordered w-full max-w-xs  text-gray-300"
                       name="type"
                       id="type"
                       value={user.type}
@@ -339,7 +339,7 @@ const User = () => {
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="image"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm font-medium leading-6  text-gray-300"
                   >
                     Logo
                   </label>
@@ -349,7 +349,7 @@ const User = () => {
                       name="image"
                       id="image"
                       onChange={handlerImage}
-                      className="file-input w-full max-w-xs"
+                      className="file-input w-full max-w-xs  text-gray-300"
                     />
                   </div>
                 </div>
