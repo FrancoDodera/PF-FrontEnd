@@ -69,11 +69,6 @@ const NavBar = () => {
     setIsCartOpen(true);
   };
 
-  const logOutGuest = (event) => {
-    localStorage.clear();
-    navigate("/login");
-  };
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -91,12 +86,11 @@ const NavBar = () => {
 
   const handleGoToCart = () => {
     if (userGuest) {
+      localStorage.removeItem("guest");
       navigate("/login");
-    } else {
-      navigate("/cart");
     }
   };
-  
+
   return (
     <div className="container_NavBar">
       <div className="container_Logo">
@@ -150,7 +144,7 @@ const NavBar = () => {
             </button>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                  <button onClick={logOut}>Login</button>
+                <button onClick={logOut}>Login</button>
               </div>
             )}
           </div>
@@ -164,7 +158,7 @@ const NavBar = () => {
                 <NavLink to={"/userDetail"}>
                   <button>Account Information</button>
                 </NavLink>
-                  <button onClick={logOut}>Logout</button>
+                <button onClick={logOut}>Logout</button>
               </div>
             )}
           </div>
