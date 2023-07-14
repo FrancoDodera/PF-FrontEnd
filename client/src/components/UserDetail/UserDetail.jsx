@@ -14,15 +14,24 @@ const UserDetail = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [changePasswordError, setChangePasswordError] = useState("");
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState("");
   const [isDataUpdated, setIsDataUpdated] = useState(false);
-
+  const cloudName = "dbt5vgimv";
   useEffect(() => {
     const user = localStorage.getItem("user");
-    if (user) {
-      const postData = {
+    const admin = localStorage.getItem("admin");
+    let postData={}
+    if(user){
+       postData = {
         user: user,
       };
+    }else if(admin){
+      postData = {
+        user: admin,
+      };
+    }
+    
+    if (user || admin) {
       axios
         .post("https://pf-back.fly.dev/user/verifyUser", postData)
         .then((response) => {
@@ -40,7 +49,7 @@ const UserDetail = () => {
         .catch((error) => {
           console.error("Error making the request:", error);
         });
-    } else {
+    } else{
       console.error("No user found in localStorage");
     }
   }, []);
@@ -60,8 +69,33 @@ const UserDetail = () => {
   const toggleChangePassword = () => {
     setShowChangePassword(!showChangePassword);
   };
-
-  const handleSubmit = () => {
+  const uploadImage = async (file) => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "CarGo_Pf_henry");
+    try {
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      if (res.ok) {
+        const file = await res.json();
+        return file.secure_url;
+      } else {
+        return "";
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+  const handleSubmit = async() => {
+    let imageUrl = "";
+    if (profileImage != "") {
+      imageUrl = await uploadImage(profileImage);
+    }
     const postData = {
       id: userDetails._id,
       email: email || userDetails.email,
@@ -69,17 +103,16 @@ const UserDetail = () => {
       lastName: lastname || userDetails.lastName,
       user: userDetails.user,
       password: newPassword || userDetails.password,
-      image: userDetails.image,
+      image: imageUrl,
+      type:""
     };
-
-    axios
-      .put("https://pf-back.fly.dev/user/upgrade", postData)
-      .then((response) => {
-        if (response.data) {
-          setUserDetails(response.data);
-          setName(response.data.name);
-          setLastname(response.data.lastName);
-          setEmail(response.data.email);
+    try {
+      const {data}=await axios.put("https://pf-back.fly.dev/user/upgrade",postData);
+        if (data) {
+          setUserDetails(data);
+          setName(data.name);
+          setLastname(data.lastName);
+          setEmail(data.email);
           setNewPassword("");
           setConfirmPassword("");
           Swal.fire({
@@ -90,20 +123,17 @@ const UserDetail = () => {
             timer: 500,
           });
         } else {
-          console.error("Error changing account data");
+          alert("Error changing account data");
         }
-      })
-      .catch((error) => {
-        console.error("Error making the request:", error);
-        console.error("Error changing account data");
-      });
+    } catch (error) {
+      alert(error)
+    }
+    
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setProfileImage(URL.createObjectURL(file));
-    }
+    const files = e.target.files[0];
+    setProfileImage(files);
   };
 
   return (
