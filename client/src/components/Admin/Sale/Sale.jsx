@@ -33,7 +33,7 @@ const Sale = () => {
     <>
       <NavBar />
 
-      <div>
+      <div className="overflow-x-auto w-full h-[110vh] bg-[#0a192f] text-gray-300">
         <div className="flex justify-between p-8 text-gray-300">
           <h1 className="text-3xl font-bold">Sales</h1>
         </div>
@@ -49,7 +49,7 @@ const Sale = () => {
             >
               X
             </button>
-            <h3 className="font-bold text-lg">Sale Detail</h3>
+            <h3 className="font-bold text-lg text-gray-300">Sale Detail</h3>
             <div className="pb-12">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-2">

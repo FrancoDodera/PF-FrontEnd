@@ -47,7 +47,7 @@ const Card = (props) => {
       <div>
         <p>{props.status}</p>
         <h3>{props.name} </h3>
-        <p className={style.p}>$. {props.price}</p>
+        <p className={style.p}>${props.price}</p>
         <p className={style.p}>{props.age}</p>
         <p className={style.celler}>{props.category.name}</p>
       </div>
