@@ -5,6 +5,7 @@ import { clearDetail, getCarById } from "../../redux/actions";
 import NavBar from "../navbar/NavBar";
 import style from "./Detail.module.css";
 import Contact from "../home/contact/Contact";
+import Swal from "sweetalert2";
 
 const Detail = () => {
   const { id } = useParams();
@@ -19,6 +20,18 @@ const Detail = () => {
       dispatch(clearDetail());
     };
   }, []);
+   
+  const showPopup = () => {
+    Swal.fire({
+      text: "Car added to cart",
+      timer: 4000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      position: "top-end",
+      toast: true,
+      icon: "success",
+    });
+  };
 
   const handleAddToCart = () => {
     const item = {
@@ -38,6 +51,7 @@ const Detail = () => {
       cartItems.push(item);
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    showPopup();
   };
 
   return (

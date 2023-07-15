@@ -49,7 +49,7 @@ const Sale = () => {
             >
               X
             </button>
-            <h3 className="font-bold text-lg">Sale Detail</h3>
+            <h3 className="font-bold text-lg text-gray-300">Sale Detail</h3>
             <div className="pb-12">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-2">

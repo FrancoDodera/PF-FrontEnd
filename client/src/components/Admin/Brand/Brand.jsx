@@ -101,7 +101,7 @@ const Brand = () => {
             >
               X
             </button>
-            <h3 className="font-bold text-lg">Create Brand</h3>
+            <h3 className="font-bold text-lg text-gray-300">Create Brand</h3>
             <div className="pb-12">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-2">
