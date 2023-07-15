@@ -6,7 +6,7 @@
   
   height: 100vh;
   padding: 14px;
-  color: black;
+  color: gray;
 }
 .sidebar {
   display: flex;
@@ -30,4 +30,7 @@
 }
 .navbar {
   width: 100px;
+}
+.sidebar a  {
+  font-weight:500
 }
