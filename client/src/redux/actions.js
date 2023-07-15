@@ -73,7 +73,7 @@ export const createCar = (body) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post("/cars/addCar", body);
-      if (data._id) {
+      if (data.data._id) {
         Swal.fire({
           icon: "success",
           title: "Car created",
@@ -81,13 +81,14 @@ export const createCar = (body) => {
           showConfirmButton: false,
           timer: 500,
         });
+        return dispatch({
+          type: CREATECAR,
+          payload: data.data,
+        });
       }
-      return dispatch({
-        type: CREATECAR,
-        payload: data,
-      });
+      
     } catch (error) {
-      alert(error.response.data.error);
+      alert("error"+error);
     }
   };
 };
@@ -96,7 +97,7 @@ export const updateCar = (body) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.put("/cars/updateCar", body);
-      if (data._id) {
+      if (data.data._id) {
         Swal.fire({
           icon: "success",
           title: "Car updated",
@@ -104,13 +105,14 @@ export const updateCar = (body) => {
           showConfirmButton: false,
           timer: 500,
         });
+        return dispatch({
+          type: UPDATECAR,
+          payload: data.data,
+        });
       }
-      return dispatch({
-        type: UPDATECAR,
-        payload: data,
-      });
+      
     } catch (error) {
-      alert(error.response.data.error);
+      alert(error);
     }
   };
 };

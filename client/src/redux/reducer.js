@@ -20,6 +20,8 @@ import {
   UPDATECATEGORY,
   UPDATEUSER,
   GETALLSALES,
+  CREATECAR,
+  UPDATECAR,
 } from "./actionsType";
 
 const initialState = {
@@ -188,7 +190,22 @@ const reducer = (state = initialState, actions) => {
         ...state,
         allBrands: [...deleteBrandArray],
       };
-    default:
+    case CREATECAR:
+      return{
+        ...state,
+        allCars:[...state.allCars,actions.payload]
+      }
+    case UPDATECAR:
+      let allCarsUpdate = [...state.allCars];
+      let carFindUpdate = allCarsUpdate.findIndex(
+        (elem) => elem._id == actions.payload._id
+      );
+      allCarsUpdate[carFindUpdate] = actions.payload;
+      return {
+        ...state,
+        allCars: [...allCarsUpdate],
+      };
+      default:
       return { ...state };
   }
 };
