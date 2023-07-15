@@ -28,7 +28,7 @@ const Carsforsale = (props) => {
         {allCars.length === 0 ? (
           <div className={style.noCarContainer}>
             <h1 className={style.noCarsMessage}>
-              ¡NO HAY AUTOS CON ESTAS CARACTERISTICAS!
+              ¡THERE ARE NO CARS WITH THESE FEATURES!
             </h1>
             <img src={noCarimg} alt="Not Car" className={style.image} />
           </div>
