@@ -169,7 +169,7 @@ const User = () => {
   return (
     <>
       <NavBar />
-      <div className="overflow-x-auto w-full h-[110vh] bg-[#0a192f] text-gray-300">
+      <div className="overflow-x-auto w-full  bg-[#0a192f] text-gray-300">
         <div className="flex justify-between p-8 text-gray-300">
           <h1 className="text-3xl font-bold">Users</h1>
           <button className="btn" onClick={showModalUser}>
