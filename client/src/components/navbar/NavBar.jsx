@@ -23,6 +23,7 @@ const NavBar = () => {
 
   const location = useLocation();
   const currentPath = location.pathname;
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,6 +62,13 @@ const NavBar = () => {
     navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
+  
+  const handleGoToCart = (event) => {
+    if (userGuest) {
+      localStorage.removeItem("guest");
+      navigate("/login");
+    }
+  };
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
@@ -84,12 +92,6 @@ const NavBar = () => {
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
-  const handleGoToCart = () => {
-    if (userGuest) {
-      localStorage.removeItem("guest");
-      navigate("/login");
-    }
-  };
 
   return (
     <div className="container_NavBar">
@@ -108,6 +110,7 @@ const NavBar = () => {
         <NavLink to={"/locations"}>
           <button>Locations</button>
         </NavLink>
+        {currentPath !== "/home" && (
         <div className="shopping" ref={cartRef} onClick={handleCartIconClick}>
           <img className="cart-shopping" src={cart} alt="cart" />
           {isCartOpen && (
@@ -137,6 +140,7 @@ const NavBar = () => {
             </div>
           )}
         </div>
+        )}
         {userGuest ? (
           <div className="userMenuContainer" ref={menuRef}>
             <button className="usernameButton" onClick={toggleMenu}>
