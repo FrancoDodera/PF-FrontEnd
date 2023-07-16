@@ -17,7 +17,6 @@ import Category from "./components/Admin/Category/Category";
 import User from "./components/Admin/User/User";
 import Sale from "./components/Admin/Sale/Sale";
 
-
 function App() {
   const navigate = useNavigate();
   const localUser = localStorage.getItem("user");
@@ -26,25 +25,24 @@ function App() {
   const validationLogin = async () => {
     if (!localUser) {
       if (!localGuest) {
-            if(!localAdmin){
+        if (!localAdmin) {
+          navigate("/login");
+        } else {
+          const { data } = await axios.post("/user/verifyUser", {
+            user: localAdmin,
+          });
+          if (!data.acces) {
+            localStorage.clear();
+            navigate("/login");
+          } else {
+            if (data.data.type == "Admin") {
+            } else {
+              localStorage.clear();
               navigate("/login");
-            }else{
-              const { data } = await axios.post("/user/verifyUser", {
-                user: localAdmin,
-              });
-              if(!data.acces){
-                localStorage.clear();
-                navigate("/login");
-              }else{
-                if(data.data.type=="Admin"){
-                }else{
-                  localStorage.clear();
-                  navigate("/login");
-                }
-              }
             }
-      }else{
-        
+          }
+        }
+      } else {
       }
     } else {
       const { data } = await axios.post("/user/verifyUser", {
@@ -55,15 +53,14 @@ function App() {
         navigate("/login");
       } else {
         if (data.data.type == "User") {
-          
-        } else{
+        } else {
           localStorage.clear();
           navigate("/login");
         }
       }
     }
   };
-  
+
   useEffect(() => {
     const validation = async () => {
       await validationLogin();
@@ -72,25 +69,33 @@ function App() {
   }, []);
   return (
     <main className="App">
-      {
-        !localUser && !localAdmin && !localGuest && <Routes><Route exact path="/register" element={<Register />} /><Route exact path="/login" element={<Login />} /></Routes>
-      }
-      {
-        localUser && <Routes><Route exact path="/" element={<Landing />} />
-        <Route exact path="/home" element={<Home />} />
-        <Route exact path="/carsforsale" element={<Carsforsale />} />
-        <Route exact path="/detail/:id" element={<Detail />} />
-        <Route exact path="/userDetail" element={<UserDetail />} /></Routes>
-      }
-      {
-        localGuest && <Routes><Route exact path="/" element={<Landing />} />
-        <Route exact path="/home" element={<Home />} />
-        <Route exact path="/carsforsale" element={<Carsforsale />} />
-        <Route exact path="/detail/:id" element={<Detail />} />
-        <Route exact path="/userDetail" element={<UserDetail />} /></Routes>
-      }
-      {
-        localAdmin && <Routes><Route exact path="/" element={<Landing />} />
+      {!localUser && !localAdmin && !localGuest && (
+        <Routes>
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/login" element={<Login />} />
+        </Routes>
+      )}
+      {localUser && (
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/carsforsale" element={<Carsforsale />} />
+          <Route exact path="/detail/:id" element={<Detail />} />
+          <Route exact path="/userDetail" element={<UserDetail />} />
+        </Routes>
+      )}
+      {localGuest && (
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/carsforsale" element={<Carsforsale />} />
+          <Route exact path="/detail/:id" element={<Detail />} />
+          <Route exact path="/userDetail" element={<UserDetail />} />
+        </Routes>
+      )}
+      {localAdmin && (
+        <Routes>
+          <Route exact path="/" element={<Landing />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/carsforsale" element={<Carsforsale />} />
           <Route exact path="/detail/:id" element={<Detail />} />
@@ -102,7 +107,7 @@ function App() {
           <Route exact path="/admin/car" element={<Car />} />
           <Route exact path="/admin/sale" element={<Sale />} />
         </Routes>
-      }
+      )}
     </main>
   );
 }
