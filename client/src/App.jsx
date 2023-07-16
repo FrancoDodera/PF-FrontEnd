@@ -9,6 +9,7 @@ import Detail from "./components/Detail/Detail";
 import Home from "./components/home/Home";
 import UserDetail from "./components/UserDetail/UserDetail.jsx";
 import Landing from "./components/Landing/Landing";
+import DetailCart from './components/Detail-Carrito/DetailCart'
 //admin
 import AdminHome from "./components/Admin/AdminHome/AdminHome";
 import Brand from "./components/Admin/Brand/Brand";
@@ -16,6 +17,7 @@ import Car from "./components/Admin/Car/Car";
 import Category from "./components/Admin/Category/Category";
 import User from "./components/Admin/User/User";
 import Sale from "./components/Admin/Sale/Sale";
+import DetailCarrito from "./components/Detail-Carrito/DetailCart";
 
 function App() {
   const navigate = useNavigate();
@@ -69,33 +71,31 @@ function App() {
   }, []);
   return (
     <main className="App">
-      {!localUser && !localAdmin && !localGuest && (
-        <Routes>
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/login" element={<Login />} />
+      {
+        !localUser && !localAdmin && !localGuest && <Routes><Route exact path="/register" element={<Register />} /><Route exact path="/login" element={<Login />} /></Routes>
+      }
+      {
+        localUser && <Routes><Route exact path="/" element={<Landing />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/carsforsale" element={<Carsforsale />} />
+        <Route exact path="/detail/:id" element={<Detail />} />
+        <Route exact path="/userDetail" element={<UserDetail />} />
+        
+        <Route exact path="/detailcart" element={<DetailCart/>}></Route>
         </Routes>
-      )}
-      {localUser && (
-        <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/carsforsale" element={<Carsforsale />} />
-          <Route exact path="/detail/:id" element={<Detail />} />
-          <Route exact path="/userDetail" element={<UserDetail />} />
-        </Routes>
-      )}
-      {localGuest && (
-        <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/carsforsale" element={<Carsforsale />} />
-          <Route exact path="/detail/:id" element={<Detail />} />
-          <Route exact path="/userDetail" element={<UserDetail />} />
-        </Routes>
-      )}
+      }
+      {
+        localGuest && <Routes><Route exact path="/" element={<Landing />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/carsforsale" element={<Carsforsale />} />
+        <Route exact path="/detail/:id" element={<Detail />} />
+        <Route exact path="/userDetail" element={<UserDetail />} /></Routes>
+      }
+     
       {localAdmin && (
         <Routes>
           <Route exact path="/" element={<Landing />} />
+
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/carsforsale" element={<Carsforsale />} />
           <Route exact path="/detail/:id" element={<Detail />} />
@@ -106,6 +106,7 @@ function App() {
           <Route exact path="/admin/category" element={<Category />} />
           <Route exact path="/admin/car" element={<Car />} />
           <Route exact path="/admin/sale" element={<Sale />} />
+          <Route exact path="/detailcart" element={<DetailCart/>}></Route>
         </Routes>
       )}
     </main>
