@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import NavBar from "../navbar/NavBar";
 import Card from "./CardDetailCart";
@@ -24,6 +23,7 @@ const DetailCart = () => {
       postData = {
         user: admin,
       };
+
     }
     const { data } = await axios.post(
       "https://pf-back.fly.dev/user/verifyUser",
