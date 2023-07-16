@@ -19,6 +19,7 @@ import User from "./components/Admin/User/User";
 import Sale from "./components/Admin/Sale/Sale";
 import DetailCarrito from "./components/Detail-Carrito/DetailCart";
 
+
 function App() {
   const navigate = useNavigate();
   const localUser = localStorage.getItem("user");

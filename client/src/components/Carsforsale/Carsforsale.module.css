@@ -2,29 +2,45 @@
   align-items: center;
   justify-content: start;
   background-position: absolute;
-  background-image: url('../../img/merc.jpg');
-  background-size:cover;
- background-repeat: no-repeat;
- background-position: center;
+  background-image: url("../../img/merc.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 200px;
 }
 
-.h2{
+.h2 {
   color: aliceblue;
   font-size: 50px;
   text-shadow: -3px 2px 8px rgba(0, 0, 0, 0.75);
   text-align: center;
 }
- .search{
+.search {
   align-items: center;
- }
+}
 
-.containerCarsForSale{
+.containerCarsForSale {
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin-top: 10px;
   gap: 20px;
 }
-.divContainer{
+.divContainer {
   background-color: rgba(246, 251, 251, 0.966);
+}
+
+.noCarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.noCarsMessage {
+  font-size: 30px;
+  color: black;
+}
+
+.image {
+  width: 300px;
+  height: 300px;
 }

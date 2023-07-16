@@ -33,8 +33,4 @@
 .paginationItem.disabled {
   pointer-events: none;
   color: rgba(0, 0, 75, 0.514);
-  &:hover {
-    background-color: transparent;
-    cursor: default;
-  }
 }

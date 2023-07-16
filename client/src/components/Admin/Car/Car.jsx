@@ -5,35 +5,65 @@ import {
   createCar,
   updateCar,
   deleteCar,
+  getAllBrands,
+  getAllCategories,
 } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
 const Car = () => {
   // Redux
   const cars = useSelector((state) => state.allCars);
+  const brands = useSelector((state) => state.allBrands);
+  const categories = useSelector((state) => state.allCategories);
   const dispatch = useDispatch();
-
+  const cloudName = "dbt5vgimv";
   // Estados
   const [car, setCar] = useState({
     _id: null,
-    amount: "",
-    idCategory: "",
-    idMarca: "",
+    amount: 0,
+    idCategory: null,
+    idMarca: null,
     name: "",
+    transmission:"",
+    description:"",
     status: "",
-    age: "",
-    price: "",
+    age: 0,
+    price: 0,
     action: "",
+    image:""
   });
+
   const [showModal, setShowModal] = useState(false);
 
+  const uploadImage = async (file) => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "CarGo_Pf_henry");
+    try {
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      if (res.ok) {
+        const file = await res.json();
+        return file.secure_url;
+      } else {
+        return "";
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
   const handleCar = (event) => {
     const { value } = event.target;
     setCar({ ...car, [event.target.name]: value });
   };
 
   const showModalCar = () => {
-    setCar({ ...car, action: "Create" });
+    setCar({ ...car, action: "Create",status:"new" });
     setShowModal(true);
   };
 
@@ -42,7 +72,7 @@ const Car = () => {
   };
 
   const showModalHandlerEdit = (element) => {
-    setCar({ ...element, action: "Edit" });
+    setCar({ ...element,image:"", action: "Edit",idCategory:element.idCategory._id,idMarca:element.idMarca._id });
     setShowModal(true);
   };
 
@@ -51,21 +81,34 @@ const Car = () => {
     setCar({
       _id: null,
       amount: "",
-      idCategory: "",
-      idMarca: "",
+      idCategory: null,
+      idMarca: null,
       name: "",
+      transmission:"",
+      description:"",
       status: "",
       age: "",
       price: "",
       action: "",
+      image:""
+    });
+  };
+  const handlerImage = (event) => {
+    const files = event.target.files[0];
+    setCar({
+      ...car,
+      image: files,
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
+    let imageUrl = "";
     if (car.action === "Create") {
-      dispatch(
-        createCar({
+      if(car.image !=""){
+        imageUrl = await uploadImage(car.image);
+      }
+      const body={
           amount: car.amount,
           idCategory: car.idCategory,
           idMarca: car.idMarca,
@@ -73,11 +116,22 @@ const Car = () => {
           status: car.status,
           age: car.age,
           price: car.price,
-        })
+          color:"black",
+          transmission:car.transmission,
+          description:car.description,
+          image:imageUrl
+        }
+        console.log(body);
+      dispatch(
+        createCar(body)
       );
     } else {
+      if (car.image != "") {
+        imageUrl = await uploadImage(car.image);
+      }
       dispatch(
         updateCar({
+          id:car._id,
           amount: car.amount,
           idCategory: car.idCategory,
           idMarca: car.idMarca,
@@ -85,6 +139,10 @@ const Car = () => {
           status: car.status,
           age: car.age,
           price: car.price,
+          color:"",
+          transmission:car.transmission,
+          description:car.description,
+          image:imageUrl
         })
       );
     }
@@ -92,7 +150,15 @@ const Car = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllCars());
+    if (cars.length == 0) {
+      dispatch(getAllCars());
+    }
+    if (brands.length == 0) {
+      dispatch(getAllBrands());
+    }
+    if (categories.length == 0) {
+      dispatch(getAllCategories());
+    }
   }, []);
 
   const navigate = useNavigate();
@@ -101,7 +167,7 @@ const Car = () => {
     <>
       <NavBar />
 
-      <div className="overflow-x-auto w-full h-[110vh] bg-[#0a192f] text-gray-300">
+      <div className="overflow-x-auto w-full bg-[#0a192f] text-gray-300">
         <div className="flex justify-between p-8 text-gray-300">
           <h1 className="text-3xl font-bold">Cars</h1>
           <button className="btn" onClick={showModalCar}>
@@ -115,7 +181,7 @@ const Car = () => {
         >
           <form
             method="dialog"
-            className="modal-box w-11/12 w-5xl h-auto"
+            className="modal-box w-11/12 max-w-5xl h-auto"
             onSubmit={handleSubmit}
           >
             <button
@@ -126,30 +192,12 @@ const Car = () => {
               X
             </button>
             {car.action === "Create" ? (
-              <h3 className="font-bold text-lg">Create Car</h3>
+              <h3 className="font-bold text-lg  text-gray-300">Create Car</h3>
             ) : (
-              <h3 className="font-bold text-lg">Edit Car</h3>
+              <h3 className="font-bold text-lg text-gray-300">Edit Car</h3>
             )}
             <div className="pb-12">
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="brand"
-                    className="block text-sm font-medium leading-6 text-gray-300"
-                  >
-                    Brand
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="brand"
-                      id="brand"
-                      value={car.idMarca}
-                      onChange={handleCar}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="model"
@@ -160,11 +208,65 @@ const Car = () => {
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="model"
-                      id="model"
+                      name="name"
+                      id="name"
                       value={car.name}
                       onChange={handleCar}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="Transmission"
+                    className="block text-sm font-medium leading-6 text-gray-300"
+                  >
+                    Transmission
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="text"
+                      name="transmission"
+                      id="transmission"
+                      value={car.transmission}
+                      onChange={handleCar}
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="brand"
+                    className="block text-sm font-medium leading-6 text-gray-300"
+                  >
+                    Amount
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="number"
+                      name="amount"
+                      id="amount"
+                      value={car.amount}
+                      onChange={handleCar}
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="model"
+                    className="block text-sm font-medium leading-6 text-gray-300"
+                  >
+                    Description
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="text"
+                      name="description"
+                      id="name"
+                      value={car.description}
+                      onChange={handleCar}
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -177,12 +279,12 @@ const Car = () => {
                   </label>
                   <div className="mt-2">
                     <input
-                      type="text"
-                      name="year"
-                      id="year"
+                      type="number"
+                      name="age"
+                      id="age"
                       value={car.age}
                       onChange={handleCar}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -195,31 +297,48 @@ const Car = () => {
                   </label>
                   <div className="mt-2">
                     <input
-                      type="text"
-                      name="year"
-                      id="year"
+                      type="number"
+                      name="price"
+                      id="price"
                       value={car.price}
                       onChange={handleCar}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="year"
+                    htmlFor="brand"
                     className="block text-sm font-medium leading-6 text-gray-300"
                   >
-                    Status
+                    Brand
                   </label>
                   <div className="mt-2">
-                    <input
+                    {/* <input
                       type="text"
-                      name="year"
-                      id="year"
-                      value={car.status}
+                      name="brand"
+                      id="idMarca"
+                      value={car.idMarca}
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
+                    /> */}
+                    <select onChange={handleCar} className="select select-bordered w-full max-w-xs" name="idMarca" id="brand">
+                      {brands?.map((elem,index) => {
+                        if (car && car.idMarca) {
+                          return (
+                            <option
+                              key={index}
+                              value={elem._id}
+                              selected={elem._id == car.idMarca}
+                            >
+                              {elem.name}
+                            </option>
+                          );
+                        } else {
+                          return <option key={index} value={elem._id}>{elem.name}</option>;
+                        }
+                      })}
+                    </select>
                   </div>
                 </div>
                 <div className="sm:col-span-2">
@@ -230,19 +349,85 @@ const Car = () => {
                     Category
                   </label>
                   <div className="mt-2">
-                    <input
+                    {/* <input
                       type="text"
-                      name="year"
-                      id="year"
+                      name="idCategory"
+                      id="idCategory"
                       value={car.idCategory}
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    /> */}
+                    <select onChange={handleCar} className="select select-bordered w-full max-w-xs" name="idCategory" id="category">
+                      {categories?.map((elem,index) => {
+                        if (car && car.idCategory) {
+                          return (
+                            <option
+                              key={index}
+                              value={elem._id}
+                              selected={elem._id == car.idCategory}
+                            >
+                              {elem.name}
+                            </option>
+                          );
+                        } else {
+                          return <option key={index} value={elem._id}>{elem.name}</option>;
+                        }
+                      })}
+                    </select>
+                  </div>
+                </div>
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="year"
+                    className="block text-sm font-medium leading-6 text-gray-300"
+                  >
+                    Status
+                  </label>
+                  <div className="mt-2">
+                    <select onChange={handleCar} className="select select-bordered w-full max-w-xs" name="status" id="status">
+                      {car.status != "" ? (
+                        <>
+                          <option value="new" selected={car.status == "new"}>
+                            new
+                          </option>
+                          <option value="used" selected={car.status == "used"}>
+                            used
+                          </option>
+                        </>
+                      ) : (
+                        <>
+                          <option value="new">new</option>
+                          <option value="used">used</option>
+                        </>
+                      )}
+                    </select>
+                  </div>
+                </div>
+                
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="model"
+                    className="block text-sm font-medium leading-6 text-gray-300"
+                  >
+                    Image
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      type="file"
+                      name="image"
+                      id="image"
+                      onChange={handlerImage}
+                      className="file-input w-full max-w-xs"
                     />
                   </div>
                 </div>
+                
+                
+                
+                
               </div>
             </div>
-            <div className="flex justify-end ...">
+            <div className="flex justify-end ">
               <button type="submit" className="btn btn-success">
                 Save
               </button>
@@ -254,7 +439,7 @@ const Car = () => {
             <tr>
               <th className="w-[10%] text-gray-300">ID</th>
               <th className="w-[20%] text-gray-300">Name</th>
-              <th className="w-[20%] text-gray-300">Amount</th>
+              <th className="w-[20%] text-gray-300">Price</th>
               <th className="w-[20%] text-gray-300">Status</th>
               <th className="w-[20%] text-gray-300">Year</th>
               <th className="w-[20%] text-gray-300">Brand</th>

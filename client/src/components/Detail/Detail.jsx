@@ -1,21 +1,58 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 import { clearDetail, getCarById } from "../../redux/actions";
 import NavBar from "../navbar/NavBar";
 import style from "./Detail.module.css";
 import Contact from "../home/contact/Contact";
+import Swal from "sweetalert2";
+
 const Detail = () => {
   const { id } = useParams();
   const car = useSelector((state) => state.carDetail);
   const { idCategory, idMarca } = car;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(getCarById(id));
     return () => {
       dispatch(clearDetail());
     };
   }, []);
+   
+  const showPopup = () => {
+    Swal.fire({
+      text: "Car added to cart",
+      timer: 4000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      position: "top-end",
+      toast: true,
+      icon: "success",
+    });
+  };
+
+  const handleAddToCart = () => {
+    const item = {
+      id: car.id,
+      amount: 1,
+      name: car.name,
+      price: car.price,
+      totalPrice: car.price,
+      image: car.image,
+    };
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
+    if (existingItem) {
+      existingItem.amount += 1;
+      existingItem.totalPrice = existingItem.price * existingItem.amount;
+    } else {
+      cartItems.push(item);
+    }
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    showPopup();
+  };
 
   return (
     <>
@@ -36,7 +73,9 @@ const Detail = () => {
               <p><strong>Category: </strong> {idCategory?.name}</p>
             </div>
             <div className={style.buttons}>
-              <button className={style.buttones}>Add to car</button>
+              <button className={style.buttones} onClick={handleAddToCart}>
+                Add to cart
+              </button>
             </div>
           </div>
         </div>

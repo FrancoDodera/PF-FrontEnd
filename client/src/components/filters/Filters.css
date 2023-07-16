@@ -1,62 +1,64 @@
-.containerFilters{
+.containerFilters {
   display: flex;
   flex-direction: column;
   background-color: rgba(137, 192, 209, 0.276);
   height: 400px;
 }
-.containerSelects{
+.containerSelects {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.divSelect{
+.divSelect {
   margin: 10px;
-  display: grid;  
+  display: grid;
   grid-template-columns: 1fr;
 }
-.divSelect select{
+.divSelect select {
   margin-top: 10px;
   border-radius: 10px;
   padding: 5px;
+  color: white;
 }
 
-.priceSelector{
+.priceSelector {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 20px 10px;
   align-items: center;
   justify-content: center;
 }
-.inputRange{
+.inputRange {
   width: 120px;
   padding: 10px;
   border-radius: 10px;
+  color: white;
 }
-.labelContainer{
+.labelContainer {
   display: flex;
   flex-direction: column;
 }
-.labelContainer label{
+.labelContainer label {
   margin-top: 5px;
 }
-.divButtonFilter{
+.divButtonFilter {
   display: grid;
   grid-template-columns: 1fr;
   margin: 10px auto;
 }
-.divButtonFilter button{
+.divButtonFilter button {
   width: 200px;
   padding: 5px;
   border-radius: 10px;
-  background-color: #007777;;
+  background-color: #007777;
   color: aliceblue;
   transition: 0.3s;
 }
-.divButtonFilter button:hover{
+.divButtonFilter button:hover {
   cursor: pointer;
   background-color: #016565;
   text-shadow: -0px 4px 3px rgb(0, 0, 0);
   backface-visibility: hidden;
 }
-.containerFilters label{
-  font-weight:500
+.containerFilters label {
+  font-weight: 500;
 }

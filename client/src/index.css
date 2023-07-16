@@ -7,6 +7,10 @@
   flex-direction: column;
   justify-content: center;
 } */
+
+body {
+  color: black;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
