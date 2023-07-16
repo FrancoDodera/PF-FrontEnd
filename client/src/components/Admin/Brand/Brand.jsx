@@ -75,9 +75,9 @@ const Brand = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="flex">
       <NavBar />
-      <div className="overflow-x-auto w-full h-[110vh] bg-[#0a192f] text-gray-300">
+      <div className="overflow-x-auto w-full bg-[#0a192f] text-gray-300">
         <div className="flex justify-between p-8 text-gray-300">
           <h1 className="text-3xl font-bold">Brands</h1>
           <button className="btn" onClick={showModalBrand}>
@@ -186,7 +186,7 @@ const Brand = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

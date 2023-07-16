@@ -9,7 +9,7 @@ const Rating = () => {
     navigate("/login");
   };
   return (
-    <div className="h-19 bg-[#f6f6f9] w-12/12 flex p-2 justify-end rounded-xl">
+    <div className="h-19 w-12/12 flex p-2 justify-end rounded-xl">
       <div className="flex items-center h-12 w-full">
         <div className="m-4 text-black">
           <h1>welcome name </h1>
