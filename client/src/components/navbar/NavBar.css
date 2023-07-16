@@ -165,12 +165,21 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 10px;
-  border: 2px solid #016565;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  min-height: 50px;
+  overflow-y: auto;
+}
+.cart-item {
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
-
+.cart-font {
+  padding: 20%;
+  margin: 0;
+}
 .dropdownMenu button {
   color: #ffffff;
   display: block;

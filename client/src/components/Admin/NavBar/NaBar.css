@@ -1,0 +1,36 @@
+.containerSlite {
+  display: flex;
+  background-color: #ffff;
+  flex-direction: column;
+  width: 200px;
+  
+  height: 100vh;
+  padding: 14px;
+  color: gray;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+.sidebar span a::before {
+  background-color: aqua;
+}
+.containerSlite img {
+  width: 180px;
+}
+.top {
+  display: flex;
+  margin-bottom: 30px;
+}
+.top span {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.navbar {
+  width: 100px;
+}
+.sidebar a  {
+  font-weight:500
+}
