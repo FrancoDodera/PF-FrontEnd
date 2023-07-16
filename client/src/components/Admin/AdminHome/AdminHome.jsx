@@ -10,7 +10,6 @@ const AdminHome = () => {
     >
       <NavBar />
       <Dasboard />
-      <LeftSide/>
     </div>
   );
 };

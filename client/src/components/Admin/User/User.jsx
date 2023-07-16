@@ -167,7 +167,7 @@ const User = () => {
   }, []);
 
   return (
-    <>
+    <div className="flex">
       <NavBar />
       <div className="overflow-x-auto w-full  bg-[#0a192f] text-gray-300">
         <div className="flex justify-between p-8 text-gray-300">
@@ -425,7 +425,7 @@ const User = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

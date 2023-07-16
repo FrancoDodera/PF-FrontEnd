@@ -164,7 +164,7 @@ const Car = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="flex">
       <NavBar />
 
       <div className="overflow-x-auto w-full bg-[#0a192f] text-gray-300">
@@ -480,7 +480,7 @@ const Car = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

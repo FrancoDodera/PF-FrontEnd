@@ -10,8 +10,8 @@ const NavBar = () => {
     navigate("/login");
   };
   return (
-    <div className=" flex">
-      <div className="containerSlite bg-[#f6f6f9]">
+    
+      <div className="containerSlite bg-[#597091]">
         <aside>
           <div className="top">
             <div className="logo">
@@ -20,7 +20,7 @@ const NavBar = () => {
           </div>
           <div className="sidebar">
             <div className="home btn btn-ghost normal-case text-xl">
-              <span class="material-symbols-sharp">home</span>
+              <span className="material-symbols-sharp">home</span>
 
               <a onClick={() => navigate("/admin")}>Home</a>
             </div>
@@ -54,28 +54,15 @@ const NavBar = () => {
                 User
               </a>
             </div>
+            <div className="user btn btn-ghost normal-case text-xl">
+              
+              <a className="" onClick={() => logOut()}>
+                LogOut
+              </a>
+            </div>
           </div>
         </aside>
       </div>
-      {/* <div className="navbar bg-[gray] text-gray-300 items-end justify-end w-3 pr-10 h-8">
-        <div className="flex-none gap-2">
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src={profileUrl} />
-              </div>
-            </label>
-            <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#3c4367] rounded-box w-52">
-              <li>
-                <a href="" onClick={logOut}>
-                  LogOut
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>{" "} */}
-    </div>
   );
 };
 
