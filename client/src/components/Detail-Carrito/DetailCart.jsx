@@ -3,6 +3,7 @@ import NavBar from "../navbar/NavBar"
 import Card from "./CardDetailCart"
 import style from "./DetailCart.module.css"
 import axios from"axios"
+
 const DetailCart=()=>{
     const[loading,setLoading]= useState(false)
     const Cars= localStorage.getItem('cartItems')
