@@ -67,7 +67,7 @@ const NavBar = () => {
       localStorage.clear("guest");
       navigate("/login");
     } else {
-      navigate("/cart");
+      navigate("/detailcart");
     }
   };
 
