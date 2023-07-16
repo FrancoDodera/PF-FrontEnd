@@ -439,12 +439,13 @@ const Car = () => {
             <tr>
               <th className="w-[10%] text-gray-300">ID</th>
               <th className="w-[20%] text-gray-300">Name</th>
-              <th className="w-[20%] text-gray-300">Price</th>
-              <th className="w-[20%] text-gray-300">Status</th>
-              <th className="w-[20%] text-gray-300">Year</th>
-              <th className="w-[20%] text-gray-300">Brand</th>
-              <th className="w-[20%] text-gray-300">Category</th>
-              <th className="w-[20%] text-gray-300">Actions</th>
+              <th className="w-[10%] text-gray-300">Price</th>
+              <th className="w-[10%] text-gray-300">Status</th>
+              <th className="w-[10%] text-gray-300">Year</th>
+              <th className="w-[10%] text-gray-300">Brand</th>
+              <th className="w-[10%] text-gray-300">Category</th>
+              <th className="w-[10%] text-gray-300">Active</th>
+              <th className="w-[10%] text-gray-300">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -458,6 +459,9 @@ const Car = () => {
                   <th>{car.age}</th>
                   <th>{car.idMarca.name}</th>
                   <th>{car.idCategory.name}</th>
+                  <th>{car.active?<button className="btn btn-xs btn-success">
+                        Available
+                      </button>:<button className="btn btn-xs btn-error">Disabled</button>}</th>
                   <th>
                     <div className="btn-group">
                       <button
