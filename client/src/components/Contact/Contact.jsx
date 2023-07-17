@@ -32,7 +32,7 @@ const Contact = () => {
       <input
         type="text"
         name="user_name"
-        className="w-auto h-10 p-2 mt-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"
+        className="w-auto h-10 p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
       />
       <label className="mt-4">Email</label>
       <input
