@@ -24,13 +24,13 @@ const Car = () => {
     idCategory: null,
     idMarca: null,
     name: "",
-    transmission:"",
-    description:"",
+    transmission: "",
+    description: "",
     status: "",
     age: 0,
     price: 0,
     action: "",
-    image:""
+    image: "",
   });
 
   const [showModal, setShowModal] = useState(false);
@@ -63,7 +63,7 @@ const Car = () => {
   };
 
   const showModalCar = () => {
-    setCar({ ...car, action: "Create",status:"new" });
+    setCar({ ...car, action: "Create", status: "new",idCategory:categories[0]._id,idMarca:brands[0]._id });
     setShowModal(true);
   };
 
@@ -72,7 +72,13 @@ const Car = () => {
   };
 
   const showModalHandlerEdit = (element) => {
-    setCar({ ...element,image:"", action: "Edit",idCategory:element.idCategory._id,idMarca:element.idMarca._id });
+    setCar({
+      ...element,
+      image: "",
+      action: "Edit",
+      idCategory: element.idCategory._id,
+      idMarca: element.idMarca._id,
+    });
     setShowModal(true);
   };
 
@@ -84,13 +90,13 @@ const Car = () => {
       idCategory: null,
       idMarca: null,
       name: "",
-      transmission:"",
-      description:"",
+      transmission: "",
+      description: "",
       status: "",
       age: "",
       price: "",
       action: "",
-      image:""
+      image: "",
     });
   };
   const handlerImage = (event) => {
@@ -101,37 +107,35 @@ const Car = () => {
     });
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     let imageUrl = "";
     if (car.action === "Create") {
-      if(car.image !=""){
+      if (car.image != "") {
         imageUrl = await uploadImage(car.image);
       }
-      const body={
-          amount: car.amount,
-          idCategory: car.idCategory,
-          idMarca: car.idMarca,
-          name: car.name,
-          status: car.status,
-          age: car.age,
-          price: car.price,
-          color:"black",
-          transmission:car.transmission,
-          description:car.description,
-          image:imageUrl
-        }
-        console.log(body);
-      dispatch(
-        createCar(body)
-      );
+      const body = {
+        amount: car.amount,
+        idCategory: car.idCategory,
+        idMarca: car.idMarca,
+        name: car.name,
+        status: car.status,
+        age: car.age,
+        price: car.price,
+        color: "black",
+        transmission: car.transmission,
+        description: car.description,
+        image: imageUrl,
+      };
+      console.log(body);
+      dispatch(createCar(body));
     } else {
       if (car.image != "") {
         imageUrl = await uploadImage(car.image);
       }
       dispatch(
         updateCar({
-          id:car._id,
+          id: car._id,
           amount: car.amount,
           idCategory: car.idCategory,
           idMarca: car.idMarca,
@@ -139,10 +143,10 @@ const Car = () => {
           status: car.status,
           age: car.age,
           price: car.price,
-          color:"",
-          transmission:car.transmission,
-          description:car.description,
-          image:imageUrl
+          color: "",
+          transmission: car.transmission,
+          description: car.description,
+          image: imageUrl,
         })
       );
     }
@@ -161,7 +165,6 @@ const Car = () => {
     }
   }, []);
 
-  const navigate = useNavigate();
 
   return (
     <div className="flex">
@@ -322,8 +325,13 @@ const Car = () => {
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     /> */}
-                    <select onChange={handleCar} className="select select-bordered w-full max-w-xs" name="idMarca" id="brand">
-                      {brands?.map((elem,index) => {
+                    <select
+                      onChange={handleCar}
+                      className="select select-bordered w-full max-w-xs text-gray-300"
+                      name="idMarca"
+                      id="brand"
+                    >
+                      {brands?.map((elem, index) => {
                         if (car && car.idMarca) {
                           return (
                             <option
@@ -335,7 +343,11 @@ const Car = () => {
                             </option>
                           );
                         } else {
-                          return <option key={index} value={elem._id}>{elem.name}</option>;
+                          return (
+                            <option key={index} value={elem._id}>
+                              {elem.name}
+                            </option>
+                          );
                         }
                       })}
                     </select>
@@ -357,8 +369,13 @@ const Car = () => {
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     /> */}
-                    <select onChange={handleCar} className="select select-bordered w-full max-w-xs" name="idCategory" id="category">
-                      {categories?.map((elem,index) => {
+                    <select
+                      onChange={handleCar}
+                      className="select select-bordered w-full max-w-xs text-gray-300"
+                      name="idCategory"
+                      id="category"
+                    >
+                      {categories?.map((elem, index) => {
                         if (car && car.idCategory) {
                           return (
                             <option
@@ -370,7 +387,13 @@ const Car = () => {
                             </option>
                           );
                         } else {
-                          return <option key={index} value={elem._id}>{elem.name}</option>;
+                          return (
+                            <option key={index}
+                            
+                            value={elem._id}>
+                              {elem.name}
+                            </option>
+                          );
                         }
                       })}
                     </select>
@@ -384,7 +407,12 @@ const Car = () => {
                     Status
                   </label>
                   <div className="mt-2">
-                    <select onChange={handleCar} className="select select-bordered w-full max-w-xs" name="status" id="status">
+                    <select
+                      onChange={handleCar}
+                      className="select select-bordered w-full max-w-xs text-gray-300"
+                      name="status"
+                      id="status"
+                    >
                       {car.status != "" ? (
                         <>
                           <option value="new" selected={car.status == "new"}>
@@ -403,7 +431,7 @@ const Car = () => {
                     </select>
                   </div>
                 </div>
-                
+
                 <div className="sm:col-span-2">
                   <label
                     htmlFor="model"
@@ -417,14 +445,10 @@ const Car = () => {
                       name="image"
                       id="image"
                       onChange={handlerImage}
-                      className="file-input w-full max-w-xs"
+                      className="file-input w-full max-w-xs text-gray-300"
                     />
                   </div>
                 </div>
-                
-                
-                
-                
               </div>
             </div>
             <div className="flex justify-end ">
@@ -459,9 +483,15 @@ const Car = () => {
                   <th>{car.age}</th>
                   <th>{car.idMarca.name}</th>
                   <th>{car.idCategory.name}</th>
-                  <th>{car.active?<button className="btn btn-xs btn-success">
+                  <th>
+                    {car.active ? (
+                      <button className="btn btn-xs btn-success">
                         Available
-                      </button>:<button className="btn btn-xs btn-error">Disabled</button>}</th>
+                      </button>
+                    ) : (
+                      <button className="btn btn-xs btn-error">Disabled</button>
+                    )}
+                  </th>
                   <th>
                     <div className="btn-group">
                       <button

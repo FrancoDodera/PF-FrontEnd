@@ -40,13 +40,10 @@ const DetailCart = () => {
   }
   const redirect = async () => {
     setLoading(true);
-    const body = { sale: Sale, detailSale: cars };
-    console.log(body);
+    const body = { sale: {...Sale,total:Pay}, detailSale: cars };
     const data = await axios.post("https://pf-back.fly.dev/checkout", body);
-    console.log(data);
     window.location.href = data.data.response.response.init_point;
   };
-
   useEffect(() => {
     getUser();
   }, []);
