@@ -8,9 +8,11 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const MAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const REGISTER_URL = "/user/addUser";
+import emailjs from "@emailjs/browser";
 
 const Register = () => {
   const navigate = useNavigate();
+  const formRef = useRef(null);
   const [form, setForm] = useState({
     name: "",
     lastName: "",
@@ -117,8 +119,30 @@ const Register = () => {
       [event.target.name]: event.target.value,
     });
   };
+
+  const EmailSubmit = (e) => {
+    emailjs
+      .sendForm(
+        "service_2g3l5fl",
+        "template_i86j1e3",
+        formRef.current,
+        "k9MoXYguA1z_UaXjK"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("Email sent");
+          e.target.reset();
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
   const handleSubmit = async (e) => {
+    EmailSubmit(e);
     e.preventDefault();
+
     if (
       form.name == "" ||
       form.lastName == "" ||
@@ -158,7 +182,7 @@ const Register = () => {
           user: form.user,
           password: form.password,
           dni: null,
-          type:'User'
+          type: "User",
         };
 
         const { data } = await axios.post(REGISTER_URL, body);
@@ -190,7 +214,7 @@ const Register = () => {
     <div className={styles.container}>
       <section className={styles.container2}>
         <h1>Register</h1>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit} ref={formRef}>
           <div className={styles.formcito3}>
             <div className={styles.formcito}>
               <div className={styles.inputContainerName}>
