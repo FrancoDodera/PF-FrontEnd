@@ -11,6 +11,7 @@ import { getAllCars } from "../../redux/actions";
 const Carsforsale = (props) => {
   const dispatch = useDispatch();
   const allCars = useSelector((state) => state.auxCars);
+  const carsActive=allCars.filter((elem=>elem.active==true));
   useEffect(() => {
     if (allCars.length === 0) {
       dispatch(getAllCars());
@@ -26,7 +27,7 @@ const Carsforsale = (props) => {
       </div>
       <div className={style.containerCarsForSale}>
         <Filters />
-        {allCars.length === 0 ? (
+        {carsActive.length === 0 ? (
           <div className={style.noCarContainer}>
             <h1 className={style.noCarsMessage}>
               ¡THERE ARE NO CARS WITH THESE FEATURES!
@@ -34,7 +35,7 @@ const Carsforsale = (props) => {
             <img src={noCarimg} alt="Not Car" className={style.image} />
           </div>
         ) : (
-          <CardsContainer allCars={allCars} />
+          <CardsContainer carsActive={carsActive} />
         )}
       </div>
       <div className="contactMore">

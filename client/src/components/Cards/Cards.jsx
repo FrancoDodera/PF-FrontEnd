@@ -4,23 +4,23 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Pagination from "../Pagination/Pagination";
 
-const CardsContainer = () => {
-  const cars = useSelector((state) => state.auxCars);
+const CardsContainer = ({carsActive}) => {
+  
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = useState(1);
   const [carsDisplayed, setCarsDisplayed] = useState([]);
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [cars]);
+  }, [carsActive]);
 
   useEffect(() => {
     setCarsDisplayed(
-      cars.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+      carsActive.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
     );
-  }, [cars, currentPage]);
+  }, [carsActive, currentPage]);
 
-  const totalItems = cars.length;
+  const totalItems = carsActive.length;
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
