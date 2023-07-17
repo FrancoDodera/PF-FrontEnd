@@ -8,7 +8,7 @@ const DetailCart = () => {
   const [Sale, setSale] = useState({
     id_user: "",
     description: "",
-    date: "",
+    date: new Date(),
     total: 0,
   });
   const getUser = async () => {
@@ -28,15 +28,11 @@ const DetailCart = () => {
       "https://pf-back.fly.dev/user/verifyUser",
       postData
     );
-    setSale({ ...Sale, id_user: data._id });
+    setSale({ ...Sale, id_user: data.data._id });
   };
-  useEffect(() => {
-    getUser();
-  }, []);
 
   const Cars = localStorage.getItem("cartItems");
   let cars = JSON.parse(Cars);
-  console.log(cars);
   const total = "TOTAL";
   let Pay = 0;
   for (let i = 0; i < cars.length; i++) {
@@ -45,9 +41,15 @@ const DetailCart = () => {
   const redirect = async () => {
     setLoading(true);
     const body = { sale: Sale, detailSale: cars };
+    console.log(body);
     const data = await axios.post("https://pf-back.fly.dev/checkout", body);
+    console.log(data);
     window.location.href = data.data.response.response.init_point;
   };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   if (loading === true) {
     return (
