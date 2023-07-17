@@ -63,7 +63,7 @@ const Car = () => {
   };
 
   const showModalCar = () => {
-    setCar({ ...car, action: "Create", status: "new" });
+    setCar({ ...car, action: "Create", status: "new",idCategory:categories[0]._id,idMarca:brands[0]._id });
     setShowModal(true);
   };
 
@@ -165,7 +165,6 @@ const Car = () => {
     }
   }, []);
 
-  const navigate = useNavigate();
 
   return (
     <div className="flex">
@@ -389,7 +388,9 @@ const Car = () => {
                           );
                         } else {
                           return (
-                            <option key={index} value={elem._id}>
+                            <option key={index}
+                            
+                            value={elem._id}>
                               {elem.name}
                             </option>
                           );
