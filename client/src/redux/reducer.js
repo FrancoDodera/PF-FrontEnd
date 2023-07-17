@@ -22,6 +22,7 @@ import {
   GETALLSALES,
   CREATECAR,
   UPDATECAR,
+  DELETECAR,
 } from "./actionsType";
 
 const initialState = {
@@ -196,6 +197,7 @@ const reducer = (state = initialState, actions) => {
         allCars:[...state.allCars,actions.payload]
       }
     case UPDATECAR:
+
       let allCarsUpdate = [...state.allCars];
       let carFindUpdate = allCarsUpdate.findIndex(
         (elem) => elem._id == actions.payload._id
@@ -205,6 +207,16 @@ const reducer = (state = initialState, actions) => {
         ...state,
         allCars: [...allCarsUpdate],
       };
+    case DELETECAR:
+      let allCarsDelete = [...state.allCars];
+      let carFindDelete = allCarsDelete.findIndex(
+        (elem) => elem._id == actions.payload._id
+      );
+      allCarsDelete[carFindDelete] = actions.payload;
+      return {
+        ...state,
+        allCars:[...allCarsDelete]
+      }
       default:
       return { ...state };
   }

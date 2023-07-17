@@ -1,13 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../navbar/NavBar";
 import Card from "./CardDetailCart";
+import style from "./DetailCart.module.css";
 import axios from "axios";
-
 const DetailCart = () => {
   const [loading, setLoading] = useState(false);
+  const [Sale, setSale] = useState({
+    id_user: "",
+    description: "",
+    date: new Date(),
+    total: 0,
+  });
+  const getUser = async () => {
+    const user = localStorage.getItem("user");
+    const admin = localStorage.getItem("admin");
+    let postData = {};
+    if (user) {
+      postData = {
+        user: user,
+      };
+    } else if (admin) {
+      postData = {
+        user: admin,
+      };
+    }
+    const { data } = await axios.post(
+      "https://pf-back.fly.dev/user/verifyUser",
+      postData
+    );
+    setSale({ ...Sale, id_user: data.data._id });
+  };
+
   const Cars = localStorage.getItem("cartItems");
   let cars = JSON.parse(Cars);
-  console.log(cars);
   const total = "TOTAL";
   let Pay = 0;
   for (let i = 0; i < cars.length; i++) {
@@ -15,16 +40,22 @@ const DetailCart = () => {
   }
   const redirect = async () => {
     setLoading(true);
-    const data = await axios.post("https://pf-back.fly.dev/checkout", cars);
-    console.log(data.data.response.response.init_point);
+    const body = { sale: Sale, detailSale: cars };
+    console.log(body);
+    const data = await axios.post("https://pf-back.fly.dev/checkout", body);
+    console.log(data);
     window.location.href = data.data.response.response.init_point;
   };
 
+  useEffect(() => {
+    getUser();
+  }, []);
+
   if (loading === true) {
     return (
-      <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black bg-opacity-50">
-        <div className="border-4 border-white rounded-full h-16 w-16 animate-spin"></div>
-        <h1 className="ml-2 text-white">Redirecting</h1>
+      <div class={style.overlay}>
+        <div class={style.loader}></div>
+        <h1>redirecting</h1>
       </div>
     );
   }

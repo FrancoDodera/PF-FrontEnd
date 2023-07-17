@@ -121,22 +121,22 @@ export const deleteCar = (id) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.delete(`/cars/${id}`);
-      if (data.deleted) {
+      if (data._id) {
         Swal.fire({
           icon: "success",
-          title: data.message,
+          title: "updated",
           position: "top-end",
           showConfirmButton: false,
           timer: 500,
         });
         return dispatch({
           type: DELETECAR,
-          payload: id,
+          payload: data,
         });
       } else {
         Swal.fire({
           icon: "error",
-          title: data.message,
+          title: "error",
           position: "top-end",
           showConfirmButton: false,
           timer: 500,
