@@ -143,7 +143,7 @@ const AccountInfo = () => {
     }
   }, []);
   return (
-    <div className={style.UserDetail}>
+   <div className={style.UserDetail}>
       <p className={style.Username}>
         Name:{" "}
         {showChangePassword ? (
@@ -217,5 +217,6 @@ const AccountInfo = () => {
     </div>
   );
 };
+
 
 export default AccountInfo;
