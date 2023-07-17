@@ -38,7 +38,7 @@ const Contact = () => {
       <input
         type="email"
         name="user_email"
-        className="w-auto h-auto p-2 mt-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"
+        className="w-auto h-auto p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
       />
       <label className="mt-4">Message</label>
       <textarea
