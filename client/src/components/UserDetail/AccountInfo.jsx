@@ -161,9 +161,9 @@ return(
             userDetails.email
           )}
         </p>
-        <div className={style.Userpassword}>
-        <h2 className={style.passwordselect}>
-          {showChangePassword ? (
+          <div className={style.Userpassword}>
+             <h2 className={style.passwordselect}>
+              {showChangePassword ? (
             <>
               <button className={style.cancelbutton} onClick={toggleChangePassword}>
                 Cancel
@@ -177,10 +177,10 @@ return(
               Change user data
             </button>
           )}
-        </h2>
+           </h2>
         
-       </div>
-       <div className={style.img}>
+          </div>
+          <div className={style.img}>
           <h2 className={style.archivoselect}>
             {showChangePassword ? "Change Profile Picture" : ""}
           </h2>
@@ -189,7 +189,7 @@ return(
               <input type="file" onChange={handleImageChange} />
             </div>
           )}
-        </div>
+          </div>
        </div>
 
 )

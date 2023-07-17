@@ -42,7 +42,8 @@ const handlerSection = (e) => {
             </button>
             </li>
           </ul>
-          <div className={style.contact}>Contact us</div>
+          <div className={style.contact}>Contact Us</div>
+          
         </div>
         <div>
           {
@@ -51,7 +52,6 @@ const handlerSection = (e) => {
             {
             section == "ChangePass" && <ChangePass/>
           }
-
         </div>
         
         
