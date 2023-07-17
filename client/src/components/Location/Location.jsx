@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { GoogleMap, Marker } from "google-maps-react";
 import NavBar from "../../components/navbar/NavBar";
 import img from "../../img/googlemaps.png";
+import Contact from "../../components/Contact/Contact";
 
 const Location = () => {
   useEffect(() => {
@@ -55,59 +56,20 @@ const Location = () => {
           <div className="flex justify-center mb-1">
             <div className="">
               <button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-2"
+                className="bg-orange-500 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded mb-2 mx-2"
                 onClick={() => handleRedirect("sucursal1")}
               >
                 Sucursal 1
               </button>
               <button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                className="bg-orange-500 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded"
                 onClick={() => handleRedirect("sucursal2")}
               >
                 Sucursal 2
               </button>
             </div>
           </div>
-          <div
-            name="contact"
-            className="flex flex-col justify-center items-center p-4"
-          >
-            <form
-              method="POST"
-              action="https://getform.io/f/9d5ac40f-ec9b-41f1-b16a-e7c54dd6f178"
-              className="flex flex-col h-auto w-auto"
-            >
-              <div className="pb-8">
-                <p className="text-4xl font-bold inline border-b-4 border-pink-600 text-gray-800">
-                  Contact
-                </p>
-                <p className="text-gray-800 py-4">
-                  || Envia el siguiente formulario
-                </p>
-              </div>
-              <input
-                className="bg-[#ccd6f6] p-2"
-                type="text"
-                placeholder="Nombre.."
-                name="name"
-              />
-              <input
-                className="my-4 p-2 bg-[#ccd6f6]"
-                type="email"
-                placeholder="Email.."
-                name="email"
-              />
-              <textarea
-                className="bg-[#ccd6f6] p-2"
-                name="mensaje"
-                rows="3"
-                placeholder="Mensaje.."
-              ></textarea>
-              <button className="text-gray-800 border-2 hover:bg-pink-600 px-4 py-3 my-8 mx-auto flex items-center">
-                Envia!
-              </button>
-            </form>
-          </div>
+          <Contact />
         </div>
         <div className="flex w-[500px] h-[500px]">
           <div id="map" style={{ height: "500px", width: "500px" }}></div>
