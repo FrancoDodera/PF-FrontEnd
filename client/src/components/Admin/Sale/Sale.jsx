@@ -3,16 +3,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllSales } from "../../../redux/actions";
 import NavBar from "../NavBar/NavBar.jsx";
+import axios from "axios";
 const Sale = () => {
   //Redux
   const sale = useSelector((state) => state.allSales);
+  const [dataDetail, setDataDetail] = useState([]);
   const dispatch = useDispatch();
 
   //Estados
   const [showModal, setShowModal] = useState(false);
 
-  const showModalhandlerDetail = (element) => {
+  const showModalhandlerDetail = async (element) => {
     setShowModal(true);
+    const { data } =await axios.get(
+      `https://pf-back.fly.dev/detail/get/${element._id}`
+    );
+    
+    setDataDetail(data);
   };
 
   const handlerDelete = (_id) => {
@@ -28,7 +35,6 @@ const Sale = () => {
     }
   }, []);
   const navigate = useNavigate();
-  console.log(sale);
   return (
     <div className="flex">
       <NavBar />
@@ -41,7 +47,7 @@ const Sale = () => {
           id="my_modal_3"
           className={showModal ? "modal modal-open" : "modal"}
         >
-          <form method="dialog" className="modal-box w-11/12 w-5xl h-auto">
+          <form method="dialog" className="modal-box w-11/12 max-w-5xl h-auto">
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
               type="button"
@@ -50,47 +56,31 @@ const Sale = () => {
               X
             </button>
             <h3 className="font-bold text-lg text-gray-300">Sale Detail</h3>
-            <div className="pb-12">
-              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium leading-6 text-gray-300"
-                  >
-                    Name
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      value={sale.name}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="description"
-                    className="block text-sm font-medium leading-6 text-gray-300"
-                  >
-                    Description
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="description"
-                      name="description"
-                      value={sale.description}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-end ...">
-              <button type="submit" className="btn btn-success">
-                Save
-              </button>
+            <div className="pb-12 w-full">
+              <table className="table text-gray-300">
+                <thead>
+                  <tr>
+                    <th className="w-[10%] text-gray-300">N°</th>
+                    <th className="w-[30%] text-gray-300">ID Sale</th>
+                    <th className="w-[30%] text-gray-300">Car</th>
+                    <th className="w-[15%] text-gray-300">Amount</th>
+                    <th className="w-[15%] text-gray-300">Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dataDetail?.map((detail, index) => {
+                    return (
+                      <tr key={detail._id}>
+                        <th>{index + 1}</th>
+                        <th>{detail.id_venta}</th>
+                        <th>{detail.id_car.name}</th>
+                        <th>{detail.amount}</th>
+                        <th>{detail.subtotal}</th>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </form>
         </dialog>
@@ -98,20 +88,20 @@ const Sale = () => {
           <thead>
             <tr>
               <th className="w-[10%] text-gray-300">ID</th>
-              <th className="w-[30%] text-gray-300">Name</th>
+              <th className="w-[30%] text-gray-300">User</th>
               <th className="w-[30%] text-gray-300">Date</th>
               <th className="w-[30%] text-gray-300">Total</th>
-              <th className="w-[20%] text-gray-300">Accions</th>
+              <th className="w-[20%] text-gray-300">Actions</th>
             </tr>
           </thead>
           <tbody>
             {sale?.map((element) => {
               return (
                 <tr key={element._id}>
-                  <th>{element.id_user}</th>
-                  <th>{element.description}</th>
+                  <th>{element._id}</th>
+                  <th>{element.id_user.user}</th>
                   <th>{element.date}</th>
-                  <th>${element.total}</th>
+                  <th>$ {element.total}</th>
                   <th>
                     <div className="btn-group">
                       <button
@@ -120,12 +110,12 @@ const Sale = () => {
                       >
                         Detail
                       </button>
-                      <button
+                      {/* <button
                         className="btn btn-error"
                         onClick={() => handlerDelete(element._id)}
                       >
                         Delete
-                      </button>
+                      </button> */}
                     </div>
                   </th>
                 </tr>

@@ -30,35 +30,35 @@ const NavBar = () => {
             onClick={() => navigate("/admin/brand")}
             className="brand btn btn-ghost normal-case text-xl"
           >
-            <span class="material-symbols-sharp">bolt</span>
+            <span className="material-symbols-sharp">bolt</span>
             <a>Brand</a>
           </div>
           <div
             onClick={() => navigate("/admin/category")}
             className="category btn btn-ghost normal-case text-xl"
           >
-            <span class="material-symbols-sharp">category</span>{" "}
+            <span className="material-symbols-sharp">category</span>{" "}
             <a className="">Category</a>
           </div>
           <div
             onClick={() => navigate("/admin/car")}
             className="car btn btn-ghost normal-case text-xl"
           >
-            <span class="material-symbols-sharp">directions_car</span>{" "}
+            <span className="material-symbols-sharp">directions_car</span>{" "}
             <a>Car</a>
           </div>
           <div
             onClick={() => navigate("/admin/sale")}
             className="sales btn btn-ghost normal-case text-xl"
           >
-            <span class="material-symbols-sharp">sell</span>{" "}
+            <span className="material-symbols-sharp">sell</span>{" "}
             <a className="">Sale</a>
           </div>
           <div
             onClick={() => navigate("/admin/user")}
             className="user btn btn-ghost normal-case text-xl"
           >
-            <span class="material-symbols-sharp">person</span>{" "}
+            <span className="material-symbols-sharp">person</span>{" "}
             <a className="">User</a>
           </div>
           <div  onClick={() => logOut()} className="user btn btn-ghost normal-case text-xl">
