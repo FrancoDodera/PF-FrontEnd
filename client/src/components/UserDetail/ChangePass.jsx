@@ -110,8 +110,8 @@ return(
              <h2 className={style.passwordselect}>
               {showChangePassword ? (
             <>
-            <input type="password" value={dataPassword.password} name="password" className={style.campo} onChange={handlePwdChange}/>
-              <input type="password" value={dataPassword.confirmPassword} name="confirmPassword" className={style.campo} onChange={handlePwdChange}/>
+            <input type="password" placeholder="New Password" value={dataPassword.password} name="password" className={style.campo} onChange={handlePwdChange}/>
+              <input type="password" placeholder="Confirm Password" value={dataPassword.confirmPassword} name="confirmPassword" className={style.campo} onChange={handlePwdChange}/>
               <button className={style.cancelbutton} onClick={toggleChangePassword}>
                 Cancel
               </button>

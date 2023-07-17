@@ -46,17 +46,17 @@ const Purchases = () => {
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th className="px-4 py-2">ID Buy</th>
-              <th className="px-4 py-2">Description</th>
+              <th className="px-4 py-2">N°</th>
+              <th className="px-4 py-2">ID Purchase</th>
               <th className="px-4 py-2">Date</th>
               <th className="px-4 py-2">Total</th>
             </tr>
           </thead>
           <tbody>
-            {customerPurchases.map((sale) => (
-              <tr key={sale.id}>
-                <td className="border px-4 py-2">{sale.id_user}</td>
-                <td className="border px-4 py-2">{sale.description}</td>
+            {customerPurchases.map((sale,index) => (
+              <tr key={sale._id}>
+                <td className="border px-4 py-2">{index+1}</td>
+                <td className="border px-4 py-2">{sale._id}</td>
                 <td className="border px-4 py-2">{sale.date}</td>
                 <td className="border px-4 py-2">{sale.total}</td>
               </tr>

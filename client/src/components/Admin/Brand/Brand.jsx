@@ -154,7 +154,7 @@ const Brand = () => {
               <th className="w-[10%] text-gray-300">ID</th>
               <th className="w-[20%] text-gray-300">Name</th>
               <th className="w-[50%] text-gray-300">Description</th>
-              <th className="w-[20%] text-gray-300">Accions</th>
+              <th className="w-[20%] text-gray-300">Actions</th>
             </tr>
           </thead>
           <tbody>
