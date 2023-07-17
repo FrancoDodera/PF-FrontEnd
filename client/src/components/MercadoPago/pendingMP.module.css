@@ -1,0 +1,14 @@
+.contenedormp{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .h1mp{
+    margin-top: 20%;
+    font-size: 40px;
+    border-radius: 25px;
+    color:aliceblue;
+  }
+  

@@ -10,6 +10,9 @@ import Home from "./components/home/Home";
 import UserDetail from "./components/UserDetail/UserDetail.jsx";
 import Landing from "./components/Landing/Landing";
 import DetailCart from './components/Detail-Carrito/DetailCart'
+import SuccessPage from "./components/MercadoPago/successMP.jsx";
+import FailurePage from "./components/MercadoPago/failureMP.jsx";
+import PendingPage from "./components/MercadoPago/pendingMP.jsx";
 //admin
 import AdminHome from "./components/Admin/AdminHome/AdminHome";
 import Brand from "./components/Admin/Brand/Brand";
@@ -80,7 +83,9 @@ function App() {
         <Route exact path="/carsforsale" element={<Carsforsale />} />
         <Route exact path="/detail/:id" element={<Detail />} />
         <Route exact path="/userDetail" element={<UserDetail />} />
-        
+        <Route exact path="/success" element={<SuccessPage />} />
+        <Route exact path="/failure" element={<FailurePage />} />
+        <Route exact path="/pending" element={<PendingPage />} />
         <Route exact path="/detailcart" element={<DetailCart/>}></Route>
         </Routes>
       }
@@ -107,6 +112,9 @@ function App() {
           <Route exact path="/admin/car" element={<Car />} />
           <Route exact path="/admin/sale" element={<Sale />} />
           <Route exact path="/detailcart" element={<DetailCart/>}></Route>
+          <Route exact path="/success" element={<SuccessPage />} />
+          <Route exact path="/failure" element={<FailurePage />} />
+          <Route exact path="/pending" element={<PendingPage />} />
         </Routes>
       )}
     </main>

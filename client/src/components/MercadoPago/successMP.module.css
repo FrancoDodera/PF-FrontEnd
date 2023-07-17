@@ -1,0 +1,22 @@
+  .contenedormp{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .h1mp{
+    margin-top: 20%;
+    color: #008000; 
+    font-size: 50px;
+    border: #008000 solid 1px;
+    background-color: rgba(34, 141, 34, 0.425);
+    border-radius: 25px;
+  }
+  
+  .parrafoMP {
+    margin-bottom: 10px;
+    margin-top: 10%;
+    color: white;
+    font-size: 30px;
+  }

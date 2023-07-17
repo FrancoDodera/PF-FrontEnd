@@ -8,18 +8,17 @@ import Swal from "sweetalert2";
 import style from "../UserDetail/UserDetail.module.css";
 import AccountInfo from "../UserDetail/AccountInfo";
 import ChangePass from "../UserDetail/ChangePass";
+import Purchases from "../UserDetail/Purchases";
 
 const UserDetail = () => {
   const [section, setSection] = useState("AccountInfo");
- 
- 
-const handlerSection = (e) => {
-  const name = e.target.name;
-  console.log(name)
-  setSection(name);
-}
 
- 
+  const handlerSection = (e) => {
+    const name = e.target.name;
+    console.log(name);
+    setSection(name);
+  };
+
   return (
     <div>
       <NavBar />
@@ -27,34 +26,28 @@ const handlerSection = (e) => {
         <div className={style.barra}>
           <ul>
             <li className={style.libarra}>
-              <button  name="AccountInfo" onClick={handlerSection}>
+              <button name="AccountInfo" onClick={handlerSection}>
                 Account information
-                </button>
-              </li>
+              </button>
+            </li>
             <li className={style.libarra}>
-               <button  name="ChangePass" onClick={handlerSection}>
+              <button name="ChangePass" onClick={handlerSection}>
                 Change Password
-               </button>
-               </li>
-            <li  className={style.libarra}>
-            <button  name="Purchases" onClick={handlerSection}>
-              My purchases
-            </button>
+              </button>
+            </li>
+            <li className={style.libarra}>
+              <button name="Purchases" onClick={handlerSection}>
+                My purchases
+              </button>
             </li>
           </ul>
           <div className={style.contact}>Contact us</div>
         </div>
         <div>
-          {
-            section == "AccountInfo" && <AccountInfo/>
-          }
-            {
-            section == "ChangePass" && <ChangePass/>
-          }
-
+          {section == "AccountInfo" && <AccountInfo />}
+          {section == "ChangePass" && <ChangePass />}
+          {section == "Purchases" && <Purchases />}
         </div>
-        
-        
       </div>
     </div>
   );
