@@ -32,3 +32,7 @@ export const ENABLEUSER = "ENABLEUSER";
 
 //sales
 export const GETALLSALES = "GETALLSALES";
+
+//favs
+export const ADDFAV = "ADDFAV";
+export const REMOVEFAV = "REMOVEFAV";

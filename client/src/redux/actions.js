@@ -23,6 +23,8 @@ import {
   DELETECAR,
   UPDATECAR,
   GETALLSALES,
+  ADDFAV,
+  REMOVEFAV,
 } from "./actionsType";
 
 // ACA VAN TODAS LAS ACTIONS
@@ -86,9 +88,8 @@ export const createCar = (body) => {
           payload: data.data,
         });
       }
-      
     } catch (error) {
-      alert("error"+error);
+      alert("error" + error);
     }
   };
 };
@@ -110,7 +111,6 @@ export const updateCar = (body) => {
           payload: data.data,
         });
       }
-      
     } catch (error) {
       alert(error);
     }
@@ -449,7 +449,6 @@ export const enableUser = (id) => {
   };
 };
 
-
 //SALES
 
 export const getAllSales = () => {
@@ -462,6 +461,36 @@ export const getAllSales = () => {
       });
     } catch (error) {
       alert(error.response.data.error);
+    }
+  };
+};
+
+//FAVORITES
+
+export const addFav = (car) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post("/favorites");
+      return dispatch({
+        type: ADDFAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const removeFav = (carId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post("/favorites");
+      return dispatch({
+        type: REMOVEFAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error);
     }
   };
 };

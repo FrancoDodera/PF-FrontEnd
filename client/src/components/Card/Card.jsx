@@ -1,11 +1,26 @@
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 import cart from "../../img/cart.png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { useSelector, useDispatch } from "react-redux";
+import { addFav, removeFav } from "../../redux/actions";
 
 const Card = (props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [fav, setFav] = useState(false);
+  const favorites = useSelector((state) => state.favorites);
+  const dispatch = useDispatch();
+
+  const handleFavorite = () => {
+    if (fav) {
+      setFav(false);
+      dispatch(removeFav(props.id));
+    } else {
+      setFav(true);
+      dispatch(addFav(props));
+    }
+  };
 
   const showPopup = () => {
     Swal.fire({
@@ -41,8 +56,20 @@ const Card = (props) => {
     showPopup();
   };
 
+  useEffect(() => {
+    favorites.forEach((fav) => {
+      if (fav.id == props.id) {
+        setFav(true);
+      }
+    });
+  }, [favorites]);
   return (
     <div className={style.container}>
+      {fav ? (
+        <button onClick={handleFavorite}>❤️</button>
+      ) : (
+        <button onClick={handleFavorite}>🤍</button>
+      )}
       <img className={style.imageCointainer} src={props.image} alt="" />
       <div>
         <p>{props.status}</p>

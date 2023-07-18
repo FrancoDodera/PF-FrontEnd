@@ -1,5 +1,4 @@
 //EJEMPLO!!!!!!!
-import Brand from "../components/Admin/Brand/Brand";
 import {
   CARDETAIL,
   CARFILTERS,
@@ -23,6 +22,8 @@ import {
   CREATECAR,
   UPDATECAR,
   DELETECAR,
+  ADDFAV,
+  REMOVEFAV,
 } from "./actionsType";
 
 const initialState = {
@@ -33,6 +34,7 @@ const initialState = {
   allCategories: [],
   allUsers: [],
   allSales: [],
+  favorites: [],
 };
 
 const reducer = (state = initialState, actions) => {
@@ -192,12 +194,11 @@ const reducer = (state = initialState, actions) => {
         allBrands: [...deleteBrandArray],
       };
     case CREATECAR:
-      return{
+      return {
         ...state,
-        allCars:[...state.allCars,actions.payload]
-      }
+        allCars: [...state.allCars, actions.payload],
+      };
     case UPDATECAR:
-
       let allCarsUpdate = [...state.allCars];
       let carFindUpdate = allCarsUpdate.findIndex(
         (elem) => elem._id == actions.payload._id
@@ -215,9 +216,19 @@ const reducer = (state = initialState, actions) => {
       allCarsDelete[carFindDelete] = actions.payload;
       return {
         ...state,
-        allCars:[...allCarsDelete]
-      }
-      default:
+        allCars: [...allCarsDelete],
+      };
+    case ADDFAV:
+      return {
+        ...state,
+        favorites: [...state.favorites, actions.payload],
+      };
+    case REMOVEFAV:
+      return {
+        ...state,
+        favorites: state.favorites.filter((car) => car._id !== actions.payload),
+      };
+    default:
       return { ...state };
   }
 };
