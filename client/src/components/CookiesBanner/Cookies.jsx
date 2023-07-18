@@ -18,7 +18,7 @@ const CookieBanner = () => {
   return (
     <>
       {showBanner && (
-        <div className="fixed bottom-0 left-0 w-full bg-gray-300 p-4 flex justify-between items-center z-50">
+        <div className="fixed bottom-0 left-0 w-full bg-gray-300 p-4 flex justify-between items-center z-50 animate-slideInUp transition-all duration-500">
           <p className="text-sm text-gray-800">
             This website uses cookies to offer you a better experience. By
             continuing to browse the site, you agree to our use of cookies.
