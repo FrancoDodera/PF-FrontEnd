@@ -32,18 +32,18 @@ const Contact = () => {
       <input
         type="text"
         name="user_name"
-        className="w-auto h-10 p-2 mt-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"
+        className="w-auto h-10 p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
       />
       <label className="mt-4">Email</label>
       <input
         type="email"
         name="user_email"
-        className="w-auto h-auto p-2 mt-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"
+        className="w-auto h-auto p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
       />
       <label className="mt-4">Message</label>
       <textarea
         name="message"
-        className="w-[220px] h-[110px] p-2 mt-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"
+        className="w-[220px] h-[110px] p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
       />
       <input
         type="submit"

@@ -8,15 +8,16 @@ import Recommended from "./recommended/Recommended";
 import Find from "./find/Find";
 import AboutUS from "./aboutUS/AboutUS";
 import Contact from "./contact/Contact";
+import CookieBanner from "../../components/CookiesBanner/Cookies";
 import { useEffect } from "react";
 const Home = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const cars = useSelector((state) => state.auxCars);
-  useEffect(()=>{
-    if(cars.length==0){
-      dispatch(getAllCars())
+  useEffect(() => {
+    if (cars.length == 0) {
+      dispatch(getAllCars());
     }
-  },[])
+  }, []);
   return (
     <div className="Home_container">
       <NavBar />
@@ -29,13 +30,16 @@ const Home = () => {
       <div className="banner">
         <Find />
         <SellYourCar />
+        <CookieBanner />
       </div>
       <Recommended />
       <div className="aboutus">
         <AboutUS />
       </div>
-      <div className="contact"> <Contact/></div>
-     
+      <div className="contact">
+        {" "}
+        <Contact />
+      </div>
     </div>
   );
 };
