@@ -10,6 +10,7 @@ import {
 } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
+
 const Car = () => {
   // Redux
   const cars = useSelector((state) => state.allCars);
@@ -34,7 +35,8 @@ const Car = () => {
   });
 
   const [showModal, setShowModal] = useState(false);
-
+  
+  
   const uploadImage = async (file) => {
     const data = new FormData();
     data.append("file", file);
@@ -46,24 +48,104 @@ const Car = () => {
           method: "POST",
           body: data,
         }
-      );
-      if (res.ok) {
-        const file = await res.json();
-        return file.secure_url;
-      } else {
-        return "";
+        );
+        if (res.ok) {
+          const file = await res.json();
+          return file.secure_url;
+        } else {
+          return "";
+        }
+      } catch (error) {
+        alert(error);
       }
-    } catch (error) {
-      alert(error);
+  };
+
+  const [nameError, setNameError] = useState("");
+  
+  const [transmissionError, setTransmissionError] = useState(false);
+  
+  const [amountError, setAmountError] = useState("");
+
+  const [ageError, setAgeError] = useState("");
+
+  const [descriptionError, setDescriptionError] = useState(false);
+
+  const [priceError, setPriceError] = useState(false);
+  
+  const handleCar = (event) => {
+    const { name, value } = event.target;
+    setCar({ ...car, [event.target.name]: value });
+    if (name === "name") {
+      validateName(value);
+    } else if (name === "transmission") {
+      validateTransmission(value);
+    } else if (name === "amount") {
+      validateAmount(Number(value));
+    } else if (name === "description") {
+      validateDescription(value);
+    } else if (name === "age") {
+      validateAge(Number(value));
+    } else if (name === "price") {
+      validatePrice(Number(value));
+  };
+};
+
+  const validateDescription = (value) => {
+    if (value === "") {
+      setDescriptionError("The description field cannot be empty");
+    } else {
+      setDescriptionError("");
     }
   };
-  const handleCar = (event) => {
-    const { value } = event.target;
-    setCar({ ...car, [event.target.name]: value });
+
+  const validatePrice = (value) => {
+    if (value === 0) {
+      setPriceError("The price field cannot be zero");
+    } else {
+      setPriceError("");
+    }
+  }
+  
+  const validateAge = (value) => {
+    if (value === 0) {
+      setAgeError("The age field cannot be zero");
+    } else {
+      setAgeError("");
+    }
+  };
+
+  const validateAmount = (value) => {
+    if (value === 0) {
+      setAmountError("The amount field cannot be zero");
+    } else {
+      setAmountError("");
+    }
+  }
+
+  const validateTransmission = (value) => {
+    if (value === "") {
+      setTransmissionError("The transmission field cannot be empty");
+    } else {
+      setTransmissionError("");
+    }
+  };
+
+  const validateName = (value) => {
+    if (value.length < 3) {
+      setNameError("The name field must have three or more letters");
+    } else {
+      setNameError("");
+    }
   };
 
   const showModalCar = () => {
-    setCar({ ...car, action: "Create", status: "new",idCategory:categories[0]._id,idMarca:brands[0]._id });
+    setCar({
+      ...car,
+      action: "Create",
+      status: "new",
+      idCategory: categories[0]._id,
+      idMarca: brands[0]._id,
+    });
     setShowModal(true);
   };
 
@@ -113,6 +195,15 @@ const Car = () => {
     if (car.action === "Create") {
       if (car.image != "") {
         imageUrl = await uploadImage(car.image);
+      }
+      if (car.amount === 0) {
+        return;
+      }
+      if (car.name.length < 3) {
+        setNameError("The name field must have three or more letters");
+        return;
+      } else {
+        setNameError("");
       }
       const body = {
         amount: car.amount,
@@ -164,7 +255,6 @@ const Car = () => {
       dispatch(getAllCategories());
     }
   }, []);
-
 
   return (
     <div className="flex">
@@ -218,6 +308,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {nameError && (
+                    <span className="text-red-500 text-sm">{nameError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -236,6 +329,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {transmissionError && (
+                    <span className="text-red-500 text-sm">{transmissionError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -254,6 +350,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {amountError && (
+                    <span className="text-red-500 text-sm">{amountError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -272,6 +371,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {descriptionError && (
+                    <span className="text-red-500 text-sm">{descriptionError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -290,6 +392,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {ageError && (
+                    <span className="text-red-500 text-sm">{ageError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -308,6 +413,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {priceError && (
+                    <span className="text-red-500 text-sm">{priceError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -325,6 +433,11 @@ const Car = () => {
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     /> */}
+                    {/* {amountError && (
+                      <span className="text-red-500 text-sm">
+                        {amountError}
+                      </span>
+                    )} */}
                     <select
                       onChange={handleCar}
                       className="select select-bordered w-full max-w-xs text-gray-300"
@@ -388,9 +501,7 @@ const Car = () => {
                           );
                         } else {
                           return (
-                            <option key={index}
-                            
-                            value={elem._id}>
+                            <option key={index} value={elem._id}>
                               {elem.name}
                             </option>
                           );
