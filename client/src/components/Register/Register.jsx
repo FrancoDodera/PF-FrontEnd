@@ -187,7 +187,7 @@ const Register = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.containers}>
       <section className={styles.container2}>
         <h1>Register</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
