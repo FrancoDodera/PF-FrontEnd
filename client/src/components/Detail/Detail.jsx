@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { clearDetail, getCarById } from "../../redux/actions";
@@ -6,21 +6,28 @@ import NavBar from "../navbar/NavBar";
 import style from "./Detail.module.css";
 import Contact from "../home/contact/Contact";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Detail = () => {
   const { id } = useParams();
   const car = useSelector((state) => state.carDetail);
+  const [reviews, setReviews] = useState([]);
+  const stars = [1, 2, 3, 4, 5];
   const { idCategory, idMarca } = car;
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const getReview = async (id_car) => {
+    const { data } = await axios.get(`/reviews/getReview/${id_car}`);
+    setReviews(data);
+  };
 
   useEffect(() => {
+    getReview(id);
     dispatch(getCarById(id));
     return () => {
       dispatch(clearDetail());
     };
   }, []);
-   
+
   const showPopup = () => {
     Swal.fire({
       text: "Car added to cart",
@@ -65,21 +72,82 @@ const Detail = () => {
           <div className={style.detalles}>
             <div className={style.caracteristicas}>
               <h2>{car?.name}</h2>
-              <h4><strong>USD $</strong>${car?.price}</h4>
-              <p> <strong>Year: </strong>{car?.age}</p>
-              <p><strong>Color: </strong> {car?.color}</p>
-              <p><strong>Trasmission: </strong> {car?.transmission}</p>
-              <p><strong>Brand: </strong> {idMarca?.name}</p>
-              <p><strong>Category: </strong> {idCategory?.name}</p>
+              <h4>
+                <strong>USD $</strong>${car?.price}
+              </h4>
+              <p>
+                {" "}
+                <strong>Year: </strong>
+                {car?.age}
+              </p>
+              <p>
+                <strong>Color: </strong> {car?.color}
+              </p>
+              <p>
+                <strong>Trasmission: </strong> {car?.transmission}
+              </p>
+              <p>
+                <strong>Brand: </strong> {idMarca?.name}
+              </p>
+              <p>
+                <strong>Category: </strong> {idCategory?.name}
+              </p>
             </div>
             <div className={style.buttons}>
               <button className={style.buttones} onClick={handleAddToCart}>
-                Add to cart
+                Add To Cart
               </button>
             </div>
           </div>
         </div>
       </div>
+      <div className={style.reviews}>
+        <div className="collapse">
+          <input type="checkbox" />
+          <div className="collapse-title text-center text-xl font-medium">
+            Reviews
+          </div>
+          <div className="collapse-content">
+            {reviews.length > 0 ? (
+              reviews?.map((elem) => {
+                return (
+                  <div key={elem._id} className="chat chat-start">
+                    <div className="chat-image avatar">
+                      <div className="w-10 rounded-full">
+                        <img src={elem.id_user.image} />
+                      </div>
+                    </div>
+                    <div className="chat-bubble">
+                      <div className="badge badge-accent badge-outline mb-2">
+                        <h1 className="color-black">{elem.id_user.user}</h1>
+                      </div>
+
+                      <p className="mb-3">{elem.coment}</p>
+                      <div className="rating">
+                        {stars.map((star) => {
+                          return (
+                            <input
+                              key={star}
+                              type="radio"
+                              name={`rating-${elem._id}`} // Asignar un nombre único basado en el ID del elemento
+                              className="mask mask-star-2 bg-orange-400"
+                              defaultChecked={star <= elem.value}
+                              disabled // Marcar solo el elemento con índice 1 como seleccionado (puedes adaptar esto según tus necesidades)
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <h2>No Reviews</h2>
+            )}
+          </div>
+        </div>
+      </div>
+
       <div className={style.contact}>
         <div className="info">
           <h2>Contact Us:</h2>

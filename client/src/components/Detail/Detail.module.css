@@ -1,5 +1,5 @@
 .container {
-background-color: #D8EBEF;
+  background-color: #D8EBEF;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
@@ -55,7 +55,9 @@ background-color: #D8EBEF;
   backface-visibility: hidden;
 }
 
-
+.buttones{
+  margin-left: 10px;
+}
 
 .contact {
   display: flex;
@@ -64,6 +66,12 @@ background-color: #D8EBEF;
   flex-direction: column;
 }
 
+.reviews{
+  background-color: #D8EBEF;
+  margin:0px auto;
+  width: 1200px;
+  border-radius: 10px;
+}
 
 
 
