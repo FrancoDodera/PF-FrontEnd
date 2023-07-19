@@ -2,16 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #242222;
 }
 
-.fellme {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-}
 @media (max-width: 400px) {
   .container section {
     min-height: 132vh;
@@ -24,7 +16,6 @@
   padding: 10px;
   border-radius: 3px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
 
   display: flex;
   align-items: center;
@@ -181,70 +172,73 @@ section p {
   .container {
     display: flex;
 
-    width: 100%;
+    width: 120%;
   }
 
   .container section {
     max-width: 100%;
-    height: 100vh;
-  }
-}
-
-@media (max-width: 1000px) {
-  .container {
-    display: flex;
-
-    width: 100%;
-  }
-
-  .container section {
-    max-width: 100%;
-    height: 100vh;
-  }
-
-  .container2 h1 {
-    margin-bottom: 7.35px;
-  }
-
-  .botoncitogest,
-  .botoncito,
-  .button {
-    width: 7.35%;
-  }
-}
-
-@media (max-width: 1920px) {
-  .container2 h1 {
-    margin-bottom: 7.35px;
-  }
-
-  .botoncitogest,
-  .botoncito,
-  .button {
-    width: 7.35%;
-  }
-}
-
-@media (max-width: 375px) {
-  .container {
-    display: flex;
-
+  
  
   }
+  .container2 h1 {
+    margin-bottom: 7.35px;
+  }
+
+  .botoncitogest,
+  .botoncito,
+  .button {
+    width: 20%;
+  }
+}
+
+@media (max-width: 1000px) and (min-width: 425) {
+  .container {
+    width: 620px;
+    max-width: 1000px;
+  }
 
   .container section {
     max-width: 100%;
     height: 100vh;
+  }
+
+  .container2 h1 {
+    margin-bottom: 7.35px;
+  }
+
+  .botoncitogest,
+  .botoncito,
+  .button {
+    width: 7.35%;
+  }
+}
+
+
+
+@media (max-width: 375px) and (min-width: 360px) {
+  .container {
+    background-color: #0056b3;
+    width: 100%;
+   
+    display: flex;
+  }
+
+  .container section {
+
+  display: flex;
+    
+justify-content: center
   }
 
   .container2 h1 {
     margin-bottom: 5px;
+  
   }
 
   .botoncitogest,
   .botoncito,
   .button {
-    width: 100%;
+    width: 20%;
   }
 
   .form input {
@@ -256,7 +250,7 @@ section p {
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1440px) and (min-width: 768px) {
   .container {
     display: flex;
     min-height: 100vh;
@@ -273,13 +267,12 @@ section p {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 720px) and (min-width: 425) {
   .container {
     justify-content: center;
     align-items: center;
     display: flex;
     background-color: #0056b3;
-    width: 100%;
   }
 
   .container section {
