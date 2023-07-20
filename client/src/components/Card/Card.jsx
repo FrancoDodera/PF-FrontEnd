@@ -53,10 +53,10 @@ const Card = (props) => {
         
         {
           props.mediaReviews > 0 && <div className="rating">
-          {reviews.map((elem) => {
+          {reviews.map((elem,index) => {
             return (
               <input
-                key={props.id}
+                key={index}
                 type="radio"
                 name={`rating-${props.id}`} // Asignar un nombre único basado en el ID del elemento
                 className="mask mask-star-2 bg-orange-400"

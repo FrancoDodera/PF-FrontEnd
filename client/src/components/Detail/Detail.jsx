@@ -27,19 +27,7 @@ const Detail = () => {
     const { data } = await axios.get(`/reviews/getReview/${id_car}`);
     setReviews(data);
   };
-
-
-  useEffect(() => {
-    getReview(id);
-    dispatch(getCarById(id));
-    return () => {
-      dispatch(clearDetail());
-    };
-  }, []);
-
   const [loading, setLoading] = useState(true);
-
-
   const showModalReview = () => {
     setNewReview({
       id_user: userDetails._id,
@@ -83,10 +71,36 @@ const Detail = () => {
     const fetchCarDetails = async () => {
       try {
         setLoading(true); 
-
         await getReview(id); 
         dispatch(getCarById(id));
-
+        const user = localStorage.getItem("user");
+        const admin = localStorage.getItem("admin");
+        let postData = {};
+        if (user) {
+          postData = {
+            user: user,
+          };
+        } else if (admin) {
+          postData = {
+            user: admin,
+          };
+        }
+        if (user || admin) {
+          axios
+            .post("https://pf-back.fly.dev/user/verifyUser", postData)
+            .then((response) => {
+              if (response.status === 202 && response.data) {
+                setUserDetails(response.data.data);
+              } else {
+                console.error("Error getting user account details");
+              }
+            })
+            .catch((error) => {
+              console.error("Error making the request:", error);
+            });
+        } else {
+          console.error("No user found in localStorage");
+        }
         setLoading(false); 
       } catch (error) {
         console.error("Error fetching car details:", error);
@@ -147,42 +161,6 @@ const Detail = () => {
       alert(error);
     }
   };
-  useEffect(() => {
-    getReview(id);
-    dispatch(getCarById(id));
-    const user = localStorage.getItem("user");
-    const admin = localStorage.getItem("admin");
-    let postData = {};
-    if (user) {
-      postData = {
-        user: user,
-      };
-    } else if (admin) {
-      postData = {
-        user: admin,
-      };
-    }
-
-    if (user || admin) {
-      axios
-        .post("https://pf-back.fly.dev/user/verifyUser", postData)
-        .then((response) => {
-          if (response.status === 202 && response.data) {
-            setUserDetails(response.data.data);
-          } else {
-            console.error("Error getting user account details");
-          }
-        })
-        .catch((error) => {
-          console.error("Error making the request:", error);
-        });
-    } else {
-      console.error("No user found in localStorage");
-    }
-    return () => {
-      dispatch(clearDetail());
-    };
-  }, []);
 
   return (
     <>
