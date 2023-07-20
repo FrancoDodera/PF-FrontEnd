@@ -22,10 +22,24 @@ const Detail = () => {
   const stars = [1, 2, 3, 4, 5];
   const { idCategory, idMarca } = car;
   const dispatch = useDispatch();
+
   const getReview = async (id_car) => {
     const { data } = await axios.get(`/reviews/getReview/${id_car}`);
     setReviews(data);
   };
+
+
+  useEffect(() => {
+    getReview(id);
+    dispatch(getCarById(id));
+    return () => {
+      dispatch(clearDetail());
+    };
+  }, []);
+
+  const [loading, setLoading] = useState(true);
+
+
   const showModalReview = () => {
     setNewReview({
       id_user: userDetails._id,
@@ -52,6 +66,7 @@ const Detail = () => {
       value: 5,
     });
   };
+
   const showPopup = () => {
     Swal.fire({
       text: "Car added to cart",
@@ -63,6 +78,28 @@ const Detail = () => {
       icon: "success",
     });
   };
+
+  useEffect(() => {
+    const fetchCarDetails = async () => {
+      try {
+        setLoading(true); 
+
+        await getReview(id); 
+        dispatch(getCarById(id));
+
+        setLoading(false); 
+      } catch (error) {
+        console.error("Error fetching car details:", error);
+        setLoading(false); 
+      }
+    };
+
+    fetchCarDetails();
+
+    return () => {
+      dispatch(clearDetail());
+    };
+  }, [dispatch, id]);
 
   const handleAddToCart = () => {
     const item = {
@@ -151,6 +188,11 @@ const Detail = () => {
     <>
       <div>
         <NavBar />
+        {loading ? (
+          <div className="flex justify-center items-center h-screen">
+            <div className="loading ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+          </div>
+          ) : (
         <div className={style.container}>
           <div>
             <img src={car?.image} alt="" />
@@ -189,6 +231,7 @@ const Detail = () => {
             </div>
           </div>
         </div>
+        )}
       </div>
       <dialog
         id="my_modal_3"
