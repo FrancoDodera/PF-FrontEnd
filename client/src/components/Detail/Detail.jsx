@@ -12,12 +12,12 @@ const Detail = () => {
   const car = useSelector((state) => state.carDetail);
   const [reviews, setReviews] = useState([]);
   const [userDetails, setUserDetails] = useState({});
-  const [newReview,setNewReview]=useState({
-    id_user:null,
-    id_car:null,
-    coment:"",
-    value:5
-  })
+  const [newReview, setNewReview] = useState({
+    id_user: null,
+    id_car: null,
+    coment: "",
+    value: 5,
+  });
   const [showModal, setShowModal] = useState(false);
   const stars = [1, 2, 3, 4, 5];
   const { idCategory, idMarca } = car;
@@ -28,29 +28,29 @@ const Detail = () => {
   };
   const showModalReview = () => {
     setNewReview({
-      id_user:userDetails._id,
-      id_car:car._id,
-      coment:"",
-      value:5
-    })
+      id_user: userDetails._id,
+      id_car: car._id,
+      coment: "",
+      value: 5,
+    });
     setShowModal(true);
   };
-  const handlerNewReview=(event)=>{
-    const {name}=event.target;
-    const {value}=event.target;
+  const handlerNewReview = (event) => {
+    const { name } = event.target;
+    const { value } = event.target;
     setNewReview({
       ...newReview,
-      [name]:value
-    })
-  }
+      [name]: value,
+    });
+  };
   const closeModalReview = () => {
     setShowModal(false);
     setNewReview({
-      id_user:null,
-      id_car:null,
-      coment:"",
-      value:5
-    })
+      id_user: null,
+      id_car: null,
+      coment: "",
+      value: 5,
+    });
   };
   const showPopup = () => {
     Swal.fire({
@@ -84,11 +84,11 @@ const Detail = () => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     showPopup();
   };
-  const handlerSubmitReview=async()=>{
+  const handlerSubmitReview = async () => {
     try {
-      const {data}= await axios.post('/reviews',newReview)
-      if(data.data){
-        setReviews([...reviews,data.data])
+      const { data } = await axios.post("/reviews", newReview);
+      if (data.data) {
+        setReviews([...reviews, data.data]);
         Swal.fire({
           icon: "success",
           title: data.message,
@@ -97,7 +97,7 @@ const Detail = () => {
           timer: 600,
         });
         closeModalReview();
-      }else{
+      } else {
         Swal.fire({
           icon: "error",
           title: data.message,
@@ -107,10 +107,9 @@ const Detail = () => {
         });
       }
     } catch (error) {
-      alert(error)
+      alert(error);
     }
-    
-  }
+  };
   useEffect(() => {
     getReview(id);
     dispatch(getCarById(id));
@@ -147,8 +146,6 @@ const Detail = () => {
       dispatch(clearDetail());
     };
   }, []);
-
-
 
   return (
     <>
@@ -211,9 +208,9 @@ const Detail = () => {
           </button>
           <h3 className="font-bold text-lg text-gray-300">Public Review</h3>
           <div className="pb-12">
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div className="sm:col-span-6">
-                <div className="rating">
+            <div className="mt-10 flex flex-col">
+              <div className="sm:col-span-6 text-center	">
+                <div className="rating rating-lg">
                   {stars.map((star) => {
                     return (
                       <input
@@ -221,7 +218,7 @@ const Detail = () => {
                         type="radio"
                         value={star}
                         onChange={handlerNewReview}
-                        name='value'
+                        name="value"
                         className="mask mask-star-2 bg-orange-400"
                       />
                     );
@@ -236,16 +233,13 @@ const Detail = () => {
                   Comment
                 </label>
                 <div className="mt-2">
-                  <input
-                    type="text"
+                  <textarea
+                    placeholder="Review"
                     name="coment"
-                    id="name"
                     value={newReview.coment}
                     onChange={handlerNewReview}
-                    // value={brand.name}
-                    // onChange={handleBrand}
-                    className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
+                    className="textarea textarea-bordered textarea-xs w-[400px] max-w-xs"
+                  ></textarea>
                 </div>
               </div>
             </div>
