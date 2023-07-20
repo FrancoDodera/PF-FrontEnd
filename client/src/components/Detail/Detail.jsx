@@ -4,7 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { clearDetail, getCarById } from "../../redux/actions";
 import NavBar from "../navbar/NavBar";
 import style from "./Detail.module.css";
-import Contact from "../home/contact/Contact";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -12,6 +11,14 @@ const Detail = () => {
   const { id } = useParams();
   const car = useSelector((state) => state.carDetail);
   const [reviews, setReviews] = useState([]);
+  const [userDetails, setUserDetails] = useState({});
+  const [newReview, setNewReview] = useState({
+    id_user: null,
+    id_car: null,
+    coment: "",
+    value: 5,
+  });
+  const [showModal, setShowModal] = useState(false);
   const stars = [1, 2, 3, 4, 5];
   const { idCategory, idMarca } = car;
   const dispatch = useDispatch();
@@ -20,6 +27,7 @@ const Detail = () => {
     const { data } = await axios.get(`/reviews/getReview/${id_car}`);
     setReviews(data);
   };
+
 
   useEffect(() => {
     getReview(id);
@@ -30,6 +38,34 @@ const Detail = () => {
   }, []);
 
   const [loading, setLoading] = useState(true);
+
+
+  const showModalReview = () => {
+    setNewReview({
+      id_user: userDetails._id,
+      id_car: car._id,
+      coment: "",
+      value: 5,
+    });
+    setShowModal(true);
+  };
+  const handlerNewReview = (event) => {
+    const { name } = event.target;
+    const { value } = event.target;
+    setNewReview({
+      ...newReview,
+      [name]: value,
+    });
+  };
+  const closeModalReview = () => {
+    setShowModal(false);
+    setNewReview({
+      id_user: null,
+      id_car: null,
+      coment: "",
+      value: 5,
+    });
+  };
 
   const showPopup = () => {
     Swal.fire({
@@ -85,6 +121,68 @@ const Detail = () => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     showPopup();
   };
+  const handlerSubmitReview = async () => {
+    try {
+      const { data } = await axios.post("/reviews", newReview);
+      if (data.data) {
+        setReviews([...reviews, data.data]);
+        Swal.fire({
+          icon: "success",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 600,
+        });
+        closeModalReview();
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+  useEffect(() => {
+    getReview(id);
+    dispatch(getCarById(id));
+    const user = localStorage.getItem("user");
+    const admin = localStorage.getItem("admin");
+    let postData = {};
+    if (user) {
+      postData = {
+        user: user,
+      };
+    } else if (admin) {
+      postData = {
+        user: admin,
+      };
+    }
+
+    if (user || admin) {
+      axios
+        .post("https://pf-back.fly.dev/user/verifyUser", postData)
+        .then((response) => {
+          if (response.status === 202 && response.data) {
+            setUserDetails(response.data.data);
+          } else {
+            console.error("Error getting user account details");
+          }
+        })
+        .catch((error) => {
+          console.error("Error making the request:", error);
+        });
+    } else {
+      console.error("No user found in localStorage");
+    }
+    return () => {
+      dispatch(clearDetail());
+    };
+  }, []);
 
   return (
     <>
@@ -127,11 +225,75 @@ const Detail = () => {
               <button className={style.buttones} onClick={handleAddToCart}>
                 Add To Cart
               </button>
+              <button className={style.buttones} onClick={showModalReview}>
+                Add Review
+              </button>
             </div>
           </div>
         </div>
         )}
       </div>
+      <dialog
+        id="my_modal_3"
+        className={showModal ? "modal modal-open" : "modal"}
+      >
+        <form
+          method="dialog"
+          className="modal-box w-11/12 w-5xl h-auto"
+          onSubmit={handlerSubmitReview}
+        >
+          <button
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            type="button"
+            onClick={closeModalReview}
+          >
+            X
+          </button>
+          <h3 className="font-bold text-lg text-gray-300">Public Review</h3>
+          <div className="pb-12">
+            <div className="mt-10 flex flex-col">
+              <div className="sm:col-span-6 text-center	">
+                <div className="rating rating-lg">
+                  {stars.map((star) => {
+                    return (
+                      <input
+                        key={star}
+                        type="radio"
+                        value={star}
+                        onChange={handlerNewReview}
+                        name="value"
+                        className="mask mask-star-2 bg-orange-400"
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="sm:col-span-6">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium leading-6 text-gray-300"
+                >
+                  Comment
+                </label>
+                <div className="mt-2">
+                  <textarea
+                    placeholder="Review"
+                    name="coment"
+                    value={newReview.coment}
+                    onChange={handlerNewReview}
+                    className="textarea textarea-bordered textarea-xs w-[400px] max-w-xs"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-end ...">
+            <button type="submit" className="btn btn-success">
+              Save
+            </button>
+          </div>
+        </form>
+      </dialog>
       <div className={style.reviews}>
         <div className="collapse">
           <input type="checkbox" />
@@ -163,7 +325,7 @@ const Detail = () => {
                               name={`rating-${elem._id}`} // Asignar un nombre único basado en el ID del elemento
                               className="mask mask-star-2 bg-orange-400"
                               defaultChecked={star <= elem.value}
-                              disabled // Marcar solo el elemento con índice 1 como seleccionado (puedes adaptar esto según tus necesidades)
+                              disabled
                             />
                           );
                         })}
