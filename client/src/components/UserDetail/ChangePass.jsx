@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import style from "../UserDetail/UserDetail.module.css";
 
 const ChangePass = () =>{
-   const [dataPassword,setDataPassword] = useState({password:"",confirmPassword:""});
+   const [dataPassword,setDataPassword] = useState({password:"",confirmPassword:"",oldPassword:""});
     const [showChangePassword, setShowChangePassword] = useState(false);
 const [dataUser, setDataUser] = useState({});
 
@@ -27,22 +27,25 @@ const [dataUser, setDataUser] = useState({});
         const postData = 
           {
             id: dataUser._id,
-            name: "",
-            lastName:"",
-            email: "",
-            user: "",
-            password: dataPassword.password,
-            type: "",
-            image: "",
+           newPassword: dataPassword.password,
+            password: dataPassword.oldPassword,
           }
         ;
-        console.log(postData);
         try {
           const { data } = await axios.put(
-            "https://pf-back.fly.dev/user/upgrade",
+            "/user/changePassword",
             postData
           );
-          if (data) {
+          if (data.message) {
+            Swal.fire({
+              icon: "error",
+              title:data.message,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 500,
+            });
+           
+          } else {
             Swal.fire({
               icon: "success",
               title: "Updated User",
@@ -50,8 +53,6 @@ const [dataUser, setDataUser] = useState({});
               showConfirmButton: false,
               timer: 500,
             });
-          } else {
-            alert("Error changing account data");
           }
         } catch (error) {
           alert(error);
@@ -106,18 +107,25 @@ const [dataUser, setDataUser] = useState({});
 
 return(
  <div className={style.Userpassword}>
-  <h1>Change your Password here</h1>
+  <h1 className={style.Changepassword}>Change your Password:</h1>
              <h2 className={style.passwordselect}>
+             
               {showChangePassword ? (
             <>
+            <label>Old Password:</label>
+            <input type="password" placeholder="Old Password" value={dataPassword.oldPassword} name="oldPassword" className={style.campo} onChange={handlePwdChange}/>
+            <label>New Password:</label>
             <input type="password" placeholder="New Password" value={dataPassword.password} name="password" className={style.campo} onChange={handlePwdChange}/>
+            <label>Confirm Password:</label>
               <input type="password" placeholder="Confirm Password" value={dataPassword.confirmPassword} name="confirmPassword" className={style.campo} onChange={handlePwdChange}/>
-              <button className={style.cancelbutton} onClick={toggleChangePassword}>
+              <div className={style.buttonspass}>
+              <button className={style.cancelbutton2} onClick={toggleChangePassword}>
                 Cancel
               </button>
-              <button className={style.submitbutton} onClick={handleSubmit}>
+              <button  className={style.submitbutton2} onClick={handleSubmit}>
                 Save Changes
               </button>
+              </div>
             </>
           ) : (
             <button className={style.databutton} onClick={toggleChangePassword}>
