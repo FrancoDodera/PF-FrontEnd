@@ -112,17 +112,17 @@ return(
              
               {showChangePassword ? (
             <>
-            <label>Old Password:</label>
-            <input type="password" placeholder="Old Password" value={dataPassword.oldPassword} name="oldPassword" className={style.campo} onChange={handlePwdChange}/>
-            <label>New Password:</label>
-            <input type="password" placeholder="New Password" value={dataPassword.password} name="password" className={style.campo} onChange={handlePwdChange}/>
-            <label>Confirm Password:</label>
+            <label className={style.labpass}>Old Password:</label>
+            <input type="password" placeholder="Old Password" value={dataPassword.oldPassword} name="oldPassword" className={style.campo2} onChange={handlePwdChange}/>
+            <label  className={style.labpass}>New Password:</label>
+            <input type="password" placeholder="New Password" value={dataPassword.password} name="password" className={style.campo2} onChange={handlePwdChange}/>
+            <label  className={style.labpass}>Confirm Password:</label>
               <input type="password" placeholder="Confirm Password" value={dataPassword.confirmPassword} name="confirmPassword" className={style.campo} onChange={handlePwdChange}/>
               <div className={style.buttonspass}>
-              <button className={style.cancelbutton2} onClick={toggleChangePassword}>
+              <button className={style.cancelbutton} onClick={toggleChangePassword}>
                 Cancel
               </button>
-              <button  className={style.submitbutton2} onClick={handleSubmit}>
+              <button  className={style.submitbutton} onClick={handleSubmit}>
                 Save Changes
               </button>
               </div>
