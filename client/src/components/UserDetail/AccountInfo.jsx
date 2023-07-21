@@ -190,6 +190,16 @@ const AccountInfo = () => {
           )}
         </div>
       </div>
+      <div className={style.img}>
+        <h2 className={style.archivoselect}>
+          {showChangePassword ? "Change Profile Picture" : ""}
+        </h2>
+        {showChangePassword && (
+          <div className={style.input2}>
+            <input type="file" onChange={handleImageChange} />
+          </div>
+        )}
+      </div>
       <div className={style.Userpassword}>
         <h2 className={style.passwordselect}>
           {showChangePassword ? (
@@ -211,16 +221,7 @@ const AccountInfo = () => {
           )}
         </h2>
       </div>
-      <div className={style.img}>
-        <h2 className={style.archivoselect}>
-          {showChangePassword ? "Change Profile Picture" : ""}
-        </h2>
-        {showChangePassword && (
-          <div className={style.input2}>
-            <input type="file" onChange={handleImageChange} />
-          </div>
-        )}
-      </div>
+      
     </div>
   );
 };

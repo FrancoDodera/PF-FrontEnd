@@ -13,6 +13,7 @@ grid-template-columns: 1fr 1fr;
 }
 
 .labels{
+    margin-bottom: 24px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -90,13 +91,23 @@ text-align:left;
     font-size: 25px;
 }
 .campo{
-    margin-left: 15px;
     font-weight: bold;
-    align-items: left;
+    background: none;
+    text-align:left;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 2px 3px 5px rgb(0, 0, 0);
+    color: black;
+}
+.campo2{
+    margin-right: 100px;
+   margin-bottom: 10px;
+    font-weight: bold;
     background: none;
     text-align:left;
     border-radius: 6px;
     outline: 2px solid #004d36;
+    color: black;
 }
 
 .Userpassword{
@@ -117,20 +128,24 @@ text-align:left;
 .passwordselect{
     padding: auto;
     display: grid;
-    grid-template-columns: 1fr;
- padding: 12px;
+    grid-template-columns: 1fr 1fr;
+    padding: 12px;
 font-weight: bold;
 font-size: 25px;
 color: #ffffff;
 text-shadow: 3px 3px 4px rgb(0, 0, 0);
 }
+.labpass{
+margin-left: 200px;
+}
 
 .buttonspass{
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 5fr 5fr;
 }
 
-.cancelbutton2{ 
+.cancelbutton{ 
     margin-top: 20px;
     margin-left: 600px;
     width: 90px;
@@ -138,58 +153,63 @@ background-color: rgb(182, 0, 0);
 color: aliceblue;
 border-radius: 5px;
 }
-.cancelbutton2:hover{
+.cancelbutton:hover{
     border-radius: 5px;
     background-color:rgb(255, 0, 0);
 }
-.submitbutton2{
-    margin-top: 20px;
-   width: 150px;
-background-color: rgb(0, 141, 108);
-color: aliceblue;
-border-radius: 5px;
-}
-
-.submitbutton2:hover{
-    border-radius: 5px;
-    background-color:rgb(0, 195, 150);
-}
-
-.cancelbutton{
-    width: 90px;
-background-color: rgb(255, 0, 0);
-color: aliceblue;
-border-radius: 5px;
-margin-right: 20px;
-}
-.cancelbutton:hover{
-    border-radius: 5px;
-    background-color:rgb(188, 0, 0);
-}
 .submitbutton{
-   width: 150px;
-background-color: rgb(0, 172, 132);
+    margin-top: 20px;
+   width: 200px;
+background-color: rgb(0, 141, 108);
 color: aliceblue;
 border-radius: 5px;
 }
 
 .submitbutton:hover{
     border-radius: 5px;
-    background-color:rgb(0, 129, 99);
+    background-color:rgb(0, 195, 150);
+}
+
+.cancelbutton{ 
+    margin-top: 20px;
+    margin-left: 700px;
+    height: 50px;
+    margin-right: 15px;
+    width: 90px;
+background-color: rgb(182, 0, 0);
+color: aliceblue;
+border-radius: 5px;
+}
+.cancelbutton:hover{
+    border-radius: 5px;
+    background-color:rgb(255, 0, 0);
+}
+.submitbutton{
+    height: 50px;
+    margin-top: 20px;
+   width: 200px;
+background-color: rgb(0, 141, 108);
+color: aliceblue;
+border-radius: 5px;
+}
+
+.submitbutton:hover{
+    border-radius: 5px;
+    background-color:rgb(0, 178, 137);
 }
 
 
-
 .databutton{
+    margin-top: 20px;
+    margin-left: 620px;
     height: 40px;
-    width: 200px;
+    width: 300px;
     border-radius: 10px;
     background-color:rgb(0, 144, 110);
     color: aliceblue;
 }
 
 .databutton:hover{
-    width: 200px;
     border-radius: 10px;
     background-color:rgb(0, 176, 135)
 }
@@ -219,15 +239,26 @@ border-radius: 5px;
 
 }
 .img{
+    margin-left: 200px;
     align-items:center;
     text-align: center;
 }
 .archivoselect{
+    margin-left: 450px;
+    width: 400px;
+    border-radius: 10px;
+    background-color:rgb(0, 144, 110);
+    color: aliceblue;
+    margin-top: 20px;
     align-items:center;
-    text-align: center;
+text-align: center;
+font-size: 30px;
+ font-weight: bold;
 }
 .input2{
-    margin-top: 10px;
+    margin-left:50px;
+    font-size: 20px;
+    margin-top: 20px;
     align-items:center;
     text-align: center;
      font-weight: bold;
@@ -237,10 +268,3 @@ border-radius: 5px;
     text-align: center;
 }
 
-.archivoselect{
-    margin-top: 10px;
-    align-items:center;
-text-align: center;
-font-size: 22px;
- font-weight: bold;
-}
