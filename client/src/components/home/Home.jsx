@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../navbar/NavBar";
 import "./home.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCars } from "../../redux/actions";
+import { getAllCars, getAllFavs } from "../../redux/actions";
 import SellYourCar from "./sellYourCar/SellYourCar";
 import Recommended from "./recommended/Recommended";
 import Find from "./find/Find";
@@ -10,15 +10,15 @@ import AboutUS from "./aboutUS/AboutUS";
 import Contact from "./contact/Contact";
 import CookieBanner from "../../components/CookiesBanner/Cookies";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
   const dispatch = useDispatch();
   const cars = useSelector((state) => state.auxCars);
   const [loading, setLoading] = useState(true);
-
-
+  
   useEffect(() => {
-    if (cars.length === 0) {
+    if (cars.length == 0) {
       dispatch(getAllCars())
         .then(() => setLoading(false))
         .catch((error) => {
@@ -28,8 +28,36 @@ const Home = () => {
     } else {
       setLoading(false);
     }
-  }, [cars, dispatch]);
-
+      const user = localStorage.getItem("user");
+      const admin = localStorage.getItem("admin");
+      let postData = {};
+      if (user) {
+        postData = {
+          user: user,
+        };
+      } else if (admin) {
+        postData = {
+          user: admin,
+        };
+      }
+      if (user || admin) {
+        axios
+          .post("https://pf-back.fly.dev/user/verifyUser", postData)
+          .then((response) => {
+            if (response.status === 202 && response.data) {
+              dispatch(getAllFavs(response.data.data._id));
+            } else {
+              console.error("Error getting user account details");
+            }
+          })
+          .catch((error) => {
+            console.error("Error making the request:", error);
+          });
+      } else {
+        console.error("No user found in localStorage");
+      }
+      
+    },[cars,dispatch])
 
   return (
     <div className="Home_container">

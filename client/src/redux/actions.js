@@ -23,6 +23,10 @@ import {
   DELETECAR,
   UPDATECAR,
   GETALLSALES,
+  ADDFAV,
+  REMOVEFAV,
+  GETALLFAVS,
+  CLEARFAV,
 } from "./actionsType";
 
 // ACA VAN TODAS LAS ACTIONS
@@ -86,9 +90,8 @@ export const createCar = (body) => {
           payload: data.data,
         });
       }
-      
     } catch (error) {
-      alert("error"+error);
+      alert("error" + error);
     }
   };
 };
@@ -110,7 +113,6 @@ export const updateCar = (body) => {
           payload: data.data,
         });
       }
-      
     } catch (error) {
       alert(error);
     }
@@ -449,7 +451,6 @@ export const enableUser = (id) => {
   };
 };
 
-
 //SALES
 
 export const getAllSales = () => {
@@ -463,5 +464,77 @@ export const getAllSales = () => {
     } catch (error) {
       alert(error.response.data.error);
     }
+  };
+};
+
+//FAVORITES
+
+export const addFav = (iduser, idcar) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post("/favorites", {
+        id_user: iduser,
+        id_car: idcar,
+      });
+      if (data.message) {
+        Swal.fire({
+          icon: "success",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+        return dispatch({
+          type: ADDFAV,
+          payload: data.data,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const removeFav = (id_user, id_car) => {
+  return async (dispatch) => {
+    try {
+      const body = { id_user, id_car };
+      const { data } = await axios.post("/favorites/delete", body);
+      if (data.deleted) {
+        Swal.fire({
+          icon: "success",
+          title: data.message,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 500,
+        });
+        return dispatch({
+          type: REMOVEFAV,
+          payload: id_car,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const getAllFavs = (id) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`/favorites/${id}`);
+      return dispatch({
+        type: GETALLFAVS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const clearFavs = () => {
+  return {
+    type: CLEARFAV,
   };
 };
