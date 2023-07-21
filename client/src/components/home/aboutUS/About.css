@@ -1,9 +1,38 @@
+.wrapper {
+  position: relative;
+  height: 500px;
+  width: 1000px;
+  perspective: 1000px;
+}
+.wrapper .flip-card {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: #016565;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+}
+.wrapper:hover .flip-card {
+  transform: rotateY(180deg);
+}
+.flip-card .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: #016565;
+  border-top: 2px solid #016565a6;
+  border-left: 2px solid #016565a6;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  backface-visibility: hidden;
+  position: absolute;
+}
 .container_about {
   height: 500px;
   flex-shrink: 0;
   background: #016565;
   display: flex;
-
   align-items: center;
   flex-direction: column;
   color: white;
@@ -16,81 +45,131 @@
   text-align: center;
   margin-top: 20px;
 }
-.container_secondLayer {
-  border-radius: 10px;
-  background-color:#D8EBEF;
-  width: 1200px;
-  position: absolute;
-  top: 350px;
-  left: 50px;
-  z-index: 1;
-  height: 700px;
+.card span.circle,
+.card span.square {
+  height: 110px;
+  width: 110px;
+  border: 10px solid #4d2600;
 }
-
-.container_all {
+.card span.circle {
+  border-radius: 50%;
+}
+.card span.triangle {
   position: relative;
-  margin-top: 150px;
-  align-items: center;
-  justify-content: center;
+  height: 0;
+  width: 0;
+  border-right: 60px solid transparent;
+  border-left: 60px solid transparent;
+  border-bottom: 110px solid #4d2600;
+  margin-right: 16px;
 }
-.container_all img {
-  width: 300px;
+.card span.triangle::before {
+  content: "";
   position: absolute;
-  top: -140px;
-  left: 530px;
-  z-index: 1;
+  height: 0;
+  width: 0;
+  left: -40px;
+  top: 20px;
+  border-right: 40px solid transparent;
+  border-left: 40px solid transparent;
+  border-bottom: 80px solid #d48600;
 }
-.container_info {
+.back.card {
+  transform: rotateY(180deg);
   display: flex;
-  justify-content: center;
-  justify-content: space-evenly;
-  margin-top: 120px;
 }
-.container_info .p {
-  text-align: center;
-  font-size: xx-large;
-  font-weight: 700;
-}
-.container_info p {
-  text-align: center;
-  font-size: medium;
-  font-weight: 500;
-}
-.box img {
+.back.card .home-logo {
   position: relative;
-  width: 30px;
-  left: 0;
-  top: 0;
-  
+  height: 65px;
+  width: 65px;
+  border: 5px solid #4d2600;
+  border-radius: 50%;
+  margin-right: 16px;
 }
-.box {
+.home-logo .icon {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(6px);
+  display: inline-block;
+  height: 15px;
+  width: 25px;
+  background: #4d2600;
+}
+.home-logo .icon::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  height: 25px;
+  width: 25px;
+  background: #4d2600;
+  transform: rotate(45deg);
+}
+.cards-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 130px;
-  width: 250px;
   flex-wrap: wrap;
-  background-color: #016565;
-  color: white;
-  flex-direction: column;
-}
-.prueba {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-}
-.box p {
-  margin-top: 10px;
-  font-size: large;
-}
-.out {
-    margin-top: 250px;
-  width: 100%;
-  height: 100px;
-  display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 35px 50px; /* Adjust the gap to reduce space between cards */
+  max-width: 900px;
+}
+.cards {
+  flex: 1 1 calc(50% - 1px); /* Adjust the width of each card to fit 4 in a row */
+  max-width: calc(25% - 60px);
+  background: #07182e;
+  border-radius: 0.366vw;
+  color: #f0f0f0;
+  font-family: Fira Code, monospace;
+  height: 12em;
+  width: 20em;
+  text-align: center;
+  z-index: 1;
+}
+.cards img {
+  align-items: center;
+  background-color: #07182e;
+  border: 0.5px solid #f0f0f0;
+  display: flex;
+  font-size: 11px;
+  height: 60px;
+  width: 60px;
+  justify-content: center;
+  margin: 12px auto 7px;
+  transition: all 0.5s;
+  z-index: 99;
+  position: relative;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+  overflow: hidden;
+  user-select: none;
+}
+.icon-container {
+  opacity: 0; /* Inicialmente los iconos están ocultos */
+  transform: translateY(
+    20px
+  ); /* Mover los iconos hacia abajo para dar un efecto de aparición */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transiciones para un efecto gradual */
 }
 
-.box:hover{
-    background-color: #e1a2a2;
+/* Estilo para mostrar los iconos cuando el componente está en hover */
+.cards:hover .icon-container.visible {
+  opacity: 1; /* Mostrar los iconos */
+  transform: translateY(0); /* Volver a la posición original */
+}
+
+/* Estilo para los botones de los iconos */
+.icon-button {
+  background: none; /* Eliminar el fondo */
+  border: none; /* Eliminar el borde */
+  color: #f0f0f0; /* Color del icono */
+  cursor: pointer;
+  font-size: 30px;
+  margin-right: 10px;
+  outline: none; /* Eliminar el contorno al hacer clic */
 }

@@ -4,7 +4,7 @@
   font-family: "Inter var", sans-serif;
 }
 
-.Home_container{
+.Home_container {
   background-color: rgba(246, 251, 251, 0.966);
 }
 
@@ -37,4 +37,8 @@
   height: 190px;
   margin-top: 25px;
   justify-content: space-around;
+}
+.aboutus {
+  display: flex;
+  justify-content: center;
 }
