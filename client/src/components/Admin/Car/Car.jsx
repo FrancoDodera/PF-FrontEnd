@@ -34,9 +34,34 @@ const Car = () => {
     image: "",
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const getCurrentItems = () => {
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    return cars.slice(indexOfFirstItem, indexOfLastItem);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    const totalPages = Math.ceil(cars.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   const [showModal, setShowModal] = useState(false);
-  
-  
+
   const uploadImage = async (file) => {
     const data = new FormData();
     data.append("file", file);
@@ -48,22 +73,22 @@ const Car = () => {
           method: "POST",
           body: data,
         }
-        );
-        if (res.ok) {
-          const file = await res.json();
-          return file.secure_url;
-        } else {
-          return "";
-        }
-      } catch (error) {
-        alert(error);
+      );
+      if (res.ok) {
+        const file = await res.json();
+        return file.secure_url;
+      } else {
+        return "";
       }
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const [nameError, setNameError] = useState("");
-  
+
   const [transmissionError, setTransmissionError] = useState(false);
-  
+
   const [amountError, setAmountError] = useState("");
 
   const [ageError, setAgeError] = useState("");
@@ -71,7 +96,7 @@ const Car = () => {
   const [descriptionError, setDescriptionError] = useState(false);
 
   const [priceError, setPriceError] = useState(false);
-  
+
   const handleCar = (event) => {
     const { name, value } = event.target;
     setCar({ ...car, [event.target.name]: value });
@@ -87,8 +112,8 @@ const Car = () => {
       validateAge(Number(value));
     } else if (name === "price") {
       validatePrice(Number(value));
+    }
   };
-};
 
   const validateDescription = (value) => {
     if (value === "") {
@@ -104,8 +129,8 @@ const Car = () => {
     } else {
       setPriceError("");
     }
-  }
-  
+  };
+
   const validateAge = (value) => {
     if (value === 0) {
       setAgeError("The age field cannot be zero");
@@ -120,7 +145,7 @@ const Car = () => {
     } else {
       setAmountError("");
     }
-  }
+  };
 
   const validateTransmission = (value) => {
     if (value === "") {
@@ -267,7 +292,27 @@ const Car = () => {
             Create Car
           </button>
         </div>
-
+        <div className="flex justify-between p-8 text-gray-300">
+          <button className="btn" onClick={handlePrevPage}>
+            Previous
+          </button>
+          {Array.from({ length: Math.ceil(cars.length / itemsPerPage) }).map(
+            (item, index) => (
+              <button
+                key={index}
+                className={`btn ${
+                  currentPage === index + 1 ? "btn-active" : ""
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            )
+          )}
+          <button className="btn" onClick={handleNextPage}>
+            Next
+          </button>
+        </div>
         <dialog
           id="my_modal_5"
           className={showModal ? "modal modal-open" : "modal"}
@@ -330,7 +375,9 @@ const Car = () => {
                     />
                   </div>
                   {transmissionError && (
-                    <span className="text-red-500 text-sm">{transmissionError}</span>
+                    <span className="text-red-500 text-sm">
+                      {transmissionError}
+                    </span>
                   )}
                 </div>
                 <div className="sm:col-span-2">
@@ -372,7 +419,9 @@ const Car = () => {
                     />
                   </div>
                   {descriptionError && (
-                    <span className="text-red-500 text-sm">{descriptionError}</span>
+                    <span className="text-red-500 text-sm">
+                      {descriptionError}
+                    </span>
                   )}
                 </div>
                 <div className="sm:col-span-2">
@@ -584,7 +633,7 @@ const Car = () => {
             </tr>
           </thead>
           <tbody>
-            {cars?.map((car, index) => {
+            {getCurrentItems().map((car, index) => {
               return (
                 <tr key={car._id}>
                   <th>{index + 1}</th>
