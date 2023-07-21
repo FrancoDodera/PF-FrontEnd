@@ -9,15 +9,25 @@ import Find from "./find/Find";
 import AboutUS from "./aboutUS/AboutUS";
 import Contact from "./contact/Contact";
 import CookieBanner from "../../components/CookiesBanner/Cookies";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+
 const Home = () => {
   const dispatch = useDispatch();
   const cars = useSelector((state) => state.auxCars);
-
+  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     if (cars.length == 0) {
-      dispatch(getAllCars());
+      dispatch(getAllCars())
+        .then(() => setLoading(false))
+        .catch((error) => {
+          setLoading(false);
+          console.error("Error loading cars:", error);
+        });
+    } else {
+      setLoading(false);
+    }
       const user = localStorage.getItem("user");
       const admin = localStorage.getItem("admin");
       let postData = {};
@@ -46,8 +56,9 @@ const Home = () => {
       } else {
         console.error("No user found in localStorage");
       }
-    }
-  }, []);
+      
+    },[cars,dispatch])
+
   return (
     <div className="Home_container">
       <NavBar />
@@ -62,16 +73,24 @@ const Home = () => {
         <SellYourCar />
         <CookieBanner />
       </div>
-      <Recommended />
-      <div className="aboutus">
-        <AboutUS />
-      </div>
-      <div className="contact">
-        {" "}
-        <Contact />
-      </div>
+      {loading ? (
+        <div className="loadingContainer">
+          <span className="loading loading-ring loading-lg"></span>
+        </div>
+      ) : (
+        <>
+          <Recommended />
+          <div className="aboutus">
+            <AboutUS />
+          </div>
+          <div className="contact">
+            <Contact />
+          </div>
+        </>
+      )}
     </div>
   );
 };
 
 export default Home;
+

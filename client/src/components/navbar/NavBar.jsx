@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import cart from "../../img/cart.png";
 import { clearFavs } from "../../redux/actions";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -58,7 +59,29 @@ const NavBar = () => {
     }
   };
 
-  const logOut = () => {
+  const logOut = async() => {
+        let body={};
+        const user = localStorage.getItem("user");
+        const admin = localStorage.getItem("admin");
+        const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        let postData = {};
+        if (user) {
+          postData = {
+            user: user,
+          };
+        } else if (admin) {
+          postData = {
+            user: admin,
+          };
+        }
+        if (user || admin) {
+          const {data}=await axios.post('/user/verifyUser',postData)
+          body={sale:{id_user:data.data._id,description:'in cart',date:new Date().toISOString(),total:totalPrice},detailSale:savedCartItems}
+          await axios.post('/sale',body);
+        } else {
+          console.error("No user found in localStorage");
+        }
+      
     localStorage.clear();
     dispatch(clearFavs());
     navigate("/login");

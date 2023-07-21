@@ -45,6 +45,10 @@ const Login = () => {
           localStorage.setItem('profileUrl',data.data.image);
           navigate('/admin')
         }
+        const getCartItems=await axios.get(`/sale/${data.data._id}`)
+        if(getCartItems.data.length>0){
+          localStorage.setItem("cartItems", JSON.stringify(getCartItems.data));
+        }
       }else{
         Swal.fire({
           icon: 'error',

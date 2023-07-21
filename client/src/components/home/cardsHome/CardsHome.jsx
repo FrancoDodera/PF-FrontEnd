@@ -4,10 +4,11 @@ import CardHome from "../cardHome/CardHome";
 import {useSelector } from "react-redux";
 
 const CardsHome = () => { 
-  const cars = useSelector((state) => state.auxCars);
+  const cars = useSelector((state) => state.allCars);
+  const carsRecomended=cars.filter((elem)=>elem.mediaReviews >= 3 && elem.active==true)
   return (
     <div className="cardsHome_container">
-      {cars?.map(({ name, idCategory,idMarca, image, _id, price, age,status }) => (
+      {carsRecomended?.map(({ name, idCategory,idMarca, image, _id, price, age,status,mediaReviews }) => (
         <CardHome
           key={_id}
           id={_id}
@@ -18,6 +19,7 @@ const CardsHome = () => {
           price={price}
           age={age}
           status={status}
+          mediaReviews={mediaReviews}
         />
       ))}
     </div>

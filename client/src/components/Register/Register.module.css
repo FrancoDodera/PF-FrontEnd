@@ -1,4 +1,4 @@
-.container {
+.containers {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,12 +9,14 @@
   background-color: #ffffff;
   border-radius: 3px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  width: 900px;
+  width: 90%; /* Cambiamos el ancho a 90% para hacerlo responsive */
+  max-width: 900px; /* Agregamos un ancho máximo para que no se desborde en pantallas grandes */
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 500px;
+  height: auto; /* Cambiamos la altura a 'auto' para adaptarse al contenido */
   justify-content: center;
+  padding: 20px; /* Agregamos un espacio interno para mejorar el aspecto */
 }
 
 .container2 h1 {
@@ -22,10 +24,13 @@
   text-align: center;
   color: #000000;
 }
-.form{
-  width: 900px;
-  height: 400px;
+
+.form {
+  width: 90%; /* Cambiamos el ancho a 90% para hacerlo responsive */
+  max-width: 900px; /* Agregamos un ancho máximo para que no se desborde en pantallas grandes */
+  height: auto; /* Cambiamos la altura a 'auto' para adaptarse al contenido */
 }
+
 .botonnn {
   display: flex;
   align-items: center;
@@ -36,15 +41,19 @@
 
 .container2 button {
   padding: 8px 16px;
-  background-color: #007bff;
+  background-color: #016565f7;
   color: #ffffff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
   width: 50%;
+  max-width: 200px; /* Agregamos un ancho máximo para que no se desborde en pantallas pequeñas */
   margin-bottom: 30px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.container2 button:hover{
+  background: #e1aca2;
 }
 
 .container2 button:disabled {
@@ -79,14 +88,16 @@ form {
   flex-direction: column;
   display: flex;
   justify-content: center;
-  width: 600px;
-  height: 200px;
+  width: 90%; /* Cambiamos el ancho a 90% para hacerlo responsive */
+  max-width: 600px; /* Agregamos un ancho máximo para que no se desborde en pantallas grandes */
   color: #000000;
   align-items: center;
+  margin: 20px auto; /* Centramos el formulario dentro del contenedor */
 }
 
 form input {
-  width: 150px;
+  width: 100%; /* Cambiamos el ancho a 100% para ocupar todo el espacio disponible */
+  max-width: 250px; /* Agregamos un ancho máximo para que no se desborde en pantallas pequeñas */
   height: 20px;
   display: flex;
   justify-content: center;
@@ -101,9 +112,7 @@ form input {
 form label {
   font-size: 14px;
 }
-form input:focus {
-  decoration: none;
-}
+
 .formcito {
   display: flex;
   flex-direction: column;
@@ -112,39 +121,54 @@ form input:focus {
 }
 
 .formcito2 {
-  width: 250px;
+  width: 100%; /* Cambiamos el ancho a 100% para ocupar todo el espacio disponible */
   height: 160px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   margin-bottom: 10px;
 }
+
 .inputContainerName {
   display: flex;
-  width: 400px;
+  width: 100%; /* Cambiamos el ancho a 100% para ocupar todo el espacio disponible */
   align-items: center;
   justify-content: center;
   height: 50px;
 }
-.inputContainerName input{
-  width: 250px;
+
+.inputContainerName input {
+  width: 100%; /* Cambiamos el ancho a 100% para ocupar todo el espacio disponible */
   padding: 15px;
 }
-.inputContainerName label{
-  width: 150px;
+
+.inputContainerName label {
+  width: 100%; /* Cambiamos el ancho a 100% para ocupar todo el espacio disponible */
   text-align: center;
   font-weight: bold;
 }
+
 .formcito3 {
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   height: 200px;
 }
 
-.errorMsg{
+.errorMsg {
   margin: 0;
   color: red;
-  width: 400px;
+  width: 100%; /* Cambiamos el ancho a 100% para ocupar todo el espacio disponible */
   text-align: end;
+}
+@media (max-width: 400px) {
+  .formcito3{
+    flex-direction: column
+  }
+  .container2{
+    height: 100vh;
+  }
+  .botonnn{
+    margin-top: 200px;
+  }
 }

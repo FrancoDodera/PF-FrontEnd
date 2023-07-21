@@ -23,10 +23,9 @@ const Purchases = () => {
         postData
       );
       const response = await axios.get(
-        `https://pf-back.fly.dev/sale/${data.data._id}`
+        `https://pf-back.fly.dev/sale/user/${data.data._id}`
       );
       if (response.status === 200) {
-        console.log(response.data);
         setCustomerPurchases(response.data);
       } else {
         console.error("Error al obtener las compras del cliente");
@@ -49,6 +48,7 @@ const Purchases = () => {
               <th className="px-4 py-2">N°</th>
               <th className="px-4 py-2">ID Purchase</th>
               <th className="px-4 py-2">Date</th>
+              <th className="px-4 py-2">Status</th>
               <th className="px-4 py-2">Total</th>
             </tr>
           </thead>
@@ -58,6 +58,7 @@ const Purchases = () => {
                 <td className="border px-4 py-2">{index+1}</td>
                 <td className="border px-4 py-2">{sale._id}</td>
                 <td className="border px-4 py-2">{sale.date}</td>
+                <td className="border px-4 py-2">{sale.description}</td>
                 <td className="border px-4 py-2">{sale.total}</td>
               </tr>
             ))}
