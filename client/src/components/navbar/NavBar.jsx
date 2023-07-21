@@ -5,6 +5,8 @@ import guestUser from "../../img/guestUser.png";
 import "./NavBar.css";
 import { useLocation } from "react-router-dom";
 import cart from "../../img/cart.png";
+import { clearFavs } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -14,6 +16,7 @@ const NavBar = () => {
   const profileUrl = localStorage.getItem("profileUrl");
   const cartRef = useRef(null);
   const menuRef = useRef(null);
+  const dispatch = useDispatch();
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.totalPrice,
     0
@@ -57,6 +60,7 @@ const NavBar = () => {
 
   const logOut = () => {
     localStorage.clear();
+    dispatch(clearFavs());
     navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };

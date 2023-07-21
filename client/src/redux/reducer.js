@@ -24,6 +24,8 @@ import {
   DELETECAR,
   ADDFAV,
   REMOVEFAV,
+  GETALLFAVS,
+  CLEARFAV,
 } from "./actionsType";
 
 const initialState = {
@@ -226,7 +228,19 @@ const reducer = (state = initialState, actions) => {
     case REMOVEFAV:
       return {
         ...state,
-        favorites: state.favorites.filter((car) => car._id !== actions.payload),
+        favorites: state.favorites.filter(
+          (favorite) => favorite.id_car._id !== actions.payload
+        ),
+      };
+    case GETALLFAVS:
+      return {
+        ...state,
+        favorites: actions.payload,
+      };
+    case CLEARFAV:
+      return {
+        ...state,
+        favorites: [],
       };
     default:
       return { ...state };

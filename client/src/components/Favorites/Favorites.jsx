@@ -1,20 +1,66 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "../navbar/NavBar";
-import Filters from "../filters/Filters";
 import style from "./Favorites.module.css";
-import Card from "../Card/Card";
-import { useSelector } from "react-redux";
+import CardFavorites from "../CardFavorite/CardFavorite";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { getAllFavs } from "../../redux/actions";
 
 const Favorites = () => {
+  const dispatch = useDispatch();
   const favs = useSelector((state) => state.favorites);
 
+  useEffect(() => {
+    if (favs.length == 0) {
+      const user = localStorage.getItem("user");
+      const admin = localStorage.getItem("admin");
+      let postData = {};
+      if (user) {
+        postData = {
+          user: user,
+        };
+      } else if (admin) {
+        postData = {
+          user: admin,
+        };
+      }
+      if (user || admin) {
+        axios
+          .post("https://pf-back.fly.dev/user/verifyUser", postData)
+          .then((response) => {
+            if (response.status === 202 && response.data) {
+              dispatch(getAllFavs(response.data.data._id));
+            } else {
+              console.error("Error getting user account details");
+            }
+          })
+          .catch((error) => {
+            console.error("Error making the request:", error);
+          });
+      } else {
+        console.error("No user found in localStorage");
+      }
+    }
+  }, []);
   return (
     <div className={style.divContainer}>
       <NavBar />
       <div className={style.container}>
-        <Filters />
         {favs.map((fav) => {
-          return <Card key={fav.id} {...fav} />;
+          return (
+            <CardFavorites
+              key={fav.id_favorite}
+              id={fav.id_car._id}
+              name={fav.id_car.name}
+              image={fav.id_car.image}
+              price={fav.id_car.price}
+              age={fav.id_car.age}
+              status={fav.id_car.status}
+              category={fav.id_car.category}
+              brand={fav.id_car.brand}
+              description={fav.id_car.description}
+            />
+          );
         })}
       </div>
       <div className="contactMore">

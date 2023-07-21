@@ -6,13 +6,46 @@ import style from "./Carsforsale.module.css";
 import noCarimg from "../../img/nohayautos.png";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getAllCars } from "../../redux/actions";
+import { getAllCars, getAllFavs } from "../../redux/actions";
+import axios from "axios";
 
 const Carsforsale = (props) => {
   const dispatch = useDispatch();
   const allCars = useSelector((state) => state.auxCars);
-  const carsActive=allCars.filter((elem=>elem.active==true));
+  const carsActive = allCars.filter((elem) => elem.active == true);
+  const favorites = useSelector((state) => state.favorites);
+
   useEffect(() => {
+    if (favorites.length == 0) {
+      const user = localStorage.getItem("user");
+      const admin = localStorage.getItem("admin");
+      let postData = {};
+      if (user) {
+        postData = {
+          user: user,
+        };
+      } else if (admin) {
+        postData = {
+          user: admin,
+        };
+      }
+      if (user || admin) {
+        axios
+          .post("https://pf-back.fly.dev/user/verifyUser", postData)
+          .then((response) => {
+            if (response.status === 202 && response.data) {
+              dispatch(getAllFavs(response.data.data._id));
+            } else {
+              console.error("Error getting user account details");
+            }
+          })
+          .catch((error) => {
+            console.error("Error making the request:", error);
+          });
+      } else {
+        console.error("No user found in localStorage");
+      }
+    }
     if (allCars.length === 0) {
       dispatch(getAllCars());
     }

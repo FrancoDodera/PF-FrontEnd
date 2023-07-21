@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
+import axios from "axios";
 
 const Card = (props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -13,12 +14,39 @@ const Card = (props) => {
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
-    if (fav) {
-      setFav(false);
-      dispatch(removeFav(props.id));
+    const user = localStorage.getItem("user");
+    const admin = localStorage.getItem("admin");
+    let postData = {};
+    if (user) {
+      postData = {
+        user: user,
+      };
+    } else if (admin) {
+      postData = {
+        user: admin,
+      };
+    }
+    if (user || admin) {
+      axios
+        .post("https://pf-back.fly.dev/user/verifyUser", postData)
+        .then((response) => {
+          if (response.status === 202 && response.data) {
+            if (fav) {
+              setFav(false);
+              dispatch(removeFav(response.data.data._id, props.id));
+            } else {
+              setFav(true);
+              dispatch(addFav(response.data.data._id, props.id));
+            }
+          } else {
+            console.error("Error getting user account details");
+          }
+        })
+        .catch((error) => {
+          console.error("Error making the request:", error);
+        });
     } else {
-      setFav(true);
-      dispatch(addFav(props));
+      console.error("No user found in localStorage");
     }
   };
 
@@ -58,11 +86,12 @@ const Card = (props) => {
 
   useEffect(() => {
     favorites.forEach((fav) => {
-      if (fav.id == props.id) {
+      if (fav.id_car._id == props.id) {
         setFav(true);
       }
     });
   }, [favorites]);
+
   return (
     <div className={style.container}>
       {fav ? (
