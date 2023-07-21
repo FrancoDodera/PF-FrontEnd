@@ -13,6 +13,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const AboutUS = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -22,12 +23,21 @@ const AboutUS = () => {
     setIsHovered(false);
   };
 
+  const handleMoreInformation = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  const handleBackClick = () => {
+    setIsFlipped(false);
+  };
   return (
     <div className="wrapper">
-      <div className="flip-card">
+      <div className={`flip-card ${isFlipped ? "flipped" : ""}`}>
+        {/* Front side - Initial Information */}
         <div className="front card">
-          <div className=".container_about">
-            <img src={car} alt="" />
+          <div className="container_about">
+            <button onClick={handleMoreInformation}>More Information!</button>
+            <img src={car} alt="" className="car-image" />
             <p>
               At carGo, we're passionate about revolutionizing the way you buy
               and sell cars. As an innovative e-commerce platform, we connect
@@ -36,12 +46,97 @@ const AboutUS = () => {
               convenient online marketplace where you can find the car of your
               dreams or effortlessly sell your vehicle. With carGo, you'll
               experience a new level of automotive convenience and satisfaction.
-              Join us today and let us drive you towards automotive excellence.
             </p>
+            <section className="container_secondLayer">
+              <div className="globalContainer">
+                <div className="container_info">
+                  <div className="happy">
+                    <p className="p">150</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="150"
+                      height="10"
+                      viewBox="0 0 250 10"
+                      fill="none"
+                    >
+                      <rect width="144" height="2" rx="1" fill="#004A77" />
+                      <rect y="4" width="72" height="2" rx="1" fill="#004A77" />
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="249"
+                        height="9"
+                        stroke="black"
+                      />
+                    </svg>
+                    <p>Vehicle In Stock</p>
+                  </div>
+                  <div className="happy">
+                    <p className="p">200</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="150"
+                      height="10"
+                      viewBox="0 0 250 10"
+                      fill="none"
+                    >
+                      <rect width="144" height="2" rx="1" fill="#004A77" />
+                      <rect y="4" width="72" height="2" rx="1" fill="#004A77" />
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="249"
+                        height="9"
+                        stroke="black"
+                      />
+                    </svg>
+                    <p>Happy Customer</p>
+                  </div>
+                  <div className="happy">
+                    <p className="p">100</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="150"
+                      height="10"
+                      viewBox="0 0 250 10"
+                      fill="none"
+                    >
+                      <rect width="144" height="2" rx="1" fill="#004A77" />
+                      <rect y="4" width="72" height="2" rx="1" fill="#004A77" />
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        width="249"
+                        height="9"
+                        stroke="black"
+                      />
+                    </svg>
+                    <p>Sold Car</p>
+                  </div>
+                </div>
+              </div>
+              <h1 className="out">Our Services</h1>
+              <div className="prueba">
+                <Link to={"/carsforsale"}>
+                  <div className="box">
+                    <img src={carlogito} alt="" />
+                    <p>Buy a car</p>
+                  </div>
+                </Link>
+
+                <Link>
+                  <div className="box">
+                    <img src={selt} alt="" />
+                    <p>Sell my car</p>
+                  </div>
+                </Link>
+              </div>
+            </section>
           </div>
         </div>
         <div className="back card">
           <div className="cards-container">
+            <button onClick={handleBackClick}>Back</button>
             <div
               className="cards"
               onMouseEnter={handleMouseEnter}

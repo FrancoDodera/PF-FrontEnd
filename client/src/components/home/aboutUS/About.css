@@ -4,56 +4,62 @@
   width: 1000px;
   perspective: 1000px;
 }
+
 .wrapper .flip-card {
   position: relative;
   height: 100%;
   width: 100%;
-  background: #016565;
+  background: #d8ebef;
   transform-style: preserve-3d;
   transition: all 1s ease-in-out;
 }
-.wrapper:hover .flip-card {
+
+.wrapper .flip-card.flipped {
   transform: rotateY(180deg);
 }
+
 .flip-card .card {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
-  background: #016565;
-  border-top: 2px solid #016565a6;
-  border-left: 2px solid #016565a6;
+  background: #d8ebef;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   backface-visibility: hidden;
   position: absolute;
 }
+
 .container_about {
   height: 500px;
   flex-shrink: 0;
-  background: #016565;
+  background: #d8ebef;
   display: flex;
   align-items: center;
   flex-direction: column;
-  color: white;
 }
+
 .container_about h2 {
   margin-top: 70px;
 }
+
 .container_about p {
   width: 600px;
   text-align: center;
   margin-top: 20px;
 }
+
 .card span.circle,
 .card span.square {
   height: 110px;
   width: 110px;
   border: 10px solid #4d2600;
 }
+
 .card span.circle {
   border-radius: 50%;
 }
+
 .card span.triangle {
   position: relative;
   height: 0;
@@ -63,6 +69,7 @@
   border-bottom: 110px solid #4d2600;
   margin-right: 16px;
 }
+
 .card span.triangle::before {
   content: "";
   position: absolute;
@@ -74,10 +81,12 @@
   border-left: 40px solid transparent;
   border-bottom: 80px solid #d48600;
 }
+
 .back.card {
   transform: rotateY(180deg);
   display: flex;
 }
+
 .back.card .home-logo {
   position: relative;
   height: 65px;
@@ -86,6 +95,7 @@
   border-radius: 50%;
   margin-right: 16px;
 }
+
 .home-logo .icon {
   position: relative;
   top: 50%;
@@ -96,6 +106,7 @@
   width: 25px;
   background: #4d2600;
 }
+
 .home-logo .icon::before {
   content: "";
   position: absolute;
@@ -105,6 +116,7 @@
   background: #4d2600;
   transform: rotate(45deg);
 }
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -113,6 +125,7 @@
   gap: 35px 50px; /* Adjust the gap to reduce space between cards */
   max-width: 900px;
 }
+
 .cards {
   flex: 1 1 calc(50% - 1px); /* Adjust the width of each card to fit 4 in a row */
   max-width: calc(25% - 60px);
@@ -125,6 +138,7 @@
   text-align: center;
   z-index: 1;
 }
+
 .cards img {
   align-items: center;
   background-color: #07182e;
@@ -149,6 +163,7 @@
   overflow: hidden;
   user-select: none;
 }
+
 .icon-container {
   opacity: 0; /* Inicialmente los iconos están ocultos */
   transform: translateY(
@@ -172,4 +187,66 @@
   font-size: 30px;
   margin-right: 10px;
   outline: none; /* Eliminar el contorno al hacer clic */
+}
+
+.car-image {
+  width: 800px;
+  left: 800px;
+  z-index: 1;
+}
+
+/* Estilo para el botón "More Information!" */
+.container_about button {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  background-color: #016565;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: -50px;
+  z-index: 0;
+}
+
+.container_about button:hover {
+  background-color: #e1aca2;
+  z-index: 0;
+}
+.cards-container button {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  background-color: #016565;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  top: -50px;
+  z-index: 1;
+}
+.cards-container button:hover {
+  background-color: #e1aca2;
+  z-index: 1;
+}
+.container_secondLayer {
+  border-radius: 10px;
+  background-color: #d8ebef;
+  padding: 20px;
+  width: 800px;
+  height: 400px;
+}
+.container_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.happy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
