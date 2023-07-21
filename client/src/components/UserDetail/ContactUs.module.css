@@ -1,0 +1,20 @@
+.contact{
+    margin-top: 15px;
+    font-size: 23px;
+    }
+
+    .contact:hover{
+        font-size: 23px;
+        text-shadow: 0px 3px 5px black;
+        }
+    
+.contactv{
+    margin-top: 10px;
+    font-size: 18px;
+    margin: auto;
+color: rgb(255, 255, 255);
+}
+
+.contactv:hover{
+    text-shadow: 0px 3px 5px black;
+    }

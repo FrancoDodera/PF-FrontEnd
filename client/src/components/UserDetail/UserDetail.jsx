@@ -9,6 +9,7 @@ import style from "../UserDetail/UserDetail.module.css";
 import AccountInfo from "../UserDetail/AccountInfo";
 import ChangePass from "../UserDetail/ChangePass";
 import Purchases from "../UserDetail/Purchases";
+import ContactUs from "../UserDetail/ContactUs";
 
 const UserDetail = () => {
   const [section, setSection] = useState("AccountInfo");
@@ -41,8 +42,8 @@ const UserDetail = () => {
               </button>
             </li>
           </ul>
-          <div className={style.contact}>Contact Us</div>
-          
+          {/* <div className={style.contact}>Contact Us</div> */}
+          <ContactUs/>
         </div>
         <div>
           {section == "AccountInfo" && <AccountInfo />}

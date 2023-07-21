@@ -38,7 +38,14 @@
   margin-top: 25px;
   justify-content: space-around;
 }
+
 .aboutus {
   display: flex;
   justify-content: center;
+}
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

@@ -2,13 +2,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
-@media (max-width: 400px) {
-  .container section {
-    min-height: 132vh;
-    min-width: 150%;
-  }
+.container form {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  height: 200px;
+  color: #000000;
+  align-items: center;
 }
 
 .container section {
@@ -120,7 +124,7 @@
 }
 
 .button:hover {
-  background-color: #287cd6;
+  background-color: #e1aca2;
 }
 
 form label {
@@ -138,20 +142,9 @@ section p {
   margin-top: 20px;
 }
 
-.container2 p button {
-  margin-top: 10px;
-  background-color: transparent;
-  border: none;
-  color: #007bff;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 14px;
+.arrocito button:hover{
+  background-color: #e1aca2;
 }
-
-.container2 p button:hover {
-  color: #0056b3;
-}
-
 /* Media Queries */
 
 @media (max-width: 1366px) {
@@ -171,8 +164,8 @@ section p {
 @media (max-width: 360px) {
   .container {
     display: flex;
-
-    width: 120%;
+    
+    width: 100%;
   }
 
   .container section {
@@ -219,15 +212,13 @@ section p {
   .container {
     background-color: #0056b3;
     width: 100%;
-   
+    height: 100vh;
     display: flex;
   }
 
   .container section {
-
-  display: flex;
-    
-justify-content: center
+height: 100vh;
+width: 100%;
   }
 
   .container2 h1 {
@@ -273,6 +264,7 @@ justify-content: center
     align-items: center;
     display: flex;
     background-color: #0056b3;
+    
   }
 
   .container section {
