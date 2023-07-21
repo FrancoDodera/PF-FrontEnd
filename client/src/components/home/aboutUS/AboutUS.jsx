@@ -7,6 +7,8 @@ import selt from "../../../img/selt.svg";
 import { Link } from "react-router-dom";
 import "./About.css";
 import img from "../../../img/fotopetri.png";
+import img2 from "../../../img/fotobarbara.jpeg";
+import user from "../../../img/userimg.webp";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const AboutUS = () => {
@@ -26,7 +28,6 @@ const AboutUS = () => {
         <div className="front card">
           <div className=".container_about">
             <img src={car} alt="" />
-            <h2>About Us</h2>
             <p>
               At carGo, we're passionate about revolutionizing the way you buy
               and sell cars. As an innovative e-commerce platform, we connect
@@ -65,7 +66,7 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={img} alt="" className="img-card" />
+              <img src={user} alt="" className="img-card" />
               <p>Ezequiel Capretta</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
@@ -84,8 +85,8 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={img} alt="" className="img-card" />
-              <p>Franco Rodriguez Dodera</p>
+              <img src={user} alt="" className="img-card" />
+              <p>Franco R.Dodera</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
                 <button className="icon-button">
@@ -103,7 +104,7 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={img} alt="" className="img-card" />
+              <img src={user} alt="" className="img-card" />
               <p>Alfredo Parada</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
@@ -122,7 +123,7 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={img} alt="" className="img-card" />
+              <img src={img2} alt="" className="img-card" />
               <p>Barbara Ruiz</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
@@ -141,7 +142,7 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={img} alt="" className="img-card" />
+              <img src={user} alt="" className="img-card" />
               <p>Lautaro Gimenez</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
@@ -160,7 +161,7 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={img} alt="" className="img-card" />
+              <img src={user} alt="" className="img-card" />
               <p>Melody Ponczyo</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
@@ -179,8 +180,8 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={img} alt="" className="img-card" />
-              <p>Hector</p>
+              <img src={user} alt="" className="img-card" />
+              <p>Hector Solano</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
                 <button className="icon-button">
