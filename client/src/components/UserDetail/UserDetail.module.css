@@ -6,6 +6,37 @@ text-align:center;
 width: 100%;
 height: 100vh;
 }
+.divForm{
+    display: grid;
+grid-template-columns: 1fr 1fr;
+
+}
+
+.labels{
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    font-size: 40px;
+    align-items: end;
+    justify-content:end;
+}
+
+.inputs{
+    text-align: left;
+    font-weight: bold;
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    font-size: 30px;
+}
+
+.ps{
+margin-left:none;
+}
+
+
+
 .barra{
     border-radius: 5px;
     background-color: #258f7a;
@@ -27,42 +58,41 @@ height: 100vh;
     font-size: 25px;
     padding: 30px 5px;
 }
-.contact{
-margin-top: 500px;
-font-size: 20px;
-}
+
 .UserDetail{
-    margin-top: 60px;
+    font-weight: bold;
 align-items:center;
 text-align: center;
 }
 
 .Username{
    
-    align-items:center;
-text-align: center;
+    align-items:left;
+text-align:left;
     font-weight: bold;
     font-size: 25px;
      color: rgb(0, 0, 0);
 }
 
 .Userlastname{
-    align-items:center;
-text-align: center;
+    align-items:left;
+    text-align:left;
     font-weight: bold;
     font-size: 25px;
     color: rgb(0, 0, 0);
 }
 
 .Usermail{ 
-    align-items:center;
-    text-align: center;
+    align-items:left;
+    text-align:left;
     font-weight: bold;
     color: rgb(0, 0, 0);
     font-size: 25px;
 }
 .campo{
-    margin: 5px;
+    margin-left: 15px;
+    font-weight: bold;
+    align-items: left;
     background: none;
     text-align:left;
     border-radius: 6px;
@@ -70,13 +100,59 @@ text-align: center;
 }
 
 .Userpassword{
+    display: grid;
+    grid-template-rows: 1fr;
     font-weight: bold;
     font-size: 18px;
-    padding: 10px;
+}
+.Changepassword{
+   margin-left: 10px;
+    text-align: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 35px;
+    background-color: #258f7a;
+    border-radius: 5px;
+}
+.passwordselect{
+    padding: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+ padding: 12px;
+font-weight: bold;
+font-size: 25px;
+color: #ffffff;
+text-shadow: 3px 3px 4px rgb(0, 0, 0);
 }
 
-.passwordselect{
- padding: 12px;
+.buttonspass{
+    display: grid;
+    grid-template-columns: 5fr 5fr;
+}
+
+.cancelbutton2{ 
+    margin-top: 20px;
+    margin-left: 600px;
+    width: 90px;
+background-color: rgb(182, 0, 0);
+color: aliceblue;
+border-radius: 5px;
+}
+.cancelbutton2:hover{
+    border-radius: 5px;
+    background-color:rgb(255, 0, 0);
+}
+.submitbutton2{
+    margin-top: 20px;
+   width: 150px;
+background-color: rgb(0, 141, 108);
+color: aliceblue;
+border-radius: 5px;
+}
+
+.submitbutton2:hover{
+    border-radius: 5px;
+    background-color:rgb(0, 195, 150);
 }
 
 .cancelbutton{
@@ -102,17 +178,23 @@ border-radius: 5px;
     background-color:rgb(0, 129, 99);
 }
 
+
+
 .databutton{
+    height: 40px;
     width: 200px;
     border-radius: 10px;
-    background-color:rgb(0, 182, 139)
+    background-color:rgb(0, 144, 110);
+    color: aliceblue;
 }
 
 .databutton:hover{
     width: 200px;
     border-radius: 10px;
-    background-color:rgb(0, 211, 162)
+    background-color:rgb(0, 176, 135)
 }
+
+
 
 .inputgroup{
  align-items:center;
