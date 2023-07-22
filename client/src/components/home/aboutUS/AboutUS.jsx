@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import "./About.css";
 import img from "../../../img/fotopetri.png";
 import img2 from "../../../img/fotobarbara.jpeg";
+import img3 from "../../../img/fotoFranco.jpeg";
 import user from "../../../img/userimg.webp";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -180,8 +181,8 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={user} alt="" className="img-card" />
-              <p>Franco R.Dodera</p>
+              <img src={img3} alt="" className="img-card" />
+              <p>Franco Dodera</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
                 <button className="icon-button">
