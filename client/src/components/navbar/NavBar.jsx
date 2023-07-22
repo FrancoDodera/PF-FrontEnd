@@ -143,6 +143,7 @@ const NavBar = () => {
             )}
           </div>
         )}
+       
         {userGuest ? (
           <div className="userMenuContainer" ref={menuRef}>
             <div className="usernameButton" onClick={toggleMenu}>
