@@ -28,35 +28,8 @@ const Home = () => {
     } else {
       setLoading(false);
     }
-      const user = localStorage.getItem("user");
-      const admin = localStorage.getItem("admin");
-      let postData = {};
-      if (user) {
-        postData = {
-          user: user,
-        };
-      } else if (admin) {
-        postData = {
-          user: admin,
-        };
-      }
-      if (user || admin) {
-        axios
-          .post("https://pf-back.fly.dev/user/verifyUser", postData)
-          .then((response) => {
-            if (response.status === 202 && response.data) {
-              dispatch(getAllFavs(response.data.data._id));
-            } else {
-              console.error("Error getting user account details");
-            }
-          })
-          .catch((error) => {
-            console.error("Error making the request:", error);
-          });
-      } else {
-        console.error("No user found in localStorage");
-      }
-      
+      const id_user=localStorage.getItem("idAuth");
+      dispatch(getAllFavs(id_user));
     },[cars,dispatch])
 
   return (
