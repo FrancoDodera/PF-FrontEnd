@@ -154,9 +154,7 @@ const AccountInfo = () => {
               onChange={handleNameChange}
             />
           ) : (
-            <p className={style.ps}>
-            {userDetails.name}
-            </p>
+            <p className={style.ps}>{userDetails.name}</p>
           )}
           <label>Lastname: </label>
           {showChangePassword ? (
@@ -167,9 +165,7 @@ const AccountInfo = () => {
               onChange={handleLastnameChange}
             />
           ) : (
-            <p className={style.ps}>
-            {userDetails.lastName}
-            </p>
+            <p className={style.ps}>{userDetails.lastName}</p>
           )}
           <label>Email: </label>
           {showChangePassword ? (
@@ -180,16 +176,14 @@ const AccountInfo = () => {
               onChange={handleEmailChange}
             />
           ) : (
-            <p className={style.ps}>
-              {userDetails.email}
-            </p>
-            
+            <p className={style.ps}>{userDetails.email}</p>
           )}
         </div>
       </div>
+
       <div className={style.img}>
         <h2 className={style.archivoselect}>
-          {showChangePassword ? "Change Profile Picture" : ""}
+          {showChangePassword ? <h2>Change Profile Picture</h2>  : ""}
         </h2>
         {showChangePassword && (
           <div className={style.input2}>
@@ -198,9 +192,8 @@ const AccountInfo = () => {
         )}
       </div>
       <div className={style.Userpassword}>
-        <h2 className={style.passwordselect}>
           {showChangePassword ? (
-            <>
+            <div className={style.btnSave}>
               <button
                 className={style.cancelbutton}
                 onClick={toggleChangePassword}
@@ -210,15 +203,13 @@ const AccountInfo = () => {
               <button className={style.submitbutton} onClick={handleSubmit}>
                 Save Changes
               </button>
-            </>
+            </div>
           ) : (
             <button className={style.databutton} onClick={toggleChangePassword}>
               Change user data
             </button>
           )}
-        </h2>
       </div>
-      
     </div>
   );
 };

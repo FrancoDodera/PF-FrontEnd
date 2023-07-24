@@ -120,6 +120,9 @@ const NavBar = () => {
         <NavLink to={"/locations"}>
           <button>Locations</button>
         </NavLink>
+        <NavLink to={"/news"}>
+          <button>News</button>
+        </NavLink>
         {currentPath !== "/home" && (
           <div className="shopping" ref={cartRef} onClick={handleCartIconClick}>
             <img className="cart-shopping" src={cart} alt="cart" />

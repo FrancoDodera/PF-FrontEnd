@@ -18,6 +18,7 @@ const News = () => {
       .get(url)
       .then((response) => {
         setNews(response.data.articles);
+        console.log(response.data)
       })
       .catch((error) => {
         console.error("Error making the request:", error);
@@ -35,6 +36,9 @@ const News = () => {
             title={noticia.title}
             content={noticia.description}
             imageURL={noticia.urlToImage}
+            author={noticia.author}
+            publishedAt={noticia.publishedAt}
+            onError='https://res.cloudinary.com/dbt5vgimv/image/upload/v1690235177/CarGo/default_image_xtlbej.png'
           />
         ))}
       </div>
