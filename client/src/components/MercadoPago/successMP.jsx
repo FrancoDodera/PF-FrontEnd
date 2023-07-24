@@ -35,13 +35,17 @@ const SuccessPage = () => {
       <NavBar />
       <div className={styles.contenedormp}>
         <h1 className={styles.h1mp}>¡Successful purchase!</h1>
+        <div className={styles.dataPayment}>
+          <h2><strong>ID Transaction:</strong> {paymentData.id}</h2>
+          <h2> <strong>Status:</strong> {paymentData.status}</h2>
+          <h2> <strong>Type Transaction:</strong> {paymentData.type}</h2>
+        </div>
         <p className={styles.parrafoMP}>
           Thanks for your purchase. The payment has been completed successfully.
           You will soon receive a confirmation by email.
         </p>
-        <h2>{paymentData.id}</h2>
-        <h2>{paymentData.status}</h2>
-        <h2>{paymentData.type}</h2>
+        
+        
         <Link to={"/home"}>
           <button className={styles.button}>Go Home</button>
         </Link>
