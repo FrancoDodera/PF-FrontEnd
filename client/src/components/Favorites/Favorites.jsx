@@ -11,11 +11,17 @@ const Favorites = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (favs.length == 0) {
-      const id_user=localStorage.getItem("idAuth");
-      dispatch(getAllFavs(id_user));
-
+    const charge=async()=>{
+      if (favs.length == 0) {
+        const id_user=localStorage.getItem("idAuth");
+        await dispatch(getAllFavs(id_user));
+        setLoading(false)
+      }else{
+        setLoading(false)
+      }
     }
+    charge();
+    
   }, []);
   return (
     <div className={style.divContainer}>
