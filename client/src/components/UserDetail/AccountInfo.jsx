@@ -16,7 +16,6 @@ const AccountInfo = () => {
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [profileImage, setProfileImage] = useState("");
   const [profileUrl, setProfileUrl] = useState("");
-    
 
   const handleImageChange = (e) => {
     const files = e.target.files[0];
@@ -143,46 +142,64 @@ const AccountInfo = () => {
     }
   }, []);
   return (
-   <div className={style.UserDetail}>
-      <p className={style.Username}>
-        Name:{" "}
-        {showChangePassword ? (
-          <input
-            type="text"
-            value={name}
-            className={style.campo}
-            onChange={handleNameChange}
-          />
-        ) : (
-          userDetails.name
+    <div className={style.UserDetail}>
+      <div className={style.divForm}>
+        <div className={style.labels}>
+          <label>Name: </label>
+          <label>Lastname: </label>
+          <label>Email: </label>
+        </div>
+        <div className={style.inputs}>
+          {showChangePassword ? (
+            <input
+              type="text"
+              value={name}
+              className={style.campo}
+              onChange={handleNameChange}
+            />
+          ) : (
+            <p className={style.ps}>
+            {userDetails.name}
+            </p>
+          )}
+
+          {showChangePassword ? (
+            <input
+              type="text"
+              value={lastname}
+              className={style.campo}
+              onChange={handleLastnameChange}
+            />
+          ) : (
+            <p className={style.ps}>
+            {userDetails.lastName}
+            </p>
+          )}
+          {showChangePassword ? (
+            <input
+              type="text"
+              value={email}
+              className={style.campo}
+              onChange={handleEmailChange}
+            />
+          ) : (
+            <p className={style.ps}>
+              {userDetails.email}
+            </p>
+            
+          )}
+        </div>
+      </div>
+      <div className={style.img}>
+        <h2 className={style.archivoselect}>
+          {showChangePassword ? "Change Profile Picture" : ""}
+        </h2>
+        {showChangePassword && (
+          <div className={style.input2}>
+            <input type="file" onChange={handleImageChange} />
+          </div>
         )}
-      </p>
-      <p className={style.Userlastname}>
-        Lastname:{" "}
-        {showChangePassword ? (
-          <input
-            type="text"
-            value={lastname}
-            className={style.campo}
-            onChange={handleLastnameChange}
-          />
-        ) : (
-          userDetails.lastName
-        )}
-      </p>
-      <p className={style.Usermail}>
-        Email:{" "}
-        {showChangePassword ? (
-          <input
-            type="text"
-            value={email}
-            className={style.campo}
-            onChange={handleEmailChange}
-          />
-        ) : (
-          userDetails.email
-        )}
-      </p>
+      </div>
       <div className={style.Userpassword}>
         <h2 className={style.passwordselect}>
           {showChangePassword ? (
@@ -204,19 +221,9 @@ const AccountInfo = () => {
           )}
         </h2>
       </div>
-      <div className={style.img}>
-        <h2 className={style.archivoselect}>
-          {showChangePassword ? "Change Profile Picture" : ""}
-        </h2>
-        {showChangePassword && (
-          <div className={style.input2}>
-            <input type="file" onChange={handleImageChange} />
-          </div>
-        )}
-      </div>
+      
     </div>
   );
 };
-
 
 export default AccountInfo;

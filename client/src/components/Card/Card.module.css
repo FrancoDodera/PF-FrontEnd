@@ -7,12 +7,12 @@
   border-radius: 5px;
 }
 
-.cart{
+.cart {
   width: 50px;
   position: absolute;
   left: 87%;
   margin-top: 10px;
-  transition: .2s;
+  transition: 0.2s;
   cursor: pointer;
 }
 .popup {
@@ -57,7 +57,7 @@
   background-color: #007777;
   color: white;
   border-radius: 10px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .button:hover {

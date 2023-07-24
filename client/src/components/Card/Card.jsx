@@ -3,10 +3,54 @@ import { Link } from "react-router-dom";
 import cart from "../../img/cart.png";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { useSelector, useDispatch } from "react-redux";
+import { addFav, removeFav } from "../../redux/actions";
+import axios from "axios";
 
 const Card = (props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [fav, setFav] = useState(false);
+  const favorites = useSelector((state) => state.favorites);
+  const dispatch = useDispatch();
+
+  const handleFavorite = () => {
+    const user = localStorage.getItem("user");
+    const admin = localStorage.getItem("admin");
+    let postData = {};
+    if (user) {
+      postData = {
+        user: user,
+      };
+    } else if (admin) {
+      postData = {
+        user: admin,
+      };
+    }
+    if (user || admin) {
+      axios
+        .post("https://pf-back.fly.dev/user/verifyUser", postData)
+        .then((response) => {
+          if (response.status === 202 && response.data) {
+            if (fav) {
+              setFav(false);
+              dispatch(removeFav(response.data.data._id, props.id));
+            } else {
+              setFav(true);
+              dispatch(addFav(response.data.data._id, props.id));
+            }
+          } else {
+            console.error("Error getting user account details");
+          }
+        })
+        .catch((error) => {
+          console.error("Error making the request:", error);
+        });
+    } else {
+      console.error("No user found in localStorage");
+    }
+  };
   const reviews = [1, 2, 3, 4, 5];
+
 
   const showPopup = () => {
     Swal.fire({
@@ -42,8 +86,21 @@ const Card = (props) => {
     showPopup();
   };
 
+  useEffect(() => {
+    favorites.forEach((fav) => {
+      if (fav.id_car._id == props.id) {
+        setFav(true);
+      }
+    });
+  }, [favorites]);
+
   return (
     <div className={style.container}>
+      {fav ? (
+        <button onClick={handleFavorite}>❤️</button>
+      ) : (
+        <button onClick={handleFavorite}>🤍</button>
+      )}
       <img className={style.imageCointainer} src={props.image} alt="" />
       <div>
         <p>{props.status}</p>

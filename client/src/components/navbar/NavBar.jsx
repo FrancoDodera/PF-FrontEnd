@@ -5,7 +5,10 @@ import guestUser from "../../img/guestUser.png";
 import "./NavBar.css";
 import { useLocation } from "react-router-dom";
 import cart from "../../img/cart.png";
+import { clearFavs } from "../../redux/actions";
+import { useDispatch } from "react-redux";
 import axios from "axios";
+
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,6 +17,7 @@ const NavBar = () => {
   const profileUrl = localStorage.getItem("profileUrl");
   const cartRef = useRef(null);
   const menuRef = useRef(null);
+  const dispatch = useDispatch();
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.totalPrice,
     0
@@ -21,7 +25,7 @@ const NavBar = () => {
 
   const location = useLocation();
   const currentPath = location.pathname;
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -79,13 +83,14 @@ const NavBar = () => {
         }
       
     localStorage.clear();
+    dispatch(clearFavs());
     navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
-  
+
   const handleGoToCart = (event) => {
     if (userGuest) {
-      alert('You must login first');
+      alert("You must login first");
       localStorage.clear("guest");
       navigate("/login");
     } else {
@@ -126,7 +131,7 @@ const NavBar = () => {
         <NavLink to={"/carsforsale"}>
           <button>Cars For Sale</button>
         </NavLink>
-        <NavLink to={"/favoritos"}>
+        <NavLink to={"/favorites"}>
           <button>Favorites</button>
         </NavLink>
         <NavLink to={"/locations"}>
@@ -153,9 +158,7 @@ const NavBar = () => {
                     ))}
                     <div className="cart-total">Total: ${totalPrice}</div>
                     <div className="goToCart">
-                      <button onClick={handleGoToCart}>
-                        Go to cart
-                      </button>
+                      <button onClick={handleGoToCart}>Go to cart</button>
                     </div>
                   </>
                 ) : (

@@ -1,0 +1,12 @@
+.divContainer {
+  background-color: aliceblue;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: 1fr 3fr;
+  margin-top: 10px;
+  gap: 20px;
+}
