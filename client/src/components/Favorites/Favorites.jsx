@@ -4,6 +4,7 @@ import style from "./Favorites.module.css";
 import CardFavorites from "../CardFavorite/CardFavorite";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllFavs } from "../../redux/actions";
+import noCarimg from "../../img/nohayautos.png";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -11,17 +12,16 @@ const Favorites = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const charge=async()=>{
+    const charge = async () => {
       if (favs.length == 0) {
-        const id_user=localStorage.getItem("idAuth");
+        const id_user = localStorage.getItem("idAuth");
         await dispatch(getAllFavs(id_user));
-        setLoading(false)
-      }else{
-        setLoading(false)
+        setLoading(false);
+      } else {
+        setLoading(false);
       }
-    }
+    };
     charge();
-    
   }, []);
   return (
     <div className={style.divContainer}>
@@ -29,6 +29,11 @@ const Favorites = () => {
       {loading ? (
         <div className="flex justify-center items-center h-screen">
           <div className="loading ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+        </div>
+      ) : favs.length === 0 ? (
+        <div className={style.noCarContainer}>
+          <h1 className={style.noCarsMessage}>¡NO CARS IN FAVORITES!</h1>
+          <img src={noCarimg} alt="Not Car" className={style.image} />
         </div>
       ) : (
         <div className={style.container}>
@@ -50,6 +55,7 @@ const Favorites = () => {
           })}
         </div>
       )}
+
       <div className="contactMore">
         <div className="arrocito">
           <p>ABOUT US</p>
