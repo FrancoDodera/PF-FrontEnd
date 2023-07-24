@@ -146,10 +146,6 @@ const AccountInfo = () => {
       <div className={style.divForm}>
         <div className={style.labels}>
           <label>Name: </label>
-          <label>Lastname: </label>
-          <label>Email: </label>
-        </div>
-        <div className={style.inputs}>
           {showChangePassword ? (
             <input
               type="text"
@@ -162,7 +158,7 @@ const AccountInfo = () => {
             {userDetails.name}
             </p>
           )}
-
+          <label>Lastname: </label>
           {showChangePassword ? (
             <input
               type="text"
@@ -175,6 +171,7 @@ const AccountInfo = () => {
             {userDetails.lastName}
             </p>
           )}
+          <label>Email: </label>
           {showChangePassword ? (
             <input
               type="text"

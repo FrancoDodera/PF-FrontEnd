@@ -28,8 +28,6 @@ const Home = () => {
     } else {
       setLoading(false);
     }
-      const id_user=localStorage.getItem("idAuth");
-      dispatch(getAllFavs(id_user));
     },[cars,dispatch])
 
   return (

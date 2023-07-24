@@ -15,11 +15,11 @@ grid-template-columns: 1fr 1fr;
 .labels{
     margin-bottom: 24px;
     font-weight: bold;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
     font-size: 40px;
-    align-items: end;
-    justify-content:end;
+    align-items: center;
+    justify-content:center;
 }
 
 .inputs{

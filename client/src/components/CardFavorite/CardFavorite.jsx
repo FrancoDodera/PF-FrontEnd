@@ -2,7 +2,6 @@ import Style from "./CardFavorite.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { removeFav } from "../../redux/actions";
 
 const CardFavorites = ({
