@@ -8,6 +8,7 @@ import {
 } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
+import Pagination from "../../Pagination/Pagination";
 const Category = () => {
   // Redux
   const categories = useSelector((state) => state.allCategories);
@@ -21,6 +22,20 @@ const Category = () => {
     action: "",
   });
   const [showModal, setShowModal] = useState(false);
+
+  //pagination
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItems = categories.length;
+  const indexOfLastBrand = currentPage * itemsPerPage;
+  const indexOfFirstBrand = indexOfLastBrand - itemsPerPage;
+  const currentCategories = categories.slice(
+    indexOfFirstBrand,
+    indexOfLastBrand
+  );
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const handleCategory = (event) => {
     const { value } = event.target;
@@ -172,7 +187,7 @@ const Category = () => {
             </tr>
           </thead>
           <tbody>
-            {categories?.map((category) => {
+            {currentCategories?.map((category) => {
               return (
                 <tr key={category._id}>
                   <th>{category._id}</th>
@@ -199,6 +214,12 @@ const Category = () => {
             })}
           </tbody>
         </table>
+        <Pagination
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );
