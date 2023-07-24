@@ -23,11 +23,13 @@ const Authentication=()=>{
             if(data.acces==true){
                 if(data.data.type=='User'){
                     localStorage.clear();
+                    localStorage.setItem('idAuth',data.data._id);
                     localStorage.setItem('user',data.data.user);
                     localStorage.setItem('profileUrl',data.data.image);
                     navigate('/home')
                 }else if(data.data.type=='Admin'){
                     localStorage.clear();
+                    localStorage.setItem('idAuth',data.data._id);
                     localStorage.setItem('admin',data.data.user);
                     localStorage.setItem('profileUrl',data.data.image);
                     navigate('/admin')

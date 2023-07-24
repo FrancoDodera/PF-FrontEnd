@@ -16,37 +16,11 @@ const Carsforsale = (props) => {
   const carsActive = allCars.filter((elem) => elem.active == true);
   const favorites = useSelector((state) => state.favorites);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     if (favorites.length == 0) {
-      const user = localStorage.getItem("user");
-      const admin = localStorage.getItem("admin");
-      let postData = {};
-      if (user) {
-        postData = {
-          user: user,
-        };
-      } else if (admin) {
-        postData = {
-          user: admin,
-        };
-      }
-      if (user || admin) {
-        axios
-          .post("https://pf-back.fly.dev/user/verifyUser", postData)
-          .then((response) => {
-            if (response.status === 202 && response.data) {
-              dispatch(getAllFavs(response.data.data._id));
-            } else {
-              console.error("Error getting user account details");
-            }
-          })
-          .catch((error) => {
-            console.error("Error making the request:", error);
-          });
-      } else {
-        console.error("No user found in localStorage");
-      }
+      const id_user=localStorage.getItem("idAuth");
+      dispatch(getAllFavs(id_user));
     }
     if (allCars.length === 0) {
       dispatch(getAllCars())
@@ -58,7 +32,7 @@ const Carsforsale = (props) => {
     } else {
       setLoading(false);
     }
-  }, [allCars, dispatch]);
+  }, []);
 
   return (
     <>
@@ -76,11 +50,8 @@ const Carsforsale = (props) => {
             </div>
             <div className={style.containerCarsForSale}>
               <Filters />
-              {allCars.length === 0 ? (
-                <div className={style.loadingContainer}>
-                  <BeatLoader color={'#ffffff'} loading={true} size={15} />
-                </div>
-              ) : carsActive.length === 0 ? (
+              {
+              carsActive.length === 0 ? (
                 <div className={style.noCarContainer}>
                   <h1 className={style.noCarsMessage}>
                     ¡THERE ARE NO CARS WITH THESE FEATURES!
@@ -166,6 +137,5 @@ const Carsforsale = (props) => {
     </>
   );
 };
-
 
 export default Carsforsale;

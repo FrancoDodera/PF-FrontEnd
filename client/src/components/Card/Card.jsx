@@ -14,39 +14,13 @@ const Card = (props) => {
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
-    const user = localStorage.getItem("user");
-    const admin = localStorage.getItem("admin");
-    let postData = {};
-    if (user) {
-      postData = {
-        user: user,
-      };
-    } else if (admin) {
-      postData = {
-        user: admin,
-      };
-    }
-    if (user || admin) {
-      axios
-        .post("https://pf-back.fly.dev/user/verifyUser", postData)
-        .then((response) => {
-          if (response.status === 202 && response.data) {
-            if (fav) {
-              setFav(false);
-              dispatch(removeFav(response.data.data._id, props.id));
-            } else {
-              setFav(true);
-              dispatch(addFav(response.data.data._id, props.id));
-            }
-          } else {
-            console.error("Error getting user account details");
-          }
-        })
-        .catch((error) => {
-          console.error("Error making the request:", error);
-        });
+    const id_user=localStorage.getItem("idAuth");
+    if (fav) {
+      setFav(false);
+      dispatch(removeFav(id_user, props.id));
     } else {
-      console.error("No user found in localStorage");
+      setFav(true);
+      dispatch(addFav(id_user, props.id));
     }
   };
   const reviews = [1, 2, 3, 4, 5];

@@ -1,68 +1,55 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../navbar/NavBar";
 import style from "./Favorites.module.css";
 import CardFavorites from "../CardFavorite/CardFavorite";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { getAllFavs } from "../../redux/actions";
 
 const Favorites = () => {
   const dispatch = useDispatch();
   const favs = useSelector((state) => state.favorites);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (favs.length == 0) {
-      const user = localStorage.getItem("user");
-      const admin = localStorage.getItem("admin");
-      let postData = {};
-      if (user) {
-        postData = {
-          user: user,
-        };
-      } else if (admin) {
-        postData = {
-          user: admin,
-        };
-      }
-      if (user || admin) {
-        axios
-          .post("https://pf-back.fly.dev/user/verifyUser", postData)
-          .then((response) => {
-            if (response.status === 202 && response.data) {
-              dispatch(getAllFavs(response.data.data._id));
-            } else {
-              console.error("Error getting user account details");
-            }
-          })
-          .catch((error) => {
-            console.error("Error making the request:", error);
-          });
-      } else {
-        console.error("No user found in localStorage");
+    const charge=async()=>{
+      if (favs.length == 0) {
+        const id_user=localStorage.getItem("idAuth");
+        await dispatch(getAllFavs(id_user));
+        setLoading(false)
+      }else{
+        setLoading(false)
       }
     }
+    charge();
+    
   }, []);
   return (
     <div className={style.divContainer}>
       <NavBar />
-      <div className={style.container}>
-        {favs.map((fav) => {
-          return (
-            <CardFavorites
-              key={fav.id_favorite}
-              id={fav.id_car._id}
-              name={fav.id_car.name}
-              image={fav.id_car.image}
-              price={fav.id_car.price}
-              age={fav.id_car.age}
-              status={fav.id_car.status}
-              category={fav.id_car.category}
-              brand={fav.id_car.brand}
-              description={fav.id_car.description}
-            />
-          );
-        })}
-      </div>
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <div className="loading ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+        </div>
+      ) : (
+        <div className={style.container}>
+          {favs.map((fav) => {
+            return (
+              <CardFavorites
+                key={fav.id_favorite}
+                id={fav.id_car._id}
+                name={fav.id_car.name}
+                image={fav.id_car.image}
+                price={fav.id_car.price}
+                age={fav.id_car.age}
+                status={fav.id_car.status}
+                category={fav.id_car.category}
+                brand={fav.id_car.brand}
+                description={fav.id_car.description}
+              />
+            );
+          })}
+        </div>
+      )}
       <div className="contactMore">
         <div className="arrocito">
           <p>ABOUT US</p>

@@ -8,6 +8,7 @@ import {
 } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
+import Pagination from "../../Pagination/Pagination";
 
 const Brand = () => {
   //redux
@@ -22,6 +23,16 @@ const Brand = () => {
     accion: "",
   });
   const [showModal, setShowModal] = useState(false);
+  //pagination
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItems = brands.length;
+  const indexOfLastBrand = currentPage * itemsPerPage;
+  const indexOfFirstBrand = indexOfLastBrand - itemsPerPage;
+  const currentBrands = brands.slice(indexOfFirstBrand, indexOfLastBrand);
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const handleBrand = (event) => {
     const { value } = event.target;
@@ -118,7 +129,7 @@ const Brand = () => {
                       id="name"
                       value={brand.name}
                       onChange={handleBrand}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -135,7 +146,7 @@ const Brand = () => {
                       name="description"
                       value={brand.description}
                       onChange={handleBrand}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -158,7 +169,7 @@ const Brand = () => {
             </tr>
           </thead>
           <tbody>
-            {brands?.map((element) => {
+            {currentBrands?.map((element) => {
               return (
                 <tr key={element._id}>
                   <th>{element._id}</th>
@@ -185,6 +196,12 @@ const Brand = () => {
             })}
           </tbody>
         </table>
+        <Pagination
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );
