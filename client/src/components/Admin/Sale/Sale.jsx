@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllSales } from "../../../redux/actions";
 import NavBar from "../NavBar/NavBar.jsx";
 import axios from "axios";
+import Pagination from "../../Pagination/Pagination";
 const Sale = () => {
   //Redux
   const sale = useSelector((state) => state.allSales);
@@ -13,12 +14,23 @@ const Sale = () => {
   //Estados
   const [showModal, setShowModal] = useState(false);
 
+  //Pagination
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItems = sale.length;
+  const indexOfLastBrand = currentPage * itemsPerPage;
+  const indexOfFirstBrand = indexOfLastBrand - itemsPerPage;
+  const currentSale = sale.slice(indexOfFirstBrand, indexOfLastBrand);
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   const showModalhandlerDetail = async (element) => {
     setShowModal(true);
-    const { data } =await axios.get(
+    const { data } = await axios.get(
       `https://pf-back.fly.dev/detail/get/${element._id}`
     );
-    
+
     setDataDetail(data);
   };
 
@@ -95,7 +107,7 @@ const Sale = () => {
             </tr>
           </thead>
           <tbody>
-            {sale?.map((element) => {
+            {currentSale?.map((element) => {
               return (
                 <tr key={element._id}>
                   <th>{element._id}</th>
@@ -123,6 +135,12 @@ const Sale = () => {
             })}
           </tbody>
         </table>
+        <Pagination
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

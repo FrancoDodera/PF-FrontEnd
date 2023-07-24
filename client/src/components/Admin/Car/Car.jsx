@@ -10,6 +10,7 @@ import {
 } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
+import Pagination from "../../Pagination/Pagination";
 
 const Car = () => {
   // Redux
@@ -34,31 +35,35 @@ const Car = () => {
     image: "",
   });
 
-  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItems = cars.length;
+  const indexOfLastBrand = currentPage * itemsPerPage;
+  const indexOfFirstBrand = indexOfLastBrand - itemsPerPage;
+  const currentCars = cars.slice(indexOfFirstBrand, indexOfLastBrand);
 
-  const getCurrentItems = () => {
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    return cars.slice(indexOfFirstItem, indexOfLastItem);
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handleNextPage = () => {
-    const totalPages = Math.ceil(cars.length / itemsPerPage);
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-  
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  // const getCurrentItems = () => {
+  //   const indexOfLastItem = currentPage * itemsPerPage;
+  //   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  //   return cars.slice(indexOfFirstItem, indexOfLastItem);
+  // };
+
+  // const handlePrevPage = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage(currentPage - 1);
+  //   }
+  // };
+
+  // const handleNextPage = () => {
+  //   const totalPages = Math.ceil(cars.length / itemsPerPage);
+  //   if (currentPage < totalPages) {
+  //     setCurrentPage(currentPage + 1);
+  //   }
+  // };
 
   const [showModal, setShowModal] = useState(false);
 
@@ -292,7 +297,7 @@ const Car = () => {
             Create Car
           </button>
         </div>
-        <div className="flex justify-between p-8 text-gray-300">
+        {/* <div className="flex justify-between p-8 text-gray-300">
           <button className="btn" onClick={handlePrevPage}>
             Previous
           </button>
@@ -312,7 +317,7 @@ const Car = () => {
           <button className="btn" onClick={handleNextPage}>
             Next
           </button>
-        </div>
+        </div> */}
         <dialog
           id="my_modal_5"
           className={showModal ? "modal modal-open" : "modal"}
@@ -633,7 +638,7 @@ const Car = () => {
             </tr>
           </thead>
           <tbody>
-            {getCurrentItems().map((car, index) => {
+            {currentCars.map((car, index) => {
               return (
                 <tr key={car._id}>
                   <th>{index + 1}</th>
@@ -673,6 +678,12 @@ const Car = () => {
             })}
           </tbody>
         </table>
+        <Pagination
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

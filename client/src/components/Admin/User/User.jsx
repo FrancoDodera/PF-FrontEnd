@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Pagination from "../../Pagination/Pagination";
 
 import {
   createUser,
@@ -13,6 +14,8 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
 const User = () => {
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
   const cloudName = "dbt5vgimv";
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,6 +34,15 @@ const User = () => {
     image: "",
     accion: "",
   });
+  const totalItems = users.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const indexOfLastUser = currentPage * itemsPerPage;
+  const indexOfFirstUser = indexOfLastUser - itemsPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   const handlerImage = (event) => {
     const files = event.target.files[0];
     setUser({
@@ -165,7 +177,6 @@ const User = () => {
       dispatch(getAllUsers());
     }
   }, []);
-
   return (
     <div className="flex">
       <NavBar />
@@ -376,7 +387,7 @@ const User = () => {
             </tr>
           </thead>
           <tbody>
-            {users?.map((user, index) => {
+            {currentUsers?.map((user, index) => {
               return (
                 <tr key={user._id}>
                   <td>{index + 1}</td>
@@ -424,6 +435,12 @@ const User = () => {
             })}
           </tbody>
         </table>
+        <Pagination
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );
