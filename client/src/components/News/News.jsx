@@ -68,6 +68,8 @@ const News = () => {
                 title={noticia.title}
                 content={noticia.description}
                 imageURL={noticia.urlToImage}
+                author={noticia.author}
+                publishedAt={noticia.publishedAt}
                 url={noticia.url}
               />
             </a>

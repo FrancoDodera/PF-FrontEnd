@@ -7,21 +7,29 @@ width: 100%;
 height: 100vh;
 }
 .divForm{
-    display: grid;
-grid-template-columns: 1fr 1fr;
-
+    width: 800px;
+    margin: 0 auto;
 }
-
 .labels{
-    margin-bottom: 24px;
-    font-weight: bold;
     display: grid;
-    grid-template-columns: 1fr 1fr ;
-    font-size: 40px;
+    grid-template-columns: 1fr 3fr ;
+    gap:5px;
+    font-size: 30px;
     align-items: center;
-    justify-content:center;
+    justify-content:start;
+    text-align: start;
 }
+.img{
 
+    width: 800px;
+    margin: 20px auto;
+}
+.btnSave{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 .inputs{
     text-align: left;
     font-weight: bold;
@@ -31,13 +39,6 @@ grid-template-columns: 1fr 1fr;
     width: 320px;
     font-size: 30px;
 }
-
-.ps{
-margin-left:none;
-}
-
-
-
 .barra{
     border-radius: 5px;
     background-color: #258f7a;
@@ -59,13 +60,6 @@ margin-left:none;
     font-size: 25px;
     padding: 30px 5px;
 }
-
-.UserDetail{
-    font-weight: bold;
-align-items:center;
-text-align: center;
-}
-
 .Username{
    
     align-items:left;
@@ -91,8 +85,6 @@ text-align:left;
     font-size: 25px;
 }
 .campo{
-    font-weight: bold;
-    background: none;
     text-align:left;
     border-radius: 6px;
     margin-bottom: 10px;
@@ -100,24 +92,19 @@ text-align:left;
     color: black;
 }
 .campo2{
-    margin-right: 100px;
-   margin-bottom: 10px;
-    font-weight: bold;
-    background: none;
     text-align:left;
     border-radius: 6px;
-    outline: 2px solid #004d36;
+    margin-bottom: 10px;
+    box-shadow: 2px 3px 5px rgb(0, 0, 0);
     color: black;
+    padding: 5px;
 }
 
 .Userpassword{
-    display: grid;
-    grid-template-rows: 1fr;
-    font-weight: bold;
-    font-size: 18px;
+    width: 800px;
+    margin: 20px auto;
 }
 .Changepassword{
-   margin-left: 10px;
     text-align: center;
     align-items: center;
     color: #ffffff;
@@ -126,9 +113,6 @@ text-align:left;
     border-radius: 5px;
 }
 .passwordselect{
-    padding: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     padding: 12px;
 font-weight: bold;
 font-size: 25px;
@@ -136,30 +120,27 @@ color: #ffffff;
 text-shadow: 3px 3px 4px rgb(0, 0, 0);
 }
 .labpass{
-margin-left: 200px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .buttonspass{
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 5fr 5fr;
+    display: flex;
+    gap: 10px;
 }
 
-.cancelbutton{ 
-    margin-top: 20px;
-    margin-left: 600px;
-    width: 90px;
-background-color: rgb(182, 0, 0);
-color: aliceblue;
-border-radius: 5px;
+.cancelbutton{
+    padding: 10px;
+    background-color: rgb(182, 0, 0);
+    color: aliceblue;
+    border-radius: 5px;
 }
 .cancelbutton:hover{
     border-radius: 5px;
     background-color:rgb(255, 0, 0);
 }
 .submitbutton{
-    margin-top: 20px;
-   width: 200px;
+    padding: 10px;
 background-color: rgb(0, 141, 108);
 color: aliceblue;
 border-radius: 5px;
@@ -170,40 +151,10 @@ border-radius: 5px;
     background-color:rgb(0, 195, 150);
 }
 
-.cancelbutton{ 
-    margin-top: 20px;
-    margin-left: 700px;
-    height: 50px;
-    margin-right: 15px;
-    width: 90px;
-background-color: rgb(182, 0, 0);
-color: aliceblue;
-border-radius: 5px;
-}
-.cancelbutton:hover{
-    border-radius: 5px;
-    background-color:rgb(255, 0, 0);
-}
-.submitbutton{
-    height: 50px;
-    margin-top: 20px;
-   width: 200px;
-background-color: rgb(0, 141, 108);
-color: aliceblue;
-border-radius: 5px;
-}
-
-.submitbutton:hover{
-    border-radius: 5px;
-    background-color:rgb(0, 178, 137);
-}
-
 
 .databutton{
-    margin-top: 20px;
-    margin-left: 620px;
-    height: 40px;
-    width: 300px;
+    margin:10px;
+    padding: 10px;
     border-radius: 10px;
     background-color:rgb(0, 144, 110);
     color: aliceblue;
@@ -238,22 +189,13 @@ border-radius: 5px;
     text-align: center;
 
 }
-.img{
-    margin-left: 200px;
-    align-items:center;
-    text-align: center;
-}
+
 .archivoselect{
-    margin-left: 450px;
-    width: 400px;
-    border-radius: 10px;
     background-color:rgb(0, 144, 110);
     color: aliceblue;
-    margin-top: 20px;
-    align-items:center;
-text-align: center;
-font-size: 30px;
- font-weight: bold;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bold;
 }
 .input2{
     margin-left:50px;
@@ -268,3 +210,12 @@ font-size: 30px;
     text-align: center;
 }
 
+.divForm label{
+    font-weight: 700;
+}
+
+.containerPass{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 10px;
+}
