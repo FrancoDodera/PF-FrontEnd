@@ -7,28 +7,13 @@ const DetailCart = () => {
   const [loading, setLoading] = useState(false);
   const [Sale, setSale] = useState({
     id_user: "",
-    description: "",
+    description: "in cart",
     date: new Date(),
     total: 0,
   });
   const getUser = async () => {
-    const user = localStorage.getItem("user");
-    const admin = localStorage.getItem("admin");
-    let postData = {};
-    if (user) {
-      postData = {
-        user: user,
-      };
-    } else if (admin) {
-      postData = {
-        user: admin,
-      };
-    }
-    const { data } = await axios.post(
-      "https://pf-back.fly.dev/user/verifyUser",
-      postData
-    );
-    setSale({ ...Sale, id_user: data.data._id });
+    const id_user=localStorage.getItem("idAuth");
+    setSale({ ...Sale, id_user: id_user });
   };
 
   const Cars = localStorage.getItem("cartItems");
