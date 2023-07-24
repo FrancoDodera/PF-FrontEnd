@@ -16,7 +16,7 @@ const Carsforsale = (props) => {
   const carsActive = allCars.filter((elem) => elem.active == true);
   const favorites = useSelector((state) => state.favorites);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     if (favorites.length == 0) {
       const user = localStorage.getItem("user");
@@ -58,7 +58,7 @@ const Carsforsale = (props) => {
     } else {
       setLoading(false);
     }
-  }, [allCars, dispatch]);
+  }, []);
 
   return (
     <>
@@ -76,11 +76,8 @@ const Carsforsale = (props) => {
             </div>
             <div className={style.containerCarsForSale}>
               <Filters />
-              {allCars.length === 0 ? (
-                <div className={style.loadingContainer}>
-                  <BeatLoader color={'#ffffff'} loading={true} size={15} />
-                </div>
-              ) : carsActive.length === 0 ? (
+              {
+              carsActive.length === 0 ? (
                 <div className={style.noCarContainer}>
                   <h1 className={style.noCarsMessage}>
                     ¡THERE ARE NO CARS WITH THESE FEATURES!
@@ -166,6 +163,5 @@ const Carsforsale = (props) => {
     </>
   );
 };
-
 
 export default Carsforsale;
