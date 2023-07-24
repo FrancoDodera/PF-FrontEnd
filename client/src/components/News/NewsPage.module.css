@@ -1,0 +1,14 @@
+
+
+.title{
+    text-align: center;
+    color:aliceblue;
+    font-size: 40px;
+}
+
+.card{
+    display: grid;
+    margin: 0 auto;
+    padding: 20px;
+    justify-content: center;
+}
