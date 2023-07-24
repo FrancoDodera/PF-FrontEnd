@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./NewsCard.module.css";
 import { useState } from "react";
 
-const Card = ({ title, content, imageURL, author,publishedAt }) => {
+
+const Card = ({ title, content, imageURL, author,publishedAt,url }) => {
   const [imageVisible, setImageVisible] = useState(true);
 
   const handleImageLoad = () => {
@@ -12,12 +13,14 @@ const Card = ({ title, content, imageURL, author,publishedAt }) => {
   const handleImageError = () => {
     setImageVisible(false);
   };
+
   return (
     <div className={styles.card}>
       <div className={styles.text}>
         <section className={styles.containerSection}>
           <h2>{title}</h2>
           <p>{content}</p>
+
         </section>
         <footer className={styles.footerSection}>
           <p className={styles.autorP}>{publishedAt} - <strong>{author}</strong> </p>
@@ -39,6 +42,8 @@ const Card = ({ title, content, imageURL, author,publishedAt }) => {
           alt="Image Alt"
         />
       )}
+          <a href={url} target="_blank" rel="noopener noreferrer"> Reed more... </a>
+       </div>
       </div>
     </div>
   );

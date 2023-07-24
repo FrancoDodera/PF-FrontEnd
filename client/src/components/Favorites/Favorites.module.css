@@ -10,3 +10,20 @@
   margin-top: 10px;
   gap: 20px;
 }
+
+.noCarContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+.noCarsMessage {
+  font-size: 30px;
+  color: black;
+}
+
+.image {
+  width: 300px;
+  height: 300px;
+}
