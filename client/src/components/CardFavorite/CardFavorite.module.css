@@ -40,3 +40,8 @@
   text-decoration: none;
   color: rgb(0, 0, 0);
 }
+
+.likeImg {
+  width: 45px;
+  height: 45px;
+}
