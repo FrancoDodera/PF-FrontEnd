@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
-import axios from "axios";
 
 const Card = (props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -14,7 +13,7 @@ const Card = (props) => {
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
-    const id_user=localStorage.getItem("idAuth");
+    const id_user = localStorage.getItem("idAuth");
     if (fav) {
       setFav(false);
       dispatch(removeFav(id_user, props.id));
@@ -24,7 +23,6 @@ const Card = (props) => {
     }
   };
   const reviews = [1, 2, 3, 4, 5];
-
 
   const showPopup = () => {
     Swal.fire({
@@ -81,25 +79,24 @@ const Card = (props) => {
         <h3>{props.name} </h3>
         <p className={style.p}>${props.price}</p>
         <p className={style.p}>{props.age}</p>
-        
-        {
-          props.mediaReviews > 0 && <div className="rating">
-          {reviews.map((elem,index) => {
-            return (
-              <input
-                key={index}
-                type="radio"
-                name={`rating-${props.id}`} // Asignar un nombre único basado en el ID del elemento
-                className="mask mask-star-2 bg-orange-400"
-                defaultChecked={elem <= props.mediaReviews}
-                disabled // Marcar solo el elemento con índice 1 como seleccionado (puedes adaptar esto según tus necesidades)
-              />
-            );
-          })}
-        </div>
-        }
+
+        {props.mediaReviews > 0 && (
+          <div className="rating">
+            {reviews.map((elem, index) => {
+              return (
+                <input
+                  key={index}
+                  type="radio"
+                  name={`rating-${props.id}`} // Asignar un nombre único basado en el ID del elemento
+                  className="mask mask-star-2 bg-orange-400"
+                  defaultChecked={elem <= props.mediaReviews}
+                  disabled // Marcar solo el elemento con índice 1 como seleccionado (puedes adaptar esto según tus necesidades)
+                />
+              );
+            })}
+          </div>
+        )}
         <p className={style.celler}>{props.category.name}</p>
-        
       </div>
 
       <Link className={style.Link} to={`/detail/${props.id}`}>

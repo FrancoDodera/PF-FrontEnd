@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { GoogleMap, Marker } from "google-maps-react";
 import NavBar from "../../components/navbar/NavBar";
 import img from "../../img/googlemaps.png";
 import Contact from "../../components/Contact/Contact";

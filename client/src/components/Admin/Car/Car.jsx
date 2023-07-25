@@ -8,7 +8,6 @@ import {
   getAllBrands,
   getAllCategories,
 } from "../../../redux/actions";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
 import Pagination from "../../Pagination/Pagination";
 

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./About.css";
 import car from "../../../img/car.svg";
 import carlogito from "../../../img/carrito.svg";
-import second from "../../../img/secondLogo.svg";
 import selt from "../../../img/selt.svg";
 import { Link } from "react-router-dom";
 import "./About.css";
