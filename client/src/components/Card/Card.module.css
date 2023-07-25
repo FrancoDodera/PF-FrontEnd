@@ -1,20 +1,22 @@
+
 .container {
   display: flex;
   margin-bottom: 20px;
   background-color: rgba(137, 192, 209, 0.276);
-  padding: 10px;
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
-.cart{
+.cart {
   width: 50px;
   position: absolute;
   left: 87%;
   margin-top: 10px;
-  transition: .2s;
+  transition: 0.2s;
   cursor: pointer;
 }
+
 .popup {
   position: fixed;
   top: 50%;
@@ -30,6 +32,7 @@
 .popup p {
   margin: 0;
 }
+
 .imageCointainer {
   width: 220px;
   height: 150px;
@@ -37,6 +40,7 @@
   border: none;
   border-radius: 10px;
 }
+
 .p {
   font-weight: bold;
 }
@@ -57,11 +61,15 @@
   background-color: #007777;
   color: white;
   border-radius: 10px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .button:hover {
   background-color: #016565;
   text-shadow: -0px 4px 3px rgb(0, 0, 0);
   backface-visibility: hidden;
+}
+.imageCointainer{
+  min-height: 225px;
+  min-width: 300px;
 }

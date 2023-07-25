@@ -1,6 +1,5 @@
 import style from "./Cards.module.css";
 import Card from "../Card/Card";
-import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Pagination from "../Pagination/Pagination";
 
@@ -28,7 +27,7 @@ const CardsContainer = ({carsActive}) => {
 
   return (
     <div className={style.container}>
-      {carsDisplayed.map(({ name, image, _id, price, age, status,idCategory,idMarca,description}) => (
+      {carsDisplayed.map(({ name, image, _id, price, age, status,idCategory,idMarca,description,mediaReviews}) => (
         <Card
           key={_id}
           id={_id}
@@ -40,6 +39,7 @@ const CardsContainer = ({carsActive}) => {
           category={idCategory}
           brand={idMarca}
           description={description}
+          mediaReviews={mediaReviews}
         />
       ))}
       <Pagination

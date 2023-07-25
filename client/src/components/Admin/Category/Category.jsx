@@ -8,6 +8,7 @@ import {
 } from "../../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
+import Pagination from "../../Pagination/Pagination";
 const Category = () => {
   // Redux
   const categories = useSelector((state) => state.allCategories);
@@ -21,6 +22,20 @@ const Category = () => {
     action: "",
   });
   const [showModal, setShowModal] = useState(false);
+
+  //pagination
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItems = categories.length;
+  const indexOfLastBrand = currentPage * itemsPerPage;
+  const indexOfFirstBrand = indexOfLastBrand - itemsPerPage;
+  const currentCategories = categories.slice(
+    indexOfFirstBrand,
+    indexOfLastBrand
+  );
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const handleCategory = (event) => {
     const { value } = event.target;
@@ -131,11 +146,11 @@ const Category = () => {
                       id="name"
                       value={category.name}
                       onChange={handleCategory}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-2">
+                <div className="sm:col-span-3">
                   <label
                     htmlFor="description"
                     className="block text-sm font-medium leading-6 text-gray-300"
@@ -149,7 +164,7 @@ const Category = () => {
                       id="description"
                       value={category.description}
                       onChange={handleCategory}
-                      className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -172,7 +187,7 @@ const Category = () => {
             </tr>
           </thead>
           <tbody>
-            {categories?.map((category) => {
+            {currentCategories?.map((category) => {
               return (
                 <tr key={category._id}>
                   <th>{category._id}</th>
@@ -199,6 +214,12 @@ const Category = () => {
             })}
           </tbody>
         </table>
+        <Pagination
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

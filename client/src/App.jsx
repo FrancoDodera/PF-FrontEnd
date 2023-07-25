@@ -14,6 +14,8 @@ import DetailCart from "./components/Detail-Carrito/DetailCart";
 import SuccessPage from "./components/MercadoPago/successMP.jsx";
 import FailurePage from "./components/MercadoPago/failureMP.jsx";
 import PendingPage from "./components/MercadoPago/pendingMP.jsx";
+import Favorites from "./components/Favorites/Favorites";
+import News from "./components/News/News";
 //admin
 import AdminHome from "./components/Admin/AdminHome/AdminHome";
 import Brand from "./components/Admin/Brand/Brand";
@@ -93,6 +95,8 @@ function App() {
           <Route exact path="/failure" element={<FailurePage />} />
           <Route exact path="/pending" element={<PendingPage />} />
           <Route exact path="/detailcart" element={<DetailCart />}></Route>
+          <Route exact path="/favorites" element={<Favorites />}></Route>
+          <Route exact path="/news" element={<News />}></Route>
         </Routes>
       )}
       {localGuest && (
@@ -103,6 +107,8 @@ function App() {
           <Route exact path="/carsforsale" element={<Carsforsale />} />
           <Route exact path="/detail/:id" element={<Detail />} />
           <Route exact path="/userDetail" element={<UserDetail />} />
+          <Route exact path="/favorites" element={<Favorites />}></Route>
+          <Route exact path="/news" element={<News />}></Route>
         </Routes>
       )}
 
@@ -124,6 +130,8 @@ function App() {
           <Route exact path="/success" element={<SuccessPage />} />
           <Route exact path="/failure" element={<FailurePage />} />
           <Route exact path="/pending" element={<PendingPage />} />
+          <Route exact path="/favorites" element={<Favorites />}></Route>
+          <Route exact path="/news" element={<News />}></Route>
         </Routes>
       )}
     </main>

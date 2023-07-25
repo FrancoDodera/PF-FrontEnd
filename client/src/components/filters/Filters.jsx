@@ -105,15 +105,15 @@ const Filters = () => {
       </div>
       <div className="divRange">
         <div className="priceSelector">
+          <label>Price Range</label>
           <div className="labelContainer">
-            <label>Price Range</label>
             <label>
               ${filters.carPriceMin} - ${filters.carPriceMax}
             </label>
           </div>
 
           <input
-            className="inputRange"
+            className="inputRange margin"
             name="carPriceMin"
             onChange={handlerFilters}
             type="Number"
@@ -128,14 +128,17 @@ const Filters = () => {
           />
         </div>
         <div className="priceSelector">
+          {" "}
+          <label> Year Range</label>
           <div className="labelContainer">
-            <label> Year Range</label>
             <label>
-              {filters.carYearMin} -{filters.carYearMax}
+              {filters.carYearMin}-{filters.carYearMax}
+              
             </label>
+            <label></label>
           </div>
           <input
-            className="inputRange"
+            className="inputRange margin"
             name="carYearMin"
             onChange={handlerFilters}
             type="Number"

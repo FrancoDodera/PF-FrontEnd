@@ -6,6 +6,39 @@ text-align:center;
 width: 100%;
 height: 100vh;
 }
+.divForm{
+    width: 800px;
+    margin: 0 auto;
+}
+.labels{
+    display: grid;
+    grid-template-columns: 1fr 3fr ;
+    gap:5px;
+    font-size: 30px;
+    align-items: center;
+    justify-content:start;
+    text-align: start;
+}
+.img{
+
+    width: 800px;
+    margin: 20px auto;
+}
+.btnSave{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.inputs{
+    text-align: left;
+    font-weight: bold;
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    font-size: 30px;
+}
 .barra{
     border-radius: 5px;
     background-color: #258f7a;
@@ -27,92 +60,112 @@ height: 100vh;
     font-size: 25px;
     padding: 30px 5px;
 }
-.contact{
-margin-top: 500px;
-font-size: 20px;
-}
-.UserDetail{
-    margin-top: 60px;
-align-items:center;
-text-align: center;
-}
-
 .Username{
    
-    align-items:center;
-text-align: center;
+    align-items:left;
+text-align:left;
     font-weight: bold;
     font-size: 25px;
      color: rgb(0, 0, 0);
 }
 
 .Userlastname{
-    align-items:center;
-text-align: center;
+    align-items:left;
+    text-align:left;
     font-weight: bold;
     font-size: 25px;
     color: rgb(0, 0, 0);
 }
 
 .Usermail{ 
-    align-items:center;
-    text-align: center;
+    align-items:left;
+    text-align:left;
     font-weight: bold;
     color: rgb(0, 0, 0);
     font-size: 25px;
 }
 .campo{
-    margin: 5px;
-    background: none;
     text-align:left;
     border-radius: 6px;
-    outline: 2px solid #004d36;
+    margin-bottom: 10px;
+    box-shadow: 2px 3px 5px rgb(0, 0, 0);
+    color: black;
+}
+.campo2{
+    text-align:left;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 2px 3px 5px rgb(0, 0, 0);
+    color: black;
+    padding: 5px;
 }
 
 .Userpassword{
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px;
+    width: 800px;
+    margin: 20px auto;
+}
+.Changepassword{
+    text-align: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 35px;
+    background-color: #258f7a;
+    border-radius: 5px;
+}
+.passwordselect{
+    padding: 12px;
+font-weight: bold;
+font-size: 25px;
+color: #ffffff;
+text-shadow: 3px 3px 4px rgb(0, 0, 0);
+}
+.labpass{
+    font-size: 20px;
+    font-weight: 700;
 }
 
-.passwordselect{
- padding: 12px;
+.buttonspass{
+    display: flex;
+    gap: 10px;
 }
 
 .cancelbutton{
-    width: 90px;
-background-color: rgb(255, 0, 0);
-color: aliceblue;
-border-radius: 5px;
-margin-right: 20px;
+    padding: 10px;
+    background-color: rgb(182, 0, 0);
+    color: aliceblue;
+    border-radius: 5px;
 }
 .cancelbutton:hover{
     border-radius: 5px;
-    background-color:rgb(188, 0, 0);
+    background-color:rgb(255, 0, 0);
 }
 .submitbutton{
-   width: 150px;
-background-color: rgb(0, 172, 132);
+    padding: 10px;
+background-color: rgb(0, 141, 108);
 color: aliceblue;
 border-radius: 5px;
 }
 
 .submitbutton:hover{
     border-radius: 5px;
-    background-color:rgb(0, 129, 99);
+    background-color:rgb(0, 195, 150);
 }
 
+
 .databutton{
-    width: 200px;
+    margin:10px;
+    padding: 10px;
     border-radius: 10px;
-    background-color:rgb(0, 182, 139)
+    background-color:rgb(0, 144, 110);
+    color: aliceblue;
 }
 
 .databutton:hover{
-    width: 200px;
     border-radius: 10px;
-    background-color:rgb(0, 211, 162)
+    background-color:rgb(0, 176, 135)
 }
+
+
 
 .inputgroup{
  align-items:center;
@@ -136,16 +189,18 @@ border-radius: 5px;
     text-align: center;
 
 }
-.img{
-    align-items:center;
-    text-align: center;
-}
+
 .archivoselect{
-    align-items:center;
-    text-align: center;
+    background-color:rgb(0, 144, 110);
+    color: aliceblue;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: bold;
 }
 .input2{
-    margin-top: 10px;
+    margin-left:50px;
+    font-size: 20px;
+    margin-top: 20px;
     align-items:center;
     text-align: center;
      font-weight: bold;
@@ -155,10 +210,12 @@ border-radius: 5px;
     text-align: center;
 }
 
-.archivoselect{
+.divForm label{
+    font-weight: 700;
+}
+
+.containerPass{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     margin-top: 10px;
-    align-items:center;
-text-align: center;
-font-size: 22px;
- font-weight: bold;
 }

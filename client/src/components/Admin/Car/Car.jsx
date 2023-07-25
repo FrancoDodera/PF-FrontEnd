@@ -8,8 +8,9 @@ import {
   getAllBrands,
   getAllCategories,
 } from "../../../redux/actions";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
+import Pagination from "../../Pagination/Pagination";
+
 const Car = () => {
   // Redux
   const cars = useSelector((state) => state.allCars);
@@ -32,6 +33,36 @@ const Car = () => {
     action: "",
     image: "",
   });
+
+  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalItems = cars.length;
+  const indexOfLastBrand = currentPage * itemsPerPage;
+  const indexOfFirstBrand = indexOfLastBrand - itemsPerPage;
+  const currentCars = cars.slice(indexOfFirstBrand, indexOfLastBrand);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // const getCurrentItems = () => {
+  //   const indexOfLastItem = currentPage * itemsPerPage;
+  //   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  //   return cars.slice(indexOfFirstItem, indexOfLastItem);
+  // };
+
+  // const handlePrevPage = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage(currentPage - 1);
+  //   }
+  // };
+
+  // const handleNextPage = () => {
+  //   const totalPages = Math.ceil(cars.length / itemsPerPage);
+  //   if (currentPage < totalPages) {
+  //     setCurrentPage(currentPage + 1);
+  //   }
+  // };
 
   const [showModal, setShowModal] = useState(false);
 
@@ -57,13 +88,106 @@ const Car = () => {
       alert(error);
     }
   };
+
+  const [nameError, setNameError] = useState("");
+
+  const [transmissionError, setTransmissionError] = useState(false);
+
+  const [amountError, setAmountError] = useState("");
+
+  const [ageError, setAgeError] = useState("");
+
+  const [descriptionError, setDescriptionError] = useState(false);
+
+  const [priceError, setPriceError] = useState(false);
+
   const handleCar = (event) => {
-    const { value } = event.target;
+    const { name, value } = event.target;
     setCar({ ...car, [event.target.name]: value });
+    if (name === "name") {
+      validateName(value);
+    } else if (name === "transmission") {
+      validateTransmission(value);
+    } else if (name === "amount") {
+      validateAmount(Number(value));
+    } else if (name === "description") {
+      validateDescription(value);
+    } else if (name === "age") {
+      validateAge(Number(value));
+    } else if (name === "price") {
+      validatePrice(Number(value));
+    }
+  };
+
+  const validateDescription = (value) => {
+    if (value === "") {
+      setDescriptionError("The description field cannot be empty");
+    } else {
+      setDescriptionError("");
+    }
+  };
+
+  const validatePrice = (value) => {
+    if (value < 0) {
+      setPriceError("The price field cannot be negative");
+    } else if (value === 0) {
+      setPriceError("The price field cannot be zero");
+    } else {
+      setPriceError("");
+    }
+  };
+
+  const validateAge = (value) => {
+    const currentYear = new Date().getFullYear();
+    if (isNaN(value)) {
+      setAgeError("Please enter a valid year");
+    } else if (value < 1990 || value > currentYear) {
+      setAgeError("The year must be between 1990 and " + currentYear);
+    } else {
+      setAgeError("");
+    }
+  };
+
+  const validateAmount = (value) => {
+    if (value < 0) {
+      setAmountError("The amount field cannot be negative");
+    } else if (value === 0) {
+      setAmountError("The amount field cannot be zero");
+    } else if (value > 10) {
+      setAmountError("The amount cannot be more than 10");
+    } else {
+      setAmountError("");
+    }
+  };
+
+  const validateTransmission = (value) => {
+    if (value === "") {
+      setTransmissionError("The transmission field cannot be empty");
+    } else {
+      setTransmissionError("");
+    }
+  };
+
+  const validateName = (value) => {
+    if (value.trim().length === 0) {
+      setNameError("The name field cannot be empty");
+    } else if (value.length < 3) {
+      setNameError("The name field must have three or more letters");
+    } else if (value.length > 20) {
+      setNameError("The name field cannot have more than 20 letters");
+    } else {
+      setNameError("");
+    }
   };
 
   const showModalCar = () => {
-    setCar({ ...car, action: "Create", status: "new",idCategory:categories[0]._id,idMarca:brands[0]._id });
+    setCar({
+      ...car,
+      action: "Create",
+      status: "new",
+      idCategory: categories[0]._id,
+      idMarca: brands[0]._id,
+    });
     setShowModal(true);
   };
 
@@ -113,6 +237,15 @@ const Car = () => {
     if (car.action === "Create") {
       if (car.image != "") {
         imageUrl = await uploadImage(car.image);
+      }
+      if (car.amount === 0) {
+        return;
+      }
+      if (car.name.length < 3) {
+        setNameError("The name field must have three or more letters");
+        return;
+      } else {
+        setNameError("");
       }
       const body = {
         amount: car.amount,
@@ -165,7 +298,6 @@ const Car = () => {
     }
   }, []);
 
-
   return (
     <div className="flex">
       <NavBar />
@@ -177,7 +309,27 @@ const Car = () => {
             Create Car
           </button>
         </div>
-
+        {/* <div className="flex justify-between p-8 text-gray-300">
+          <button className="btn" onClick={handlePrevPage}>
+            Previous
+          </button>
+          {Array.from({ length: Math.ceil(cars.length / itemsPerPage) }).map(
+            (item, index) => (
+              <button
+                key={index}
+                className={`btn ${
+                  currentPage === index + 1 ? "btn-active" : ""
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            )
+          )}
+          <button className="btn" onClick={handleNextPage}>
+            Next
+          </button>
+        </div> */}
         <dialog
           id="my_modal_5"
           className={showModal ? "modal modal-open" : "modal"}
@@ -218,6 +370,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {nameError && (
+                    <span className="text-red-500 text-sm">{nameError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -236,6 +391,11 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {transmissionError && (
+                    <span className="text-red-500 text-sm">
+                      {transmissionError}
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -254,6 +414,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {amountError && (
+                    <span className="text-red-500 text-sm">{amountError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -272,6 +435,11 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {descriptionError && (
+                    <span className="text-red-500 text-sm">
+                      {descriptionError}
+                    </span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -290,6 +458,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {ageError && (
+                    <span className="text-red-500 text-sm">{ageError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -308,6 +479,9 @@ const Car = () => {
                       className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
+                  {priceError && (
+                    <span className="text-red-500 text-sm">{priceError}</span>
+                  )}
                 </div>
                 <div className="sm:col-span-2">
                   <label
@@ -325,6 +499,11 @@ const Car = () => {
                       onChange={handleCar}
                       className="block w-full p-3 rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     /> */}
+                    {/* {amountError && (
+                      <span className="text-red-500 text-sm">
+                        {amountError}
+                      </span>
+                    )} */}
                     <select
                       onChange={handleCar}
                       className="select select-bordered w-full max-w-xs text-gray-300"
@@ -388,9 +567,7 @@ const Car = () => {
                           );
                         } else {
                           return (
-                            <option key={index}
-                            
-                            value={elem._id}>
+                            <option key={index} value={elem._id}>
                               {elem.name}
                             </option>
                           );
@@ -473,7 +650,7 @@ const Car = () => {
             </tr>
           </thead>
           <tbody>
-            {cars?.map((car, index) => {
+            {currentCars.map((car, index) => {
               return (
                 <tr key={car._id}>
                   <th>{index + 1}</th>
@@ -513,6 +690,12 @@ const Car = () => {
             })}
           </tbody>
         </table>
+        <Pagination
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );

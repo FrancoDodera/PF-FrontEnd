@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import user from "../../img/userimg.webp";
-import NavBar from "../navbar/NavBar";
 import Swal from "sweetalert2";
 import style from "../UserDetail/UserDetail.module.css";
 
@@ -16,7 +13,6 @@ const AccountInfo = () => {
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [profileImage, setProfileImage] = useState("");
   const [profileUrl, setProfileUrl] = useState("");
-    
 
   const handleImageChange = (e) => {
     const files = e.target.files[0];
@@ -143,70 +139,48 @@ const AccountInfo = () => {
     }
   }, []);
   return (
-   <div className={style.UserDetail}>
-      <p className={style.Username}>
-        Name:{" "}
-        {showChangePassword ? (
-          <input
-            type="text"
-            value={name}
-            className={style.campo}
-            onChange={handleNameChange}
-          />
-        ) : (
-          userDetails.name
-        )}
-      </p>
-      <p className={style.Userlastname}>
-        Lastname:{" "}
-        {showChangePassword ? (
-          <input
-            type="text"
-            value={lastname}
-            className={style.campo}
-            onChange={handleLastnameChange}
-          />
-        ) : (
-          userDetails.lastName
-        )}
-      </p>
-      <p className={style.Usermail}>
-        Email:{" "}
-        {showChangePassword ? (
-          <input
-            type="text"
-            value={email}
-            className={style.campo}
-            onChange={handleEmailChange}
-          />
-        ) : (
-          userDetails.email
-        )}
-      </p>
-      <div className={style.Userpassword}>
-        <h2 className={style.passwordselect}>
+    <div className={style.UserDetail}>
+      <div className={style.divForm}>
+        <div className={style.labels}>
+          <label>Name: </label>
           {showChangePassword ? (
-            <>
-              <button
-                className={style.cancelbutton}
-                onClick={toggleChangePassword}
-              >
-                Cancel
-              </button>
-              <button className={style.submitbutton} onClick={handleSubmit}>
-                Save Changes
-              </button>
-            </>
+            <input
+              type="text"
+              value={name}
+              className={style.campo}
+              onChange={handleNameChange}
+            />
           ) : (
-            <button className={style.databutton} onClick={toggleChangePassword}>
-              Change user data
-            </button>
+            <p className={style.ps}>{userDetails.name}</p>
           )}
-        </h2>
+          <label>Lastname: </label>
+          {showChangePassword ? (
+            <input
+              type="text"
+              value={lastname}
+              className={style.campo}
+              onChange={handleLastnameChange}
+            />
+          ) : (
+            <p className={style.ps}>{userDetails.lastName}</p>
+          )}
+          <label>Email: </label>
+          {showChangePassword ? (
+            <input
+              type="text"
+              value={email}
+              className={style.campo}
+              onChange={handleEmailChange}
+            />
+          ) : (
+            <p className={style.ps}>{userDetails.email}</p>
+          )}
+        </div>
       </div>
+
       <div className={style.img}>
         <h2 className={style.archivoselect}>
-          {showChangePassword ? "Change Profile Picture" : ""}
+          {showChangePassword ? <h2>Change Profile Picture</h2> : ""}
         </h2>
         {showChangePassword && (
           <div className={style.input2}>
@@ -214,9 +188,27 @@ const AccountInfo = () => {
           </div>
         )}
       </div>
+      <div className={style.Userpassword}>
+        {showChangePassword ? (
+          <div className={style.btnSave}>
+            <button
+              className={style.cancelbutton}
+              onClick={toggleChangePassword}
+            >
+              Cancel
+            </button>
+            <button className={style.submitbutton} onClick={handleSubmit}>
+              Save Changes
+            </button>
+          </div>
+        ) : (
+          <button className={style.databutton} onClick={toggleChangePassword}>
+            Change user data
+          </button>
+        )}
+      </div>
     </div>
   );
 };
-
 
 export default AccountInfo;

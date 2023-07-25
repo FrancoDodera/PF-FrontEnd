@@ -4,7 +4,7 @@
   font-family: "Inter var", sans-serif;
 }
 
-.Home_container{
+.Home_container {
   background-color: rgba(246, 251, 251, 0.966);
 }
 
@@ -37,4 +37,198 @@
   height: 190px;
   margin-top: 25px;
   justify-content: space-around;
+}
+
+.aboutus {
+  display: flex;
+  justify-content: center;
+}
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Media Queries */
+
+/* Rango: 0px a 359px */
+@media (max-width: 359px) {
+  .Home_container {
+    background-color: rgba(246, 251, 251, 0.966);
+    width: 400%;
+  }
+
+  .carpicture {
+    height: 250px;
+  }
+
+  .carpicture h2 {
+    width: 40%;
+    font-size: 24px;
+  }
+
+  .banner {
+    height: 100px;
+  }
+}
+
+/* Rango: 360px a 719px */
+@media (min-width: 360px) and (max-width: 719px) {
+  .Home_container {
+    background-color: rgba(246, 251, 251, 0.966);
+    width: 330%;
+  }
+
+  .carpicture {
+    height: 300px;
+  }
+
+  .carpicture h2 {
+    width: 320px;
+    font-size: 28px;
+  }
+
+  .banner {
+    height: 130px;
+  }
+}
+
+/* Rango: 720px a 999px */
+@media (min-width: 720px) and (max-width: 999px) {
+  .Home_container {
+    background-color: rgba(246, 251, 251, 0.966);
+    width: 165%;
+  }
+
+  .carpicture {
+    height: 330px;
+  }
+
+  .carpicture h2 {
+    width: 450px;
+    font-size: 30px;
+  }
+
+  .banner {
+    height: 160px;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1366px) {
+  .Home_container {
+    background-color: rgba(246, 251, 251, 0.966);
+    min-width: 100%;
+  }
+
+  .carpicture {
+    height: 370px;
+  }
+
+  .carpicture h2 {
+    width: 499px;
+    font-size: 32px;
+  }
+
+  .banner {
+    height: 190px;
+  }
+}
+/* Rango: 1246 a 1366px */
+@media (min-width: 1246px) and (max-width: 1366px) {
+  .Home_container {
+    background-color: rgba(246, 251, 251, 0.966);
+    min-width: 100%;
+  }
+
+  .carpicture {
+    height: 370px;
+  }
+
+  .carpicture h2 {
+    width: 499px;
+    font-size: 32px;
+  }
+
+  .banner {
+    height: 190px;
+  }
+}
+
+/* Rango: 1367px a 1440px */
+@media (min-width: 1367px) and (max-width: 1440px) {
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter var", sans-serif;
+  }
+
+  .Home_container {
+    background-color: rgba(246, 251, 251, 0.966);
+  }
+
+  .carpicture {
+    height: 390px;
+  }
+
+  .carpicture h2 {
+    width: 520px;
+    font-size: 34px;
+  }
+
+  .banner {
+    height: 200px;
+  }
+}
+
+/* Rango: 1441px a 1920px */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter var", sans-serif;
+  }
+
+  .Home_container {
+    background-color: rgba(246, 251, 251, 0.966);
+  }
+
+  .carpicture {
+    height: 420px;
+  }
+
+  .carpicture h2 {
+    width: 600px;
+    font-size: 36px;
+  }
+
+  .banner {
+    height: 220px;
+  }
+}
+
+/* Rango: 1921px en adelante */
+@media (min-width: 1921px) {
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter var", sans-serif;
+  }
+
+  .Home_container {
+    background-color: rgba(246, 251, 251, 0.966);
+  }
+
+  .carpicture {
+    height: 450px;
+  }
+
+  .carpicture h2 {
+    width: 700px;
+    font-size: 40px;
+  }
+
+  .banner {
+    height: 250px;
+  }
 }

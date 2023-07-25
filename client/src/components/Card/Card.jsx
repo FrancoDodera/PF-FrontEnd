@@ -1,11 +1,28 @@
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 import cart from "../../img/cart.png";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { useSelector, useDispatch } from "react-redux";
+import { addFav, removeFav } from "../../redux/actions";
 
 const Card = (props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [fav, setFav] = useState(false);
+  const favorites = useSelector((state) => state.favorites);
+  const dispatch = useDispatch();
+
+  const handleFavorite = () => {
+    const id_user = localStorage.getItem("idAuth");
+    if (fav) {
+      setFav(false);
+      dispatch(removeFav(id_user, props.id));
+    } else {
+      setFav(true);
+      dispatch(addFav(id_user, props.id));
+    }
+  };
+  const reviews = [1, 2, 3, 4, 5];
 
   const showPopup = () => {
     Swal.fire({
@@ -41,18 +58,49 @@ const Card = (props) => {
     showPopup();
   };
 
+  useEffect(() => {
+    favorites.forEach((fav) => {
+      if (fav.id_car._id == props.id) {
+        setFav(true);
+      }
+    });
+  }, [favorites]);
+
   return (
     <div className={style.container}>
+      {fav ? (
+        <button onClick={handleFavorite}>❤️</button>
+      ) : (
+        <button onClick={handleFavorite}>🤍</button>
+      )}
       <img className={style.imageCointainer} src={props.image} alt="" />
       <div>
         <p>{props.status}</p>
         <h3>{props.name} </h3>
         <p className={style.p}>${props.price}</p>
         <p className={style.p}>{props.age}</p>
+
+        {props.mediaReviews > 0 && (
+          <div className="rating">
+            {reviews.map((elem, index) => {
+              return (
+                <input
+                  key={index}
+                  type="radio"
+                  name={`rating-${props.id}`} // Asignar un nombre único basado en el ID del elemento
+                  className="mask mask-star-2 bg-orange-400"
+                  defaultChecked={elem <= props.mediaReviews}
+                  disabled // Marcar solo el elemento con índice 1 como seleccionado (puedes adaptar esto según tus necesidades)
+                />
+              );
+            })}
+          </div>
+        )}
         <p className={style.celler}>{props.category.name}</p>
       </div>
+
       <Link className={style.Link} to={`/detail/${props.id}`}>
-        <button className={style.button}>Check availability</button>
+        <button className={style.button}>View Details</button>
       </Link>
       <div className={style.cart} onClick={handleAddToCart}>
         <img src={cart} alt="" />
