@@ -20,6 +20,7 @@ const Authentication=()=>{
                 image:res.profileObj.imageUrl
             }
             const {data}=await axios.post('/user/addUser',body)
+            console.log(body)
             if(data.acces==true){
                 if(data.data.type=='User'){
                     localStorage.clear();

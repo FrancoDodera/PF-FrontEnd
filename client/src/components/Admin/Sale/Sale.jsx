@@ -5,7 +5,14 @@ import { getAllSales } from "../../../redux/actions";
 import NavBar from "../NavBar/NavBar.jsx";
 import axios from "axios";
 import Pagination from "../../Pagination/Pagination";
+import easyinvoice from 'easyinvoice'
+
 const Sale = () => {
+  
+
+
+
+
   //Redux
   const sale = useSelector((state) => state.allSales);
   const [dataDetail, setDataDetail] = useState([]);
@@ -47,6 +54,73 @@ const Sale = () => {
     }
   }, []);
   const navigate = useNavigate();
+
+
+
+
+
+  
+  const generarPDF = () => {
+    // Datos para la factura (ajusta según tus necesidades)
+    const data = {
+      currency: 'USD',
+      taxNotation: 'vat',
+      marginTop: 25,
+      marginRight: 25,
+      marginLeft: 25,
+      marginBottom: 25,
+      sender: {
+        company: 'CarGo',
+        address: '123 Calle Principal',
+        zip: '209948',
+        city: 'Buenos Aires',
+        country: 'Argentina',
+      },
+      client: {
+        company: 'Cliente XYZ',
+        address: '456 Calle Secundaria',
+        zip: '67890',
+        city: 'Ciudad',
+        country: 'País',
+      },
+      invoiceNumber: '2023001',
+      invoiceDate: '01/07/2023',
+      products: [
+        {
+          quantity: '2',
+          description: 'Producto 1',
+          tax: 6,
+          price: 10,
+        },
+        {
+          quantity: '1',
+          description: 'Producto 2',
+          tax: 6,
+          price: 20,
+        },
+      ],
+      bottomNotice: 'Gracias por su compra.',
+    };
+    easyinvoice.createInvoice(data, function (result) {
+      // The response will contain a base64 encoded PDF file
+      easyinvoice.download('myInvoice.pdf', result.pdf);
+      //	you can download like this as well:
+      //	easyinvoice.download();
+      //	easyinvoice.download('myInvoice.pdf');   
+
+      console.log(currentSale);})
+
+    // Generar la factura y obtener el PDF como una cadena de base64
+    
+    ;
+  };
+    
+
+
+
+
+
+
   return (
     <div className="flex">
       <NavBar />
@@ -60,6 +134,10 @@ const Sale = () => {
           className={showModal ? "modal modal-open" : "modal"}
         >
           <form method="dialog" className="modal-box w-11/12 max-w-5xl h-auto">
+            <button className="float-left bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+            onClick={generarPDF}>
+              download PDF
+            </button>
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
               type="button"

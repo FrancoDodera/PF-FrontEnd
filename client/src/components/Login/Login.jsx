@@ -34,6 +34,7 @@ const Login = () => {
         password:pwd
       }
       const {data} = await axios.post(LOGIN_URL,credentials);
+      console.log(data)
       if(data.acces){
         localStorage.clear();
         if(data.data.type=='User'){
