@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
+import likeimg from "../../img/like.jpeg";
+import noLikeimg from "../../img/nolike.png";
 
 const Card = (props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -69,11 +71,15 @@ const Card = (props) => {
   return (
     <div className={style.container}>
       <div>
-        <img className={style.imageCointainer} src={props.image} alt="" />
+        <Link className={style.Link} to={`/detail/${props.id}`}>
+          <img className={style.imageCointainer} src={props.image} alt="" />
+        </Link>
       </div>
       <div>
         <p>{props.status}</p>
-        <h3 className={style.carName}>{props.name} </h3>
+        <Link className={style.Link} to={`/detail/${props.id}`}>
+          <h3 className={style.carName}>{props.name} </h3>
+        </Link>
         <p className={style.p}>${props.price}</p>
         <p className={style.p}>{props.age}</p>
 
@@ -96,20 +102,27 @@ const Card = (props) => {
         <p className={style.celler}>{props.category.name}</p>
       </div>
       <div className={style.iconsContainer}>
-        {fav ? (
-          <button onClick={handleFavorite}>❤️</button>
-        ) : (
-          <button onClick={handleFavorite}>🤍</button>
-        )}
-        <Link className={style.Link} to={`/detail/${props.id}`}>
-          <button className={style.button}>View Details</button>
-        </Link>
         <img
           className={style.cart}
           onClick={handleAddToCart}
           src={cart}
           alt=""
         />
+        {fav ? (
+          <img
+            onClick={handleFavorite}
+            className={style.likeImg}
+            src={likeimg}
+            alt={likeimg}
+          />
+        ) : (
+          <img
+            onClick={handleFavorite}
+            className={style.likeImg}
+            src={noLikeimg}
+            alt={noLikeimg}
+          />
+        )}
       </div>
     </div>
   );

@@ -7,8 +7,8 @@
 }
 
 .cart {
-  width: 50px;
-  left: 87%;
+  width: 45px;
+  height: 45px;
   transition: 0.2s;
   cursor: pointer;
 }
@@ -75,5 +75,12 @@
 }
 
 .iconsContainer {
+  margin-top: 10px;
   display: grid;
+  grid-template-columns: repeat(2, 75px);
+}
+
+.likeImg {
+  width: 45px;
+  height: 45px;
 }
