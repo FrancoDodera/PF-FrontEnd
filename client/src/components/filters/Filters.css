@@ -1,17 +1,14 @@
 .containerFilters {
   display: flex;
   flex-direction: column;
-  background-color: rgba(137, 192, 209, 0.276);
-  height: 400px;
+  background-color: rgba(177, 233, 252, 0.276);
+  width: 80%;
 }
-.containerSelects {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
+
 .divSelect {
   margin: 10px;
   display: grid;
-  grid-template-columns: 1fr;
+
 }
 .divSelect select {
   margin-top: 10px;
@@ -21,11 +18,13 @@
 }
 
 .priceSelector {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   margin: 20px 10px;
   align-items: center;
-  justify-content: center;
+
+}
+.divRange{
+  display: grid;
+  height: 100;
 }
 .inputRange {
   width: 120px;
@@ -34,11 +33,12 @@
   color: white;
 }
 .labelContainer {
-  display: flex;
-  flex-direction: column;
+
+  
 }
 .labelContainer label {
-  margin-top: 5px;
+  
+  margin-left: px;
 }
 .divButtonFilter {
   display: grid;
@@ -61,4 +61,7 @@
 }
 .containerFilters label {
   font-weight: 500;
+}
+.margin{
+  margin-right: 10px;
 }

@@ -2,7 +2,8 @@
   align-items: center;
   justify-content: start;
   background-position: absolute;
-  background-image: url("../../img/merc.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.397), rgba(0, 0, 0, 0.582)),
+    url("../../img/merc.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -23,7 +24,6 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin-top: 10px;
-  gap: 20px;
 }
 .divContainer {
   background-color: rgba(246, 251, 251, 0.966);
