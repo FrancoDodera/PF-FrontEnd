@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
+import likeimg from "../../img/like.jpeg";
+import noLikeimg from "../../img/nolike.png";
 
 const Card = (props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -68,15 +70,16 @@ const Card = (props) => {
 
   return (
     <div className={style.container}>
-      {fav ? (
-        <button onClick={handleFavorite}>❤️</button>
-      ) : (
-        <button onClick={handleFavorite}>🤍</button>
-      )}
-      <img className={style.imageCointainer} src={props.image} alt="" />
+      <div>
+        <Link className={style.Link} to={`/detail/${props.id}`}>
+          <img className={style.imageCointainer} src={props.image} alt="" />
+        </Link>
+      </div>
       <div>
         <p>{props.status}</p>
-        <h3>{props.name} </h3>
+        <Link className={style.Link} to={`/detail/${props.id}`}>
+          <h3 className={style.carName}>{props.name} </h3>
+        </Link>
         <p className={style.p}>${props.price}</p>
         <p className={style.p}>{props.age}</p>
 
@@ -98,12 +101,28 @@ const Card = (props) => {
         )}
         <p className={style.celler}>{props.category.name}</p>
       </div>
-
-      <Link className={style.Link} to={`/detail/${props.id}`}>
-        <button className={style.button}>View Details</button>
-      </Link>
-      <div className={style.cart} onClick={handleAddToCart}>
-        <img src={cart} alt="" />
+      <div className={style.iconsContainer}>
+        <img
+          className={style.cart}
+          onClick={handleAddToCart}
+          src={cart}
+          alt=""
+        />
+        {fav ? (
+          <img
+            onClick={handleFavorite}
+            className={style.likeImg}
+            src={likeimg}
+            alt={likeimg}
+          />
+        ) : (
+          <img
+            onClick={handleFavorite}
+            className={style.likeImg}
+            src={noLikeimg}
+            alt={noLikeimg}
+          />
+        )}
       </div>
     </div>
   );

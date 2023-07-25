@@ -198,10 +198,10 @@ const Register = () => {
         } else {
           Swal.fire({
             icon: "error",
-            title: "Error",
+            title: data,
             position: "top-end",
             showConfirmButton: false,
-            timer: 500,
+            timer: 800,
           });
         }
       } catch (err) {

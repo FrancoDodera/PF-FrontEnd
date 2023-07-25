@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const Authentication=()=>{
     const navigate=useNavigate();
-    const clientID="193073335991-hclacbarkbgi6vgh4ntd2ig24cnsfvpb.apps.googleusercontent.com"
+    const clientID="193073335991-e2gqv4d7rj0uo6tmb8icli57mlfaqk14.apps.googleusercontent.com"
     const handlerSuccess= async(res)=>{
         try {
             const body={
@@ -14,12 +14,14 @@ const Authentication=()=>{
                 lastName:res.profileObj.familyName,
                 email:res.profileObj.email,
                 user:res.profileObj.email,
-                password:res.tokenObj.login_hint,
+                token:res.tokenObj.login_hint,
+                password:null,
                 dni:null,
                 type:'User',
                 image:res.profileObj.imageUrl
             }
-            const {data}=await axios.post('/user/addUser',body)
+            console.log(body)
+            const {data}=await axios.post('/user/authentication',body)
             if(data.acces==true){
                 if(data.data.type=='User'){
                     localStorage.clear();
