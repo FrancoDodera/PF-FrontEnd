@@ -3,12 +3,14 @@
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  grid-template-columns: 1fr 3fr;
-  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 20px;
+  margin-left: 40px;
   gap: 20px;
+  min-height: 80vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .noCarContainer {

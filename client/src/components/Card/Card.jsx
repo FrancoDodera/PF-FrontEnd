@@ -68,15 +68,12 @@ const Card = (props) => {
 
   return (
     <div className={style.container}>
-      {fav ? (
-        <button onClick={handleFavorite}>❤️</button>
-      ) : (
-        <button onClick={handleFavorite}>🤍</button>
-      )}
-      <img className={style.imageCointainer} src={props.image} alt="" />
+      <div>
+        <img className={style.imageCointainer} src={props.image} alt="" />
+      </div>
       <div>
         <p>{props.status}</p>
-        <h3>{props.name} </h3>
+        <h3 className={style.carName}>{props.name} </h3>
         <p className={style.p}>${props.price}</p>
         <p className={style.p}>{props.age}</p>
 
@@ -98,12 +95,21 @@ const Card = (props) => {
         )}
         <p className={style.celler}>{props.category.name}</p>
       </div>
-
-      <Link className={style.Link} to={`/detail/${props.id}`}>
-        <button className={style.button}>View Details</button>
-      </Link>
-      <div className={style.cart} onClick={handleAddToCart}>
-        <img src={cart} alt="" />
+      <div className={style.iconsContainer}>
+        {fav ? (
+          <button onClick={handleFavorite}>❤️</button>
+        ) : (
+          <button onClick={handleFavorite}>🤍</button>
+        )}
+        <Link className={style.Link} to={`/detail/${props.id}`}>
+          <button className={style.button}>View Details</button>
+        </Link>
+        <img
+          className={style.cart}
+          onClick={handleAddToCart}
+          src={cart}
+          alt=""
+        />
       </div>
     </div>
   );
