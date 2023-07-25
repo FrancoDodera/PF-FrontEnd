@@ -1,5 +1,6 @@
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
   margin-bottom: 20px;
   background-color: rgba(137, 192, 209, 0.276);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -75,12 +76,14 @@
 }
 
 .iconsContainer {
-  margin-top: 10px;
+  padding: 10px;
   display: grid;
   grid-template-columns: repeat(2, 75px);
+  justify-content: center;
+  align-items: center;
 }
 
 .likeImg {
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
 }
