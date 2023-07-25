@@ -3,6 +3,7 @@ import Card from "./NewsCard";
 import styles from "./NewsPage.module.css";
 import NavBar from "../navbar/NavBar";
 import axios from "axios";
+import Footer from "../Footer/Footer";
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -97,6 +98,7 @@ const News = () => {
           </button>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

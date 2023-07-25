@@ -1,0 +1,28 @@
+.contactMore {
+  background-color: #016565;
+  height: 200px;
+  display: flex;
+  padding: 60px;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+}
+
+.AboutContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+}
+.costumers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+}
+.svgs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+}
