@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { getAllSales } from "../../../redux/actions";
 
 const RecentOrder = () => {
@@ -16,7 +15,9 @@ const RecentOrder = () => {
 
   return (
     <div>
-      <h1 className="text-gray-300 text-2xl   font-semibold  mt-5">Last Sales</h1>
+      <h1 className="text-gray-300 text-2xl   font-semibold  mt-5">
+        Last Sales
+      </h1>
       <div>
         <div className="h-[30vh] shadow-mi-sombra	  rounded-lg bg-[#597091] text-black w-12/12 pt-3 mr-9	mt-10">
           <table className=" border-separate table text-black ">

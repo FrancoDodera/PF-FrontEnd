@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../img/Logo.svg";
 import guestUser from "../../img/guestUser.png";
 import "./NavBar.css";
@@ -59,15 +59,23 @@ const NavBar = () => {
     }
   };
 
-  const logOut = async() => {
-        const id_user=localStorage.getItem("idAuth");
-        const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-        const body={sale:{id_user:id_user,description:'in cart',date:new Date().toISOString(),total:totalPrice},detailSale:savedCartItems}
-        await axios.post('/sale',body);
-       
-        localStorage.clear();
-        dispatch(clearFavs());
-        navigate("/login");
+  const logOut = async () => {
+    const id_user = localStorage.getItem("idAuth");
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const body = {
+      sale: {
+        id_user: id_user,
+        description: "in cart",
+        date: new Date().toISOString(),
+        total: totalPrice,
+      },
+      detailSale: savedCartItems,
+    };
+    await axios.post("/sale", body);
+
+    localStorage.clear();
+    dispatch(clearFavs());
+    navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
 
