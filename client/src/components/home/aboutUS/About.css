@@ -22,8 +22,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 100%;
+  height: 500px;
+  width: 1000px;
   background: #d8ebef;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   backface-visibility: hidden;
@@ -41,12 +41,6 @@
 
 .container_about h2 {
   margin-top: 70px;
-}
-
-.container_about p {
-  width: 600px;
-  text-align: center;
-  margin-top: 20px;
 }
 
 .card span.circle,
@@ -122,12 +116,12 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 35px 50px; /* Adjust the gap to reduce space between cards */
+  gap: 35px 50px;
   max-width: 900px;
 }
 
 .cards {
-  flex: 1 1 calc(50% - 1px); /* Adjust the width of each card to fit 4 in a row */
+  flex: 1 1 calc(50% - 1px);
   max-width: calc(25% - 60px);
   background: #07182e;
   border-radius: 0.366vw;
@@ -136,7 +130,7 @@
   height: 12em;
   width: 20em;
   text-align: center;
-  z-index: 1;
+  z-index: 99;
 }
 
 .cards img {
@@ -165,34 +159,29 @@
 }
 
 .icon-container {
-  opacity: 0; /* Inicialmente los iconos están ocultos */
-  transform: translateY(
-    20px
-  ); /* Mover los iconos hacia abajo para dar un efecto de aparición */
-  transition: opacity 0.3s ease, transform 0.3s ease; /* Transiciones para un efecto gradual */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Estilo para mostrar los iconos cuando el componente está en hover */
 .cards:hover .icon-container.visible {
-  opacity: 1; /* Mostrar los iconos */
-  transform: translateY(0); /* Volver a la posición original */
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Estilo para los botones de los iconos */
 .icon-button {
-  background: none; /* Eliminar el fondo */
-  border: none; /* Eliminar el borde */
-  color: #f0f0f0; /* Color del icono */
+  background: none;
+  border: none;
+  color: #f0f0f0;
   cursor: pointer;
   font-size: 30px;
   margin-right: 10px;
-  outline: none; /* Eliminar el contorno al hacer clic */
+  outline: none;
 }
 
 .car-image {
   width: 800px;
   left: 800px;
-  z-index: 1;
 }
 
 /* Estilo para el botón "More Information!" */
@@ -215,7 +204,7 @@
   background-color: #e1aca2;
   z-index: 0;
 }
-.cards-container button {
+.button-more {
   padding: 10px 20px;
   font-size: 18px;
   border: none;
@@ -229,7 +218,7 @@
   top: -50px;
   z-index: 1;
 }
-.cards-container button:hover {
+.button-more:hover {
   background-color: #e1aca2;
   z-index: 1;
 }
@@ -238,7 +227,7 @@
   background-color: #d8ebef;
   padding: 20px;
   width: 800px;
-  height: 400px;
+  height: 500px;
 }
 .container_info {
   display: flex;
@@ -249,4 +238,48 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.box_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.box_container a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Media Query para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .wrapper {
+    height: 300px;
+    width: 90%;
+  }
+  .cards-container {
+    gap: 20px; /* Reduce el espacio entre tarjetas */
+  }
+  .cards {
+    flex: 1 1 calc(50% - 20px); /* Ajusta el tamaño de las tarjetas en pantallas más pequeñas */
+  }
+}
+
+/* Media Query para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+  .wrapper {
+    height: 200px;
+  }
+  .cards {
+    width: 90%; /* Ajusta el tamaño de las tarjetas en pantallas muy pequeñas */
+  }
+  .container_about {
+    padding: 10px; /* Reduce el padding del contenedor de información */
+  }
+  .box_container {
+    flex-direction: column; /* Coloca las cajas una encima de la otra en pantallas muy pequeñas */
+  }
+  .box_container a {
+    margin-bottom: 20px; /* Agrega espacio entre las cajas en pantallas pequeñas */
+  }
 }
