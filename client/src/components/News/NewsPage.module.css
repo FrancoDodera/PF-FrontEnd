@@ -1,9 +1,8 @@
-
-
 .title{
     text-align: center;
     color:aliceblue;
     font-size: 40px;
+    margin-top: 20px;
 }
 
 .card{
@@ -20,28 +19,24 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 25px;
   }
 
   .prevBtn {
-    padding: 8px 16px;
+    padding: 5px 10px;
     background-color: #f2f2f2;
     color: #333;
-    border: 10px solid #ccc;
     border-radius: 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     margin-left: 20px;
     margin-right: 20px;
   }
 
   .nextBtn{
-    padding: 8px 16px;
+    padding: 5px 10px;
     background-color: #f2f2f2;
     color: #333;
-    border: 10px solid #ccc;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 15px;

@@ -45,7 +45,6 @@ const Card = ({ title, content, imageURL, author,publishedAt,url }) => {
           <a href={url} target="_blank" rel="noopener noreferrer"> Reed more... </a>
        </div>
       </div>
-    </div>
   );
 };
 

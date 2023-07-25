@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-// import "./UserDetail.css";
-import user from "../../img/userimg.webp";
+import React, { useState } from "react";
 import NavBar from "../navbar/NavBar";
-import Swal from "sweetalert2";
 import style from "../UserDetail/UserDetail.module.css";
 import AccountInfo from "../UserDetail/AccountInfo";
 import ChangePass from "../UserDetail/ChangePass";
@@ -43,7 +38,7 @@ const UserDetail = () => {
             </li>
           </ul>
           {/* <div className={style.contact}>Contact Us</div> */}
-          <ContactUs/>
+          <ContactUs />
         </div>
         <div>
           {section == "AccountInfo" && <AccountInfo />}

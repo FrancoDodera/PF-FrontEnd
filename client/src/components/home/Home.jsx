@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../navbar/NavBar";
 import "./home.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCars, getAllFavs } from "../../redux/actions";
+import { getAllCars } from "../../redux/actions";
 import SellYourCar from "./sellYourCar/SellYourCar";
 import Recommended from "./recommended/Recommended";
 import Find from "./find/Find";
@@ -10,13 +10,12 @@ import AboutUS from "./aboutUS/AboutUS";
 import Contact from "./contact/Contact";
 import CookieBanner from "../../components/CookiesBanner/Cookies";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const Home = () => {
   const dispatch = useDispatch();
   const cars = useSelector((state) => state.auxCars);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     if (cars.length == 0) {
       dispatch(getAllCars())
@@ -28,7 +27,7 @@ const Home = () => {
     } else {
       setLoading(false);
     }
-    },[cars,dispatch])
+  }, [cars, dispatch]);
 
   return (
     <div className="Home_container">
@@ -64,4 +63,3 @@ const Home = () => {
 };
 
 export default Home;
-

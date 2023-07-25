@@ -6,7 +6,6 @@ import style from "./Carsforsale.module.css";
 import noCarimg from "../../img/nohayautos.png";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCars, getAllFavs } from "../../redux/actions";
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Carsforsale = (props) => {
@@ -19,7 +18,7 @@ const Carsforsale = (props) => {
 
   useEffect(() => {
     if (favorites.length == 0) {
-      const id_user=localStorage.getItem("idAuth");
+      const id_user = localStorage.getItem("idAuth");
       dispatch(getAllFavs(id_user));
     }
     if (allCars.length === 0) {
@@ -50,8 +49,7 @@ const Carsforsale = (props) => {
             </div>
             <div className={style.containerCarsForSale}>
               <Filters />
-              {
-              carsActive.length === 0 ? (
+              {carsActive.length === 0 ? (
                 <div className={style.noCarContainer}>
                   <h1 className={style.noCarsMessage}>
                     ¡THERE ARE NO CARS WITH THESE FEATURES!

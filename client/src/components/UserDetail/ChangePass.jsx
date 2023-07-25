@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import user from "../../img/userimg.webp";
-import NavBar from "../navbar/NavBar";
 import Swal from "sweetalert2";
 import style from "../UserDetail/UserDetail.module.css";
 
@@ -99,53 +96,53 @@ const ChangePass = () => {
   return (
     <div className={style.Userpassword}>
       <h1 className={style.Changepassword}>Change your Password:</h1>
-      
-        {showChangePassword ? (
-          <div className={style.containerPass}>
-            <label className={style.labpass}>Old Password:</label>
-            <input
-              type="password"
-              placeholder="Old Password"
-              value={dataPassword.oldPassword}
-              name="oldPassword"
-              className={style.campo2}
-              onChange={handlePwdChange}
-            />
-            <label className={style.labpass}>New Password:</label>
-            <input
-              type="password"
-              placeholder="New Password"
-              value={dataPassword.password}
-              name="password"
-              className={style.campo2}
-              onChange={handlePwdChange}
-            />
-            <label className={style.labpass}>Confirm Password:</label>
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={dataPassword.confirmPassword}
-              name="confirmPassword"
-              className={style.campo2}
-              onChange={handlePwdChange}
-            />
-            <div className={style.buttonspass}>
-              <button
-                className={style.cancelbutton}
-                onClick={toggleChangePassword}
-              >
-                Cancel
-              </button>
-              <button className={style.submitbutton} onClick={handleSubmit}>
-                Save Changes
-              </button>
-            </div>
+
+      {showChangePassword ? (
+        <div className={style.containerPass}>
+          <label className={style.labpass}>Old Password:</label>
+          <input
+            type="password"
+            placeholder="Old Password"
+            value={dataPassword.oldPassword}
+            name="oldPassword"
+            className={style.campo2}
+            onChange={handlePwdChange}
+          />
+          <label className={style.labpass}>New Password:</label>
+          <input
+            type="password"
+            placeholder="New Password"
+            value={dataPassword.password}
+            name="password"
+            className={style.campo2}
+            onChange={handlePwdChange}
+          />
+          <label className={style.labpass}>Confirm Password:</label>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={dataPassword.confirmPassword}
+            name="confirmPassword"
+            className={style.campo2}
+            onChange={handlePwdChange}
+          />
+          <div className={style.buttonspass}>
+            <button
+              className={style.cancelbutton}
+              onClick={toggleChangePassword}
+            >
+              Cancel
+            </button>
+            <button className={style.submitbutton} onClick={handleSubmit}>
+              Save Changes
+            </button>
           </div>
-        ) : (
-          <button className={style.databutton} onClick={toggleChangePassword}>
-            Change Password
-          </button>
-        )}
+        </div>
+      ) : (
+        <button className={style.databutton} onClick={toggleChangePassword}>
+          Change Password
+        </button>
+      )}
     </div>
   );
 };

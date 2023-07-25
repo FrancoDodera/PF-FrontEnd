@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import user from "../../img/userimg.webp";
-import NavBar from "../navbar/NavBar";
 import Swal from "sweetalert2";
 import style from "../UserDetail/UserDetail.module.css";
 
@@ -183,7 +180,7 @@ const AccountInfo = () => {
 
       <div className={style.img}>
         <h2 className={style.archivoselect}>
-          {showChangePassword ? <h2>Change Profile Picture</h2>  : ""}
+          {showChangePassword ? <h2>Change Profile Picture</h2> : ""}
         </h2>
         {showChangePassword && (
           <div className={style.input2}>
@@ -192,23 +189,23 @@ const AccountInfo = () => {
         )}
       </div>
       <div className={style.Userpassword}>
-          {showChangePassword ? (
-            <div className={style.btnSave}>
-              <button
-                className={style.cancelbutton}
-                onClick={toggleChangePassword}
-              >
-                Cancel
-              </button>
-              <button className={style.submitbutton} onClick={handleSubmit}>
-                Save Changes
-              </button>
-            </div>
-          ) : (
-            <button className={style.databutton} onClick={toggleChangePassword}>
-              Change user data
+        {showChangePassword ? (
+          <div className={style.btnSave}>
+            <button
+              className={style.cancelbutton}
+              onClick={toggleChangePassword}
+            >
+              Cancel
             </button>
-          )}
+            <button className={style.submitbutton} onClick={handleSubmit}>
+              Save Changes
+            </button>
+          </div>
+        ) : (
+          <button className={style.databutton} onClick={toggleChangePassword}>
+            Change user data
+          </button>
+        )}
       </div>
     </div>
   );

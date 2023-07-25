@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { clearDetail, getCarById } from "../../redux/actions";
 import NavBar from "../navbar/NavBar";
 import style from "./Detail.module.css";
@@ -28,7 +28,7 @@ const Detail = () => {
   };
   const [loading, setLoading] = useState(true);
   const showModalReview = () => {
-    const id_user=localStorage.getItem("idAuth");
+    const id_user = localStorage.getItem("idAuth");
     setNewReview({
       id_user: id_user,
       id_car: car._id,
@@ -70,13 +70,13 @@ const Detail = () => {
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
-        setLoading(true); 
-        await getReview(id); 
+        setLoading(true);
+        await getReview(id);
         dispatch(getCarById(id));
-        setLoading(false); 
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching car details:", error);
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -142,45 +142,45 @@ const Detail = () => {
           <div className="flex justify-center items-center h-screen">
             <div className="loading ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
           </div>
-          ) : (
-        <div className={style.container}>
-          <div>
-            <img src={car?.image} alt="" />
-          </div>
-          <div className={style.detalles}>
-            <div className={style.caracteristicas}>
-              <h2>{car?.name}</h2>
-              <h4>
-                <strong>USD $</strong>${car?.price}
-              </h4>
-              <p>
-                {" "}
-                <strong>Year: </strong>
-                {car?.age}
-              </p>
-              <p>
-                <strong>Color: </strong> {car?.color}
-              </p>
-              <p>
-                <strong>Trasmission: </strong> {car?.transmission}
-              </p>
-              <p>
-                <strong>Brand: </strong> {idMarca?.name}
-              </p>
-              <p>
-                <strong>Category: </strong> {idCategory?.name}
-              </p>
+        ) : (
+          <div className={style.container}>
+            <div>
+              <img src={car?.image} alt="" />
             </div>
-            <div className={style.buttons}>
-              <button className={style.buttones} onClick={handleAddToCart}>
-                Add To Cart
-              </button>
-              <button className={style.buttones} onClick={showModalReview}>
-                Add Review
-              </button>
+            <div className={style.detalles}>
+              <div className={style.caracteristicas}>
+                <h2>{car?.name}</h2>
+                <h4>
+                  <strong>USD $</strong>${car?.price}
+                </h4>
+                <p>
+                  {" "}
+                  <strong>Year: </strong>
+                  {car?.age}
+                </p>
+                <p>
+                  <strong>Color: </strong> {car?.color}
+                </p>
+                <p>
+                  <strong>Trasmission: </strong> {car?.transmission}
+                </p>
+                <p>
+                  <strong>Brand: </strong> {idMarca?.name}
+                </p>
+                <p>
+                  <strong>Category: </strong> {idCategory?.name}
+                </p>
+              </div>
+              <div className={style.buttons}>
+                <button className={style.buttones} onClick={handleAddToCart}>
+                  Add To Cart
+                </button>
+                <button className={style.buttones} onClick={showModalReview}>
+                  Add Review
+                </button>
+              </div>
             </div>
           </div>
-        </div>
         )}
       </div>
       <dialog
