@@ -13,6 +13,7 @@ const Sale = () => {
 
   //Estados
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   //Pagination
   const itemsPerPage = 10;
@@ -42,10 +43,12 @@ const Sale = () => {
     setShowModal(false);
   };
   useEffect(() => {
-    if (sale.length === 0) {
-      dispatch(getAllSales());
-    }
+      setLoading(true);
+      dispatch(getAllSales())
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false));
   }, []);
+
   const navigate = useNavigate();
   return (
     <div className="flex">
@@ -69,6 +72,11 @@ const Sale = () => {
             </button>
             <h3 className="font-bold text-lg text-gray-300">Sale Detail</h3>
             <div className="pb-12 w-full">
+            {loading ? (
+           <div className="flex justify-center mt-4">
+             <span className="loading loading-spinner loading-lg"></span>
+           </div>
+            ) : (
               <table className="table text-gray-300">
                 <thead>
                   <tr>
@@ -93,6 +101,7 @@ const Sale = () => {
                   })}
                 </tbody>
               </table>
+               )}
             </div>
           </form>
         </dialog>
