@@ -9,6 +9,7 @@ import likeimg from "../../img/like.jpeg";
 import noLikeimg from "../../img/nolike.png";
 
 const Card = (props) => {
+  const guestLocal=localStorage.getItem("guest");
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [fav, setFav] = useState(false);
   const favorites = useSelector((state) => state.favorites);
@@ -102,21 +103,24 @@ const Card = (props) => {
         <p className={style.celler}>{props.category.name}</p>
       </div>
       <div className={style.contenedordeto}>
-        {fav ? (
-          <img
-            onClick={handleFavorite}
-            className={style.likeImg}
-            src={likeimg}
-            alt={likeimg}
-          />
-        ) : (
-          <img
-            onClick={handleFavorite}
-            className={style.likeImg}
-            src={noLikeimg}
-            alt={noLikeimg}
-          />
-        )}
+        {
+          !guestLocal && <>{fav ? (
+            <img
+              onClick={handleFavorite}
+              className={style.likeImg}
+              src={likeimg}
+              alt={likeimg}
+            />
+          ) : (
+            <img
+              onClick={handleFavorite}
+              className={style.likeImg}
+              src={noLikeimg}
+              alt={noLikeimg}
+            />
+          )}</>
+        }
+        
 
         <div onClick={handleAddToCart} className={style.cartButtom}>
           <h2>add to cart</h2>
