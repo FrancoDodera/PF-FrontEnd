@@ -1,11 +1,17 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 
-const Contact = () => {
+const Contact = ({ formRef, showConfirmationAlert }) => {
   const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    showConfirmationAlert();
+    if (formRef.current) {
+      formRef.current.submit();
+    }
 
     emailjs
       .sendForm(
@@ -26,8 +32,20 @@ const Contact = () => {
       );
   };
 
+  const showConfirmationAlert = () => {
+    Swal.fire({
+      text: "Message sent!",
+      timer: 2000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      position: "top-end",
+      toast: true,
+      icon: "success",
+    });
+  };
+
   return (
-    <form ref={form} onSubmit={sendEmail} className="w-auto h-auto">
+    <form ref={formRef} onSubmit={sendEmail} className="w-auto h-auto">
       <label className="mt-4">Name</label>
       <input
         type="text"

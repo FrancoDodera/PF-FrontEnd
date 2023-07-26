@@ -3,8 +3,11 @@ import NavBar from "../../components/navbar/NavBar";
 import img from "../../img/googlemaps.png";
 import Contact from "../../components/Contact/Contact";
 import Footer from "../Footer/Footer";
+import Swal from "sweetalert2";
 
 const Location = () => {
+  const formRef = useRef();
+
   useEffect(() => {
     const map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 37.7749, lng: -122.4194 },
@@ -26,17 +29,30 @@ const Location = () => {
     });
   }, []);
 
+  
   const handleRedirect = (sucursal) => {
     // Realizar la redirección según la sucursal seleccionada
     if (sucursal === "sucursal1") {
       window.location.href =
         "https://www.google.com/maps/place/37%C2%B046'29.6%22N+122%C2%B025'09.8%22W/@37.7823368,-122.4685381,12z/data=!4m4!3m3!8m2!3d37.7749!4d-122.4194?hl=es&entry=ttu";
-    } else if (sucursal === "sucursal2") {
-      window.location.href =
+      } else if (sucursal === "sucursal2") {
+        window.location.href =
         "https://www.google.com/maps/place/37%C2%B046'29.6%22N+122%C2%B025'09.8%22W/@37.7823368,-122.4685381,12z/data=!4m4!3m3!8m2!3d37.7749!4d-122.4194?hl=es&entry=ttu";
-    }
+      }
   };
 
+  const showConfirmationAlert = () => {
+    Swal.fire({
+      text: "Message sent!",
+      timer: 2000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      position: "top-end",
+      toast: true,
+      icon: "success",
+    });
+  };
+  
   return (
     <>
       <NavBar />
