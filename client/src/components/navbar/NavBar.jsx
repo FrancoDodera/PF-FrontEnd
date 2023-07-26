@@ -130,8 +130,8 @@ const NavBar = () => {
         </NavLink>
         <NavLink to={"/news"}>
           <button>News</button>
-        </NavLink>
-        {currentPath !== "/home" && (
+        </NavLink>  
+        {(
           <div className="shopping" ref={cartRef} onClick={handleCartIconClick}>
             <img className="cart-shopping" src={cart} alt="cart" />
             {isCartOpen && (
