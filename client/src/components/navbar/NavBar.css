@@ -213,14 +213,6 @@
   margin: 0;
 }
 
-.shopping {
-  width: 40px;
-  height: auto;
-  display: flex;
-  position: relative;
-  cursor: pointer;
-}
-
 .cart-item p {
   white-space: nowrap;
   overflow: hidden;
@@ -273,8 +265,11 @@
 
 /* Rango: 0px a 359px */
 @media (max-width: 359px) {
+  .shopping {
+    width: 25px;
+  }
   .userMenuContainer {
-    right: -1000px;
+    right: -320%;
   }
   .dropdownMenu {
     align-items: center;
@@ -309,8 +304,11 @@
 
 /* Rango: 360px a 719px */
 @media (min-width: 360px) and (max-width: 719px) {
+  .shopping {
+    width: 25px;
+  }
   .userMenuContainer {
-    right: -900px;
+    right: -240%;
   }
   .dropdownMenu {
     align-items: center;
@@ -330,6 +328,7 @@
     flex-direction: row;
     align-items: center;
     display: flex;
+    margin-left: 50px;
   }
   .userMenuContainer {
     margin-left: 30px;
@@ -348,10 +347,12 @@
 
 /* Rango: 720px a 999px */
 @media (min-width: 720px) and (max-width: 999px) {
-  .userMenuContainer {
-    right: -550px;
+  .shopping {
+    width: 25px;
   }
-
+  .userMenuContainer {
+    right: -75%;
+  }
   .dropdownMenu {
     align-items: center;
     position: absolute;
@@ -366,7 +367,7 @@
     max-height: 200px;
   }
   .thinksContainer {
-    font-size: 23px;
+    font-size: 22px;
     flex-direction: row;
     align-items: center;
   }
@@ -374,7 +375,7 @@
     margin-left: 30px;
   }
   .thinksContainer a {
-    margin: 40px;
+    margin: 38px;
   }
   .container section {
     height: 120%;
@@ -387,10 +388,13 @@
 
 /* Rango: 1000px a 1366px */
 @media (min-width: 1000px) and (max-width: 1366px) {
-  .userMenuContainer {
-    right: -80px;
+  .shopping {
+    width: 25px;
+    margin-left: 100px;
   }
-
+  .userMenuContainer {
+    right: 0%;
+  }
   .dropdownMenu {
     align-items: center;
     position: absolute;
@@ -416,7 +420,7 @@
     margin-bottom: 16px;
   }
   .thinksContainer a {
-    margin: 20px;
+    margin: 15px;
   }
 }
 
