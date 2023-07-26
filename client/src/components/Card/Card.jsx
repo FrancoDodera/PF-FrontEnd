@@ -1,6 +1,6 @@
 import style from "./Card.module.css";
 import { Link } from "react-router-dom";
-import cart from "../../img/cart.png";
+import cart from "../../img/cart.svg";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
@@ -76,11 +76,11 @@ const Card = (props) => {
         </Link>
       </div>
       <div>
-        <p>{props.status}</p>
+        <p className={style.nuevo}>{props.status}</p>
         <Link className={style.Link} to={`/detail/${props.id}`}>
           <h3 className={style.carName}>{props.name} </h3>
         </Link>
-        <p className={style.p}>${props.price}</p>
+        <p className={style.price}>${props.price}</p>
         <p className={style.p}>{props.age}</p>
 
         {props.mediaReviews > 0 && (
@@ -101,13 +101,7 @@ const Card = (props) => {
         )}
         <p className={style.celler}>{props.category.name}</p>
       </div>
-      <div className={style.iconsContainer}>
-        <img
-          className={style.cart}
-          onClick={handleAddToCart}
-          src={cart}
-          alt=""
-        />
+      <div className={style.contenedordeto}>
         {fav ? (
           <img
             onClick={handleFavorite}
@@ -123,6 +117,11 @@ const Card = (props) => {
             alt={noLikeimg}
           />
         )}
+
+        <div onClick={handleAddToCart} className={style.cartButtom}>
+          <h2>add to cart</h2>
+          <img className={style.cart} src={cart} alt="" />
+        </div>
       </div>
     </div>
   );
