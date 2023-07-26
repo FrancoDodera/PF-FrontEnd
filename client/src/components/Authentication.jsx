@@ -3,7 +3,7 @@ import { gapi } from "gapi-script";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 const Authentication=()=>{
     const navigate=useNavigate();
     const clientID="193073335991-e2gqv4d7rj0uo6tmb8icli57mlfaqk14.apps.googleusercontent.com"
@@ -48,7 +48,13 @@ const Authentication=()=>{
   };
   const handlerError = (res) => {
     //logica aca
-    alert("no se pudo iniciar");
+    Swal.fire({
+      icon: "error",
+      title: "error",
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 500,
+    });
   };
   const start = () => {
     gapi.auth2.init({
