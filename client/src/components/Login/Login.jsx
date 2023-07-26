@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
-import { NavLink ,useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import Authentication from "../Authentication";
 import axios from "axios";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const LOGIN_URL = "/user/login";
 
@@ -12,7 +12,7 @@ const Login = () => {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -29,43 +29,44 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const credentials={
-        user:user,
-        password:pwd
-      }
-      const {data} = await axios.post(LOGIN_URL,credentials);
-      console.log(data)
-      if(data.acces){
+      const credentials = {
+        user: user,
+        password: pwd,
+      };
+      const { data } = await axios.post(LOGIN_URL, credentials);
+      if (data.acces) {
         localStorage.clear();
-        if(data.data.type=='User'){
-          localStorage.setItem('user',data.data.user);
-          localStorage.setItem('profileUrl',data.data.image);
-          navigate('/home')
-        }else if(data.data.type=='Admin'){
-          localStorage.setItem('admin',data.data.user);
-          localStorage.setItem('profileUrl',data.data.image);
-          navigate('/admin')
+        if (data.data.type == "User") {
+          localStorage.setItem("idAuth", data.data._id);
+          localStorage.setItem("user", data.data.user);
+          localStorage.setItem("profileUrl", data.data.image);
+          navigate("/home");
+        } else if (data.data.type == "Admin") {
+          localStorage.setItem("idAuth", data.data._id);
+          localStorage.setItem("admin", data.data.user);
+          localStorage.setItem("profileUrl", data.data.image);
+          navigate("/admin");
         }
-        const getCartItems=await axios.get(`/sale/${data.data._id}`)
-        if(getCartItems.data.length>0){
+        const getCartItems = await axios.get(`/sale/${data.data._id}`);
+        if (getCartItems.data.length > 0) {
           localStorage.setItem("cartItems", JSON.stringify(getCartItems.data));
         }
-      }else{
+      } else {
         Swal.fire({
-          icon: 'error',
+          icon: "error",
           title: data.message,
-          position: 'top-end',
+          position: "top-end",
           showConfirmButton: false,
-          timer: 500
-        })
+          timer: 500,
+        });
       }
     } catch (err) {
-      alert(err)
+      alert(err);
     }
   };
-  const SignUp=(event)=>{
-    navigate('/register')
-  }
+  const SignUp = (event) => {
+    navigate("/register");
+  };
 
   const startingGuest = (event) => {
     localStorage.clear();
@@ -114,15 +115,15 @@ const Login = () => {
                 value={pwd}
                 required
               />
-         <button type="submit" className={styles.button}>Sign In</button>
-
+              <button type="submit" className={styles.button}>
+                Sign In
+              </button>
             </form>
           </div>
           <Authentication />
           <p>
             Need an Account?
             <br />
-
           </p>
           <div className={styles.arrocito}>
             <button onClick={SignUp} className={styles.botoncito}>

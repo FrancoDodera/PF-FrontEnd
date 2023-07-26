@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "./About.css";
 import car from "../../../img/car.svg";
 import carlogito from "../../../img/carrito.svg";
-import second from "../../../img/secondLogo.svg";
 import selt from "../../../img/selt.svg";
 import { Link } from "react-router-dom";
 import "./About.css";
 import img from "../../../img/fotopetri.png";
 import img2 from "../../../img/fotobarbara.jpeg";
 import img3 from "../../../img/fotoFranco.jpeg";
+import img4 from "../../../img/monocuco.jpg";
+import img5 from "../../../img/alfredo.jpg";
 import user from "../../../img/userimg.webp";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -33,11 +34,13 @@ const AboutUS = () => {
   };
   return (
     <div className="wrapper">
+      {/* Front side - Initial Information */}
       <div className={`flip-card ${isFlipped ? "flipped" : ""}`}>
-        {/* Front side - Initial Information */}
         <div className="front card">
           <div className="container_about">
-            <button onClick={handleMoreInformation}>More Information!</button>
+            <button className="button-more" onClick={handleMoreInformation}>
+              More Information!
+            </button>
             <img src={car} alt="" className="car-image" />
             <p>
               At carGo, we're passionate about revolutionizing the way you buy
@@ -116,18 +119,21 @@ const AboutUS = () => {
                   </div>
                 </div>
               </div>
-              <h1 className="out">Our Services</h1>
-              <div className="prueba">
+              <div className="box_container">
                 <Link to={"/carsforsale"}>
-                  <div className="box">
+                  <div className="box a">
                     <img src={carlogito} alt="" />
+                  </div>
+                  <div className="box b">
                     <p>Buy a car</p>
                   </div>
                 </Link>
 
                 <Link>
-                  <div className="box">
+                  <div className="box c">
                     <img src={selt} alt="" />
+                  </div>
+                  <div className="box d">
                     <p>Sell my car</p>
                   </div>
                 </Link>
@@ -137,7 +143,9 @@ const AboutUS = () => {
         </div>
         <div className="back card">
           <div className="cards-container">
-            <button onClick={handleBackClick}>Back</button>
+            <button onClick={handleBackClick} className="button-more">
+              Back
+            </button>
             <div
               className="cards"
               onMouseEnter={handleMouseEnter}
@@ -147,14 +155,26 @@ const AboutUS = () => {
               <p>Francisco Petri</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
-                <button className="icon-button">
-                  {" "}
-                  <FaLinkedin size={30} />
-                </button>
-                <button className="icon-button">
-                  {" "}
-                  <FaGithub size={30} />
-                </button>
+                <a
+                  href="https://www.linkedin.com/in/fran-petri/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaLinkedin size={30} />
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/franpetri7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaGithub size={30} />
+                  </button>
+                </a>
               </div>
             </div>
             <div
@@ -166,14 +186,26 @@ const AboutUS = () => {
               <p>Ezequiel Capretta</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
-                <button className="icon-button">
-                  {" "}
-                  <FaLinkedin size={30} />
-                </button>
-                <button className="icon-button">
-                  {" "}
-                  <FaGithub size={30} />
-                </button>
+                <a
+                  href="https://www.linkedin.com/in/ezequiel-capretta-17a14b265/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaLinkedin size={30} />
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/Ezecapretta"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaGithub size={30} />
+                  </button>
+                </a>
               </div>
             </div>
             <div
@@ -185,14 +217,26 @@ const AboutUS = () => {
               <p>Franco Dodera</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
-                <button className="icon-button">
-                  {" "}
-                  <FaLinkedin size={30} />
-                </button>
-                <button className="icon-button">
-                  {" "}
-                  <FaGithub size={30} />
-                </button>
+                <a
+                  href="https://www.linkedin.com/in/franco-rodriguez-dodera/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaLinkedin size={30} />
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/FrancoDodera"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaGithub size={30} />
+                  </button>
+                </a>
               </div>
             </div>
             <div
@@ -200,18 +244,30 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={user} alt="" className="img-card" />
+              <img src={img5} alt="" className="img-card" />
               <p>Alfredo Parada</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
-                <button className="icon-button">
-                  {" "}
-                  <FaLinkedin size={30} />
-                </button>
-                <button className="icon-button">
-                  {" "}
-                  <FaGithub size={30} />
-                </button>
+                <a
+                  href="https://www.linkedin.com/in/alfredo-parada/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaLinkedin size={30} />
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/AlfredoPA22"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaGithub size={30} />
+                  </button>
+                </a>
               </div>
             </div>
             <div
@@ -223,14 +279,26 @@ const AboutUS = () => {
               <p>Barbara Ruiz</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
-                <button className="icon-button">
-                  {" "}
-                  <FaLinkedin size={30} />
-                </button>
-                <button className="icon-button">
-                  {" "}
-                  <FaGithub size={30} />
-                </button>
+                <a
+                  href="https://www.linkedin.com/in/barbararuiz6/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaLinkedin size={30} />
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/BarbaraR06"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaGithub size={30} />
+                  </button>
+                </a>
               </div>
             </div>
             <div
@@ -242,14 +310,26 @@ const AboutUS = () => {
               <p>Lautaro Gimenez</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
-                <button className="icon-button">
-                  {" "}
-                  <FaLinkedin size={30} />
-                </button>
-                <button className="icon-button">
-                  {" "}
-                  <FaGithub size={30} />
-                </button>
+                <a
+                  href="https://www.linkedin.com/in/lautaro-gimenez-b7648b274/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaLinkedin size={30} />
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/lautaro-gimenez"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaGithub size={30} />
+                  </button>
+                </a>
               </div>
             </div>
             <div
@@ -258,17 +338,29 @@ const AboutUS = () => {
               onMouseLeave={handleMouseLeave}
             >
               <img src={user} alt="" className="img-card" />
-              <p>Melody Ponczyo</p>
+              <p>Melody Ponczko</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
-                <button className="icon-button">
-                  {" "}
-                  <FaLinkedin size={30} />
-                </button>
-                <button className="icon-button">
-                  {" "}
-                  <FaGithub size={30} />
-                </button>
+                <a
+                  href="https://www.linkedin.com/in/melody-ponczko-047545269/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaLinkedin size={30} />
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/MelodyFss"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaGithub size={30} />
+                  </button>
+                </a>
               </div>
             </div>
             <div
@@ -276,18 +368,30 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={user} alt="" className="img-card" />
+              <img src={img4} alt="" className="img-card" />
               <p>Hector Solano</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
-                <button className="icon-button">
-                  {" "}
-                  <FaLinkedin size={30} />
-                </button>
-                <button className="icon-button">
-                  {" "}
-                  <FaGithub size={30} />
-                </button>
+                <a
+                  href="https://www.linkedin.com/in/hector-solano-4550bb237/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaLinkedin size={30} />
+                  </button>
+                </a>
+                <a
+                  href="https://github.com/monocuco01"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="icon-button">
+                    {" "}
+                    <FaGithub size={30} />
+                  </button>
+                </a>
               </div>
             </div>
           </div>

@@ -5,7 +5,8 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
-import axios from "axios";
+import likeimg from "../../img/like.jpeg";
+import noLikeimg from "../../img/nolike.png";
 
 const Card = (props) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
@@ -14,43 +15,16 @@ const Card = (props) => {
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
-    const user = localStorage.getItem("user");
-    const admin = localStorage.getItem("admin");
-    let postData = {};
-    if (user) {
-      postData = {
-        user: user,
-      };
-    } else if (admin) {
-      postData = {
-        user: admin,
-      };
-    }
-    if (user || admin) {
-      axios
-        .post("https://pf-back.fly.dev/user/verifyUser", postData)
-        .then((response) => {
-          if (response.status === 202 && response.data) {
-            if (fav) {
-              setFav(false);
-              dispatch(removeFav(response.data.data._id, props.id));
-            } else {
-              setFav(true);
-              dispatch(addFav(response.data.data._id, props.id));
-            }
-          } else {
-            console.error("Error getting user account details");
-          }
-        })
-        .catch((error) => {
-          console.error("Error making the request:", error);
-        });
+    const id_user = localStorage.getItem("idAuth");
+    if (fav) {
+      setFav(false);
+      dispatch(removeFav(id_user, props.id));
     } else {
-      console.error("No user found in localStorage");
+      setFav(true);
+      dispatch(addFav(id_user, props.id));
     }
   };
   const reviews = [1, 2, 3, 4, 5];
-
 
   const showPopup = () => {
     Swal.fire({
@@ -96,43 +70,59 @@ const Card = (props) => {
 
   return (
     <div className={style.container}>
-      {fav ? (
-        <button onClick={handleFavorite}>❤️</button>
-      ) : (
-        <button onClick={handleFavorite}>🤍</button>
-      )}
-      <img className={style.imageCointainer} src={props.image} alt="" />
+      <div>
+        <Link className={style.Link} to={`/detail/${props.id}`}>
+          <img className={style.imageCointainer} src={props.image} alt="" />
+        </Link>
+      </div>
       <div>
         <p>{props.status}</p>
-        <h3>{props.name} </h3>
+        <Link className={style.Link} to={`/detail/${props.id}`}>
+          <h3 className={style.carName}>{props.name} </h3>
+        </Link>
         <p className={style.p}>${props.price}</p>
         <p className={style.p}>{props.age}</p>
-        
-        {
-          props.mediaReviews > 0 && <div className="rating">
-          {reviews.map((elem,index) => {
-            return (
-              <input
-                key={index}
-                type="radio"
-                name={`rating-${props.id}`} // Asignar un nombre único basado en el ID del elemento
-                className="mask mask-star-2 bg-orange-400"
-                defaultChecked={elem <= props.mediaReviews}
-                disabled // Marcar solo el elemento con índice 1 como seleccionado (puedes adaptar esto según tus necesidades)
-              />
-            );
-          })}
-        </div>
-        }
-        <p className={style.celler}>{props.category.name}</p>
-        
-      </div>
 
-      <Link className={style.Link} to={`/detail/${props.id}`}>
-        <button className={style.button}>View Details</button>
-      </Link>
-      <div className={style.cart} onClick={handleAddToCart}>
-        <img src={cart} alt="" />
+        {props.mediaReviews > 0 && (
+          <div className="rating">
+            {reviews.map((elem, index) => {
+              return (
+                <input
+                  key={index}
+                  type="radio"
+                  name={`rating-${props.id}`} // Asignar un nombre único basado en el ID del elemento
+                  className="mask mask-star-2 bg-orange-400"
+                  defaultChecked={elem <= props.mediaReviews}
+                  disabled // Marcar solo el elemento con índice 1 como seleccionado (puedes adaptar esto según tus necesidades)
+                />
+              );
+            })}
+          </div>
+        )}
+        <p className={style.celler}>{props.category.name}</p>
+      </div>
+      <div className={style.iconsContainer}>
+        <img
+          className={style.cart}
+          onClick={handleAddToCart}
+          src={cart}
+          alt=""
+        />
+        {fav ? (
+          <img
+            onClick={handleFavorite}
+            className={style.likeImg}
+            src={likeimg}
+            alt={likeimg}
+          />
+        ) : (
+          <img
+            onClick={handleFavorite}
+            className={style.likeImg}
+            src={noLikeimg}
+            alt={noLikeimg}
+          />
+        )}
       </div>
     </div>
   );

@@ -2,8 +2,9 @@ import Style from "./CardFavorite.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { removeFav } from "../../redux/actions";
+import likeimg from "../../img/like.jpeg";
+import noLikeimg from "../../img/nolike.png";
 
 const CardFavorites = ({
   id,
@@ -20,39 +21,13 @@ const CardFavorites = ({
   const [fav, setFav] = useState(false);
   const dispatch = useDispatch();
   const handleFavorite = () => {
-    const user = localStorage.getItem("user");
-    const admin = localStorage.getItem("admin");
-    let postData = {};
-    if (user) {
-      postData = {
-        user: user,
-      };
-    } else if (admin) {
-      postData = {
-        user: admin,
-      };
-    }
-    if (user || admin) {
-      axios
-        .post("https://pf-back.fly.dev/user/verifyUser", postData)
-        .then((response) => {
-          if (response.status === 202 && response.data) {
-            if (fav) {
-              setFav(false);
-              dispatch(removeFav(response.data.data._id, id));
-            } else {
-              setFav(true);
-              dispatch(addFav(response.data.data._id, id));
-            }
-          } else {
-            console.error("Error getting user account details");
-          }
-        })
-        .catch((error) => {
-          console.error("Error making the request:", error);
-        });
+    const id_user = localStorage.getItem("idAuth");
+    if (fav) {
+      setFav(false);
+      dispatch(removeFav(id_user, id));
     } else {
-      console.error("No user found in localStorage");
+      setFav(true);
+      dispatch(addFav(id_user, id));
     }
   };
 
@@ -66,9 +41,19 @@ const CardFavorites = ({
   return (
     <div className={Style.container1}>
       {fav ? (
-        <button onClick={handleFavorite}>❤️</button>
+        <img
+          onClick={handleFavorite}
+          className={Style.likeImg}
+          src={likeimg}
+          alt={likeimg}
+        />
       ) : (
-        <button onClick={handleFavorite}>🤍</button>
+        <img
+          onClick={handleFavorite}
+          className={Style.likeImg}
+          src={noLikeimg}
+          alt={noLikeimg}
+        />
       )}
       <div>
         <h1 className={Style.h1}>{name}</h1>

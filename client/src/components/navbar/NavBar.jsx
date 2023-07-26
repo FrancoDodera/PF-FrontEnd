@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../img/Logo.svg";
 import guestUser from "../../img/guestUser.png";
 import "./NavBar.css";
@@ -59,29 +59,20 @@ const NavBar = () => {
     }
   };
 
-  const logOut = async() => {
-        let body={};
-        const user = localStorage.getItem("user");
-        const admin = localStorage.getItem("admin");
-        const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-        let postData = {};
-        if (user) {
-          postData = {
-            user: user,
-          };
-        } else if (admin) {
-          postData = {
-            user: admin,
-          };
-        }
-        if (user || admin) {
-          const {data}=await axios.post('/user/verifyUser',postData)
-          body={sale:{id_user:data.data._id,description:'in cart',date:new Date().toISOString(),total:totalPrice},detailSale:savedCartItems}
-          await axios.post('/sale',body);
-        } else {
-          console.error("No user found in localStorage");
-        }
-      
+  const logOut = async () => {
+    const id_user = localStorage.getItem("idAuth");
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const body = {
+      sale: {
+        id_user: id_user,
+        description: "in cart",
+        date: new Date().toISOString(),
+        total: totalPrice,
+      },
+      detailSale: savedCartItems,
+    };
+    await axios.post("/sale", body);
+
     localStorage.clear();
     dispatch(clearFavs());
     navigate("/login");
@@ -136,6 +127,9 @@ const NavBar = () => {
         </NavLink>
         <NavLink to={"/locations"}>
           <button>Locations</button>
+        </NavLink>
+        <NavLink to={"/news"}>
+          <button>News</button>
         </NavLink>
         {currentPath !== "/home" && (
           <div className="shopping" ref={cartRef} onClick={handleCartIconClick}>

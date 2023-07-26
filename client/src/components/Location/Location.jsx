@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { GoogleMap, Marker } from "google-maps-react";
 import NavBar from "../../components/navbar/NavBar";
 import img from "../../img/googlemaps.png";
 import Contact from "../../components/Contact/Contact";
+import Footer from "../Footer/Footer";
 
 const Location = () => {
   useEffect(() => {
@@ -41,7 +41,7 @@ const Location = () => {
     <>
       <NavBar />
       <div
-        className="w-auto h-[800px]  flex justify-center items-center border-2 border-white/50 backdrop-filter backdrop-blur-20 shadow-lg"
+        className="w-auto h-[800px]  flex justify-center items-center  backdrop-filter backdrop-blur-20 shadow-lg"
         style={{
           backgroundImage: `url(${img})`,
           backgroundSize: "cover",
@@ -75,6 +75,7 @@ const Location = () => {
           <div id="map" style={{ height: "500px", width: "500px" }}></div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

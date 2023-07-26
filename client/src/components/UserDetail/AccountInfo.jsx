@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import user from "../../img/userimg.webp";
-import NavBar from "../navbar/NavBar";
 import Swal from "sweetalert2";
 import style from "../UserDetail/UserDetail.module.css";
 
@@ -146,10 +143,6 @@ const AccountInfo = () => {
       <div className={style.divForm}>
         <div className={style.labels}>
           <label>Name: </label>
-          <label>Lastname: </label>
-          <label>Email: </label>
-        </div>
-        <div className={style.inputs}>
           {showChangePassword ? (
             <input
               type="text"
@@ -158,11 +151,9 @@ const AccountInfo = () => {
               onChange={handleNameChange}
             />
           ) : (
-            <p className={style.ps}>
-            {userDetails.name}
-            </p>
+            <p className={style.ps}>{userDetails.name}</p>
           )}
-
+          <label>Lastname: </label>
           {showChangePassword ? (
             <input
               type="text"
@@ -171,10 +162,9 @@ const AccountInfo = () => {
               onChange={handleLastnameChange}
             />
           ) : (
-            <p className={style.ps}>
-            {userDetails.lastName}
-            </p>
+            <p className={style.ps}>{userDetails.lastName}</p>
           )}
+          <label>Email: </label>
           {showChangePassword ? (
             <input
               type="text"
@@ -183,16 +173,14 @@ const AccountInfo = () => {
               onChange={handleEmailChange}
             />
           ) : (
-            <p className={style.ps}>
-              {userDetails.email}
-            </p>
-            
+            <p className={style.ps}>{userDetails.email}</p>
           )}
         </div>
       </div>
+
       <div className={style.img}>
         <h2 className={style.archivoselect}>
-          {showChangePassword ? "Change Profile Picture" : ""}
+          {showChangePassword ? <h2>Change Profile Picture</h2> : ""}
         </h2>
         {showChangePassword && (
           <div className={style.input2}>
@@ -201,27 +189,24 @@ const AccountInfo = () => {
         )}
       </div>
       <div className={style.Userpassword}>
-        <h2 className={style.passwordselect}>
-          {showChangePassword ? (
-            <>
-              <button
-                className={style.cancelbutton}
-                onClick={toggleChangePassword}
-              >
-                Cancel
-              </button>
-              <button className={style.submitbutton} onClick={handleSubmit}>
-                Save Changes
-              </button>
-            </>
-          ) : (
-            <button className={style.databutton} onClick={toggleChangePassword}>
-              Change user data
+        {showChangePassword ? (
+          <div className={style.btnSave}>
+            <button
+              className={style.cancelbutton}
+              onClick={toggleChangePassword}
+            >
+              Cancel
             </button>
-          )}
-        </h2>
+            <button className={style.submitbutton} onClick={handleSubmit}>
+              Save Changes
+            </button>
+          </div>
+        ) : (
+          <button className={style.databutton} onClick={toggleChangePassword}>
+            Change user data
+          </button>
+        )}
       </div>
-      
     </div>
   );
 };

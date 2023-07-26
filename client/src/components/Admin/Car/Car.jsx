@@ -8,7 +8,6 @@ import {
   getAllBrands,
   getAllCategories,
 } from "../../../redux/actions";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
 import Pagination from "../../Pagination/Pagination";
 
@@ -129,7 +128,9 @@ const Car = () => {
   };
 
   const validatePrice = (value) => {
-    if (value === 0) {
+    if (value < 0) {
+      setPriceError("The price field cannot be negative");
+    } else if (value === 0) {
       setPriceError("The price field cannot be zero");
     } else {
       setPriceError("");
@@ -137,16 +138,23 @@ const Car = () => {
   };
 
   const validateAge = (value) => {
-    if (value === 0) {
-      setAgeError("The age field cannot be zero");
+    const currentYear = new Date().getFullYear();
+    if (isNaN(value)) {
+      setAgeError("Please enter a valid year");
+    } else if (value < 1990 || value > currentYear) {
+      setAgeError("The year must be between 1990 and " + currentYear);
     } else {
       setAgeError("");
     }
   };
 
   const validateAmount = (value) => {
-    if (value === 0) {
+    if (value < 0) {
+      setAmountError("The amount field cannot be negative");
+    } else if (value === 0) {
       setAmountError("The amount field cannot be zero");
+    } else if (value > 10) {
+      setAmountError("The amount cannot be more than 10");
     } else {
       setAmountError("");
     }
@@ -161,8 +169,12 @@ const Car = () => {
   };
 
   const validateName = (value) => {
-    if (value.length < 3) {
+    if (value.trim().length === 0) {
+      setNameError("The name field cannot be empty");
+    } else if (value.length < 3) {
       setNameError("The name field must have three or more letters");
+    } else if (value.length > 20) {
+      setNameError("The name field cannot have more than 20 letters");
     } else {
       setNameError("");
     }

@@ -37,6 +37,7 @@ const Sale = () => {
     const { data } = await axios.get(
       `https://pf-back.fly.dev/detail/get/${element._id}`
     );
+    console.log(data)
 
     setDataDetail(data);
   };
@@ -120,7 +121,7 @@ const Sale = () => {
 
 
 
-
+  
   return (
     <div className="flex">
       <NavBar />
