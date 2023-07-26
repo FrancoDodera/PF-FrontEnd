@@ -98,33 +98,23 @@
   background-color: #016565;
   color: white;
   height: 50px;
+  cursor: pointer;
 }
 
 .likeImg {
   width: 30px;
   height: 30px;
+  cursor: pointer;
 }
-imageCointainer {
+.imageCointainer {
   height: 100px;
 }
 
-.contenedordetso {
-
-  height: 100%;
-
+.contenedordeto{
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-}
-.cartButtom {
-  cursor: pointer;
-  margin-top: 150px;
-  margin-right: 20px;
-  border-radius: 4px ;
-}
-
-.likeImg {
-
-  cursor: pointer;
-  transform: translate(500%, 50%);
+  align-items: center;
+  gap: 15px;
+  
 }
