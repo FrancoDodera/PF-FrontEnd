@@ -65,11 +65,13 @@ console.log(dataDetail)
   const generarPDF = () => {
     // Datos para la factura (ajusta según tus necesidades)
     let userSale
-    currentSale.map((user=>{
-      if (user.id===dataDetail.id_venta) {
+    currentSale.map((user=>{console.log()
+      if (user._id===dataDetail[0].id_venta) {
+        
         userSale=user
       }
     }))
+    console.log(userSale)
     const data = {
       currency: 'USD',
       taxNotation: 'vat',
