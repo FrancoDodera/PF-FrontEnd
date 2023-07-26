@@ -64,7 +64,8 @@ const Register = () => {
       if (!PWD_REGEX.test(event.target.value)) {
         setError({
           ...error,
-          [event.target.name]: "password invalid",
+          [event.target.name]:
+            " uppercase letter, number and special character",
         });
         setSuccess(false);
       } else {
