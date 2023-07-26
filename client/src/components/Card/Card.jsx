@@ -9,7 +9,7 @@ import likeimg from "../../img/like.jpeg";
 import noLikeimg from "../../img/nolike.png";
 
 const Card = (props) => {
-  const guestLocal=localStorage.getItem("guest");
+  const guestLocal = localStorage.getItem("guest");
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [fav, setFav] = useState(false);
   const favorites = useSelector((state) => state.favorites);
@@ -44,8 +44,8 @@ const Card = (props) => {
       id: props.id,
       amount: 1,
       name: props.name,
-      price: props.price*0.01,
-      totalPrice: props.price*0.01,
+      price: props.price * 0.01,
+      totalPrice: props.price * 0.01,
       image: props.image,
     };
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -103,24 +103,27 @@ const Card = (props) => {
         <p className={style.celler}>{props.category.name}</p>
       </div>
       <div className={style.contenedordeto}>
-        {
-          !guestLocal && <>{fav ? (
-            <img
-              onClick={handleFavorite}
-              className={style.likeImg}
-              src={likeimg}
-              alt={likeimg}
-            />
-          ) : (
-            <img
-              onClick={handleFavorite}
-              className={style.likeImg}
-              src={noLikeimg}
-              alt={noLikeimg}
-            />
-          )}</>
-        }
-        
+        <div className={style.contenedorfav}>
+          {!guestLocal && (
+            <>
+              {fav ? (
+                <img
+                  onClick={handleFavorite}
+                  className={style.likeImg}
+                  src={likeimg}
+                  alt={likeimg}
+                />
+              ) : (
+                <img
+                  onClick={handleFavorite}
+                  className={style.likeImg}
+                  src={noLikeimg}
+                  alt={noLikeimg}
+                />
+              )}
+            </>
+          )}
+        </div>
 
         <div onClick={handleAddToCart} className={style.cartButtom}>
           <h2>add to cart</h2>
