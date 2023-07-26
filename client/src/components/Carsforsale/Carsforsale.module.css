@@ -9,7 +9,9 @@
   background-position: center;
   height: 200px;
   margin-bottom: 50px;
+  width: 100%;
 }
+
 .containerTotal {
   width: 100%;
 }
@@ -20,6 +22,7 @@
   text-shadow: -3px 2px 8px rgba(0, 0, 0, 0.75);
   text-align: center;
 }
+
 .search {
   align-items: center;
 }
@@ -30,6 +33,7 @@
   margin-top: 10px;
   width: 100%;
 }
+
 .divContainer {
   background-color: rgba(246, 251, 251, 0.966);
 }
@@ -40,6 +44,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .noCarsMessage {
   font-size: 30px;
   color: black;
@@ -48,4 +53,203 @@
 .image {
   width: 300px;
   height: 300px;
+}
+
+/* Media Queries */
+
+/* Rango: 0px a 359px */
+@media (max-width: 359px) {
+  .containerTotal {
+    width: 400%;
+  }
+
+  .shopping {
+    width: 25px;
+  }
+  .userMenuContainer {
+    right: -320%;
+  }
+  .dropdownMenu {
+    align-items: center;
+    position: absolute;
+    right: 100px;
+    z-index: 1;
+    width: 200px;
+    background-color: #d8ebef;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    height: 200px;
+  }
+  .thinksContainer {
+    font-size: 20px;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+  }
+
+  .thinksContainer a {
+    margin: 40px;
+  }
+  .container section {
+    height: 120%;
+  }
+
+  .container_NavBar {
+    height: 80px;
+  }
+}
+
+/* Rango: 360px a 719px */
+@media (min-width: 360px) and (max-width: 719px) {
+  .containerTotal {
+    width: 315%;
+  }
+  .shopping {
+    width: 25px;
+  }
+  .userMenuContainer {
+    right: -240%;
+  }
+  .dropdownMenu {
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    background-color: #d8ebef;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-height: 50px;
+    max-height: 200px;
+  }
+  .thinksContainer {
+    font-size: 20px;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    margin-left: 50px;
+  }
+  .userMenuContainer {
+    margin-left: 30px;
+  }
+  .thinksContainer a {
+    margin: 30px;
+  }
+  .container section {
+    height: 120%;
+  }
+
+  .container_NavBar {
+    height: 80px;
+  }
+}
+
+/* Rango: 720px a 999px */
+@media (min-width: 720px) and (max-width: 999px) {
+  .containerTotal{
+    width: 165%;
+  }
+  .shopping {
+    width: 25px;
+  }
+  .userMenuContainer {
+    right: -75%;
+  }
+  .dropdownMenu {
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    background-color: #d8ebef;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-height: 50px;
+    max-height: 200px;
+  }
+  .thinksContainer {
+    font-size: 22px;
+    flex-direction: row;
+    align-items: center;
+  }
+  .userMenuContainer {
+    margin-left: 30px;
+  }
+  .thinksContainer a {
+    margin: 38px;
+  }
+  .container section {
+    height: 120%;
+  }
+
+  .container_NavBar {
+    height: 80px;
+  }
+}
+
+/* Rango: 1000px a 1366px */
+@media (min-width: 1000px) and (max-width: 1366px) {
+  .shopping {
+    width: 25px;
+    margin-left: 100px;
+  }
+  .userMenuContainer {
+    right: 0%;
+  }
+  .dropdownMenu {
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    background-color: #d8ebef;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-height: 50px;
+    max-height: 200px;
+  }
+  .thinksContainer {
+    font-size: 20px;
+    flex-direction: row;
+    align-items: center;
+  }
+  .userMenuContainer {
+    margin-left: 30px;
+  }
+  .userMenuContainer {
+    margin-left: 30px;
+    margin-bottom: 16px;
+  }
+  .thinksContainer a {
+    margin: 15px;
+  }
+}
+
+/* Rango: 1367px a 1440px */
+@media (min-width: 1367px) and (max-width: 1440px) {
+  .userMenuContainer {
+    right: -50px;
+  }
+  .dropdownMenu {
+    align-items: center;
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    background-color: #d8ebef;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-height: 50px;
+    max-height: 200px;
+  }
+  .thinksContainer {
+    font-size: 25px;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 50px;
+  }
+  .userMenuContainer {
+    margin-left: 30px;
+  }
 }

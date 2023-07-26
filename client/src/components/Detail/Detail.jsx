@@ -89,7 +89,7 @@ const Detail = () => {
 
   const handleAddToCart = () => {
     const item = {
-      id: car.id,
+      id: id,
       amount: 1,
       name: car.name,
       price: car.price*0.01,

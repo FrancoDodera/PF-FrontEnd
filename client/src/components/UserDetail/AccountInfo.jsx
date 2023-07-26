@@ -11,7 +11,7 @@ const AccountInfo = () => {
   const [isDataUpdated, setIsDataUpdated] = useState(false);
   const cloudName = "dbt5vgimv";
   const [showChangePassword, setShowChangePassword] = useState(false);
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
   const [profileUrl, setProfileUrl] = useState("");
 
   const handleImageChange = (e) => {
@@ -60,12 +60,13 @@ const AccountInfo = () => {
 
   const handleSubmit = async () => {
     let imageUrl = "";
-    if (profileImage != "") {
+    if (profileImage != null) {
       imageUrl = await uploadImage(profileImage);
       localStorage.removeItem("profileUrl");
       setProfileImage(imageUrl);
       setProfileUrl(imageUrl);
       localStorage.setItem("profileUrl", imageUrl);
+      console.log("entro puto");
     }
     const postData = {
       id: userDetails._id,
@@ -100,6 +101,7 @@ const AccountInfo = () => {
     } catch (error) {
       alert(error);
     }
+    location.reload();
   };
 
   useEffect(() => {
@@ -125,7 +127,7 @@ const AccountInfo = () => {
             setName(response.data.data.name);
             setLastname(response.data.data.lastName);
             setEmail(response.data.data.email);
-            setProfileImage(response.data.data.user);
+            // setProfileImage(response.data.data.image);
             setIsDataUpdated(true);
           } else {
             console.error("Error getting user account details");

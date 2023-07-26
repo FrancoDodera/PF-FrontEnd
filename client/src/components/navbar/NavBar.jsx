@@ -8,7 +8,7 @@ import cart from "../../img/cart.png";
 import { clearFavs } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-
+import Swal from "sweetalert2";
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,10 +77,20 @@ const NavBar = () => {
     navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
+  const logOutGuest=()=>{
+    localStorage.clear();
+    navigate("/login");
+  }
 
   const handleGoToCart = (event) => {
     if (userGuest) {
-      alert("You must login first");
+      Swal.fire({
+        icon: "success",
+        title: "You must login first",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 800,
+      });
       localStorage.clear("guest");
       navigate("/login");
     } else {
@@ -168,7 +178,7 @@ const NavBar = () => {
             </div>
             {isMenuOpen && (
               <div className="dropdownMenu">
-                <button onClick={logOut}>Login</button>
+                <button onClick={logOutGuest}>Login</button>
               </div>
             )}
           </div>
