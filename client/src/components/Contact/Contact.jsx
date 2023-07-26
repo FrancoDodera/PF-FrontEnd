@@ -1,12 +1,13 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 
-const Contact = () => {
+const Contact = ({ showConfirmationAlert }) => {
   const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
-
+    showConfirmationAlert();
     emailjs
       .sendForm(
         "service_2g3l5fl",
@@ -27,7 +28,7 @@ const Contact = () => {
   };
 
   return (
-    <form ref={form} onSubmit={sendEmail} className="w-auto h-auto">
+    <form ref={form} onSubmit={() => {}} className="w-auto h-auto">
       <label className="mt-4">Name</label>
       <input
         type="text"
@@ -48,6 +49,7 @@ const Contact = () => {
       <input
         type="submit"
         value="Send"
+        onClick={sendEmail}
         className="w-auto h-auto mt-8 py-2 px-4 bg-orange-500 hover:bg-orange-800 text-white border-none cursor-pointer"
       />
     </form>

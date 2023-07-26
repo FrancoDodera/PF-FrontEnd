@@ -5,33 +5,34 @@
   list-style-type: none;
   padding: 0.5em;
   background: none;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 100px;
+  margin-bottom: 190px;
 }
 .paginationItem {
   padding: 0 12px;
   height: 32px;
   text-align: center;
   margin: auto 4px;
-  color: rgb(0, 0, 0);
+  color: white;
   display: flex;
   box-sizing: border-box;
   align-items: center;
   letter-spacing: 0.01071em;
-  border-radius: 16px;
+
   line-height: 1.43;
   font-size: 22px;
   min-width: 32px;
   cursor: pointer;
   font-weight: bold;
+  background-color: #016565;
 }
 .paginationItem:hover {
-  background-color: rgba(129, 255, 234, 0.407);
+  background-color: rgba(51, 66, 64, 0.407);
 }
 .paginationItem.selected {
-  background-color: rgba(129, 255, 234, 0.407);
+  background-color: black;
 }
 .paginationItem.disabled {
   pointer-events: none;
-  color: rgba(0, 0, 75, 0.514);
+  color: rgb(70, 70, 70);
 }
