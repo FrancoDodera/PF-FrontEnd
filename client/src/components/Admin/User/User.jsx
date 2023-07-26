@@ -40,6 +40,7 @@ const User = () => {
   const indexOfLastUser = currentPage * itemsPerPage;
   const indexOfFirstUser = indexOfLastUser - itemsPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  const [loading, setLoading] = useState(true);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -187,10 +188,13 @@ const User = () => {
     dispatch(enableUser(id));
   };
   useEffect(() => {
-    if (users.length == 0) {
-      dispatch(getAllUsers());
-    }
+      setLoading(true);
+      dispatch(getAllUsers())
+      .then(() => setLoading(false))
+    .catch(() => setLoading(false));
   }, []);
+
+
   return (
     <div className="flex">
       <NavBar />
@@ -387,6 +391,11 @@ const User = () => {
             </div>
           </form>
         </dialog>
+        {loading ? (
+           <div className="flex justify-center mt-4">
+             <span className="loading loading-spinner loading-lg"></span>
+           </div>
+            ) : (
         <table className="table text-gray-300">
           <thead>
             <tr className="text-gray-300">
@@ -449,6 +458,7 @@ const User = () => {
             })}
           </tbody>
         </table>
+         )}
         <Pagination
           totalItems={totalItems}
           itemsPerPage={itemsPerPage}
