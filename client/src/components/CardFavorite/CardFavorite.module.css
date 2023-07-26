@@ -1,39 +1,39 @@
 .container1 {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+  text-align: center;
   background-color: rgba(137, 192, 209, 0.276);
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  max-width: 300px;
+  width: 350px;
   height: 500px;
 }
 .h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-weight: bold;
+  color: #2b8585;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 .image {
-  width: 220px;
-  height: 150px;
-  margin-right: 50px;
+  width: 325px;
+  height: 250px;
   border: none;
   border-radius: 10px;
+}
+.iconsContainer {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+
 }
 
 .p {
   font-weight: bold;
-}
-
-.button {
-  width: 130px;
-  height: 50px;
-  left: 86%;
-  margin-top: 70px;
-  background-color: #007777;
-  color: white;
-  border-radius: 10px;
-  transition: 0.2s;
 }
 
 .Link {
@@ -42,6 +42,21 @@
 }
 
 .likeImg {
-  width: 45px;
-  height: 45px;
+  width: 25px;
+  height: 25px;
+}
+
+.cart {
+  width: 25px;
+  height: 25px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.containerDetails{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }

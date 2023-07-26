@@ -74,8 +74,18 @@
   border-radius: 10px;
 }
 
+/* Responsive styles for screens smaller than 768px */
+@media (max-width: 767px) {
+  .searchContainer {
+    height: 150px;
+  }
 
+  .h2 {
+    font-size: 40px;
+  }
 
-
-
- 
+  .image {
+    width: 200px;
+    height: 200px;
+  }
+}

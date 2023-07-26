@@ -1,6 +1,6 @@
 import React from "react";
-import Analist from "./analist";
-import RecentOrder from "./RecentOrder";
+// import Analist from "./analist";
+// import RecentOrder from "./RecentOrder";
 
 const Dasboard = () => {
   return (
@@ -8,11 +8,9 @@ const Dasboard = () => {
       <div>
         <h1 className=" text-3xl font-bold">Dashboard</h1>
       </div>
-      <Analist />
-      <RecentOrder/>
-      
+      {/* <Analist />
+      <RecentOrder/> */}
     </div>
-    
   );
 };
 

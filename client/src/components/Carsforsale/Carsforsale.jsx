@@ -35,7 +35,7 @@ const Carsforsale = (props) => {
   }, []);
 
   return (
-    <>
+    <div className={style.containerTotal}>
       <div className={style.divContainer}>
         <NavBar />
         {loading ? (
@@ -65,7 +65,7 @@ const Carsforsale = (props) => {
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
