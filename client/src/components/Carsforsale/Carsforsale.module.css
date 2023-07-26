@@ -10,6 +10,9 @@
   height: 200px;
   margin-bottom: 50px;
 }
+.containerTotal {
+  width: 100%;
+}
 
 .h2 {
   color: aliceblue;
@@ -25,6 +28,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin-top: 10px;
+  width: 100%;
 }
 .divContainer {
   background-color: rgba(246, 251, 251, 0.966);
