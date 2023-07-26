@@ -6,7 +6,7 @@ import { removeFav } from "../../redux/actions";
 import likeimg from "../../img/like.jpeg";
 import noLikeimg from "../../img/nolike.png";
 import cart from "../../img/cart.png";
-
+import Swal from "sweetalert2";
 const CardFavorites = ({
   id,
   name,
@@ -31,14 +31,24 @@ const CardFavorites = ({
       dispatch(addFav(id_user, id));
     }
   };
-
+  const showPopup = () => {
+    Swal.fire({
+      text: "Car added to cart",
+      timer: 700,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      position: "top-end",
+      toast: true,
+      icon: "success",
+    });
+  };
   const handleAddToCart = () => {
     const item = {
       id: id,
       amount: 1,
       name: name,
-      price: price,
-      totalPrice: price,
+      price: price*0.01,
+      totalPrice: price*0.01,
       image: image,
     };
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -50,7 +60,6 @@ const CardFavorites = ({
       cartItems.push(item);
     }
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    setIsAddedToCart(true);
     showPopup();
   };
 
@@ -86,7 +95,7 @@ const CardFavorites = ({
           />
         )}
       </div>
-      <div>
+      <div className={Style.containerDetails}>
         <Link className={Style.Link} to={`/detail/${id}`}>
           <h1 className={Style.h1}>{name}</h1>
         </Link>
@@ -96,8 +105,6 @@ const CardFavorites = ({
         <p className={Style.p}>${price}</p>
         <p className={Style.p}>{age}</p>
         <p className={Style.p}>{status}</p>
-        <p className={Style.p}>{category}</p>
-        <p className={Style.p}>{brand}</p>
       </div>
     </div>
   );

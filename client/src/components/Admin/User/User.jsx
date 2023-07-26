@@ -30,6 +30,7 @@ const User = () => {
     user: "",
     password: "",
     confirmPassword: "",
+    tokenAuth:"",
     type: "",
     image: "",
     accion: "",
@@ -56,7 +57,7 @@ const User = () => {
     setShowModal(true);
   };
   const showModalhandlerEdit = (element) => {
-    setUser({ ...element, accion: "Editar", image: "" });
+    setUser({ ...element,password:'',tokenAuth:'', accion: "Editar", image: "" });
     setShowModal(true);
   };
   const closeModalUser = () => {
@@ -69,6 +70,7 @@ const User = () => {
       dni: null,
       user: "",
       password: "",
+      tokenAuth:"",
       type: "",
       confirmPassword: "",
       image: "",
@@ -118,7 +120,6 @@ const User = () => {
         timer: 500,
       });
     } else {
-      let imageUrl = "";
       if (user.accion === "Crear") {
         if (user.password !== user.confirmPassword) {
           Swal.fire({
@@ -130,25 +131,38 @@ const User = () => {
           });
         } else {
           if (user.image != "") {
-            imageUrl = await uploadImage(user.image);
+            let imageUrl = await uploadImage(user.image);
+            dispatch(
+              createUser({
+                name: user.name,
+                lastName: user.lastName,
+                email: user.email,
+                user: user.user,
+                password: user.password,
+                dni: user.dni,
+                type: user.type,
+                image: imageUrl,
+              })
+            );
+          }else{
+            dispatch(
+              createUser({
+                name: user.name,
+                lastName: user.lastName,
+                email: user.email,
+                user: user.user,
+                password: user.password,
+                dni: user.dni,
+                type: user.type
+              })
+            );
           }
-          dispatch(
-            createUser({
-              name: user.name,
-              lastName: user.lastName,
-              email: user.email,
-              user: user.user,
-              password: user.password,
-              dni: user.dni,
-              type: user.type,
-              image: imageUrl,
-            })
-          );
           closeModalUser();
         }
       } else {
+        let imageUrl="";
         if (user.image != "") {
-          imageUrl = await uploadImage(user.image);
+           imageUrl = await uploadImage(user.image);
         }
         dispatch(
           updateUser({
