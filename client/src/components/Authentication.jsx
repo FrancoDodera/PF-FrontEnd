@@ -20,7 +20,6 @@ const Authentication=()=>{
                 type:'User',
                 image:res.profileObj.imageUrl
             }
-            console.log(body)
             const {data}=await axios.post('/user/authentication',body)
             if(data.acces==true){
                 if(data.data.type=='User'){
