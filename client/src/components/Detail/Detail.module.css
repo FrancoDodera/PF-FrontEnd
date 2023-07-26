@@ -1,53 +1,77 @@
-/* Base styles for all screen sizes */
-.searchContainer {
-  align-items: center;
-  justify-content: start;
-  background-position: absolute;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.397), rgba(0, 0, 0, 0.582)),
-    url("../../img/merc.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 200px;
-  margin-bottom: 50px;
-}
 
-.h2 {
-  color: aliceblue;
-  font-size: 50px;
-  text-shadow: -3px 2px 8px rgba(0, 0, 0, 0.75);
-  text-align: center;
-}
-
-.search {
-  align-items: center;
-}
-
-.containerCarsForSale {
+.container {
+  background-color: #D8EBEF;
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  margin-top: 10px;
-}
-
-.divContainer {
-  background-color: rgba(246, 251, 251, 0.966);
-}
-
-.noCarContainer {
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
   justify-content: center;
   align-items: center;
+  margin:50px auto;
+  width: 1200px;
+  height: 500px;
+  border-radius: 10px;
+  padding: 0px 50px;
 }
 
-.noCarsMessage {
-  font-size: 30px;
-  color: black;
+.container img {
+  width: 600px;
+  height: 400px;
+  border-radius: 10px;
 }
 
-.image {
-  width: 300px;
-  height: 300px;
+.caracteristicas{
+  display: flex;
+  flex-direction: column;
+}
+.caracteristicas h2{
+    font-weight: 700;
+    font-size: 40px;
+}
+.caracteristicas h4{
+  font-weight: 700;
+}
+.buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.detalles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detalles button {
+  width: 200px;
+  height: 60px;
+  background-color: #016565;
+  border-radius: 6px;
+  color: white;
+  transition: all .4s;
+}
+.detalles button:hover {
+  text-shadow: -0px 4px 3px rgba(0, 0, 0, 0.75);
+  
+  backface-visibility: hidden;
+}
+
+.buttones{
+  margin-left: 10px;
+}
+
+.contact {
+  display: flex;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+}
+
+.reviews{
+  background-color: #D8EBEF;
+  margin:0px auto;
+  width: 1200px;
+  border-radius: 10px;
 }
 
 /* Responsive styles for screens smaller than 768px */
