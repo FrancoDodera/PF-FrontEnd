@@ -365,7 +365,6 @@ export const getAllUsers = () => {
 export const createUser = (body) => {
   return async (dispatch) => {
     try {
-      console.log('create')
       const { data } = await axios.post("/user/addUser", body);
       if (data.data._id) {
         Swal.fire({

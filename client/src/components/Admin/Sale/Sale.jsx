@@ -6,6 +6,7 @@ import NavBar from "../NavBar/NavBar.jsx";
 import axios from "axios";
 import Pagination from "../../Pagination/Pagination";
 import easyinvoice from 'easyinvoice'
+import foto  from '../../../img/fotoFranco.jpeg'
 
 const Sale = () => {
   
@@ -31,17 +32,17 @@ const Sale = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
+ console.log(currentSale)
   const showModalhandlerDetail = async (element) => {
     setShowModal(true);
     const { data } = await axios.get(
       `https://pf-back.fly.dev/detail/get/${element._id}`
     );
-    console.log(data)
+    
 
     setDataDetail(data);
   };
-
+console.log(dataDetail)
   const handlerDelete = (_id) => {
     dispatch(deleteSale(_id));
   };
@@ -63,6 +64,12 @@ const Sale = () => {
   
   const generarPDF = () => {
     // Datos para la factura (ajusta según tus necesidades)
+    let userSale
+    currentSale.map((user=>{
+      if (user.id===dataDetail.id_venta) {
+        userSale=user
+      }
+    }))
     const data = {
       currency: 'USD',
       taxNotation: 'vat',
@@ -70,6 +77,13 @@ const Sale = () => {
       marginRight: 25,
       marginLeft: 25,
       marginBottom: 25,
+      images: {
+        // The logo on top of your invoice
+        logo: "https://res.cloudinary.com/dbt5vgimv/image/upload/v1690407040/CarGo/Logo_k0qdgg.png",
+        
+       
+    },
+
       sender: {
         company: 'CarGo',
         address: '123 Calle Principal',
@@ -77,30 +91,29 @@ const Sale = () => {
         city: 'Buenos Aires',
         country: 'Argentina',
       },
+      information: {
+        // Invoice number
+        number: userSale._id,
+        // Invoice data
+        date: userSale.date.match(/\d{4}-\d{2}-\d{2}/)[0],
+        'due-date': '...'
+       
+    },
       client: {
-        company: 'Cliente XYZ',
-        address: '456 Calle Secundaria',
-        zip: '67890',
-        city: 'Ciudad',
-        country: 'País',
+        company: userSale.id_user.name,
+        address: userSale.id_user.email,
       },
       invoiceNumber: '2023001',
       invoiceDate: '01/07/2023',
-      products: [
-        {
-          quantity: '2',
-          description: 'Producto 1',
-          tax: 6,
-          price: 10,
-        },
-        {
-          quantity: '1',
-          description: 'Producto 2',
-          tax: 6,
-          price: 20,
-        },
-      ],
-      bottomNotice: 'Gracias por su compra.',
+      products: dataDetail.map((car)=>{return({
+          quantity: car.amount,
+          description: car.id_car.name,
+          'tax-rate': 0,
+          price: car.subtotal
+      })}),
+      bottomNotice: 'thanks for your purchase',
+      vat: '0.0',
+      total: '30'
     };
     easyinvoice.createInvoice(data, function (result) {
       // The response will contain a base64 encoded PDF file
@@ -109,9 +122,7 @@ const Sale = () => {
       //	easyinvoice.download();
       //	easyinvoice.download('myInvoice.pdf');   
 
-      console.log(currentSale);})
-
-    // Generar la factura y obtener el PDF como una cadena de base64
+     ;})
     
     ;
   };
@@ -135,10 +146,7 @@ const Sale = () => {
           className={showModal ? "modal modal-open" : "modal"}
         >
           <form method="dialog" className="modal-box w-11/12 max-w-5xl h-auto">
-            <button className="float-left bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-            onClick={generarPDF}>
-              download PDF
-            </button>
+            
             <button
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
               type="button"
@@ -173,6 +181,10 @@ const Sale = () => {
                 </tbody>
               </table>
             </div>
+            <button className=" bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded"
+            onClick={generarPDF}>
+              download PDF
+            </button>
           </form>
         </dialog>
         <table className="table text-gray-300">
