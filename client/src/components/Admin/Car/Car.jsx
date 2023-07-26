@@ -33,6 +33,7 @@ const Car = () => {
     action: "",
     image: "",
   });
+  const [loading, setLoading] = useState(true);
 
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
@@ -291,18 +292,17 @@ const Car = () => {
     }
     closeModalCar();
   };
-
   useEffect(() => {
-    if (cars.length == 0) {
-      dispatch(getAllCars());
-    }
-    if (brands.length == 0) {
-      dispatch(getAllBrands());
-    }
-    if (categories.length == 0) {
-      dispatch(getAllCategories());
-    }
-  }, []);
+    const fetchData = async () => {
+      setLoading(true);
+      await dispatch(getAllCars());
+      await dispatch(getAllBrands());
+      await dispatch(getAllCategories());
+      setLoading(false);
+    };
+  
+    fetchData();
+  }, [dispatch]);
 
   return (
     <div className="flex">
@@ -646,6 +646,11 @@ const Car = () => {
             </div>
           </form>
         </dialog>
+        {loading ? (
+        <div className="flex justify-center mt-4">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
+      ) : (
         <table className="table text-gray-300">
           <thead>
             <tr>
@@ -701,6 +706,7 @@ const Car = () => {
             })}
           </tbody>
         </table>
+         )}
         <Pagination
           totalItems={totalItems}
           itemsPerPage={itemsPerPage}

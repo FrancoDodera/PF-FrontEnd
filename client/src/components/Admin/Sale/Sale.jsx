@@ -21,6 +21,7 @@ const Sale = () => {
 
   //Estados
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   //Pagination
   const itemsPerPage = 10;
@@ -51,10 +52,12 @@ console.log(dataDetail)
     setShowModal(false);
   };
   useEffect(() => {
-    if (sale.length === 0) {
-      dispatch(getAllSales());
-    }
+      setLoading(true);
+      dispatch(getAllSales())
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false));
   }, []);
+
   const navigate = useNavigate();
 
 
@@ -158,6 +161,11 @@ console.log(dataDetail)
             </button>
             <h3 className="font-bold text-lg text-gray-300">Sale Detail</h3>
             <div className="pb-12 w-full">
+            {loading ? (
+           <div className="flex justify-center mt-4">
+             <span className="loading loading-spinner loading-lg"></span>
+           </div>
+            ) : (
               <table className="table text-gray-300">
                 <thead>
                   <tr>
@@ -182,6 +190,7 @@ console.log(dataDetail)
                   })}
                 </tbody>
               </table>
+               )}
             </div>
             <button className=" bg-orange-600 hover:bg-orange-800 text-white font-bold py-2 px-4 rounded"
             onClick={generarPDF}>

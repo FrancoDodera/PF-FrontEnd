@@ -22,6 +22,7 @@ const Category = () => {
     action: "",
   });
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   //pagination
   const itemsPerPage = 10;
@@ -88,9 +89,10 @@ const Category = () => {
   };
 
   useEffect(() => {
-    if (categories.length === 0) {
-      dispatch(getAllCategories());
-    }
+      setLoading(true);
+      dispatch(getAllCategories())
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false));
   }, []);
 
   const navigate = useNavigate();
@@ -177,6 +179,11 @@ const Category = () => {
             </div>
           </form>
         </dialog>
+        {loading ? (
+           <div className="flex justify-center mt-4">
+             <span className="loading loading-spinner loading-lg"></span>
+           </div>
+            ) : (
         <table className="table text-gray-300">
           <thead>
             <tr>
@@ -214,6 +221,7 @@ const Category = () => {
             })}
           </tbody>
         </table>
+        )}
         <Pagination
           totalItems={totalItems}
           itemsPerPage={itemsPerPage}

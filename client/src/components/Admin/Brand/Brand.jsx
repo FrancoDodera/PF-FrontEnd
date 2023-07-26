@@ -14,7 +14,7 @@ const Brand = () => {
   //redux
   const brands = useSelector((state) => state.allBrands);
   const dispatch = useDispatch();
-
+  
   //estados
   const [brand, setBrand] = useState({
     _id: null,
@@ -22,6 +22,7 @@ const Brand = () => {
     description: "",
     accion: "",
   });
+  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   //pagination
   const itemsPerPage = 10;
@@ -78,11 +79,14 @@ const Brand = () => {
     closeModalCategory();
   };
 
+
   useEffect(() => {
-    if (brands.length === 0) {
-      dispatch(getAllBrands());
-    }
+    setLoading(true);
+    dispatch(getAllBrands())
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false));
   }, []);
+
   const navigate = useNavigate();
 
   return (
@@ -159,6 +163,11 @@ const Brand = () => {
             </div>
           </form>
         </dialog>
+        {loading ? (
+          <div className="flex justify-center mt-4">
+            <span className="loading loading-spinner loading-lg"></span>
+          </div>
+        ) : (
         <table className="table text-gray-300">
           <thead>
             <tr>
@@ -196,6 +205,7 @@ const Brand = () => {
             })}
           </tbody>
         </table>
+        )}
         <Pagination
           totalItems={totalItems}
           itemsPerPage={itemsPerPage}
