@@ -62,7 +62,6 @@ const NavBar = () => {
   const logOut = async () => {
     const id_user = localStorage.getItem("idAuth");
     const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    if (savedCartItems.length > 0) {
       const body = {
         sale: {
           id_user: id_user,
@@ -73,7 +72,6 @@ const NavBar = () => {
         detailSale: savedCartItems,
       };
       await axios.post("/sale", body);
-    }
     localStorage.clear();
     dispatch(clearFavs());
     navigate("/login");
@@ -132,7 +130,7 @@ const NavBar = () => {
         <NavLink to={"/news"}>
           <button>News</button>
         </NavLink>
-        {currentPath !== "/home" && (
+        {currentPath !== "/home" && currentPath !== "/news" && currentPath !== "/locations" && (
           <div className="shopping" ref={cartRef} onClick={handleCartIconClick}>
             <img className="cart-shopping" src={cart} alt="cart" />
             {isCartOpen && (
