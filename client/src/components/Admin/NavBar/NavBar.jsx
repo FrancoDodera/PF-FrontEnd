@@ -1,14 +1,41 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { clearFavs } from "../../../redux/actions";
 import logo from "../../../img/Logo.svg";
 import "./NaBar.css";
+import axios from "axios";
 const NavBar = () => {
   const navigate = useNavigate();
+  const dispatch=useDispatch();
   const profileUrl = localStorage.getItem("profileUrl");
-  const logOut = (event) => {
+  const [cartItems, setCartItems] = useState([]);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.totalPrice,
+    0
+  );
+  const logOut = async(event) => {
+    const id_user = localStorage.getItem("idAuth");
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const body = {
+      sale: {
+        id_user: id_user,
+        description: "in cart",
+        date: new Date().toISOString(),
+        total: totalPrice,
+      },
+      detailSale: savedCartItems,
+    };
+    await axios.post("/sale", body);
     localStorage.clear();
+    dispatch(clearFavs());
     navigate("/login");
   };
+  useEffect(() => {
+    const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartItems(savedCartItems);
+  }, []);
   return (
     <div className="containerSlite bg-[#597091]">
       <aside>

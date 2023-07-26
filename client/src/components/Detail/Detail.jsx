@@ -21,7 +21,7 @@ const Detail = () => {
   const stars = [1, 2, 3, 4, 5];
   const { idCategory, idMarca } = car;
   const dispatch = useDispatch();
-
+  const idUser=localStorage.getItem('idAuth');
   const getReview = async (id_car) => {
     const { data } = await axios.get(`/reviews/getReview/${id_car}`);
     setReviews(data);
@@ -133,6 +133,21 @@ const Detail = () => {
       alert(error);
     }
   };
+  const deleteReview=async(idReview)=>{
+    try {
+      const {data}=await axios.delete(`/reviews/${idReview}`);
+      setReviews(reviews.filter((elem)=>elem._id != idReview))
+      Swal.fire({
+        icon: "success",
+        title: data.message,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 600,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -151,7 +166,7 @@ const Detail = () => {
               <div className={style.caracteristicas}>
                 <h2>{car?.name}</h2>
                 <h4>
-                  <strong>USD $</strong>${car?.price}
+                  <strong>USD $</strong> {car?.price}
                 </h4>
                 <p>
                   {" "}
@@ -264,7 +279,6 @@ const Detail = () => {
                       <div className="badge badge-accent badge-outline mb-2">
                         <h1 className="color-black">{elem.id_user.user}</h1>
                       </div>
-
                       <p className="mb-3">{elem.coment}</p>
                       <div className="rating">
                         {stars.map((star) => {
@@ -280,6 +294,12 @@ const Detail = () => {
                           );
                         })}
                       </div>
+                      <div className="mt-2">
+                      {
+                        elem.id_user.id ==idUser && (<button className="text-red-400" onClick={()=>deleteReview(elem._id)}>delete</button>)
+                      }
+                      </div>
+                      
                     </div>
                   </div>
                 );
