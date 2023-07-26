@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef  } from "react";
 import NavBar from "../../components/navbar/NavBar";
 import img from "../../img/googlemaps.png";
 import Contact from "../../components/Contact/Contact";
@@ -52,7 +52,7 @@ const Location = () => {
       icon: "success",
     });
   };
-  
+
   return (
     <>
       <NavBar />
@@ -85,7 +85,7 @@ const Location = () => {
               </button>
             </div>
           </div>
-          <Contact />
+          <Contact formRef={formRef} showConfirmationAlert={showConfirmationAlert} />
         </div>
         <div className="flex w-[500px] h-[500px]">
           <div id="map" style={{ height: "500px", width: "500px" }}></div>
