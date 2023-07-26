@@ -101,9 +101,10 @@ const Sale = () => {
             <tr>
               <th className="w-[10%] text-gray-300">ID</th>
               <th className="w-[30%] text-gray-300">User</th>
-              <th className="w-[30%] text-gray-300">Date</th>
-              <th className="w-[30%] text-gray-300">Total</th>
-              <th className="w-[20%] text-gray-300">Actions</th>
+              <th className="w-[20%] text-gray-300">Date</th>
+              <th className="w-[15%] text-gray-300">Status</th>
+              <th className="w-[15%] text-gray-300">Total</th>
+              <th className="w-[10%] text-gray-300">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -113,6 +114,7 @@ const Sale = () => {
                   <th>{element._id}</th>
                   <th>{element.id_user.user}</th>
                   <th>{element.date}</th>
+                  <th>{element.description}</th>
                   <th>$ {element.total}</th>
                   <th>
                     <div className="btn-group">

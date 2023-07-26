@@ -62,17 +62,18 @@ const NavBar = () => {
   const logOut = async () => {
     const id_user = localStorage.getItem("idAuth");
     const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const body = {
-      sale: {
-        id_user: id_user,
-        description: "in cart",
-        date: new Date().toISOString(),
-        total: totalPrice,
-      },
-      detailSale: savedCartItems,
-    };
-    await axios.post("/sale", body);
-
+    if(savedCartItems.length > 0){
+      const body = {
+        sale: {
+          id_user: id_user,
+          description: "in cart",
+          date: new Date().toISOString(),
+          total: totalPrice,
+        },
+        detailSale: savedCartItems,
+      };
+      await axios.post("/sale", body);
+    }
     localStorage.clear();
     dispatch(clearFavs());
     navigate("/login");

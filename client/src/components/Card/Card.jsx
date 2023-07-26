@@ -29,7 +29,7 @@ const Card = (props) => {
   const showPopup = () => {
     Swal.fire({
       text: "Car added to cart",
-      timer: 4000,
+      timer: 700,
       timerProgressBar: true,
       showConfirmButton: false,
       position: "top-end",
@@ -43,8 +43,8 @@ const Card = (props) => {
       id: props.id,
       amount: 1,
       name: props.name,
-      price: props.price,
-      totalPrice: props.price,
+      price: props.price*0.01,
+      totalPrice: props.price*0.01,
       image: props.image,
     };
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
