@@ -10,6 +10,7 @@ import img2 from "../../../img/fotobarbara.jpeg";
 import img3 from "../../../img/fotoFranco.jpeg";
 import img4 from "../../../img/monocuco.jpg";
 import img5 from "../../../img/alfredo.jpg";
+import img6 from "../../../img/WhatsApp Image 2023-07-26 at 19.42.12.jpeg"
 import user from "../../../img/userimg.webp";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -306,7 +307,7 @@ const AboutUS = () => {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <img src={user} alt="" className="img-card" />
+              <img src={img6} alt="" className="img-card" />
               <p>Lautaro Gimenez</p>
               <div className={`icon-container ${isHovered ? "visible" : ""}`}>
                 <p>Full Stack Web Developer</p>
