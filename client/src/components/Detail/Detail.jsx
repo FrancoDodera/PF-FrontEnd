@@ -21,7 +21,7 @@ const Detail = () => {
   const stars = [1, 2, 3, 4, 5];
   const { idCategory, idMarca } = car;
   const dispatch = useDispatch();
-  const idUser=localStorage.getItem('idAuth');
+  const idUser = localStorage.getItem("idAuth");
   const getReview = async (id_car) => {
     const { data } = await axios.get(`/reviews/getReview/${id_car}`);
     setReviews(data);
@@ -92,8 +92,8 @@ const Detail = () => {
       id: id,
       amount: 1,
       name: car.name,
-      price: car.price*0.01,
-      totalPrice: car.price*0.01,
+      price: car.price * 0.01,
+      totalPrice: car.price * 0.01,
       image: car.image,
     };
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -133,10 +133,10 @@ const Detail = () => {
       alert(error);
     }
   };
-  const deleteReview=async(idReview)=>{
+  const deleteReview = async (idReview) => {
     try {
-      const {data}=await axios.delete(`/reviews/${idReview}`);
-      setReviews(reviews.filter((elem)=>elem._id != idReview))
+      const { data } = await axios.delete(`/reviews/${idReview}`);
+      setReviews(reviews.filter((elem) => elem._id != idReview));
       Swal.fire({
         icon: "success",
         title: data.message,
@@ -145,12 +145,12 @@ const Detail = () => {
         timer: 600,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
-    <>
+    <div className={style.containerall}>
       <div>
         <NavBar />
         {loading ? (
@@ -158,41 +158,42 @@ const Detail = () => {
             <div className="loading ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
           </div>
         ) : (
-          <div className={style.container}>
-            <div>
-              <img src={car?.image} alt="" />
-            </div>
-            <div className={style.detalles}>
-              <div className={style.caracteristicas}>
-                <h2>{car?.name}</h2>
-                <h4>
-                  <strong>USD $</strong> {car?.price}
-                </h4>
-                <p>
-                  {" "}
-                  <strong>Year: </strong>
-                  {car?.age}
-                </p>
-                <p>
-                  <strong>Color: </strong> {car?.color}
-                </p>
-                <p>
-                  <strong>Trasmission: </strong> {car?.transmission}
-                </p>
-                <p>
-                  <strong>Brand: </strong> {idMarca?.name}
-                </p>
-                <p>
-                  <strong>Category: </strong> {idCategory?.name}
-                </p>
+          <div className={style.containerta}>
+            <div className={style.container}>
+              <div>
+                <img src={car?.image} alt="" />
               </div>
-              <div className={style.buttons}>
-                <button className={style.buttones} onClick={handleAddToCart}>
-                  Add To Cart
-                </button>
-                <button className={style.buttones} onClick={showModalReview}>
-                  Add Review
-                </button>
+              <div className={style.detalles}>
+                <div className={style.caracteristicas}>
+                  <h2 className={style.namee}>{car?.name}</h2>
+                  <h4>
+                    <h1 className={style.price}>USD $</h1> {car?.price}
+                  </h4>
+                  <p>
+                    <strong>Year: </strong>
+                    {car?.age}
+                  </p>
+                  <p>
+                    <strong>Color: </strong> {car?.color}
+                  </p>
+                  <p>
+                    <strong>Trasmission: </strong> {car?.transmission}
+                  </p>
+                  <p>
+                    <strong>Brand: </strong> {idMarca?.name}
+                  </p>
+                  <p>
+                    <strong>Category: </strong> {idCategory?.name}
+                  </p>
+                </div>
+                <div className={style.buttons}>
+                  <button className={style.buttones} onClick={handleAddToCart}>
+                    Add To Cart
+                  </button>
+                  <button className={style.buttones} onClick={showModalReview}>
+                    Add Review
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -295,11 +296,15 @@ const Detail = () => {
                         })}
                       </div>
                       <div className="mt-2">
-                      {
-                        elem.id_user.id ==idUser && (<button className="text-red-400" onClick={()=>deleteReview(elem._id)}>delete</button>)
-                      }
+                        {elem.id_user.id == idUser && (
+                          <button
+                            className="text-red-400"
+                            onClick={() => deleteReview(elem._id)}
+                          >
+                            delete
+                          </button>
+                        )}
                       </div>
-                      
                     </div>
                   </div>
                 );
@@ -392,7 +397,7 @@ const Detail = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
