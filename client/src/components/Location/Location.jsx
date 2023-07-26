@@ -43,8 +43,6 @@ const Location = () => {
       );
     }
   };
-  
-
   const showConfirmationAlert = () => {
     Swal.fire({
       text: "Message sent!",
@@ -78,7 +76,6 @@ const Location = () => {
               <button
                 className="bg-[#016565] hover:bg-[#e1aca2] text-white font-bold py-2 px-4 rounded mb-2 mx-2"
                 onClick={() => handleRedirect("sucursal1")}
-               
               >
                 Sucursal 1
               </button>
