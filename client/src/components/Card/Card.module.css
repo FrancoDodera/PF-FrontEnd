@@ -99,22 +99,31 @@
   color: white;
   height: 50px;
   cursor: pointer;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 .likeImg {
   width: 30px;
+
   height: 30px;
   cursor: pointer;
 }
 .imageCointainer {
   height: 100px;
 }
+.contenedorfav{
+  margin-bottom: 100px;
+  margin-left: 100px;
 
-.contenedordeto{
+}
+.contenedordeto {
+  flex-direction: column;
   display: flex;
-  flex-direction: row;
+  margin-right: 10px;
+
   justify-content: center;
   align-items: center;
   gap: 15px;
-  
+
 }
