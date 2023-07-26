@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Purchases = () => {
+  const [saleInfo,setSaleInfo]=useState([]);
   const [customerPurchases, setCustomerPurchases] = useState([]);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const showModalhandlerDetail = async (buy) => {
     const { data } = await axios.get(
       `https://pf-back.fly.dev/detail/get/${buy._id}`
     );
-  
     setCustomerPurchases(data);
     setShowDetailModal(true);
   };
   const closeModalPurchase = () => {
+    setCustomerPurchases([]);
     setShowDetailModal(false);
   };
   const getUser = async () => {
@@ -38,7 +39,7 @@ const Purchases = () => {
         `https://pf-back.fly.dev/sale/user/${data.data._id}`
       );
       if (response.status === 200) {
-        setCustomerPurchases(response.data);
+        setSaleInfo(response.data);
       } else {
         console.error("Error al obtener las compras del cliente");
       }
@@ -105,7 +106,7 @@ const Purchases = () => {
             </tr>
           </thead>
           <tbody>
-            {customerPurchases.map((sale,index) => (
+            {saleInfo.map((sale,index) => (
               <tr key={sale._id}>
                 <td className="border px-4 py-2">{index+1}</td>
                 <td className="border px-4 py-2">{sale._id}</td>
