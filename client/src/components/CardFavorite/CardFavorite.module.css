@@ -1,17 +1,19 @@
 .container1 {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  text-align: center;
   margin-bottom: 20px;
   background-color: rgba(137, 192, 209, 0.276);
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   max-width: 300px;
-  height: 500px;
+  height: 350px;
 }
 .h1 {
   font-weight: bold;
+  color: #2b8585;
+  font-size: 20px;
+  padding-bottom: 10px;
 }
 .image {
   width: 220px;
@@ -20,20 +22,14 @@
   border: none;
   border-radius: 10px;
 }
+.iconsContainer {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 75px);
+}
 
 .p {
   font-weight: bold;
-}
-
-.button {
-  width: 130px;
-  height: 50px;
-  left: 86%;
-  margin-top: 70px;
-  background-color: #007777;
-  color: white;
-  border-radius: 10px;
-  transition: 0.2s;
 }
 
 .Link {
@@ -42,6 +38,14 @@
 }
 
 .likeImg {
-  width: 45px;
-  height: 45px;
+  margin-left: 89%;
+  width: 25px;
+  height: 25px;
+}
+
+.cart {
+  width: 25px;
+  height: 25px;
+  transition: 0.2s;
+  cursor: pointer;
 }
