@@ -1,18 +1,15 @@
-
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
   margin-bottom: 20px;
   background-color: rgba(137, 192, 209, 0.276);
-
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
 .cart {
-  width: 50px;
-  position: absolute;
-  left: 87%;
-  margin-top: 10px;
+  width: 45px;
+  height: 45px;
   transition: 0.2s;
   cursor: pointer;
 }
@@ -34,11 +31,11 @@
 }
 
 .imageCointainer {
-  width: 220px;
+  padding: 10px;
+  width: 200px;
   height: 150px;
   margin-right: 50px;
-  border: none;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .p {
@@ -47,6 +44,7 @@
 .celler {
   margin-top: 30px;
 }
+
 .Link {
   text-decoration: none;
   color: rgb(0, 0, 0);
@@ -55,9 +53,7 @@
 .button {
   width: 130px;
   height: 50px;
-  position: absolute;
   left: 86%;
-  margin-top: 70px;
   background-color: #007777;
   color: white;
   border-radius: 10px;
@@ -69,7 +65,25 @@
   text-shadow: -0px 4px 3px rgb(0, 0, 0);
   backface-visibility: hidden;
 }
-.imageCointainer{
+.imageCointainer {
   min-height: 225px;
   min-width: 300px;
+}
+
+.carName {
+  color: #2b8585;
+  font-size: 30px;
+}
+
+.iconsContainer {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 75px);
+  justify-content: center;
+  align-items: center;
+}
+
+.likeImg {
+  width: 30px;
+  height: 30px;
 }

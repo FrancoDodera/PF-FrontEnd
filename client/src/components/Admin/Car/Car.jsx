@@ -101,6 +101,8 @@ const Car = () => {
 
   const [priceError, setPriceError] = useState(false);
 
+  const [imageError, setImageError] = useState(false);
+
   const handleCar = (event) => {
     const { name, value } = event.target;
     setCar({ ...car, [event.target.name]: value });
@@ -128,7 +130,9 @@ const Car = () => {
   };
 
   const validatePrice = (value) => {
-    if (value === 0) {
+    if (value < 0) {
+      setPriceError("The price field cannot be negative");
+    } else if (value === 0) {
       setPriceError("The price field cannot be zero");
     } else {
       setPriceError("");
@@ -136,16 +140,23 @@ const Car = () => {
   };
 
   const validateAge = (value) => {
-    if (value === 0) {
-      setAgeError("The age field cannot be zero");
+    const currentYear = new Date().getFullYear();
+    if (isNaN(value)) {
+      setAgeError("Please enter a valid year");
+    } else if (value < 1990 || value > currentYear) {
+      setAgeError("The year must be between 1990 and " + currentYear);
     } else {
       setAgeError("");
     }
   };
 
   const validateAmount = (value) => {
-    if (value === 0) {
+    if (value < 0) {
+      setAmountError("The amount field cannot be negative");
+    } else if (value === 0) {
       setAmountError("The amount field cannot be zero");
+    } else if (value > 10) {
+      setAmountError("The amount cannot be more than 10");
     } else {
       setAmountError("");
     }
@@ -160,8 +171,12 @@ const Car = () => {
   };
 
   const validateName = (value) => {
-    if (value.length < 3) {
+    if (value.trim().length === 0) {
+      setNameError("The name field cannot be empty");
+    } else if (value.length < 3) {
       setNameError("The name field must have three or more letters");
+    } else if (value.length > 20) {
+      setNameError("The name field cannot have more than 20 letters");
     } else {
       setNameError("");
     }
@@ -172,6 +187,7 @@ const Car = () => {
       ...car,
       action: "Create",
       status: "new",
+      transmission: "Automatic",
       idCategory: categories[0]._id,
       idMarca: brands[0]._id,
     });
@@ -224,6 +240,9 @@ const Car = () => {
     if (car.action === "Create") {
       if (car.image != "") {
         imageUrl = await uploadImage(car.image);
+      } else {
+        setImageError(true);
+        return;
       }
       if (car.amount === 0) {
         return;
@@ -368,16 +387,18 @@ const Car = () => {
                   >
                     Transmission
                   </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="transmission"
-                      id="transmission"
-                      value={car.transmission}
-                      onChange={handleCar}
-                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
+                  <select
+                    value={car.transmission}
+                    className="select select-bordered w-full max-w-xs text-gray-300"
+                    name="transmission"
+                    id="transmission"
+                    onChange={handleCar}
+                  >
+                    <option value="Automatic">Automatic</option>
+                    <option value="Manual">Manual</option>
+                    <option value="Secuential">Secuential</option>
+                    <option value="Electric">Electric</option>
+                  </select>
                   {transmissionError && (
                     <span className="text-red-500 text-sm">
                       {transmissionError}
@@ -612,6 +633,9 @@ const Car = () => {
                       className="file-input w-full max-w-xs text-gray-300"
                     />
                   </div>
+                  {imageError && (
+                    <span className="text-red-500 text-sm">Insert image</span>
+                  )}
                 </div>
               </div>
             </div>
