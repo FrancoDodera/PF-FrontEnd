@@ -33,24 +33,24 @@ const Contact = ({ showConfirmationAlert }) => {
       <input
         type="text"
         name="user_name"
-        className="w-auto h-10 p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
+        className="w-auto h-10 p-2 mt-2 border border-[#016565] rounded focus:border-green-600 focus:outline-none"
       />
       <label className="mt-4">Email</label>
       <input
         type="email"
         name="user_email"
-        className="w-auto h-auto p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
+        className="w-auto h-auto p-2 mt-2 border  border-[#016565] rounded focus:border-green-600 focus:outline-none"
       />
       <label className="mt-4">Message</label>
       <textarea
         name="message"
-        className="w-[220px] h-[110px] p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
+        className="w-[220px] h-[110px] p-2 mt-2 border bg-[#016565] text-white border-gray-300 rounded focus:border-green-600 focus:outline-none"
       />
       <input
         type="submit"
         value="Send"
         onClick={sendEmail}
-        className="w-auto h-auto mt-8 py-2 px-4 bg-orange-500 hover:bg-orange-800 text-white border-none cursor-pointer"
+        className="w-auto h-auto mt-8 py-2 px-4 bg-[#016565] hover:bg-[#e1aca2] text-white border-none cursor-pointer"
       />
     </form>
   );
