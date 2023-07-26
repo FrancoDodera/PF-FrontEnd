@@ -49,7 +49,7 @@ const News = () => {
   };
 
   return (
-    <div>
+    <div className="bg-[#F0F8FF]">
       <NavBar />
       <h1 className={styles.title}> Automotive News </h1>
       {loading ? (

@@ -44,7 +44,7 @@ const Contact = ({ showConfirmationAlert }) => {
       <label className="mt-4">Message</label>
       <textarea
         name="message"
-        className="w-[220px] h-[110px] p-2 mt-2 border border-gray-300 rounded focus:border-green-600 focus:outline-none"
+        className="w-[220px] h-[110px] p-2 mt-2 border bg-gray-200 border-gray-300 rounded focus:border-green-600 focus:outline-none"
       />
       <input
         type="submit"

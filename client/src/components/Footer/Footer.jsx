@@ -11,7 +11,7 @@ const Footer = () => {
         </div>
         <div className={style.costumers}>
           <p>CUSTOMER SERVICE</p>
-          <p>surra@car.com</p>
+          <p>CarGo@gmail.com</p>
           <p>3203280463</p>
         </div>
         <div className={style.svgs}>

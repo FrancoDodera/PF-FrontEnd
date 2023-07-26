@@ -1,6 +1,7 @@
 .title{
     text-align: center;
-    color:aliceblue;
+    color:rgb(13, 13, 13);
+    font-weight: 600;
     font-size: 40px;
     margin-top: 20px;
 }

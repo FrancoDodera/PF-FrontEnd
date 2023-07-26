@@ -42,7 +42,7 @@ const Card = ({ title, content, imageURL, author,publishedAt,url }) => {
           alt="Image Alt"
         />
       )}
-          <a href={url} target="_blank" rel="noopener noreferrer"> Reed more... </a>
+          <a href={url} target="_blank" rel="noopener noreferrer"> Read more... </a>
        </div>
       </div>
   );
