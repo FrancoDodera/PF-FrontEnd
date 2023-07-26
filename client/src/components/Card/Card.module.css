@@ -5,15 +5,25 @@
   background-color: rgba(137, 192, 209, 0.276);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
+  width: 98%;
 }
 
 .cart {
-  width: 45px;
-  height: 45px;
+  width: 25px;
+  height: 25px;
   transition: 0.2s;
   cursor: pointer;
+  margin-left: 10px;
 }
 
+.nuevo {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.price {
+  font-size: x-large;
+  font-weight: 700;
+}
 .popup {
   position: fixed;
   top: 50%;
@@ -31,15 +41,15 @@
 }
 
 .imageCointainer {
-  padding: 10px;
-  width: 200px;
+  padding: 5px;
+  width: 220px;
   height: 150px;
-  margin-right: 50px;
-  border-radius: 20px;
+  margin-right: 20px;
 }
 
 .p {
   font-weight: bold;
+  margin-top: 10px;
 }
 .celler {
   margin-top: 30px;
@@ -66,24 +76,55 @@
   backface-visibility: hidden;
 }
 .imageCointainer {
-  min-height: 225px;
-  min-width: 300px;
+  min-height: 250px;
+  min-width: 330px;
 }
 
 .carName {
-  color: #2b8585;
-  font-size: 30px;
+  font-size: 25px;
+  margin-bottom: 10px;
+  color: #016565;
 }
 
 .iconsContainer {
   padding: 10px;
-  display: grid;
-  grid-template-columns: repeat(2, 75px);
+}
+.cartButtom {
+  align-content: center;
   justify-content: center;
   align-items: center;
+  display: flex;
+  width: 170px;
+  background-color: #016565;
+  color: white;
+  height: 50px;
 }
 
 .likeImg {
   width: 30px;
   height: 30px;
+}
+imageCointainer {
+  height: 100px;
+}
+
+.contenedordetso {
+
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cartButtom {
+  cursor: pointer;
+  margin-top: 150px;
+  margin-right: 20px;
+  border-radius: 4px ;
+}
+
+.likeImg {
+
+  cursor: pointer;
+  transform: translate(500%, 50%);
 }

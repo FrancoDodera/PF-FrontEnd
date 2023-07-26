@@ -5,6 +5,8 @@
   list-style-type: none;
   padding: 0.5em;
   background: none;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 .paginationItem {
   padding: 0 12px;
