@@ -101,6 +101,8 @@ const Car = () => {
 
   const [priceError, setPriceError] = useState(false);
 
+  const [imageError, setImageError] = useState(false);
+
   const handleCar = (event) => {
     const { name, value } = event.target;
     setCar({ ...car, [event.target.name]: value });
@@ -185,6 +187,7 @@ const Car = () => {
       ...car,
       action: "Create",
       status: "new",
+      transmission: "Automatic",
       idCategory: categories[0]._id,
       idMarca: brands[0]._id,
     });
@@ -237,6 +240,9 @@ const Car = () => {
     if (car.action === "Create") {
       if (car.image != "") {
         imageUrl = await uploadImage(car.image);
+      } else {
+        setImageError(true);
+        return;
       }
       if (car.amount === 0) {
         return;
@@ -381,16 +387,18 @@ const Car = () => {
                   >
                     Transmission
                   </label>
-                  <div className="mt-2">
-                    <input
-                      type="text"
-                      name="transmission"
-                      id="transmission"
-                      value={car.transmission}
-                      onChange={handleCar}
-                      className="block w-full p-3 rounded-md border-0 py-4 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
+                  <select
+                    value={car.transmission}
+                    className="select select-bordered w-full max-w-xs text-gray-300"
+                    name="transmission"
+                    id="transmission"
+                    onChange={handleCar}
+                  >
+                    <option value="Automatic">Automatic</option>
+                    <option value="Manual">Manual</option>
+                    <option value="Secuential">Secuential</option>
+                    <option value="Electric">Electric</option>
+                  </select>
                   {transmissionError && (
                     <span className="text-red-500 text-sm">
                       {transmissionError}
@@ -625,6 +633,9 @@ const Car = () => {
                       className="file-input w-full max-w-xs text-gray-300"
                     />
                   </div>
+                  {imageError && (
+                    <span className="text-red-500 text-sm">Insert image</span>
+                  )}
                 </div>
               </div>
             </div>
