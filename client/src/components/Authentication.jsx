@@ -1,8 +1,8 @@
-import GoogleLogin from 'react-google-login'
-import {gapi} from 'gapi-script'
-import { useEffect } from 'react'
-import {useNavigate} from 'react-router-dom'
-import axios from 'axios'
+import GoogleLogin from "react-google-login";
+import { gapi } from "gapi-script";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Authentication=()=>{
     const navigate=useNavigate();
@@ -20,7 +20,6 @@ const Authentication=()=>{
                 type:'User',
                 image:res.profileObj.imageUrl
             }
-            console.log(body)
             const {data}=await axios.post('/user/authentication',body)
             if(data.acces==true){
                 if(data.data.type=='User'){
@@ -46,26 +45,26 @@ const Authentication=()=>{
         } catch (error) {
             alert(error)
         }
-    }
-    const handlerError=(res)=>{
-        //logica aca
-        alert('no se pudo iniciar')
-    }
-    const start=()=>{
-        gapi.auth2.init({
-            clientId:clientID,
-        })
-    }
-    useEffect(()=>{
-        gapi.load("client:auth2",start)
-    },[])
-    return(
-             <GoogleLogin
-             clientId={clientID}
-             onSuccess={handlerSuccess}
-             onFailure={handlerError}
-             cookiePolicy={'single_host_origin'}
-             />
-        )
-}
+  };
+  const handlerError = (res) => {
+    //logica aca
+    alert("no se pudo iniciar");
+  };
+  const start = () => {
+    gapi.auth2.init({
+      clientId: clientID,
+    });
+  };
+  useEffect(() => {
+    gapi.load("client:auth2", start);
+  }, []);
+  return (
+    <GoogleLogin
+      clientId={clientID}
+      onSuccess={handlerSuccess}
+      onFailure={handlerError}
+      cookiePolicy={"single_host_origin"}
+    />
+  );
+};
 export default Authentication;
