@@ -40,7 +40,7 @@ const Home = () => {
       </div>
       <div className="banner">
         <Find />
-        <SellYourCar />
+
         <CookieBanner />
       </div>
       {loading ? (
