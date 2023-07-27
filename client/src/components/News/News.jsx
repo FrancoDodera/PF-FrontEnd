@@ -8,45 +8,51 @@ import Footer from "../Footer/Footer";
 const News = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const pageSize = 10;
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [totalPages, setTotalPages] = useState(1);
+  // const pageSize = 10;
+  const getNews=async()=>{
+    const {data}=await axios.get('/news');
+    setNews(data);
+    setLoading(false)
+  }
 
   useEffect(() => {
-    const apiKey = "84432522b9bf4608bfb735a7732a2ae3";
-    const keywords = ["cars", "vehicles", "car reviews"];
-    const keywordString = keywords.join(" ");
-    const url = `https://newsapi.org/v2/everything?q=${keywordString}&apiKey=${apiKey}&pageSize=${pageSize}&page=1`;
+    getNews();
+    // const apiKey = "84432522b9bf4608bfb735a7732a2ae3";
+    // const keywords = ["cars", "vehicles", "car reviews"];
+    // const keywordString = keywords.join(" ");
+    // const url = `https://newsapi.org/v2/everything?q=${keywordString}&apiKey=${apiKey}&pageSize=${pageSize}&page=1`;
 
-    axios
-      .get(url)
-      .then((response) => {
-        setNews(
-          response.data.articles.map((noticia) => ({
-            ...noticia,
-            imageLoaded: true,
-          }))
-        );
-        setTotalPages(Math.ceil(response.data.totalResults / pageSize));
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error making the request:", error);
-        setLoading(false);
-      });
-  }, [currentPage]);
+    // axios
+    //   .get(url)
+    //   .then((response) => {
+    //     setNews(
+    //       response.data.articles.map((noticia) => ({
+    //         ...noticia,
+    //         imageLoaded: true,
+    //       }))
+    //     );
+    //     setTotalPages(Math.ceil(response.data.totalResults / pageSize));
+    //     setLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error making the request:", error);
+    //     setLoading(false);
+    //   });
+  }, []);
 
   const noticiasConImagenesValidas = news.filter(
     (noticia) => noticia.urlToImage && noticia.imageLoaded
   );
 
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  };
+  // const handlePrevPage = () => {
+  //   setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  // };
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-  };
+  // const handleNextPage = () => {
+  //   setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  // };
 
   return (
     <div className="bg-[#F0F8FF]">
@@ -58,7 +64,7 @@ const News = () => {
         </div>
       ) : (
         <div className={styles.card}>
-          {noticiasConImagenesValidas.map((noticia, index) => (
+          {news.map((noticia, index) => (
             <a
               key={index}
               href={noticia.url}
@@ -77,7 +83,7 @@ const News = () => {
           ))}
         </div>
       )}
-      {totalPages > 1 && (
+      {/* {totalPages > 1 && (
         <div className={styles.pagination}>
           <button
             className={styles.prevBtn}
@@ -97,7 +103,7 @@ const News = () => {
             Next
           </button>
         </div>
-      )}
+      )} */}
       <Footer />
     </div>
   );
