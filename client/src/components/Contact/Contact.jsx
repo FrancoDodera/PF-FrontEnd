@@ -50,7 +50,7 @@ const Contact = ({ showConfirmationAlert }) => {
         type="submit"
         value="Send"
         onClick={sendEmail}
-        className="w-auto h-auto mt-8 py-2 px-4 bg-orange-500 hover:bg-orange-800 text-white border-none cursor-pointer"
+        className="w-auto h-auto mt-8 py-2 px-4 bg-[#016565] hover:bg-orange-800 text-white border-none cursor-pointer"
       />
     </form>
   );
