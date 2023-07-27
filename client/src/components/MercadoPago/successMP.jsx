@@ -31,7 +31,7 @@ const SuccessPage = () => {
     finish();
   }, [location]);
   return (
-    <div>
+    <div className="bg-[#F0F8FF] h-screen">
       <NavBar />
       <div className={styles.contenedormp}>
         <h1 className={styles.h1mp}>¡Successful purchase!</h1>

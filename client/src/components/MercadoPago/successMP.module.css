@@ -22,10 +22,11 @@
 }
 
 .button {
-  background-color: white;
+  background-color: #008000;
   border-radius: 10px;
   width: 100px;
   height: 30px;
+  color: white;
 }
 
 .dataPayment{
