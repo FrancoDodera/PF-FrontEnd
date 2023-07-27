@@ -167,7 +167,7 @@ const Detail = () => {
                 <div className={style.caracteristicas}>
                   <h2 className={style.namee}>{car?.name}</h2>
                   <h4>
-                    <h1 className={style.price}>USD $</h1> {car?.price}
+                    <h1 className={style.price}>USD ${car?.price}</h1>
                   </h4>
                   <p>
                     <strong>Year: </strong>

@@ -9,6 +9,7 @@ import { clearFavs } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import Swal from "sweetalert2";
+import carro from "../../img/carro.svg"
 const NavBar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,25 +63,25 @@ const NavBar = () => {
   const logOut = async () => {
     const id_user = localStorage.getItem("idAuth");
     const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-      const body = {
-        sale: {
-          id_user: id_user,
-          description: "in cart",
-          date: new Date().toISOString(),
-          total: totalPrice,
-        },
-        detailSale: savedCartItems,
-      };
-      await axios.post("/sale", body);
+    const body = {
+      sale: {
+        id_user: id_user,
+        description: "in cart",
+        date: new Date().toISOString(),
+        total: totalPrice,
+      },
+      detailSale: savedCartItems,
+    };
+    await axios.post("/sale", body);
     localStorage.clear();
     dispatch(clearFavs());
     navigate("/login");
     // Realiza la navegación a la página de inicio de sesión o a otra página deseada después de cerrar sesión
   };
-  const logOutGuest=()=>{
+  const logOutGuest = () => {
     localStorage.clear();
     navigate("/login");
-  }
+  };
 
   const handleGoToCart = (event) => {
     if (userGuest) {
@@ -140,37 +141,46 @@ const NavBar = () => {
         <NavLink to={"/news"}>
           <button>News</button>
         </NavLink>
-        {currentPath !== "/home" && currentPath !== "/news" && currentPath !== "/locations" && (
-          <div className="shopping" ref={cartRef} onClick={handleCartIconClick}>
-            <img className="cart-shopping" src={cart} alt="cart" />
-            {isCartOpen && (
-              <div className="cart-dropdown">
-                {cartItems.length > 0 ? (
-                  <>
-                    {cartItems.map((item) => (
-                      <div key={item.id} className="cart-item">
-                        {item.name} ${item.totalPrice}{" "}
-                        {item.amount > 1 ? `x${item.amount}` : ""}
-                        <button
-                          className="remove-button"
-                          onClick={() => removeFromCart(item.id)}
-                        >
-                          &#10005;
-                        </button>
+        {currentPath !== "/home" &&
+          currentPath !== "/news" &&
+          currentPath !== "/locations" && (
+            <div
+              className="shopping"
+              ref={cartRef}
+              onClick={handleCartIconClick}
+            >
+              <img className="cart-shopping" src={cart} alt="cart" />
+              {isCartOpen && (
+                <div className="cart-dropdown">
+                  {cartItems.length > 0 ? (
+                    <>
+                      {cartItems.map((item) => (
+                        <div key={item.id} className="cart-item">
+                          {item.name} ${item.totalPrice}{" "}
+                          {item.amount > 1 ? `x${item.amount}` : ""}
+                          <button
+                            className="remove-button"
+                            onClick={() => removeFromCart(item.id)}
+                          >
+                            &#10005;
+                          </button>
+                        </div>
+                      ))}
+                      <div className="cart-total">Total: ${totalPrice}</div>
+                      <div className="goToCart">
+                        <button onClick={handleGoToCart}>Go to cart</button>
                       </div>
-                    ))}
-                    <div className="cart-total">Total: ${totalPrice}</div>
-                    <div className="goToCart">
-                      <button onClick={handleGoToCart}>Go to cart</button>
+                    </>
+                  ) : (
+                    <div className="cart-font">
+                      No items in cart
+                      <img src={carro} alt="" />
                     </div>
-                  </>
-                ) : (
-                  <div className="cart-font">No items in cart</div>
-                )}
-              </div>
-            )}
-          </div>
-        )}
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         {userGuest ? (
           <div className="userMenuContainer" ref={menuRef}>
             <div className="usernameButton" onClick={toggleMenu}>
