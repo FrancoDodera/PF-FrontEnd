@@ -6,7 +6,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 const Authentication=()=>{
     const navigate=useNavigate();
-    const clientID="193073335991-2mn8jv9bf1n94h3jr14vblsiipfs0ie7.apps.googleusercontent.com"
+    const clientID="193073335991-e2gqv4d7rj0uo6tmb8icli57mlfaqk14.apps.googleusercontent.com"
     const handlerSuccess= async(res)=>{
         try {
             const body={
